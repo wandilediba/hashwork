@@ -1,4 +1,4 @@
-package hashwork.HR.office;
+package hashwork.domain.office;
 
 import java.io.Serializable;
 import java.util.Date;
