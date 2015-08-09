@@ -6,11 +6,7 @@
 package hashwork.domain.hr;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * Created By: Garran Michaels
@@ -19,9 +15,9 @@ import javax.persistence.Id;
 
 @Embeddable
 public class Contact implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id; 
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private Long id; 
     private String mobileNumber;
     private String homeNumber;
     private String emailAddress;
@@ -29,9 +25,9 @@ public class Contact implements Serializable{
     private Contact() {
     }
 
-    public Long getId() {
-        return id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
 
     public String getMobileNumber() {
         return mobileNumber;
@@ -46,7 +42,7 @@ public class Contact implements Serializable{
     }
     
     public Contact(Contact.Builder builder) {
-        id=builder.id;
+//        id=builder.id;
         mobileNumber=builder.mobileNumber;
         homeNumber=builder.homeNumber;
         emailAddress=builder.emailAddress;
@@ -78,7 +74,7 @@ public class Contact implements Serializable{
         }
         
         public Builder copy(Contact value){
-            this.id=value.id;
+//            this.id=value.id;
             this.mobileNumber=value.mobileNumber;
             this.homeNumber=value.homeNumber;
             this.emailAddress=value.emailAddress;
@@ -88,32 +84,5 @@ public class Contact implements Serializable{
         public Contact build(){
             return new Contact(this);
         }
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Contact other = (Contact) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Contact{" + "id=" + id + ", mobileNumber=" + mobileNumber + ", homeNumber=" + homeNumber + ", emailAddress=" + emailAddress + '}';
     }
 }

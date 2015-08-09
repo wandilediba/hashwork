@@ -1,19 +1,24 @@
 package hashwork.domain.hr;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.Embeddable;
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  * Created By: Garran Michaels
  * Date Create: 05 August 2015
  */
 
-@Embeddable
+@Entity
 public class Employee implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +29,14 @@ public class Employee implements Serializable{
     private String identificationNumber;
     private Date hireDate;
     private String employeeType;
+    @Embedded
+    private Contact contact;
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
+//    @OneToOne (cascade=CascadeType.ALL)
+//    @JoinColumn(name = "job_id")
+//    private Job job;
     
     private Employee() {
     }
@@ -55,6 +68,18 @@ public class Employee implements Serializable{
     public String getEmployeeType() {
         return employeeType;
     }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+//    public Job getJob() {
+//        return job;
+//    }
     
     public Employee(Employee.Builder builder) {
         id=builder.id;
@@ -64,6 +89,9 @@ public class Employee implements Serializable{
         identificationNumber=builder.identificationNumber;
         hireDate=builder.hireDate;
         employeeType=builder.employeeType;
+        contact=builder.contact;
+        address=builder.address;
+//        job=builder.job;
     }
     
     public static class Builder{
@@ -74,13 +102,16 @@ public class Employee implements Serializable{
         private String identificationNumber;
         private Date hireDate;
         private String employeeType;
+        private Contact contact;
+        private Address address;
+//        private Job job;
         
-        public Builder(Long id) {
-            this.id = id;
+        public Builder(String employeeNumber) {
+            this.employeeNumber = employeeNumber;
         }
         
-        public Builder employeeNumber(String value){
-            this.employeeNumber=value;
+        public Builder id(Long value){
+            this.id=value;
             return this;
         }
         
@@ -109,6 +140,21 @@ public class Employee implements Serializable{
             return this;
         }
        
+        public Builder contact(Contact value){
+            this.contact=value;
+            return this;
+        }
+        
+            public Builder address(Address value){
+            this.address=value;
+            return this;
+        }
+        
+//        public Builder job(Job value){
+//            this.job=value;
+//            return this;
+//        }
+        
         public Builder copy(Employee value){
             this.id=value.id;
             this.employeeNumber=value.employeeNumber;
@@ -117,6 +163,9 @@ public class Employee implements Serializable{
             this.identificationNumber=value.identificationNumber;
             this.hireDate=value.hireDate;
             this.employeeType=value.employeeType;
+            this.contact=value.contact;
+            this.address=value.address;
+//            this.job=value.job;
             return this;
         }
         
@@ -145,10 +194,5 @@ public class Employee implements Serializable{
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" + "id=" + id + ", employeeNumber=" + employeeNumber + ", name=" + name + ", surname=" + surname + ", identificationNumber=" + identificationNumber + ", hireDate=" + hireDate + ", employeeType=" + employeeType + '}';
     }
 }

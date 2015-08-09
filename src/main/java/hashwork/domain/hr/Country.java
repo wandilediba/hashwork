@@ -6,23 +6,30 @@
 package hashwork.domain.hr;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
-import javax.persistence.Embeddable;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  * Created By: Garran Michaels
  * Date Create: 05 August 2015
  */
 
-@Embeddable
+@Entity
 public class Country implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; 
     private String country;
+    @OneToMany (cascade=CascadeType.ALL)
+    @JoinColumn(name = "region_id")
+    private List<Region> region;
     
     private Country() {
     }
@@ -38,24 +45,32 @@ public class Country implements Serializable{
     public Country(Country.Builder builder) {
         id=builder.id;
         country=builder.country;
+        region=builder.region;
     }
     
     public static class Builder{
         private Long id; 
         private String country;
+        private List<Region> region;
         
-        public Builder(Long id) {
-            this.id = id;
+        public Builder(String country) {
+            this.country = country;
         }
         
-        public Builder country(String value){
-            this.country=value;
+        public Builder id(Long value){
+            this.id=value;
+            return this;
+        }      
+        
+        public Builder region(List<Region> value){
+            this.region=value;
             return this;
         }
        
         public Builder copy(Country value){
             this.id=value.id;
             this.country=value.country;
+            this.region=value.region;
             return this;
         }
         
@@ -84,10 +99,5 @@ public class Country implements Serializable{
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Country{" + "id=" + id + ", country=" + country + '}';
     }
 }

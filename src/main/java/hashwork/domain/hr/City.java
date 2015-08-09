@@ -7,7 +7,7 @@ package hashwork.domain.hr;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +17,7 @@ import javax.persistence.Id;
  * Date Create: 05 August 2015
  */
 
-@Embeddable
+@Entity
 public class City implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,8 +44,13 @@ public class City implements Serializable{
         private Long id; 
         private String city;
         
-        public Builder(Long id) {
-            this.id = id;
+        public Builder(String city) {
+            this.city = city;
+        }
+        
+        public Builder id(Long value){
+            this.id=value;
+            return this;
         }
        
         public Builder copy(City value){
@@ -79,10 +84,5 @@ public class City implements Serializable{
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "City{" + "id=" + id + ", city=" + city + '}';
     }
 }

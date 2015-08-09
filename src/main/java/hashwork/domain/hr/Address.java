@@ -7,7 +7,7 @@ package hashwork.domain.hr;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +17,7 @@ import javax.persistence.Id;
  * Date Create: 05 August 2015
  */
 
-@Embeddable
+@Entity
 public class Address implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,9 +30,9 @@ public class Address implements Serializable{
     private Address() {
     }
 
-    public Long getId() {
-        return id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
 
     public String getSuburb() {
         return suburb;
@@ -65,8 +65,8 @@ public class Address implements Serializable{
         private String Number;
         private String PostalCode;
      
-        public Builder(Long id) {
-            this.id = id;
+        public Builder(String PostalCode) {
+            this.PostalCode = PostalCode;
         }
 
         public Builder suburb(String value){
@@ -84,10 +84,10 @@ public class Address implements Serializable{
             return this;
         }
         
-        public Builder PostalCode(String value){
-            this.PostalCode=value;
-            return this;
-        }
+//        public Builder PostalCode(String value){
+//            this.PostalCode=value;
+//            return this;
+//        }
         
         public Builder copy(Address value){
             this.id=value.id;
@@ -123,10 +123,5 @@ public class Address implements Serializable{
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" + "id=" + id + ", suburb=" + suburb + ", streetName=" + streetName + ", Number=" + Number + ", PostalCode=" + PostalCode + '}';
     }
 }

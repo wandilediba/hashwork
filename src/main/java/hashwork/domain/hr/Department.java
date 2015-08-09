@@ -6,45 +6,72 @@
 package hashwork.domain.hr;
 
 import java.io.Serializable;
-import javax.persistence.Embeddable;
+import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  * Created By: Garran Michaels
  * Date Create: 05 August 2015
  */
-@Embeddable
+@Entity
 public class Department implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; 
     private String departmentName;
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name = "country_id")
+    private Country country;
     
     private Department() {
     }
-    
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
     public Department(Department.Builder builder) {
         id=builder.id;
         departmentName=builder.departmentName;
+        country=builder.country;
     }
     public static class Builder{
         private Long id; 
         private String departmentName;
-        
-        public Builder(Long id) {
-            this.id = id;
+        private Country country;
+
+        public Builder(String departmentName) {
+            this.departmentName = departmentName;
         }
         
-        public Builder departmentName(String value){
-            this.departmentName=value;
+        public Builder id(long value){
+            this.id=value;
+            return this;
+        }
+        
+        public Builder country(Country value){
+            this.country=value;
             return this;
         }
         
         public Builder copy(Department value){
             this.id=value.id;
             this.departmentName=value.departmentName;
+            this.country=value.country;
             return this;
         }
         
@@ -52,5 +79,26 @@ public class Department implements Serializable{
             return new Department(this);
         }
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Department other = (Department) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
 }
