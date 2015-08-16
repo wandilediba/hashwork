@@ -7,20 +7,15 @@ package hashwork.domain.hr;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * Created By: Garran Michaels
  * Date Create: 05 August 2015
  */
 
-@Entity
+
 public class Address implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id; 
     private String suburb; 
     private String streetName;

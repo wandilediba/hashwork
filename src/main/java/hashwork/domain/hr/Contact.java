@@ -6,14 +6,14 @@
 package hashwork.domain.hr;
 
 import java.io.Serializable;
-import javax.persistence.Embeddable;
+
 
 /**
  * Created By: Garran Michaels
  * Date Create: 05 August 2015
  */
 
-@Embeddable
+
 public class Contact implements Serializable{
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)

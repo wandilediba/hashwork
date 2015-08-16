@@ -8,27 +8,16 @@ package hashwork.domain.hr;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 
 /**
  * Created By: Garran Michaels
  * Date Create: 05 August 2015
  */
 
-@Entity
 public class Country implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id; 
     private String country;
-    @OneToMany (cascade=CascadeType.ALL)
-    @JoinColumn(name = "region_id")
     private List<Region> region;
     
     private Country() {

@@ -1,27 +1,16 @@
 package hashwork.domain.hr;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 /**
  * Created By: Garran Michaels
  * Date Create: 05 August 2015
  */
 
-@Entity
 public class Employee implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id; 
     private String employeeNumber;
     private String name;
@@ -29,10 +18,8 @@ public class Employee implements Serializable{
     private String identificationNumber;
     private Date hireDate;
     private String employeeType;
-    @Embedded
     private Contact contact;
-    @OneToOne (cascade=CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+
     private Address address;
 //    @OneToOne (cascade=CascadeType.ALL)
 //    @JoinColumn(name = "job_id")
