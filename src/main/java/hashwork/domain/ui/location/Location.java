@@ -14,7 +14,7 @@ public class Location implements Serializable {
     private String code;
     private String latitude;
     private String longitude;
-    private LocationType locationType;
-    private List<Location> children;
-    private Location parent;
+    private String locationTypeId;
+    private List<String> childrenIds; // Province has Cities as Children
+    private String parentId; //Location Id of Parent, e.g Country --> Province-->City
 }
