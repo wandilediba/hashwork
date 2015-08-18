@@ -12,7 +12,7 @@ public class AccountTree implements ItemClickEvent.ItemClickListener {
 
     public AccountTree(MainLayout main) {
         this.main = main;
-      
+
     }
 
     @Override
