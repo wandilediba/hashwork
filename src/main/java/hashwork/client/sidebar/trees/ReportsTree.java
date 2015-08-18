@@ -1,12 +1,13 @@
 package hashwork.client.sidebar.trees;
 
 import com.vaadin.event.ItemClickEvent;
+import com.vaadin.ui.Tree;
 import hashwork.client.content.MainLayout;
 
 /**
  * Created by hashcode on 2015/08/17.
  */
-public class ReportsTree implements ItemClickEvent.ItemClickListener {
+public class ReportsTree extends Tree implements ItemClickEvent.ItemClickListener {
     private final MainLayout main;
     private static final String LANDING_TAB = "LANDING";
 
