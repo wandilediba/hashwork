@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.demographics.DemographicsMenu;
 import hashwork.client.content.system.demographics.forms.RolesListForm;
+import hashwork.client.content.system.demographics.model.RolesListModel;
 import hashwork.client.content.system.demographics.table.RolesListTable;
 import hashwork.domain.ui.demographics.RolesList;
 import hashwork.services.ui.demographics.Impl.RolesListServiceImpl;
@@ -53,8 +54,9 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
     public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final RolesList locationType = rolesListService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<RolesList>(locationType));
+            final RolesList rolesList = rolesListService.findById(table.getValue().toString());
+            final RolesListModel model = getModel(rolesList);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
         }
     }
@@ -125,5 +127,25 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private RolesList getNewEntity(FieldGroup binder) {
+        final RolesListModel bean = ((BeanItem<RolesListModel>) binder.getItemDataSource()).getBean();
+        final RolesList RolesList = new RolesList();
+
+        return RolesList;
+    }
+
+    private RolesList getUpdateEntity(FieldGroup binder) {
+        final RolesListModel bean = ((BeanItem<RolesListModel>) binder.getItemDataSource()).getBean();
+        final RolesList RolesList = new RolesList();
+
+        return RolesList;
+    }
+
+    private RolesListModel getModel(RolesList rolesList) {
+        final RolesListModel model = new RolesListModel();
+
+        return model;
     }
 }

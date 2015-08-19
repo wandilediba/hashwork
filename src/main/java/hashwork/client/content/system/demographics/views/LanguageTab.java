@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.demographics.DemographicsMenu;
 import hashwork.client.content.system.demographics.forms.LanguageForm;
+import hashwork.client.content.system.demographics.model.LanguageModel;
 import hashwork.client.content.system.demographics.table.LanguageTable;
 import hashwork.domain.ui.demographics.Language;
 import hashwork.services.ui.demographics.Impl.LanguageServiceImpl;
@@ -53,8 +54,9 @@ public class LanguageTab extends VerticalLayout implements Button.ClickListener,
     public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final Language locationType = languageService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<Language>(locationType));
+            final Language language = languageService.findById(table.getValue().toString());
+            final LanguageModel model = getModel(language);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
         }
     }
@@ -125,5 +127,25 @@ public class LanguageTab extends VerticalLayout implements Button.ClickListener,
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private Language getNewEntity(FieldGroup binder) {
+        final LanguageModel bean = ((BeanItem<LanguageModel>) binder.getItemDataSource()).getBean();
+        final Language Language = new Language();
+
+        return Language;
+    }
+
+    private Language getUpdateEntity(FieldGroup binder) {
+        final LanguageModel bean = ((BeanItem<LanguageModel>) binder.getItemDataSource()).getBean();
+        final Language Language = new Language();
+
+        return Language;
+    }
+
+    private LanguageModel getModel(Language language) {
+        final LanguageModel model = new LanguageModel();
+
+        return model;
     }
 }

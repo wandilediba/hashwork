@@ -45,7 +45,7 @@ public class RolesListForm extends FormLayout {
 
         // Create a field group and use it to bind the fields in the layout
 
-        binder.bind(rolename, "rolename");
+        binder.bind(rolename, "roleName");
         binder.bind(description, "description");
         addComponent(rolename);
         addComponent(description);

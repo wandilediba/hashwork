@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.demographics.DemographicsMenu;
 import hashwork.client.content.system.demographics.forms.MaritalStatusListForm;
+import hashwork.client.content.system.demographics.model.MaritalStatusListModel;
 import hashwork.client.content.system.demographics.table.MaritalStatusListTable;
 import hashwork.domain.ui.demographics.MaritalStatusList;
 import hashwork.services.ui.demographics.Impl.MaritalStatusListServiceImpl;
@@ -55,8 +56,10 @@ public class MaritalStatusListTab extends VerticalLayout implements Button.Click
         final Property property = event.getProperty();
         if (property == table) {
             final MaritalStatusList maritalStatusList = maritalStatusListService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<MaritalStatusList>(maritalStatusList));
+            final MaritalStatusListModel model = getModel(maritalStatusList);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
+
         }
     }
 
@@ -126,5 +129,25 @@ public class MaritalStatusListTab extends VerticalLayout implements Button.Click
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private MaritalStatusList getNewEntity(FieldGroup binder) {
+        final MaritalStatusListModel bean = ((BeanItem<MaritalStatusListModel>) binder.getItemDataSource()).getBean();
+        final MaritalStatusList MaritalStatusList = new MaritalStatusList();
+
+        return MaritalStatusList;
+    }
+
+    private MaritalStatusList getUpdateEntity(FieldGroup binder) {
+        final MaritalStatusListModel bean = ((BeanItem<MaritalStatusListModel>) binder.getItemDataSource()).getBean();
+        final MaritalStatusList MaritalStatusList = new MaritalStatusList();
+
+        return MaritalStatusList;
+    }
+
+    private MaritalStatusListModel getModel(MaritalStatusList maritalStatusList) {
+        final MaritalStatusListModel model = new MaritalStatusListModel();
+
+        return model;
     }
 }

@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.demographics.DemographicsMenu;
 import hashwork.client.content.system.demographics.forms.RaceListForm;
+import hashwork.client.content.system.demographics.model.RaceListModel;
 import hashwork.client.content.system.demographics.table.RaceListTable;
 import hashwork.domain.ui.demographics.RaceList;
 import hashwork.services.ui.demographics.Impl.RaceListServiceImpl;
@@ -54,8 +55,10 @@ public class RaceListTab extends VerticalLayout implements Button.ClickListener,
         final Property property = event.getProperty();
         if (property == table) {
             final RaceList raceList = raceListService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<RaceList>(raceList));
+            final RaceListModel model = getModel(raceList);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
+
         }
     }
 
@@ -125,5 +128,25 @@ public class RaceListTab extends VerticalLayout implements Button.ClickListener,
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private RaceList getNewEntity(FieldGroup binder) {
+        final RaceListModel bean = ((BeanItem<RaceListModel>) binder.getItemDataSource()).getBean();
+        final RaceList RaceList = new RaceList();
+
+        return RaceList;
+    }
+
+    private RaceList getUpdateEntity(FieldGroup binder) {
+        final RaceListModel bean = ((BeanItem<RaceListModel>) binder.getItemDataSource()).getBean();
+        final RaceList RaceList = new RaceList();
+
+        return RaceList;
+    }
+
+    private RaceListModel getModel(RaceList raceList) {
+        final RaceListModel model = new RaceListModel();
+
+        return model;
     }
 }
