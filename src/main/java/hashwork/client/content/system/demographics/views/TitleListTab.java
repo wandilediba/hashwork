@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.demographics.DemographicsMenu;
 import hashwork.client.content.system.demographics.forms.TitleListForm;
+import hashwork.client.content.system.demographics.model.TitleListModel;
 import hashwork.client.content.system.demographics.table.TitleListTable;
 import hashwork.domain.ui.demographics.TitleList;
 import hashwork.services.ui.demographics.Impl.TitleListServiceImpl;
@@ -93,6 +94,7 @@ public class TitleListTab extends VerticalLayout implements Button.ClickListener
 
     }
 
+
     private void getHome() {
         main.content.setSecondComponent(new DemographicsMenu(main, "TITLE"));
     }
@@ -125,6 +127,26 @@ public class TitleListTab extends VerticalLayout implements Button.ClickListener
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private TitleList getNewEntity(FieldGroup binder) {
+        final TitleListModel bean = ((BeanItem<TitleListModel>) binder.getItemDataSource()).getBean();
+        final TitleList TitleList = new TitleList();
+
+        return TitleList;
+    }
+
+    private TitleList getUpdateEntity(FieldGroup binder) {
+        final TitleListModel bean = ((BeanItem<TitleListModel>) binder.getItemDataSource()).getBean();
+        final TitleList TitleList = new TitleList();
+
+        return TitleList;
+    }
+
+    private TitleListModel getModel(TitleList TitleList) {
+        final TitleListModel model = new TitleListModel();
+
+        return model;
     }
 
 }
