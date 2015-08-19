@@ -22,7 +22,64 @@ public class EmployeeLoans implements Serializable {
     private String loanType;
     private Date lastPaymentDate;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public BigDecimal getLoanAmount() {
+        return loanAmount;
+    }
+
+    public BigDecimal getLoanInstalment() {
+        return loanInstalment;
+    }
+
+    public BigDecimal getInterestRatePerMonth() {
+        return interestRatePerMonth;
+    }
+
+    public Date getLoanCommenceDate() {
+        return loanCommenceDate;
+    }
+
+    public Date getLoanExpectedEndDate() {
+        return loanExpectedEndDate;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public String getLoanType() {
+        return loanType;
+    }
+
+    public Date getLastPaymentDate() {
+        return lastPaymentDate;
+    }
+
     private EmployeeLoans() {
+    }
+
+    public EmployeeLoans(Builder builder) {
+        this.id = builder.id;
+        this.personId = builder.personId;
+        this.loanAmount = builder.loanAmount;
+        this.loanInstalment = builder.loanInstalment;
+        this.interestRatePerMonth = builder.interestRatePerMonth;
+        this.loanCommenceDate = builder.loanCommenceDate;
+        this.loanExpectedEndDate = builder.loanExpectedEndDate;
+        this.balance = builder.balance;
+        this.loanType = builder.loanType;
+        this.lastPaymentDate = builder.lastPaymentDate;
     }
 
     public static class Builder{
@@ -63,10 +120,88 @@ public class EmployeeLoans implements Serializable {
             return this;
         }
 
+        public Builder loanExpectedEndDate(Date value){
+            this.loanExpectedEndDate = value;
+            return this;
+        }
+
         public Builder loanCommenceDate(Date value){
             this.loanCommenceDate = value;
             return this;
         }
 
+
+        public Builder balance(BigDecimal value){
+            this.balance = value;
+            return this;
+        }
+
+        public Builder loanType(String value){
+            this.loanType = value;
+            return this;
+        }
+
+        public Builder lastPaymentDate(Date value){
+            this.lastPaymentDate= value;
+            return this;
+        }
+
+        public Builder copy(EmployeeLoans value) {
+            this.id = value.id;
+            this.personId = value.personId;
+            this.loanType = value.loanType;
+            this.balance = value.balance;
+            this.loanAmount = value.loanAmount;
+            this.interestRatePerMonth = value.interestRatePerMonth;
+            this.lastPaymentDate = value.lastPaymentDate;
+            this.loanCommenceDate = value.loanCommenceDate;
+            this.loanExpectedEndDate = value.loanExpectedEndDate;
+            this.loanInstalment = value.loanInstalment;
+            return this;
+        }
+
+        public EmployeeLoans build(){
+            return new EmployeeLoans(this);
+        }
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EmployeeLoans)) return false;
+
+        EmployeeLoans that = (EmployeeLoans) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (personId != null ? !personId.equals(that.personId) : that.personId != null) return false;
+        if (loanAmount != null ? !loanAmount.equals(that.loanAmount) : that.loanAmount != null) return false;
+        if (loanInstalment != null ? !loanInstalment.equals(that.loanInstalment) : that.loanInstalment != null)
+            return false;
+        if (interestRatePerMonth != null ? !interestRatePerMonth.equals(that.interestRatePerMonth) : that.interestRatePerMonth != null)
+            return false;
+        if (loanCommenceDate != null ? !loanCommenceDate.equals(that.loanCommenceDate) : that.loanCommenceDate != null)
+            return false;
+        if (loanExpectedEndDate != null ? !loanExpectedEndDate.equals(that.loanExpectedEndDate) : that.loanExpectedEndDate != null)
+            return false;
+        if (balance != null ? !balance.equals(that.balance) : that.balance != null) return false;
+        if (loanType != null ? !loanType.equals(that.loanType) : that.loanType != null) return false;
+        return !(lastPaymentDate != null ? !lastPaymentDate.equals(that.lastPaymentDate) : that.lastPaymentDate != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (personId != null ? personId.hashCode() : 0);
+        result = 31 * result + (loanAmount != null ? loanAmount.hashCode() : 0);
+        result = 31 * result + (loanInstalment != null ? loanInstalment.hashCode() : 0);
+        result = 31 * result + (interestRatePerMonth != null ? interestRatePerMonth.hashCode() : 0);
+        result = 31 * result + (loanCommenceDate != null ? loanCommenceDate.hashCode() : 0);
+        result = 31 * result + (loanExpectedEndDate != null ? loanExpectedEndDate.hashCode() : 0);
+        result = 31 * result + (balance != null ? balance.hashCode() : 0);
+        result = 31 * result + (loanType != null ? loanType.hashCode() : 0);
+        result = 31 * result + (lastPaymentDate != null ? lastPaymentDate.hashCode() : 0);
+        return result;
     }
 }

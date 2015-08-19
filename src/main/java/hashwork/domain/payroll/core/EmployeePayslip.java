@@ -14,6 +14,26 @@ public class EmployeePayslip implements Serializable {
     private BigDecimal netPay;
     private Date payslipGenerateDate;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public BigDecimal getNetPay() {
+        return netPay;
+    }
+
+    public Date getPayslipGenerateDate() {
+        return payslipGenerateDate;
+    }
+
     private EmployeePayslip() {
     }
 
@@ -61,6 +81,28 @@ public class EmployeePayslip implements Serializable {
         public EmployeePayslip build(){
             return new EmployeePayslip(this);
         }
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EmployeePayslip)) return false;
+
+        EmployeePayslip that = (EmployeePayslip) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (personId != null ? !personId.equals(that.personId) : that.personId != null) return false;
+        if (netPay != null ? !netPay.equals(that.netPay) : that.netPay != null) return false;
+        return !(payslipGenerateDate != null ? !payslipGenerateDate.equals(that.payslipGenerateDate) : that.payslipGenerateDate != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (personId != null ? personId.hashCode() : 0);
+        result = 31 * result + (netPay != null ? netPay.hashCode() : 0);
+        result = 31 * result + (payslipGenerateDate != null ? payslipGenerateDate.hashCode() : 0);
+        return result;
     }
 }
