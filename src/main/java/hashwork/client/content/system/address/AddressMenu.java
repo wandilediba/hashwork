@@ -8,6 +8,7 @@ package hashwork.client.content.system.address;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 import hashwork.client.content.MainLayout;
+import hashwork.client.content.system.address.views.SuburbTab;
 
 /**
  *
@@ -19,5 +20,12 @@ public class AddressMenu extends VerticalLayout {
     
     public AddressMenu(MainLayout main, String tab) {
         this.main = main;
+        
+        VerticalLayout suburbTab = new VerticalLayout();
+        suburbTab.setMargin(true);
+        suburbTab.addComponent(new SuburbTab(main));
+        
+        
+
     }
 }
