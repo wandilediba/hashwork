@@ -15,21 +15,21 @@ import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.address.AddressMenu;
 import hashwork.client.content.system.demographics.forms.GenderListForm;
 import hashwork.client.content.system.demographics.table.GenderListTable;
-import hashwork.domain.ui.address.Suburb;
-import hashwork.services.ui.address.Impl.SuburbServiceImpl;
-import hashwork.services.ui.address.SuburbService;
+import hashwork.domain.ui.address.PostalCode;
+import hashwork.services.ui.address.Impl.PostalCodeServiceImpl;
+import hashwork.services.ui.address.PostalCodeService;
 
 /**
  *
  * @author Garran
  */
-public class SuburbTab extends VerticalLayout implements Button.ClickListener, Property.ValueChangeListener {
-    private final SuburbService suburbService = new SuburbServiceImpl();
+public class PostalCodeTab extends VerticalLayout implements Button.ClickListener, Property.ValueChangeListener {
+    private final PostalCodeService postalCodeService = new PostalCodeServiceImpl();
     private final MainLayout main;
     private final GenderListForm form;
     private final GenderListTable table;
-
-    public SuburbTab(MainLayout app) {
+    
+    public PostalCodeTab(MainLayout app) {
         main = app;
         form = new GenderListForm();
         table = new GenderListTable(main);
@@ -59,8 +59,8 @@ public class SuburbTab extends VerticalLayout implements Button.ClickListener, P
     public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final Suburb locationType = suburbService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<Suburb>(locationType));
+            final PostalCode locationType = postalCodeService.findById(table.getValue().toString());
+            form.binder.setItemDataSource(new BeanItem<PostalCode>(locationType));
             setReadFormProperties();
         }
     }
@@ -68,7 +68,7 @@ public class SuburbTab extends VerticalLayout implements Button.ClickListener, P
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            suburbService.save(getEntity(binder));
+            postalCodeService.save(getEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -80,7 +80,7 @@ public class SuburbTab extends VerticalLayout implements Button.ClickListener, P
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            suburbService.update(getEntity(binder));
+            postalCodeService.update(getEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -90,17 +90,17 @@ public class SuburbTab extends VerticalLayout implements Button.ClickListener, P
     }
 
     private void deleteForm(FieldGroup binder) {
-        suburbService.delete(getEntity(binder));
+        postalCodeService.delete(getEntity(binder));
         getHome();
     }
 
-    private Suburb getEntity(FieldGroup binder) {
-        return ((BeanItem<Suburb>) binder.getItemDataSource()).getBean();
+    private PostalCode getEntity(FieldGroup binder) {
+        return ((BeanItem<PostalCode>) binder.getItemDataSource()).getBean();
 
     }
 
     private void getHome() {
-        main.content.setSecondComponent(new AddressMenu(main, "Fish Hoek"));
+        main.content.setSecondComponent(new AddressMenu(main, "7945"));
     }
 
     private void setEditFormProperties() {
@@ -132,4 +132,5 @@ public class SuburbTab extends VerticalLayout implements Button.ClickListener, P
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
     }
+    
 }
