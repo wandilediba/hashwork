@@ -46,4 +46,23 @@ public class GenderList implements Serializable {
             return new GenderList(this);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GenderList)) return false;
+
+        GenderList that = (GenderList) o;
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        return !(getGender() != null ? !getGender().equals(that.getGender()) : that.getGender() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getGender() != null ? getGender().hashCode() : 0);
+        return result;
+    }
 }
