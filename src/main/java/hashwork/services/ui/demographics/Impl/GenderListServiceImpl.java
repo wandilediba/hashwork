@@ -28,7 +28,6 @@ public class GenderListServiceImpl implements GenderListService {
 
     @Override
     public void delete(GenderList entity) {
-
     }
 
     @Override
