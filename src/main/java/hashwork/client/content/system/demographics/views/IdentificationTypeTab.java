@@ -128,14 +128,22 @@ public class IdentificationTypeTab extends VerticalLayout implements Button.Clic
 
     private IdentificationType getNewEntity(FieldGroup binder) {
         final IdentificationTypeModel bean = ((BeanItem<IdentificationTypeModel>) binder.getItemDataSource()).getBean();
-        final IdentificationType identificationType = new IdentificationType();
+        final IdentificationType identificationType = new IdentificationType
+                .Builder().
+                description(bean.getDescription())
+                .idvalue(bean.getIdvalue())
+                .build();
 
         return identificationType;
     }
 
     private IdentificationType getUpdateEntity(FieldGroup binder) {
         final IdentificationTypeModel bean = ((BeanItem<IdentificationTypeModel>) binder.getItemDataSource()).getBean();
-        final IdentificationType identificationType = new IdentificationType();
+        final IdentificationType identificationType = new IdentificationType
+                .Builder().
+                description(bean.getDescription())
+                .idvalue(bean.getIdvalue())
+                .build();
 
         return identificationType;
     }

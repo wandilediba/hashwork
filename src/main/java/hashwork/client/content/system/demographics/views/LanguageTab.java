@@ -131,14 +131,18 @@ public class LanguageTab extends VerticalLayout implements Button.ClickListener,
 
     private Language getNewEntity(FieldGroup binder) {
         final LanguageModel bean = ((BeanItem<LanguageModel>) binder.getItemDataSource()).getBean();
-        final Language Language = new Language();
+        final Language Language = new Language.Builder()
+                .name(bean.getName())
+                .build();
 
         return Language;
     }
 
     private Language getUpdateEntity(FieldGroup binder) {
         final LanguageModel bean = ((BeanItem<LanguageModel>) binder.getItemDataSource()).getBean();
-        final Language Language = new Language();
+        final Language Language = new Language.Builder()
+                .name(bean.getName())
+                .build();
 
         return Language;
     }

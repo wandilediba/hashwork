@@ -133,14 +133,14 @@ public class MaritalStatusListTab extends VerticalLayout implements Button.Click
 
     private MaritalStatusList getNewEntity(FieldGroup binder) {
         final MaritalStatusListModel bean = ((BeanItem<MaritalStatusListModel>) binder.getItemDataSource()).getBean();
-        final MaritalStatusList MaritalStatusList = new MaritalStatusList();
+        final MaritalStatusList MaritalStatusList = new MaritalStatusList.Builder().statusName(bean.getStatusName()).build();
 
         return MaritalStatusList;
     }
 
     private MaritalStatusList getUpdateEntity(FieldGroup binder) {
         final MaritalStatusListModel bean = ((BeanItem<MaritalStatusListModel>) binder.getItemDataSource()).getBean();
-        final MaritalStatusList MaritalStatusList = new MaritalStatusList();
+        final MaritalStatusList MaritalStatusList = new MaritalStatusList.Builder().statusName(bean.getStatusName()).build();
 
         return MaritalStatusList;
     }

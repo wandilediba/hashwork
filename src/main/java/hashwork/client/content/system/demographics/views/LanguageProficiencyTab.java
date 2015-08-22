@@ -133,14 +133,20 @@ public class LanguageProficiencyTab extends VerticalLayout implements Button.Cli
 
     private LanguageProficiency getNewEntity(FieldGroup binder) {
         final LanguageProficiencyModel bean = ((BeanItem<LanguageProficiencyModel>) binder.getItemDataSource()).getBean();
-        final LanguageProficiency LanguageProficiency = new LanguageProficiency();
+        final LanguageProficiency LanguageProficiency = new LanguageProficiency
+                .Builder()
+                .proficiency(bean.getProficiency())
+                .build();
 
         return LanguageProficiency;
     }
 
     private LanguageProficiency getUpdateEntity(FieldGroup binder) {
         final LanguageProficiencyModel bean = ((BeanItem<LanguageProficiencyModel>) binder.getItemDataSource()).getBean();
-        final LanguageProficiency LanguageProficiency = new LanguageProficiency();
+        final LanguageProficiency LanguageProficiency = new LanguageProficiency
+                .Builder()
+                .proficiency(bean.getProficiency())
+                .build();
 
         return LanguageProficiency;
     }

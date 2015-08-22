@@ -131,14 +131,14 @@ public class TitleListTab extends VerticalLayout implements Button.ClickListener
 
     private TitleList getNewEntity(FieldGroup binder) {
         final TitleListModel bean = ((BeanItem<TitleListModel>) binder.getItemDataSource()).getBean();
-        final TitleList TitleList = new TitleList();
+        final TitleList TitleList = new TitleList.Builder().title(bean.getTitle()).build();
 
         return TitleList;
     }
 
     private TitleList getUpdateEntity(FieldGroup binder) {
         final TitleListModel bean = ((BeanItem<TitleListModel>) binder.getItemDataSource()).getBean();
-        final TitleList TitleList = new TitleList();
+        final TitleList TitleList = new TitleList.Builder().title(bean.getTitle()).build();
 
         return TitleList;
     }

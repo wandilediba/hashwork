@@ -131,14 +131,20 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
 
     private RolesList getNewEntity(FieldGroup binder) {
         final RolesListModel bean = ((BeanItem<RolesListModel>) binder.getItemDataSource()).getBean();
-        final RolesList RolesList = new RolesList();
+        final RolesList RolesList = new RolesList
+                .Builder()
+                .description(bean.getDescription())
+                .roleName(bean.getRoleName()).build();
 
         return RolesList;
     }
 
     private RolesList getUpdateEntity(FieldGroup binder) {
         final RolesListModel bean = ((BeanItem<RolesListModel>) binder.getItemDataSource()).getBean();
-        final RolesList RolesList = new RolesList();
+        final RolesList RolesList = new RolesList
+                .Builder()
+                .description(bean.getDescription())
+                .roleName(bean.getRoleName()).build();
 
         return RolesList;
     }

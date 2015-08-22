@@ -128,14 +128,14 @@ public class GenderListTab extends VerticalLayout implements Button.ClickListene
 
     private GenderList getNewEntity(FieldGroup binder) {
         final GenderListModel bean = ((BeanItem<GenderListModel>) binder.getItemDataSource()).getBean();
-        final GenderList genderList = new GenderList();
+        final GenderList genderList = new GenderList.Builder().gender(bean.getGender()).build();
 
         return genderList;
     }
 
     private GenderList getUpdateEntity(FieldGroup binder) {
         final GenderListModel bean = ((BeanItem<GenderListModel>) binder.getItemDataSource()).getBean();
-        final GenderList genderList = new GenderList();
+        final GenderList genderList = new GenderList.Builder().gender(bean.getGender()).build();
 
         return genderList;
     }
