@@ -10,6 +10,7 @@ import java.util.Set;
  * Created by hashcode on 2015/08/18.
  */
 public class GenderListServiceImpl implements GenderListService {
+
     @Override
     public GenderList findById(String s) {
         return null;
