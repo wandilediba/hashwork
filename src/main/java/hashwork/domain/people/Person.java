@@ -44,9 +44,10 @@ public class Person implements Serializable, Comparable<Person>{
         return authvalue;
     }
 
-
-
-
+    private Person()
+    {
+    
+    }
 
          public Person(Builder builder){
             this.id =  builder.id;
