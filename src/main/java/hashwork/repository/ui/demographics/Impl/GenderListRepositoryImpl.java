@@ -1,7 +1,7 @@
 package hashwork.repository.ui.demographics.Impl;
 
 import hashwork.domain.ui.demographics.GenderList;
-import hashwork.services.ui.demographics.GenderListService;
+import hashwork.repository.ui.demographics.GenderListRepository;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Created by hashcode on 2015/08/22.
  */
-public class GenderListRepositoryImpl implements GenderListService {
+public class GenderListRepositoryImpl implements GenderListRepository {
     Map<String, GenderList> lists = new HashMap<>();
 
     @Override
