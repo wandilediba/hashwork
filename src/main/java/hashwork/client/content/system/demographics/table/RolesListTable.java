@@ -24,8 +24,8 @@ public class RolesListTable extends Table {
 
         // Add Data Columns
         Set<RolesList> rolesLists = rolesListService.findAll();
-        for (RolesList locationType : rolesLists) {
-            // addItem(new Object[]{locationType.getRolename(),locationType.getDescription()}, locationType.getId());
+        for (RolesList rolesList : rolesLists) {
+            addItem(new Object[]{rolesList.getRoleName(), rolesList.getDescription()}, rolesList.getId());
         }
         // Allow selecting items from the table.
         setNullSelectionAllowed(false);

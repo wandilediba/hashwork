@@ -12,6 +12,7 @@ import hashwork.client.content.system.demographics.forms.RolesListForm;
 import hashwork.client.content.system.demographics.model.RolesListModel;
 import hashwork.client.content.system.demographics.table.RolesListTable;
 import hashwork.domain.ui.demographics.RolesList;
+import hashwork.factories.ui.demographics.RolesListFactory;
 import hashwork.services.ui.demographics.Impl.RolesListServiceImpl;
 import hashwork.services.ui.demographics.RolesListService;
 
@@ -54,7 +55,9 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
     public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
+            System.out.println(" The ID for " + table.getValue().toString());
             final RolesList rolesList = rolesListService.findById(table.getValue().toString());
+            System.out.println(" The Object is " + rolesList);
             final RolesListModel model = getModel(rolesList);
             form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
@@ -76,7 +79,7 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            rolesListService.update(getNewEntity(binder));
+            rolesListService.update(getUpdateEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -128,11 +131,7 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
 
     private RolesList getNewEntity(FieldGroup binder) {
         final RolesListModel bean = ((BeanItem<RolesListModel>) binder.getItemDataSource()).getBean();
-        final RolesList RolesList = new RolesList
-                .Builder()
-                .description(bean.getDescription())
-                .roleName(bean.getRoleName()).build();
-
+        final RolesList RolesList = RolesListFactory.getRolesList(bean.getRoleName(), bean.getDescription());
         return RolesList;
     }
 
@@ -147,7 +146,10 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
     }
 
     private RolesListModel getModel(RolesList rolesList) {
+        System.out.println("The List Size is " + rolesList);
         final RolesListModel model = new RolesListModel();
+        model.setDescription(rolesList.getDescription());
+        model.setRoleName(rolesList.getRoleName());
 
         return model;
     }

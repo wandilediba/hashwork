@@ -14,6 +14,11 @@ import java.util.Set;
 public class GenderListRepositoryImpl implements GenderListRepository {
     Map<String, GenderList> lists = new HashMap<>();
 
+
+    public GenderListRepositoryImpl() {
+
+    }
+
     @Override
     public GenderList findById(String s) {
         return lists.get(s);
