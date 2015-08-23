@@ -15,7 +15,6 @@ public class Person implements Serializable, Comparable<Person>{
     private String title;
     private String authvalue;
 
-
     public String getId() {
         return id;
     }
@@ -44,9 +43,10 @@ public class Person implements Serializable, Comparable<Person>{
         return authvalue;
     }
 
-
-
-
+    private Person()
+    {
+    
+    }
 
          public Person(Builder builder){
             this.id =  builder.id;

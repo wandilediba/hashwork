@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by hashcode on 2015/08/17.
+ * Created by Bongani on 2015/08/22.
  */
 public class PersonDemographics implements Serializable {
     private String id;
@@ -45,8 +45,6 @@ public class PersonDemographics implements Serializable {
         this.dateOfBirth = builder.dateOfBirth;
         this.maritalStatus = builder.maritalStatus;
         this.numberOfDependencies = builder.numberOfDependencies;
-
-
     }
 
     public static class Builder{
@@ -57,8 +55,6 @@ public class PersonDemographics implements Serializable {
         private Date dateOfBirth;
         private String maritalStatus;
         private int numberOfDependencies;
-
-
 
         public Builder id(String value){
             this.id = value;
@@ -87,27 +83,20 @@ public class PersonDemographics implements Serializable {
         public Builder numberOfDependencies(int value){
             this.numberOfDependencies = value;
             return this;
-
         }
-
-        public Builder copy(PersonDemographics value){
+            public Builder copy(PersonDemographics value){
             this.id = value.id;
             this.personId = value.personId;
             this.gender = value.gender;
             this.dateOfBirth = value.dateOfBirth;
             this.maritalStatus = value.maritalStatus;
             this.numberOfDependencies = value.numberOfDependencies;
-
             return this;
-
         }
 
         public PersonDemographics build(){
 
             return new PersonDemographics(this);
         }
-
     }
-
-
 }

@@ -5,9 +5,4 @@ package hashwork.factories.people;
  */
 public class Person {
 
-
-
-
-
-
 }
