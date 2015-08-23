@@ -1,6 +1,7 @@
 package hashwork.repository.ui.demographics.Impl;
 
 import hashwork.domain.ui.demographics.RolesList;
+import hashwork.factories.ui.demographics.RolesListFactory;
 import hashwork.repository.ui.demographics.RolesListRepository;
 
 import java.util.HashMap;
@@ -13,6 +14,17 @@ import java.util.Set;
  */
 public class RolesListRepositoryImpl implements RolesListRepository {
     Map<String, RolesList> lists = new HashMap<>();
+    RolesList rol1 = RolesListFactory.getRolesList("ADMIN", "System Admin");
+
+    RolesList rol2 = RolesListFactory.getRolesList("EMPLOYEE", "Employee");
+
+    RolesList rol3 = RolesListFactory.getRolesList("APPLICATING", "APPLICANT");
+
+    public RolesListRepositoryImpl() {
+        lists.put(rol1.getId(), rol1);
+        lists.put(rol2.getId(), rol2);
+        lists.put(rol3.getId(), rol3);
+    }
 
     @Override
     public RolesList findById(String s) {
@@ -21,12 +33,14 @@ public class RolesListRepositoryImpl implements RolesListRepository {
 
     @Override
     public RolesList save(RolesList entity) {
-        return lists.put(entity.getId(), entity);
+        lists.put(entity.getId(), entity);
+        return entity;
     }
 
     @Override
     public RolesList update(RolesList entity) {
-        return lists.put(entity.getId(), entity);
+        lists.put(entity.getId(), entity);
+        return entity;
     }
 
     @Override
