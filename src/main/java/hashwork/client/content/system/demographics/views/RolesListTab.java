@@ -64,7 +64,7 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            rolesListService.save(getEntity(binder));
+            rolesListService.save(getNewEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -76,7 +76,7 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            rolesListService.update(getEntity(binder));
+            rolesListService.update(getNewEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -86,14 +86,11 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
     }
 
     private void deleteForm(FieldGroup binder) {
-        rolesListService.delete(getEntity(binder));
+        rolesListService.delete(getNewEntity(binder));
         getHome();
     }
 
-    private RolesList getEntity(FieldGroup binder) {
-        return ((BeanItem<RolesList>) binder.getItemDataSource()).getBean();
 
-    }
 
     private void getHome() {
         main.content.setSecondComponent(new DemographicsMenu(main, "LANDING"));

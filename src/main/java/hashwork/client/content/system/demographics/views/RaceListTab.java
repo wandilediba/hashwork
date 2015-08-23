@@ -85,7 +85,6 @@ public class RaceListTab extends VerticalLayout implements Button.ClickListener,
             getHome();
         }
     }
-
     private void deleteForm(FieldGroup binder) {
         raceListService.delete(getEntity(binder));
         getHome();
