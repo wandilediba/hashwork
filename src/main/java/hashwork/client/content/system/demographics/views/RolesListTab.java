@@ -24,6 +24,7 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
     private final MainLayout main;
     private final RolesListForm form;
     private final RolesListTable table;
+    private String id;
 
     public RolesListTab(MainLayout app) {
         main = app;
@@ -55,9 +56,8 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
     public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            System.out.println(" The ID for " + table.getValue().toString());
+            id = table.getValue().toString();
             final RolesList rolesList = rolesListService.findById(table.getValue().toString());
-            System.out.println(" The Object is " + rolesList);
             final RolesListModel model = getModel(rolesList);
             form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
@@ -89,7 +89,8 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
     }
 
     private void deleteForm(FieldGroup binder) {
-        rolesListService.delete(getNewEntity(binder));
+        final RolesList rolesList = rolesListService.findById(table.getValue().toString());
+        rolesListService.delete(rolesList);
         getHome();
     }
 
@@ -137,16 +138,15 @@ public class RolesListTab extends VerticalLayout implements Button.ClickListener
 
     private RolesList getUpdateEntity(FieldGroup binder) {
         final RolesListModel bean = ((BeanItem<RolesListModel>) binder.getItemDataSource()).getBean();
-        final RolesList RolesList = new RolesList
-                .Builder()
+        final RolesList rolesList = rolesListService.findById(table.getValue().toString());
+        final RolesList updatedRoleList = new RolesList
+                .Builder().copy(rolesList)
                 .description(bean.getDescription())
                 .roleName(bean.getRoleName()).build();
-
-        return RolesList;
+        return updatedRoleList;
     }
 
     private RolesListModel getModel(RolesList rolesList) {
-        System.out.println("The List Size is " + rolesList);
         final RolesListModel model = new RolesListModel();
         model.setDescription(rolesList.getDescription());
         model.setRoleName(rolesList.getRoleName());

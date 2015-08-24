@@ -73,10 +73,7 @@
             <artifactId>redisson</artifactId>
             <version>2.1.1</version>
         </dependency>
-
     </dependencies>
-
-
     <dependencyManagement>
         <dependencies>
             <dependency>
