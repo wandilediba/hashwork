@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hashwork.domain.ui.address;
+package hashwork.domain.ui.employee;
 
 import java.io.Serializable;
 
@@ -11,8 +11,9 @@ import java.io.Serializable;
  *
  * @author Garran
  */
-public class PostalCode implements Serializable {
+public class Name implements Serializable {
     private static final long serialVersionUID = 1L;
     private String id;
-    private String postalCode;
+    private String name;
 }
+

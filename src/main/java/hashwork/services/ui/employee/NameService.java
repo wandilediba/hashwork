@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hashwork.domain.ui.address;
+package hashwork.services.ui.employee;
 
-import java.io.Serializable;
+import hashwork.domain.ui.employee.Name;
+import hashwork.services.Services;
 
 /**
  *
  * @author Garran
  */
-public class PostalCode implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private String id;
-    private String postalCode;
+public interface NameService extends Services<Name, String> {
+    
 }

@@ -21,7 +21,7 @@ public class AddressMenu extends VerticalLayout {
     private final MainLayout main;
     private TabSheet tab;
     
-    public AddressMenu(MainLayout main, String tab) {
+    public AddressMenu(MainLayout main, String selectedTab) {
         this.main = main;
         
         VerticalLayout suburbTab = new VerticalLayout();
@@ -40,7 +40,25 @@ public class AddressMenu extends VerticalLayout {
         streetNameTab.setMargin(true);
         streetNameTab.addComponent(new StreetNameTab(main));
         
-        
+        tab = new TabSheet();
+        tab.setHeight("100%");
+        tab.setWidth("100%");
 
+        tab.addTab(suburbTab, "Suburb", null);
+        tab.addTab(numberTab, "Number", null);
+        tab.addTab(postalCodeTab, "Postal Code", null);
+        tab.addTab(streetNameTab, "Street Name", null);
+
+        if (selectedTab.equals("SUBURB")) {
+            tab.setSelectedTab(suburbTab);
+        } else if (selectedTab.equals("NUMBER")) {
+            tab.setSelectedTab(numberTab);
+        } else if (selectedTab.equals("POSTALCODE")) {
+            tab.setSelectedTab(postalCodeTab);
+        } else if (selectedTab.equals("STREETNAME")) {
+            tab.setSelectedTab(streetNameTab);
+        } 
+        
+        addComponent(tab);
     }
 }
