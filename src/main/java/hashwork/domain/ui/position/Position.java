@@ -12,7 +12,7 @@ public class Position implements Serializable, Comparable<Position> {
     private static long serialVersionUID = 1L;
     private String id;
     private String positionCode;
-    //Make it from Job and Position Title Nurse-Code
+
     private String positionTitle;
     private String description;
     private Date postionEntryDate;
