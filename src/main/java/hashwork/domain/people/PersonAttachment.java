@@ -61,5 +61,11 @@ public class PersonAttachment implements Serializable {
             this.personId = value.personId;
             return this;
         }
+        
+        public PersonAttachment build(){
+            return new PersonAttachment(this);
+
+        }
     }
+    
 }

@@ -139,7 +139,10 @@ public class PersonBenefits implements Serializable {
             this.amount = value.amount;
             return this;
          }
-    
+      public PersonBenefits build(){
+            return new PersonBenefits(this);
+
+        }
     }
     
       public static Builder builder() {

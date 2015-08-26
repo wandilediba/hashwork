@@ -52,7 +52,10 @@ public class PersonRole implements Serializable {
             this.roleId = value.roleId;            
             return this;
         }
-         
+          public PersonRole build(){
+            return new PersonRole(this);
+
+        }
    }
         public static Builder builder() {
         return new Builder();
