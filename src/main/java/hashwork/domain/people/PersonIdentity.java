@@ -81,7 +81,10 @@ public class PersonIdentity implements Serializable {
             this.preffered = value.preffered;
             return this;
         }     
-        
+         public PersonIdentity build(){
+            return new PersonIdentity(this);
+
+        }
     }
      public static Builder builder() {
         return new Builder();

@@ -89,7 +89,11 @@ public class PersonHiringDecision implements Serializable {
             this.comments = value.comments;
             this.decisionMakerId = value.decisionMakerId;
             return this;
-        }         
+        }  
+         public PersonHiringDecision build(){
+            return new PersonHiringDecision(this);
+
+        }
         
     }     
       public static Builder builder() {
