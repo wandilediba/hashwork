@@ -7,7 +7,7 @@ import hashwork.domain.ui.address.StreetName;
  * Created by garran on 2015/08/30.
  */
 public class StreetNameFactory {
-    public static StreetName getLanguage(String streetNames) {
+    public static StreetName getStreetName(String streetNames) {
         StreetName streetName = new StreetName.Builder()
                 .id(KeyGenerator.getEntityId())
                 .streetName(streetNames).build();

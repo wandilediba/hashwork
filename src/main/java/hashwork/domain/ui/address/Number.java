@@ -59,19 +59,19 @@ public class Number implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Number)) return false;
 
         Number number1 = (Number) o;
 
-        if (id != null ? !id.equals(number1.id) : number1.id != null) return false;
-        return !(number != null ? !number.equals(number1.number) : number1.number != null);
+        if (getId() != null ? !getId().equals(number1.getId()) : number1.getId() != null) return false;
+        return !(getNumber() != null ? !getNumber().equals(number1.getNumber()) : number1.getNumber() != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (number != null ? number.hashCode() : 0);
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getNumber() != null ? getNumber().hashCode() : 0);
         return result;
     }
 }
