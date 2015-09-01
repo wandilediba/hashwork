@@ -38,14 +38,14 @@ public class RolesListForm extends FormLayout {
         description.setNullRepresentation("");
 
         // Add the bean validator
-        rolename.addValidator(new BeanValidator(RolesListModel.class, "rolename"));
+        rolename.addValidator(new BeanValidator(RolesListModel.class, "roleName"));
         rolename.setImmediate(true);
         description.addValidator(new BeanValidator(RolesListModel.class, "description"));
         description.setImmediate(true);
 
         // Create a field group and use it to bind the fields in the layout
 
-        binder.bind(rolename, "rolename");
+        binder.bind(rolename, "roleName");
         binder.bind(description, "description");
         addComponent(rolename);
         addComponent(description);

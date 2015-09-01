@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.demographics.DemographicsMenu;
 import hashwork.client.content.system.demographics.forms.LanguageProficiencyForm;
+import hashwork.client.content.system.demographics.model.LanguageProficiencyModel;
 import hashwork.client.content.system.demographics.table.LanguageProficiencyTable;
 import hashwork.domain.ui.demographics.LanguageProficiency;
 import hashwork.services.ui.demographics.Impl.LanguageProficiencyServiceImpl;
@@ -54,8 +55,10 @@ public class LanguageProficiencyTab extends VerticalLayout implements Button.Cli
     public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final LanguageProficiency locationType = languageProficiencyService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<LanguageProficiency>(locationType));
+
+            final LanguageProficiency languageProficiency = languageProficiencyService.findById(table.getValue().toString());
+            final LanguageProficiencyModel model = getModel(languageProficiency);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
         }
     }
@@ -126,5 +129,31 @@ public class LanguageProficiencyTab extends VerticalLayout implements Button.Cli
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private LanguageProficiency getNewEntity(FieldGroup binder) {
+        final LanguageProficiencyModel bean = ((BeanItem<LanguageProficiencyModel>) binder.getItemDataSource()).getBean();
+        final LanguageProficiency LanguageProficiency = new LanguageProficiency
+                .Builder()
+                .proficiency(bean.getProficiency())
+                .build();
+
+        return LanguageProficiency;
+    }
+
+    private LanguageProficiency getUpdateEntity(FieldGroup binder) {
+        final LanguageProficiencyModel bean = ((BeanItem<LanguageProficiencyModel>) binder.getItemDataSource()).getBean();
+        final LanguageProficiency LanguageProficiency = new LanguageProficiency
+                .Builder()
+                .proficiency(bean.getProficiency())
+                .build();
+
+        return LanguageProficiency;
+    }
+
+    private LanguageProficiencyModel getModel(LanguageProficiency languageProficiency) {
+        final LanguageProficiencyModel model = new LanguageProficiencyModel();
+
+        return model;
     }
 }

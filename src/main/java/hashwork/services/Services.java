@@ -1,11 +1,10 @@
 package hashwork.services;
 
-/**
- * Created by zamzam on 15/07/31.
- */
-
 import java.util.Set;
 
+/**
+ * Created by hashcode on 2015/08/21.
+ */
 public interface Services<S, ID> {
 
     public S findById(ID id);

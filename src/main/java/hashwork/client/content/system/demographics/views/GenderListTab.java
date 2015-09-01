@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.demographics.DemographicsMenu;
 import hashwork.client.content.system.demographics.forms.GenderListForm;
+import hashwork.client.content.system.demographics.model.GenderListModel;
 import hashwork.client.content.system.demographics.table.GenderListTable;
 import hashwork.domain.ui.demographics.GenderList;
 import hashwork.services.ui.demographics.GenderListService;
@@ -54,7 +55,8 @@ public class GenderListTab extends VerticalLayout implements Button.ClickListene
         final Property property = event.getProperty();
         if (property == table) {
             final GenderList genderList = genderListService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<GenderList>(genderList));
+            final GenderListModel model = getModel(genderList);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
         }
     }
@@ -62,7 +64,7 @@ public class GenderListTab extends VerticalLayout implements Button.ClickListene
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            genderListService.save(getEntity(binder));
+            genderListService.save(getNewEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -74,7 +76,7 @@ public class GenderListTab extends VerticalLayout implements Button.ClickListene
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            genderListService.update(getEntity(binder));
+            genderListService.update(getUpdateEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -84,14 +86,11 @@ public class GenderListTab extends VerticalLayout implements Button.ClickListene
     }
 
     private void deleteForm(FieldGroup binder) {
-        genderListService.delete(getEntity(binder));
+        genderListService.delete(getNewEntity(binder));
         getHome();
     }
 
-    private GenderList getEntity(FieldGroup binder) {
-        return ((BeanItem<GenderList>) binder.getItemDataSource()).getBean();
 
-    }
 
     private void getHome() {
         main.content.setSecondComponent(new DemographicsMenu(main, "GENDER"));
@@ -125,5 +124,25 @@ public class GenderListTab extends VerticalLayout implements Button.ClickListene
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private GenderList getNewEntity(FieldGroup binder) {
+        final GenderListModel bean = ((BeanItem<GenderListModel>) binder.getItemDataSource()).getBean();
+        final GenderList genderList = new GenderList.Builder().gender(bean.getGender()).build();
+
+        return genderList;
+    }
+
+    private GenderList getUpdateEntity(FieldGroup binder) {
+        final GenderListModel bean = ((BeanItem<GenderListModel>) binder.getItemDataSource()).getBean();
+        final GenderList genderList = new GenderList.Builder().gender(bean.getGender()).build();
+
+        return genderList;
+    }
+
+    private GenderListModel getModel(GenderList genderList) {
+        final GenderListModel model = new GenderListModel();
+
+        return model;
     }
 }

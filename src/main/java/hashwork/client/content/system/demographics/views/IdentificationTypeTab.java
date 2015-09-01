@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.demographics.DemographicsMenu;
 import hashwork.client.content.system.demographics.forms.IdentificationTypeForm;
+import hashwork.client.content.system.demographics.model.IdentificationTypeModel;
 import hashwork.client.content.system.demographics.table.IdentificationTypeTable;
 import hashwork.domain.ui.demographics.IdentificationType;
 import hashwork.services.ui.demographics.IdentificationTypeService;
@@ -53,8 +54,9 @@ public class IdentificationTypeTab extends VerticalLayout implements Button.Clic
     public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final IdentificationType locationType = identificationTypeService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<IdentificationType>(locationType));
+            final IdentificationType identificationType = identificationTypeService.findById(table.getValue().toString());
+            final IdentificationTypeModel model = getModel(identificationType);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
         }
     }
@@ -62,7 +64,7 @@ public class IdentificationTypeTab extends VerticalLayout implements Button.Clic
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            identificationTypeService.save(getEntity(binder));
+            identificationTypeService.save(getNewEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -74,7 +76,7 @@ public class IdentificationTypeTab extends VerticalLayout implements Button.Clic
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            identificationTypeService.update(getEntity(binder));
+            identificationTypeService.update(getUpdateEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -84,14 +86,11 @@ public class IdentificationTypeTab extends VerticalLayout implements Button.Clic
     }
 
     private void deleteForm(FieldGroup binder) {
-        identificationTypeService.update(getEntity(binder));
+        identificationTypeService.update(getNewEntity(binder));
         getHome();
     }
 
-    private IdentificationType getEntity(FieldGroup binder) {
-        return ((BeanItem<IdentificationType>) binder.getItemDataSource()).getBean();
 
-    }
 
     private void getHome() {
         main.content.setSecondComponent(new DemographicsMenu(main, "ID"));
@@ -125,6 +124,34 @@ public class IdentificationTypeTab extends VerticalLayout implements Button.Clic
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private IdentificationType getNewEntity(FieldGroup binder) {
+        final IdentificationTypeModel bean = ((BeanItem<IdentificationTypeModel>) binder.getItemDataSource()).getBean();
+        final IdentificationType identificationType = new IdentificationType
+                .Builder().
+                description(bean.getDescription())
+                .idvalue(bean.getIdvalue())
+                .build();
+
+        return identificationType;
+    }
+
+    private IdentificationType getUpdateEntity(FieldGroup binder) {
+        final IdentificationTypeModel bean = ((BeanItem<IdentificationTypeModel>) binder.getItemDataSource()).getBean();
+        final IdentificationType identificationType = new IdentificationType
+                .Builder().
+                description(bean.getDescription())
+                .idvalue(bean.getIdvalue())
+                .build();
+
+        return identificationType;
+    }
+
+    private IdentificationTypeModel getModel(IdentificationType identificationType) {
+        final IdentificationTypeModel model = new IdentificationTypeModel();
+
+        return model;
     }
 }
 
