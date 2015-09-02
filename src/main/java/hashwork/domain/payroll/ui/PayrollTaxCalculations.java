@@ -8,14 +8,14 @@ import java.io.Serializable;
 public class PayrollTaxCalculations implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private String id;
     private String taxCodesId;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -32,10 +32,10 @@ public class PayrollTaxCalculations implements Serializable {
     }
 
     public static class Builder{
-        private Long id;
+        private String id;
         private String taxCodesId;
 
-        public Builder id(Long value){
+        public Builder id(String value){
             this.id = value;
             return this;
         }

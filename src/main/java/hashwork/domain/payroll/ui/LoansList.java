@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  */
 public class LoansList implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private String id;
     private String loanType;
     private String loanDesc;
     private int loanPaybackPeriod;
@@ -19,7 +19,7 @@ public class LoansList implements Serializable {
         return serialVersionUID;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -56,14 +56,14 @@ public class LoansList implements Serializable {
     }
 
     public static class Builder{
-        private Long id;
+        private String id;
         private String loanType;
         private String loanDesc;
         private int loanPaybackPeriod;
         private BigDecimal maxLoanAmt;
         private BigDecimal standardInterest;
 
-        public Builder id(Long value){
+        public Builder id(String value){
             this.id = value;
             return this;
         }

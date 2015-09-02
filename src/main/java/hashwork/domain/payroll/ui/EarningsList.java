@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class EarningsList implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private String id;
     private String earningsType;
     private String earningsDesc;
 
@@ -15,7 +15,7 @@ public class EarningsList implements Serializable {
         return serialVersionUID;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -37,11 +37,11 @@ public class EarningsList implements Serializable {
     }
 
     public static class Builder{
-        private Long id;
+        private String id;
         private String earningsType;
         private String earningsDesc;
 
-        public Builder id(Long value){
+        public Builder id(String value){
             this.id = value;
             return  this;
         }

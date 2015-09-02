@@ -94,15 +94,7 @@ public class EmployeeEarnings implements Serializable {
             return this;
         }
 
-        public Builder copy(EmployeeEarnings value) {
-            this.id = value.id;
-            this.personId = value.personId;
-            this.earningsAmt = value.earningsAmt;
-            this.earningsCode = value.earningsCode;
-            this.earningsTypeDesc = value.earningsTypeDesc;
-            this.payDate = value.payDate;
-            return this;
-        }
+
 
         public EmployeeEarnings build(){
             return new EmployeeEarnings(this);
