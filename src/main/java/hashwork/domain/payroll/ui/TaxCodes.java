@@ -8,12 +8,12 @@ import java.io.Serializable;
 public class TaxCodes implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     private String code;
     private String codeType;
     private String codeDecription;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -40,12 +40,12 @@ public class TaxCodes implements Serializable {
     }
 
     public static class Builder {
-        private Long id;
+        private String id;
         private String code;
         private String codeType;
         private String codeDecription;
 
-        public Builder id(Long value) {
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
