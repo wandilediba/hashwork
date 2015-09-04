@@ -80,7 +80,7 @@ public class EmployeeTaxCertificate implements Serializable {
             return this;
         }
 
-        public Builder tuifNumber(String value){
+        public Builder uifNumber(String value){
             this.uifNumber = value;
             return this;
         }
