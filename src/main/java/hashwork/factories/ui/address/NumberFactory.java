@@ -2,6 +2,7 @@ package hashwork.factories.ui.address;
 
 import hashwork.app.util.KeyGenerator;
 import hashwork.domain.ui.address.Number;
+
 /**
  * Created by garran on 2015/08/30.
  */

@@ -1,5 +1,6 @@
 package hashwork.client.content;
 
+import com.vaadin.server.Responsive;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.VerticalLayout;
 import hashwork.client.Index;
@@ -19,7 +20,8 @@ public class MainLayout extends VerticalLayout {
     public MainLayout(Index main) {
 
         this.main = main;
-        content.setMaxSplitPosition(20, Unit.PERCENTAGE);
+        Responsive.makeResponsive(this);
+        content.setMaxSplitPosition(25, Unit.PERCENTAGE);
         content.setLocked(true);
         content.setFirstComponent(new SideBar(this));
         content.setSecondComponent(new LandindPageView(this));

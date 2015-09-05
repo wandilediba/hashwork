@@ -64,7 +64,7 @@ public class CompanyPayroll implements Serializable {
             return this;
         }
 
-        public Builder employeeType(String value){
+        public Builder employeeType(String value) {
             this.employeeType = value;
             return this;
         }
@@ -77,7 +77,7 @@ public class CompanyPayroll implements Serializable {
             return this;
         }
 
-        public CompanyPayroll build(){
+        public CompanyPayroll build() {
             return new CompanyPayroll(this);
         }
     }

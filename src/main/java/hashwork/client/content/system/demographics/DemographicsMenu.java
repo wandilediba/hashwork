@@ -14,6 +14,7 @@ public class DemographicsMenu extends VerticalLayout {
 
     public DemographicsMenu(MainLayout main, String selectedTab) {
         this.main = main;
+        setSizeFull();
         VerticalLayout genderListTab = new VerticalLayout();
         genderListTab.setMargin(true);
         genderListTab.addComponent(new GenderListTab(main));

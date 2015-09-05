@@ -51,7 +51,6 @@
     @include valo-textfield-style($background-color: $color4);
   }
 
-
   .v-textarea-color1 {
     @include valo-textarea-style($background-color: $color1);
   }
@@ -63,7 +62,6 @@
   .v-textarea-color3 {
     @include valo-textarea-style($background-color: $color4);
   }
-
 
   .v-datefield-color1 {
     @include valo-datefield-style($background-color: $color1);
@@ -77,7 +75,6 @@
     @include valo-datefield-style($background-color: $color4);
   }
 
-
   .v-filterselect-color1 {
     @include valo-combobox-style($background-color: $color1);
   }
@@ -90,7 +87,6 @@
     @include valo-combobox-style($background-color: $color4);
   }
 
-
   $copy: $v-selection-color;
   $v-selection-color: white;
   .v-checkbox-color1 {
@@ -101,7 +97,6 @@
     @include valo-checkbox-style($background-color: $color2);
   }
   $v-selection-color: $copy;
-
 
   .v-slider-color1 {
     @include valo-slider-handle-style($background-color: $color1);
@@ -114,7 +109,6 @@
   .v-slider-color3 {
     @include valo-slider-indicator-style($background-color: #dcdc1e);
   }
-
 
   .v-panel-caption-color1 {
     @include valo-panel-caption-style($background-color: $color1);

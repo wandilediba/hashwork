@@ -19,23 +19,24 @@ public class Province implements Serializable {
         return province;
     }
 
-    private Province(){}
+    private Province() {
+    }
 
-    private Province(Builder builder){
+    private Province(Builder builder) {
         this.id = builder.id;
         this.province = builder.province;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String province;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder province(String value){
+        public Builder province(String value) {
             this.province = value;
             return this;
         }

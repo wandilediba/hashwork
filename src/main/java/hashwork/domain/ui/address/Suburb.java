@@ -24,23 +24,24 @@ public class Suburb implements Serializable {
         return suburb;
     }
 
-    private Suburb(){}
+    private Suburb() {
+    }
 
-    private Suburb(Builder builder){
+    private Suburb(Builder builder) {
         this.id = builder.id;
         this.suburb = builder.suburb;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String suburb;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder suburb(String value){
+        public Builder suburb(String value) {
             this.suburb = value;
             return this;
         }

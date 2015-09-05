@@ -19,23 +19,24 @@ public class Country implements Serializable {
         return country;
     }
 
-    private Country(){}
+    private Country() {
+    }
 
-    private Country(Builder builder){
+    private Country(Builder builder) {
         this.id = builder.id;
         this.country = builder.country;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String country;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder country(String value){
+        public Builder country(String value) {
             this.country = value;
             return this;
         }

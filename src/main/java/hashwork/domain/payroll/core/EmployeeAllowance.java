@@ -72,7 +72,7 @@ public class EmployeeAllowance implements Serializable {
             return this;
         }
 
-        public Builder amount(BigDecimal value){
+        public Builder amount(BigDecimal value) {
             this.amount = value;
             return this;
         }
@@ -91,7 +91,7 @@ public class EmployeeAllowance implements Serializable {
             return this;
         }
 
-        public EmployeeAllowance build(){
+        public EmployeeAllowance build() {
             return new EmployeeAllowance(this);
         }
     }
