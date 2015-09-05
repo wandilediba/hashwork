@@ -30,8 +30,6 @@
     <orderEntry type="library" name="Maven: com.vaadin.external.streamhtmlparser:streamhtmlparser-jsilver:0.0.10.vaadin1" level="project" />
     <orderEntry type="library" name="Maven: com.vaadin.external.google:guava:16.0.1.vaadin1" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.8.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:1.2.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:1.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.vaadin:vaadin-themes:7.5.4" level="project" />
     <orderEntry type="library" name="Maven: com.vaadin:vaadin-client-compiled:7.5.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:1.2.5.RELEASE" level="project" />
@@ -83,5 +81,7 @@
     <orderEntry type="library" name="Maven: io.netty:netty-codec:4.0.30.Final" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.12" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.4.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:1.2.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:1.2.5.RELEASE" level="project" />
   </component>
 </module>
