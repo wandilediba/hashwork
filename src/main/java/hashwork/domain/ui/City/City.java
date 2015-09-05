@@ -14,7 +14,7 @@ public class City implements Serializable {
         return id;
     }
 
-    public String getNumber() {
+    public String getCity() {
         return city;
     }
 
