@@ -8,11 +8,11 @@ import java.math.BigDecimal;
  */
 public class UIFContributionList implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private String id;
     private String code;
     private BigDecimal uifPercentContribution;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -33,11 +33,11 @@ public class UIFContributionList implements Serializable {
     }
 
     public static class Builder{
-        private Long id;
+        private String id;
         private String code;
         private BigDecimal uifPercentContribution;
 
-        public Builder id(Long value){
+        public Builder id(String value){
             this.id = value;
             return this;
         }

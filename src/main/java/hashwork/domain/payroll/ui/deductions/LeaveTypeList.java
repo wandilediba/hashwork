@@ -7,13 +7,13 @@ import java.io.Serializable;
  */
 public class LeaveTypeList implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private String id;
     private String leaveType;
     private String description;
     private boolean paidLeave;
     private int maxLeaveDays;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -42,13 +42,13 @@ public class LeaveTypeList implements Serializable {
     }
 
     public static class Builder {
-        private Long id;
+        private String id;
         private String leaveType;
         private String description;
         private boolean paidLeave;
         private int maxLeaveDays;
 
-        public Builder id(Long value){
+        public Builder id(String value){
             this.id = value;
             return this;
         }
@@ -111,7 +111,7 @@ public class LeaveTypeList implements Serializable {
 
     @Override
     public String toString() {
-        return "LeaveTypeList{" +
+        return "LeaveTypeListFactory{" +
                 "id=" + id +
                 ", leaveType='" + leaveType + '\'' +
                 ", description='" + description + '\'' +

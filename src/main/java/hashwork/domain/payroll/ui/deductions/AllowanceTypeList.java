@@ -8,12 +8,12 @@ import java.math.BigDecimal;
  */
 public class AllowanceTypeList implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private String id;
     private String allowanceType;
     private String description;
     private BigDecimal maxAmount;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -42,12 +42,12 @@ public class AllowanceTypeList implements Serializable {
     }
 
     public static class Builder{
-        private Long id;
+        private String id;
         private String allowanceType;
         private String description;
         private BigDecimal maxAmount;
 
-        public Builder id(Long value){
+        public Builder id(String value){
             this.id = value;
             return this;
         }

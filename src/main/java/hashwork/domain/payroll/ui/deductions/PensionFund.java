@@ -9,13 +9,13 @@ import java.util.Date;
  */
 public class PensionFund implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private String id;
     private String pensionCode;
     private String description;
     private BigDecimal percentage;
     private Date percentageAsOfDate;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -48,13 +48,13 @@ public class PensionFund implements Serializable {
     }
 
     public static class Builder{
-        private Long id;
+        private String id;
         private String pensionCode;
         private String description;
         private BigDecimal percentage;
         private Date percentageAsOfDate;
 
-        public Builder id(Long value){
+        public Builder id(String value){
             this.id = value;
             return this;
         }

@@ -8,12 +8,12 @@ import java.math.BigDecimal;
  */
 public class MedicalAidList implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private String id;
     private String medicalAidType;
     private String description;
     private BigDecimal monthlyContribution;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -41,12 +41,12 @@ public class MedicalAidList implements Serializable {
 
 
     public static class Builder{
-        private Long id;
+        private String id;
         private String medicalAidType;
         private String description;
         private BigDecimal monthlyContribution;
 
-        public Builder id(Long value){
+        public Builder id(String value){
             this.id = value;
             return this;
         }
