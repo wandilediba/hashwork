@@ -54,6 +54,7 @@ public class Status implements Serializable {
             this.id = value.id;
             this.statusType = value.statusType;
             this.statusValues = value.statusValues;
+
             return this;
         }
 

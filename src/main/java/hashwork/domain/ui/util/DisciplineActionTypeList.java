@@ -22,6 +22,7 @@ public class DisciplineActionTypeList implements Serializable {
     public String getDescription() {
         return description;
     }
+
     private DisciplineActionTypeList(Builder builder){
         this.id = builder.id;
         this.name = builder.name;

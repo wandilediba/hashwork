@@ -56,7 +56,6 @@ public class AccidentTypeList implements Serializable {
             this.name = value.name;
             this.description = value.description;
             return this;
-
         }
         public AccidentTypeList build(){
             return new AccidentTypeList(this);

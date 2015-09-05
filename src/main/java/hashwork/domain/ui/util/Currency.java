@@ -36,6 +36,7 @@ public class Currency implements Serializable {
         this.symbol = builder.symbol;
     }
 
+
     public static class Builder {
 
         private String id;

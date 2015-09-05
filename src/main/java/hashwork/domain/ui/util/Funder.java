@@ -33,6 +33,7 @@ public class Funder implements Serializable {
     public String getLocationContactId() {
         return LocationContactId;
     }
+
     private Funder(Builder builder){
         this.id = builder.id;
         this.trainingFunderName = builder.trainingFunderName;
