@@ -64,5 +64,6 @@ public class AccidentTypeList implements Serializable {
 
 
 
+
     }
 }
