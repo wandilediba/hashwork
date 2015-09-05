@@ -34,7 +34,7 @@ public class Header extends VerticalLayout {
     private Panel getHeaderPanel() {
         final Panel headerPanel = new Panel();
         headerPanel.setSizeFull();
-//        headerPanel.setHeight(100.0f, Unit.PIXELS);
+        headerPanel.setHeight(50.0f, Unit.PIXELS);
         headerPanel.addStyleName(ValoTheme.PANEL_BORDERLESS);
         headerPanel.setContent(getLayout());
         return headerPanel;
@@ -68,7 +68,7 @@ public class Header extends VerticalLayout {
                 new File("src/main/webapp/VAADIN/themes/dashboard/img/app-icon.png"));
         Image logoImage = new Image(null, resource);
         logoImage.addStyleName("logo-header-image");
-        logoImage.setHeight(80.0f, Unit.PIXELS);
+        logoImage.setHeight(50.0f, Unit.PIXELS);
         logoImage.setWidth(300.0f, Unit.PERCENTAGE);
         logo.addComponent(logoImage);
         Responsive.makeResponsive(logo);
