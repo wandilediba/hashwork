@@ -9,6 +9,6 @@ package hashwork.factories.people;
  *
  * @author BONGANI
  */
-public class PersonBenefits {
+public class PersonBenefitsSourceFactory {
     
 }
