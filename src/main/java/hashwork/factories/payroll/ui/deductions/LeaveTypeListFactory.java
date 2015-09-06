@@ -9,9 +9,9 @@ import java.util.Map;
  * Created by zamzam on 15/09/05.
  */
 public class LeaveTypeListFactory {
-    public static LeaveTypeList getLeaveTypeList(Map<String,String> values,
+    public static LeaveTypeList getLeaveTypeList(Map<String, String> values,
                                                  boolean paidLeave,
-                                                 int maxLeaveDays){
+                                                 int maxLeaveDays) {
         LeaveTypeList leaveTypeList = new LeaveTypeList
                 .Builder()
                 .id(KeyGenerator.getEntityId())

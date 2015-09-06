@@ -28,10 +28,12 @@ public class MedicalAidList implements Serializable {
     public BigDecimal getMonthlyContribution() {
         return monthlyContribution;
     }
-    private MedicalAidList(){
+
+    private MedicalAidList() {
 
     }
-    private MedicalAidList(Builder builder){
+
+    private MedicalAidList(Builder builder) {
         this.id = builder.id;
         this.medicalAidType = builder.medicalAidType;
         this.description = builder.description;
@@ -39,29 +41,32 @@ public class MedicalAidList implements Serializable {
     }
 
 
-
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String medicalAidType;
         private String description;
         private BigDecimal monthlyContribution;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
-        public Builder medicalAidType(String value){
+
+        public Builder medicalAidType(String value) {
             this.medicalAidType = value;
             return this;
         }
-        public Builder description(String value){
+
+        public Builder description(String value) {
             this.description = value;
             return this;
         }
-        public Builder monthlyContribution(BigDecimal value){
+
+        public Builder monthlyContribution(BigDecimal value) {
             this.monthlyContribution = value;
             return this;
         }
+
         public Builder copy(MedicalAidList value) {
             this.id = value.id;
             this.medicalAidType = value.medicalAidType;
@@ -69,6 +74,7 @@ public class MedicalAidList implements Serializable {
             this.monthlyContribution = value.monthlyContribution;
             return this;
         }
+
         public MedicalAidList build() {
             return new MedicalAidList(this);
         }

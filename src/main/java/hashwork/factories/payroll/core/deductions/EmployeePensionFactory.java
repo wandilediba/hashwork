@@ -13,7 +13,7 @@ import java.util.Map;
 public class EmployeePensionFactory {
     public static EmployeePension getEmployeePension(Map<String, String> values,
                                                      Map<String, BigDecimal> amounts,
-                                                     Map<String, Date> dates){
+                                                     Map<String, Date> dates) {
         EmployeePension employeePension = new EmployeePension
                 .Builder()
                 .id(KeyGenerator.getEntityId())

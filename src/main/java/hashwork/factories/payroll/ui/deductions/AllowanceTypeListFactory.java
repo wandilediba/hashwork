@@ -10,8 +10,8 @@ import java.util.Map;
  * Created by zamzam on 15/09/05.
  */
 public class AllowanceTypeListFactory {
-    public static AllowanceTypeList getAllowanceTypeList(Map<String,String> values,
-                                                         BigDecimal maxAmount){
+    public static AllowanceTypeList getAllowanceTypeList(Map<String, String> values,
+                                                         BigDecimal maxAmount) {
         AllowanceTypeList allowanceTypeList = new AllowanceTypeList
                 .Builder()
                 .id(KeyGenerator.getEntityId())

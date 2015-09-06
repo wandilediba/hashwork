@@ -29,11 +29,11 @@ public class AllowanceTypeList implements Serializable {
         return maxAmount;
     }
 
-    private AllowanceTypeList(){
+    private AllowanceTypeList() {
 
     }
 
-    private AllowanceTypeList(Builder builder){
+    private AllowanceTypeList(Builder builder) {
         this.id = builder.id;
         this.allowanceType = builder.allowanceType;
         this.description = builder.description;
@@ -41,25 +41,28 @@ public class AllowanceTypeList implements Serializable {
 
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String allowanceType;
         private String description;
         private BigDecimal maxAmount;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
-        public Builder allowanceType(String value){
+
+        public Builder allowanceType(String value) {
             this.allowanceType = value;
             return this;
         }
-        public Builder description(String value){
+
+        public Builder description(String value) {
             this.description = value;
             return this;
         }
-        public Builder maxAmount(BigDecimal value){
+
+        public Builder maxAmount(BigDecimal value) {
             this.maxAmount = value;
             return this;
         }

@@ -10,9 +10,9 @@ import java.util.Map;
  * Created by zamzam on 15/09/05.
  */
 public class EmployeeLeaveDataFactory {
-    public static EmployeeLeaveData getEmployeeLeaveData(Map<String,String> values,
+    public static EmployeeLeaveData getEmployeeLeaveData(Map<String, String> values,
                                                          boolean paidLeave, int daysTaken,
-                                                         Date commencementDate){
+                                                         Date commencementDate) {
         EmployeeLeaveData employeeLeaveData = new EmployeeLeaveData
                 .Builder()
                 .id(KeyGenerator.getEntityId())

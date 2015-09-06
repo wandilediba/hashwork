@@ -46,8 +46,8 @@ public class PersonEducationHistory implements Serializable {
     public String getNotes() {
         return notes;
     }
-        
-    
+
+
     private PersonEducationHistory()
     {
     }

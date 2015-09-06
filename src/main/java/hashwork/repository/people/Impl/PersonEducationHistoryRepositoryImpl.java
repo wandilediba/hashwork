@@ -7,24 +7,25 @@ package hashwork.repository.people.Impl;
 
 import hashwork.domain.people.PersonEducationHistory;
 import hashwork.repository.people.PersonEducationHistoryRepository;
+
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonEducationHistoryRepositoryImpl implements PersonEducationHistoryRepository{
-   Map<String, PersonEducationHistory> lists = new HashMap<>();
+public class PersonEducationHistoryRepositoryImpl implements PersonEducationHistoryRepository {
+    Map<String, PersonEducationHistory> lists = new HashMap<>();
 
-   public PersonEducationHistoryRepositoryImpl() {
+    public PersonEducationHistoryRepositoryImpl() {
 
-    }  
+    }
+
     @Override
     public PersonEducationHistory findById(String s) {
-       return lists.get(s);
+        return lists.get(s);
     }
 
     @Override
@@ -34,21 +35,21 @@ public class PersonEducationHistoryRepositoryImpl implements PersonEducationHist
 
     @Override
     public PersonEducationHistory update(PersonEducationHistory entity) {
-       return lists.put(entity.getId(), entity);
+        return lists.put(entity.getId(), entity);
     }
 
     @Override
     public void delete(PersonEducationHistory entity) {
-         lists.remove(entity.getId());
+        lists.remove(entity.getId());
     }
 
     @Override
     public Set<PersonEducationHistory> findAll() {
-          Set<PersonEducationHistory> set = new HashSet<>();
+        Set<PersonEducationHistory> set = new HashSet<>();
         for (Map.Entry<String, PersonEducationHistory> entry : lists.entrySet()) {
             set.add(entry.getValue());
         }
         return set;
     }
-    
+
 }

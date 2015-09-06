@@ -12,7 +12,7 @@ import java.util.Map;
  */
 
 public class TaxCodesFactory {
-    public static TaxCodes getTaxCodes(Map<String, String> values, String codeDecription ) {
+    public static TaxCodes getTaxCodes(Map<String, String> values, String codeDecription) {
         TaxCodes taxCodes = new TaxCodes
                 .Builder()
                 .id(KeyGenerator.getEntityId())

@@ -8,6 +8,7 @@ package hashwork.repository.office.Impl;
 
 import hashwork.domain.office.Company;
 import hashwork.repository.office.CompanyRepository;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -15,13 +16,12 @@ import java.util.Set;
 
 
 /**
- *
  * @author BONGANI
  */
-public class CompanyRepositoryImpl implements CompanyRepository{
- Map<String, Company> lists = new HashMap<>();  
- 
-   public CompanyRepositoryImpl() {
+public class CompanyRepositoryImpl implements CompanyRepository {
+    Map<String, Company> lists = new HashMap<>();
+
+    public CompanyRepositoryImpl() {
 
     }
 
@@ -32,7 +32,7 @@ public class CompanyRepositoryImpl implements CompanyRepository{
 
     @Override
     public Company save(Company entity) {
-     return lists.put(entity.getId(), entity);
+        return lists.put(entity.getId(), entity);
     }
 
     @Override
@@ -42,17 +42,17 @@ public class CompanyRepositoryImpl implements CompanyRepository{
 
     @Override
     public void delete(Company entity) {
-      lists.remove(entity.getId()); 
+        lists.remove(entity.getId());
     }
 
     @Override
     public Set<Company> findAll() {
-    
-       Set<Company> set = new HashSet<>();
+
+        Set<Company> set = new HashSet<>();
         for (Map.Entry<String, Company> entry : lists.entrySet()) {
             set.add(entry.getValue());
         }
         return set;
-    
+
     }
 }

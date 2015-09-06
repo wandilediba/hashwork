@@ -73,7 +73,7 @@ public class TaxCodes implements Serializable {
             return this;
         }
 
-        public TaxCodes build(){
+        public TaxCodes build() {
             return new TaxCodes(this);
         }
     }

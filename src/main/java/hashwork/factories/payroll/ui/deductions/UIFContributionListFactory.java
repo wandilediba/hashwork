@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  */
 public class UIFContributionListFactory {
     public static UIFContributionList getUIFContributionList(String code,
-                                                             BigDecimal uifPercentContribution){
+                                                             BigDecimal uifPercentContribution) {
         UIFContributionList uifContributionList = new UIFContributionList
                 .Builder()
                 .id(KeyGenerator.getEntityId())

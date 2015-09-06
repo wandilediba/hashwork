@@ -7,12 +7,12 @@ package hashwork.services.office;
 
 import hashwork.domain.office.Department;
 import hashwork.services.Services;
+
 import java.util.Date;
 
 /**
- *
  * @author BONGANI
  */
-public interface DepartmentService extends Services <Department,  String>{
-    
+public interface DepartmentService extends Services<Department, String> {
+
 }

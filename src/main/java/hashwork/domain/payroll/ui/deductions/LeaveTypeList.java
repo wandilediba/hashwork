@@ -32,8 +32,11 @@ public class LeaveTypeList implements Serializable {
     public int getMaxLeaveDays() {
         return maxLeaveDays;
     }
-    private LeaveTypeList(){ }
-    private LeaveTypeList(Builder builder){
+
+    private LeaveTypeList() {
+    }
+
+    private LeaveTypeList(Builder builder) {
         this.id = builder.id;
         this.leaveType = builder.leaveType;
         this.description = builder.description;
@@ -48,23 +51,27 @@ public class LeaveTypeList implements Serializable {
         private boolean paidLeave;
         private int maxLeaveDays;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
-        public Builder leaveType(String value){
+
+        public Builder leaveType(String value) {
             this.leaveType = value;
             return this;
         }
-        public Builder description(String value){
+
+        public Builder description(String value) {
             this.description = value;
             return this;
         }
-        public Builder paidLeave(boolean value){
+
+        public Builder paidLeave(boolean value) {
             this.paidLeave = value;
             return this;
         }
-        public Builder maxLeaveDays(int value){
+
+        public Builder maxLeaveDays(int value) {
             this.maxLeaveDays = value;
             return this;
         }

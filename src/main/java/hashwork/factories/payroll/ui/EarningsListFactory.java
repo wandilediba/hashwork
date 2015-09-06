@@ -8,7 +8,7 @@ import hashwork.domain.payroll.ui.EarningsList;
  */
 public class EarningsListFactory {
 
-    public static EarningsList getEarningList(String earningsType, String earningsDesc ){
+    public static EarningsList getEarningList(String earningsType, String earningsDesc) {
         EarningsList earningsList = new EarningsList
                 .Builder()
                 .id(KeyGenerator.getEntityId())

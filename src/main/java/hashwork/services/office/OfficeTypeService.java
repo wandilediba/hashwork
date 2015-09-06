@@ -9,9 +9,8 @@ import hashwork.domain.office.OfficeType;
 import hashwork.services.Services;
 
 /**
- *
  * @author BONGANI
  */
-public interface OfficeTypeService extends Services <OfficeType, String>{
-    
+public interface OfficeTypeService extends Services<OfficeType, String> {
+
 }

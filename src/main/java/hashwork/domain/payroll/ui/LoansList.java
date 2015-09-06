@@ -55,7 +55,7 @@ public class LoansList implements Serializable {
         this.standardInterest = builder.standardInterest;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String loanType;
         private String loanDesc;
@@ -63,32 +63,32 @@ public class LoansList implements Serializable {
         private BigDecimal maxLoanAmt;
         private BigDecimal standardInterest;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder loanType(String value){
+        public Builder loanType(String value) {
             this.loanType = value;
             return this;
         }
 
-        public Builder loanDesc(String value){
+        public Builder loanDesc(String value) {
             this.loanDesc = value;
             return this;
         }
 
-        public Builder loanPaybackPeriod(int value){
+        public Builder loanPaybackPeriod(int value) {
             this.loanPaybackPeriod = value;
             return this;
         }
 
-        public Builder maxLoanAmt(BigDecimal value){
+        public Builder maxLoanAmt(BigDecimal value) {
             this.maxLoanAmt = value;
             return this;
         }
 
-        public Builder standardInterest(BigDecimal value){
+        public Builder standardInterest(BigDecimal value) {
             this.standardInterest = value;
             return this;
         }
@@ -103,7 +103,7 @@ public class LoansList implements Serializable {
             return this;
         }
 
-        public LoansList build(){
+        public LoansList build() {
             return new LoansList(this);
         }
 

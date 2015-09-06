@@ -75,11 +75,11 @@ public class EmployeeEarnings implements Serializable {
         }
 
         public Builder earningsAmt(BigDecimal value){
-            this. earningsAmt = value;
+            this.earningsAmt = value;
             return this;
         }
 
-        public Builder earningsTypeDesc(String value){
+        public Builder earningsTypeDesc(String value) {
             this.earningsTypeDesc = value;
             return this;
         }
@@ -95,8 +95,7 @@ public class EmployeeEarnings implements Serializable {
         }
 
 
-
-        public EmployeeEarnings build(){
+        public EmployeeEarnings build() {
             return new EmployeeEarnings(this);
         }
     }

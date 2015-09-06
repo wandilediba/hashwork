@@ -9,17 +9,18 @@ import hashwork.domain.people.PersonContinuingEducation;
 import hashwork.repository.people.Impl.PersonContinuingEducationRepositoryImpl;
 import hashwork.repository.people.PersonContinuingEducationRepository;
 import hashwork.services.people.PersonContinuinigEducationService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonContinuiningEducationServiceImpl implements PersonContinuinigEducationService{
-private final PersonContinuingEducationRepository repo = new PersonContinuingEducationRepositoryImpl();
+public class PersonContinuiningEducationServiceImpl implements PersonContinuinigEducationService {
+    private final PersonContinuingEducationRepository repo = new PersonContinuingEducationRepositoryImpl();
+
     @Override
     public PersonContinuingEducation findById(String s) {
-       return repo.findById(s);
+        return repo.findById(s);
     }
 
     @Override
@@ -34,12 +35,12 @@ private final PersonContinuingEducationRepository repo = new PersonContinuingEdu
 
     @Override
     public void delete(PersonContinuingEducation entity) {
-         repo.delete(entity);
+        repo.delete(entity);
     }
 
     @Override
     public Set<PersonContinuingEducation> findAll() {
-       return repo.findAll();
+        return repo.findAll();
     }
-    
+
 }

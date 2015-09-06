@@ -9,27 +9,28 @@ import hashwork.domain.people.PersonEmploymentHistory;
 import hashwork.repository.people.Impl.PersonEmploymentHistoryRepositoryImpl;
 import hashwork.repository.people.PersonEmploymentHistoryRepository;
 import hashwork.services.people.PersonEmployementHistoryService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonEmploymentHistoryServiceImpl implements PersonEmployementHistoryService{
-     private final PersonEmploymentHistoryRepository repo = new PersonEmploymentHistoryRepositoryImpl();
+public class PersonEmploymentHistoryServiceImpl implements PersonEmployementHistoryService {
+    private final PersonEmploymentHistoryRepository repo = new PersonEmploymentHistoryRepositoryImpl();
+
     @Override
     public PersonEmploymentHistory findById(String s) {
-       return repo.findById(s);
+        return repo.findById(s);
     }
 
     @Override
     public PersonEmploymentHistory save(PersonEmploymentHistory entity) {
-         return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
     public PersonEmploymentHistory update(PersonEmploymentHistory entity) {
-         return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
@@ -40,5 +41,5 @@ public class PersonEmploymentHistoryServiceImpl implements PersonEmployementHist
     @Override
     public Set<PersonEmploymentHistory> findAll() {
         return repo.findAll();
-    }    
+    }
 }

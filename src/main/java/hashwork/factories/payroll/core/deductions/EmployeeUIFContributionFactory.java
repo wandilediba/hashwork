@@ -11,9 +11,9 @@ import java.util.Map;
  * Created by zamzam on 15/09/05.
  */
 public class EmployeeUIFContributionFactory {
-    public static EmployeeUIFContribution getEmployeeUIFContribution(Map<String,String> values,
+    public static EmployeeUIFContribution getEmployeeUIFContribution(Map<String, String> values,
                                                                      Map<String, BigDecimal> amounts,
-                                                                     Date lastContributionDate){
+                                                                     Date lastContributionDate) {
         EmployeeUIFContribution employeeUIFContribution = new EmployeeUIFContribution
                 .Builder()
                 .id(KeyGenerator.getEntityId())
