@@ -18,6 +18,7 @@ public class AllowanceTypeListFactory {
                 .allowanceType(values.get("allowanceType"))
                 .description(values.get("desc"))
                 .maxAmount(maxAmount).build();
+        
         return allowanceTypeList;
     }
 }
