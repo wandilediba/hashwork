@@ -23,7 +23,7 @@ public class Status implements Serializable {
         return statusValues;
     }
 
-    private Status(Builder builder){
+    private Status(Builder builder) {
         this.id = builder.id;
         this.statusType = builder.statusType;
         this.statusValues = builder.statusValues;
@@ -31,21 +31,22 @@ public class Status implements Serializable {
     }
 
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String statusType;
         private String statusValues;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
-        public Builder statusType(String value){
+
+        public Builder statusType(String value) {
             this.statusType = value;
             return this;
         }
 
-        public Builder statusValue(String value){
+        public Builder statusValue(String value) {
             this.statusValues = value;
             return this;
         }
@@ -58,7 +59,7 @@ public class Status implements Serializable {
             return this;
         }
 
-        public Status build(){
+        public Status build() {
             return new Status(this);
         }
 
