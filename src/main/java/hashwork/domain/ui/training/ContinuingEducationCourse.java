@@ -10,4 +10,6 @@ public class ContinuingEducationCourse implements Serializable {
     private String id;
     private String courseName;
     private int creditHours;
+
+
 }

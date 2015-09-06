@@ -12,4 +12,55 @@ public class CompetencyEvaluation implements Serializable {
     //Attended , Competetent ..
     private String compTypeName;
     private String description;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getCompTypeName() {
+        return compTypeName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    private CompetencyEvaluation(Builder builder){
+        this.id = builder.id;
+        this.compTypeName = builder.compTypeName;
+        this.description = builder.description;
+
+    }
+
+    public static class Builder{
+        private String id;
+        private String compTypeName;
+        private String description;
+
+        public Builder id(String value){
+            this.id = value;
+            return this;
+        }
+
+        public Builder compType(String value){
+            this.id = value;
+            return this;
+        }
+        public Builder description(String value){
+            this.id = value;
+            return this;
+        }
+
+        public Builder copy(CompetencyEvaluation value) {
+            this.id = value.id;
+            this.compTypeName = value.compTypeName;
+            this.description = value.description;
+            return this;
+
+        }
+
+        public CompetencyEvaluation build(){
+            return new CompetencyEvaluation(this);
+        }
+    }
 }
