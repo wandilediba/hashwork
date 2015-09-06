@@ -9,17 +9,18 @@ import hashwork.domain.people.PersonHiringDecision;
 import hashwork.repository.people.Impl.PersonHiringDecisionRepositoryImpl;
 import hashwork.repository.people.PersonHiringDecisionRepository;
 import hashwork.services.people.PersonHiringDecisionService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonHiringDecisionServiceImpl implements PersonHiringDecisionService{
-     private final PersonHiringDecisionRepository repo = new PersonHiringDecisionRepositoryImpl();
+public class PersonHiringDecisionServiceImpl implements PersonHiringDecisionService {
+    private final PersonHiringDecisionRepository repo = new PersonHiringDecisionRepositoryImpl();
+
     @Override
     public PersonHiringDecision findById(String s) {
-       return repo.findById(s);
+        return repo.findById(s);
     }
 
     @Override
@@ -29,16 +30,17 @@ public class PersonHiringDecisionServiceImpl implements PersonHiringDecisionServ
 
     @Override
     public PersonHiringDecision update(PersonHiringDecision entity) {
-          return repo.save(entity);
+        return repo.save(entity);
     }
+
     @Override
     public void delete(PersonHiringDecision entity) {
-       repo.delete(entity);
+        repo.delete(entity);
     }
 
     @Override
     public Set<PersonHiringDecision> findAll() {
         return repo.findAll();
     }
-    
+
 }

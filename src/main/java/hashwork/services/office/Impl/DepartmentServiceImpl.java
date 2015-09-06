@@ -9,15 +9,16 @@ import hashwork.domain.office.Department;
 import hashwork.repository.office.DepartmentRepository;
 import hashwork.repository.office.Impl.DepartmentRepositoryImpl;
 import hashwork.services.office.DepartmentService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class DepartmentServiceImpl implements DepartmentService{
+public class DepartmentServiceImpl implements DepartmentService {
 
-  private final DepartmentRepository repo = new DepartmentRepositoryImpl();
+    private final DepartmentRepository repo = new DepartmentRepositoryImpl();
+
     @Override
     public Department findById(String id) {
         return repo.findById(id);
@@ -25,12 +26,12 @@ public class DepartmentServiceImpl implements DepartmentService{
 
     @Override
     public Department save(Department entity) {
-      return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
     public Department update(Department entity) {
-     return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
@@ -42,5 +43,5 @@ public class DepartmentServiceImpl implements DepartmentService{
     public Set<Department> findAll() {
         return repo.findAll();
     }
-    
+
 }

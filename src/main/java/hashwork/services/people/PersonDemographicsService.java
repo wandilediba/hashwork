@@ -9,9 +9,8 @@ import hashwork.domain.people.PersonDemographics;
 import hashwork.services.Services;
 
 /**
- *
  * @author BONGANI
  */
-public interface PersonDemographicsService extends Services <PersonDemographics, String> {
-    
+public interface PersonDemographicsService extends Services<PersonDemographics, String> {
+
 }

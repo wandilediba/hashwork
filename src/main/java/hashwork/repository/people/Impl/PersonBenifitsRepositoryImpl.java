@@ -7,25 +7,25 @@ package hashwork.repository.people.Impl;
 
 import hashwork.domain.people.PersonBenefits;
 import hashwork.repository.people.PersonBenifitsRepository;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonBenifitsRepositoryImpl implements PersonBenifitsRepository{
+public class PersonBenifitsRepositoryImpl implements PersonBenifitsRepository {
     Map<String, PersonBenefits> lists = new HashMap<>();
 
-   public PersonBenifitsRepositoryImpl() {
+    public PersonBenifitsRepositoryImpl() {
 
     }
 
     @Override
     public PersonBenefits findById(String s) {
-    return lists.get(s);
+        return lists.get(s);
     }
 
     @Override
@@ -40,18 +40,17 @@ public class PersonBenifitsRepositoryImpl implements PersonBenifitsRepository{
 
     @Override
     public void delete(PersonBenefits entity) {
-      lists.remove(entity.getId());
+        lists.remove(entity.getId());
     }
 
     @Override
     public Set<PersonBenefits> findAll() {
-    Set<PersonBenefits> set = new HashSet<>();
+        Set<PersonBenefits> set = new HashSet<>();
         for (Map.Entry<String, PersonBenefits> entry : lists.entrySet()) {
             set.add(entry.getValue());
         }
         return set;
     }
-    
-   
-    
+
+
 }

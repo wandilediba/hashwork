@@ -10,14 +10,15 @@ import hashwork.domain.people.PersonAddress;
 import hashwork.repository.people.Impl.PersonAddressRepositoryImpl;
 import hashwork.repository.people.PersonAddressRepository;
 import hashwork.services.people.PersonAddressService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonAddressServiceImpl implements PersonAddressService{
- private final PersonAddressRepository repo = new PersonAddressRepositoryImpl();
+public class PersonAddressServiceImpl implements PersonAddressService {
+    private final PersonAddressRepository repo = new PersonAddressRepositoryImpl();
+
     @Override
     public PersonAddress findById(String s) {
         return repo.findById(s);
@@ -30,17 +31,17 @@ public class PersonAddressServiceImpl implements PersonAddressService{
 
     @Override
     public PersonAddress update(PersonAddress entity) {
-         return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
     public void delete(PersonAddress entity) {
-         repo.delete(entity);
+        repo.delete(entity);
     }
 
     @Override
     public Set<PersonAddress> findAll() {
-       return repo.findAll();
+        return repo.findAll();
     }
-  
+
 }

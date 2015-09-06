@@ -7,6 +7,7 @@ package hashwork.repository.people.Impl;
 
 import hashwork.domain.people.PersonContact;
 import hashwork.repository.people.PersonContactRepository;
+
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,28 +15,28 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
 public class PersonContactRepositoryImpl implements PersonContactRepository {
     Map<String, PersonContact> lists = new HashMap<>();
 
-   public PersonContactRepositoryImpl() {
+    public PersonContactRepositoryImpl() {
 
     }
+
     @Override
     public PersonContact findById(String s) {
-         return lists.get(s);
+        return lists.get(s);
     }
 
     @Override
     public PersonContact save(PersonContact entity) {
-         return lists.put(entity.getId(), entity);
+        return lists.put(entity.getId(), entity);
     }
 
     @Override
     public PersonContact update(PersonContact entity) {
-       return lists.put(entity.getId(), entity);
+        return lists.put(entity.getId(), entity);
     }
 
     @Override
@@ -45,11 +46,11 @@ public class PersonContactRepositoryImpl implements PersonContactRepository {
 
     @Override
     public Set<PersonContact> findAll() {
-    Set<PersonContact> set = new HashSet<>();
+        Set<PersonContact> set = new HashSet<>();
         for (Map.Entry<String, PersonContact> entry : lists.entrySet()) {
             set.add(entry.getValue());
         }
         return set;
     }
-    
+
 }

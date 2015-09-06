@@ -11,38 +11,38 @@ import hashwork.repository.people.Impl.PersonPositionRepositoryImpl;
 import hashwork.repository.people.PersonPositionRepository;
 import hashwork.services.people.PersonPositionService;
 import hashwork.services.people.PersonRoleService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonPositionServiceImpl implements PersonPositionService{
-     private final PersonPositionRepository repo = new PersonPositionRepositoryImpl();
+public class PersonPositionServiceImpl implements PersonPositionService {
+    private final PersonPositionRepository repo = new PersonPositionRepositoryImpl();
 
     @Override
     public PersonPosition findById(String s) {
-         return repo.findById(s);
+        return repo.findById(s);
     }
 
     @Override
     public PersonPosition save(PersonPosition entity) {
-      return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
     public PersonPosition update(PersonPosition entity) {
-       return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
     public void delete(PersonPosition entity) {
-         repo.delete(entity);
+        repo.delete(entity);
     }
 
     @Override
     public Set<PersonPosition> findAll() {
-       return repo.findAll();
+        return repo.findAll();
     }
-    
+
 }

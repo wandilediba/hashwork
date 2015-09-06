@@ -18,23 +18,24 @@ public class City implements Serializable {
         return city;
     }
 
-    private City(){}
+    private City() {
+    }
 
-    private City(Builder builder){
+    private City(Builder builder) {
         this.id = builder.id;
         this.city = builder.city;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String city;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder city(String value){
+        public Builder city(String value) {
             this.city = value;
             return this;
         }

@@ -9,7 +9,7 @@ import hashwork.domain.ui.demographics.GenderList;
 public class GenderListFactory {
     public static GenderList getGenderList(String gender) {
         GenderList genderList = new GenderList
-                 .Builder()
+                .Builder()
                 .id(KeyGenerator.getEntityId())
                 .gender(gender).build();
         return genderList;

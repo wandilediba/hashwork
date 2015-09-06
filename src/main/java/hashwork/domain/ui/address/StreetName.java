@@ -24,23 +24,24 @@ public class StreetName implements Serializable {
         return streetName;
     }
 
-    private StreetName(){}
+    private StreetName() {
+    }
 
-    private StreetName(Builder builder){
+    private StreetName(Builder builder) {
         this.id = builder.id;
         this.streetName = builder.streetName;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String streetName;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder streetName(String value){
+        public Builder streetName(String value) {
             this.streetName = value;
             return this;
         }

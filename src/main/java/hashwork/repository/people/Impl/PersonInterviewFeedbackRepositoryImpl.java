@@ -7,25 +7,26 @@ package hashwork.repository.people.Impl;
 
 import hashwork.domain.people.PersonInterviewFeedback;
 import hashwork.repository.people.PersonInterviewFeedbackRepository;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonInterviewFeedbackRepositoryImpl implements PersonInterviewFeedbackRepository{
+public class PersonInterviewFeedbackRepositoryImpl implements PersonInterviewFeedbackRepository {
 
     Map<String, PersonInterviewFeedback> lists = new HashMap<>();
 
-   public PersonInterviewFeedbackRepositoryImpl() {
+    public PersonInterviewFeedbackRepositoryImpl() {
 
     }
+
     @Override
     public PersonInterviewFeedback findById(String s) {
-          return lists.get(s);
+        return lists.get(s);
     }
 
     @Override
@@ -40,16 +41,16 @@ public class PersonInterviewFeedbackRepositoryImpl implements PersonInterviewFee
 
     @Override
     public void delete(PersonInterviewFeedback entity) {
-       lists.remove(entity.getId());
+        lists.remove(entity.getId());
     }
 
     @Override
     public Set<PersonInterviewFeedback> findAll() {
-         Set<PersonInterviewFeedback> set = new HashSet<>();
+        Set<PersonInterviewFeedback> set = new HashSet<>();
         for (Map.Entry<String, PersonInterviewFeedback> entry : lists.entrySet()) {
             set.add(entry.getValue());
         }
         return set;
     }
-    
+
 }

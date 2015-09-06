@@ -11,9 +11,9 @@ import java.util.Map;
  * Created by zamzam on 15/09/05.
  */
 public class EmployeeMedicalAidFactory {
-    public static EmployeeMedicalAid getEmployeeMedicalAid(Map<String,String> values,
+    public static EmployeeMedicalAid getEmployeeMedicalAid(Map<String, String> values,
                                                            BigDecimal medicalAidAmount,
-                                                           Date lastDateContribution){
+                                                           Date lastDateContribution) {
         EmployeeMedicalAid employeeMedicalAid = new EmployeeMedicalAid
                 .Builder()
                 .id(KeyGenerator.getEntityId())

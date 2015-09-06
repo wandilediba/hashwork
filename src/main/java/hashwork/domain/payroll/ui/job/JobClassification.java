@@ -1,4 +1,4 @@
-package hashwork.domain.ui.job;
+package hashwork.domain.payroll.ui.job;
 
 import java.io.Serializable;
 

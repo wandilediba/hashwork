@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class EmployeeDeductionsFactory {
     public static EmployeeDeductions getEmployeeDeductions(Map<String, String> values,
-                                                                  BigDecimal deductionAmt){
+                                                           BigDecimal deductionAmt) {
         EmployeeDeductions employeeDeductions = new EmployeeDeductions
                 .Builder()
                 .id(KeyGenerator.getEntityId())

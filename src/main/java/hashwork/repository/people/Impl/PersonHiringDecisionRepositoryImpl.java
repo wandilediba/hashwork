@@ -7,21 +7,22 @@ package hashwork.repository.people.Impl;
 
 import hashwork.domain.people.PersonHiringDecision;
 import hashwork.repository.people.PersonHiringDecisionRepository;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
 public class PersonHiringDecisionRepositoryImpl implements PersonHiringDecisionRepository {
-     Map<String, PersonHiringDecision> lists = new HashMap<>();
+    Map<String, PersonHiringDecision> lists = new HashMap<>();
 
-   public PersonHiringDecisionRepositoryImpl() {
+    public PersonHiringDecisionRepositoryImpl() {
 
     }
+
     @Override
     public PersonHiringDecision findById(String s) {
         return lists.get(s);
@@ -29,26 +30,26 @@ public class PersonHiringDecisionRepositoryImpl implements PersonHiringDecisionR
 
     @Override
     public PersonHiringDecision save(PersonHiringDecision entity) {
-          return lists.put(entity.getId(), entity);
+        return lists.put(entity.getId(), entity);
     }
 
     @Override
     public PersonHiringDecision update(PersonHiringDecision entity) {
-         return lists.put(entity.getId(), entity);
+        return lists.put(entity.getId(), entity);
     }
 
     @Override
     public void delete(PersonHiringDecision entity) {
-       lists.remove(entity.getId());
+        lists.remove(entity.getId());
     }
 
     @Override
     public Set<PersonHiringDecision> findAll() {
-       Set<PersonHiringDecision> set = new HashSet<>();
+        Set<PersonHiringDecision> set = new HashSet<>();
         for (Map.Entry<String, PersonHiringDecision> entry : lists.entrySet()) {
             set.add(entry.getValue());
         }
         return set;
     }
-    
+
 }

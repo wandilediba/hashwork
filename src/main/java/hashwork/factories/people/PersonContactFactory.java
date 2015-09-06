@@ -6,9 +6,8 @@
 package hashwork.factories.people;
 
 /**
- *
  * @author BONGANI
  */
 public class PersonContactFactory {
-    
+
 }

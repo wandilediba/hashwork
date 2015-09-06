@@ -9,14 +9,15 @@ import hashwork.domain.people.PersonInterviewFeedback;
 import hashwork.repository.people.Impl.PersonInterviewFeedbackRepositoryImpl;
 import hashwork.repository.people.PersonInterviewFeedbackRepository;
 import hashwork.services.people.PersonInterviewFeedbackService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonInterviewFeedbackServiceImpl implements PersonInterviewFeedbackService{
-      private final PersonInterviewFeedbackRepository repo = new PersonInterviewFeedbackRepositoryImpl();
+public class PersonInterviewFeedbackServiceImpl implements PersonInterviewFeedbackService {
+    private final PersonInterviewFeedbackRepository repo = new PersonInterviewFeedbackRepositoryImpl();
+
     @Override
     public PersonInterviewFeedback findById(String s) {
         return repo.findById(s);
@@ -24,7 +25,7 @@ public class PersonInterviewFeedbackServiceImpl implements PersonInterviewFeedba
 
     @Override
     public PersonInterviewFeedback save(PersonInterviewFeedback entity) {
-         return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
@@ -34,12 +35,12 @@ public class PersonInterviewFeedbackServiceImpl implements PersonInterviewFeedba
 
     @Override
     public void delete(PersonInterviewFeedback entity) {
-         repo.delete(entity);
+        repo.delete(entity);
     }
 
     @Override
     public Set<PersonInterviewFeedback> findAll() {
         return repo.findAll();
     }
-    
+
 }

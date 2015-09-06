@@ -23,29 +23,33 @@ public class UIFContributionList implements Serializable {
     public BigDecimal getUifPercentContribution() {
         return uifPercentContribution;
     }
-    private UIFContributionList(){
+
+    private UIFContributionList() {
 
     }
-    private UIFContributionList(Builder builder){
+
+    private UIFContributionList(Builder builder) {
         this.id = builder.id;
         this.code = builder.code;
         this.uifPercentContribution = builder.uifPercentContribution;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String code;
         private BigDecimal uifPercentContribution;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
-        public Builder code(String value){
+
+        public Builder code(String value) {
             this.code = value;
             return this;
         }
-        public Builder uifPercentContribution(BigDecimal value){
+
+        public Builder uifPercentContribution(BigDecimal value) {
             this.uifPercentContribution = value;
             return this;
         }
@@ -56,6 +60,7 @@ public class UIFContributionList implements Serializable {
             this.uifPercentContribution = value.uifPercentContribution;
             return this;
         }
+
         public UIFContributionList build() {
             return new UIFContributionList(this);
         }

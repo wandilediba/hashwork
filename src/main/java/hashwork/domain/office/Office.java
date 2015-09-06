@@ -53,25 +53,25 @@ public class Office implements Serializable{
     public Set<String> getPositionIds() {
         return positionIds;
     }
-      
-        
-     private Office() {
-    }
-    
-    private Office(Builder builder){
-           this.id = builder.id;
-           this.name = builder.name;
-           this.description = builder.description;
-           this.active = builder.active;
-           this.dateEstablished = builder.dateEstablished;
-           this.officeTypeId = builder.officeTypeId;
-           this.cityId = builder.cityId;
-           this.contactId = builder.contactId;
-           this.positionIds = builder.positionIds;
-          
-       }
 
-    public static class Builder{
+
+    private Office() {
+    }
+
+    private Office(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.description = builder.description;
+        this.active = builder.active;
+        this.dateEstablished = builder.dateEstablished;
+        this.officeTypeId = builder.officeTypeId;
+        this.cityId = builder.cityId;
+        this.contactId = builder.contactId;
+        this.positionIds = builder.positionIds;
+
+    }
+
+    public static class Builder {
         private String id;
         private String name;
         private String description;
@@ -82,49 +82,50 @@ public class Office implements Serializable{
         private String contactId;
         private Set<String> positionIds;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder name(String value){
+        public Builder name(String value) {
             this.name = value;
             return this;
         }
-        
-        public Builder description(String value){
+
+        public Builder description(String value) {
             this.description = value;
             return this;
         }
-        
-        public Builder active(String value){
+
+        public Builder active(String value) {
             this.active = value;
             return this;
         }
-        
-        public Builder officeTypeId(String value){
+
+        public Builder officeTypeId(String value) {
             this.officeTypeId = value;
             return this;
         }
-        public Builder dateEstablished(Date date){
+
+        public Builder dateEstablished(Date date) {
             this.dateEstablished = date;
             return this;
         }
-        
-         public Builder cityId(String value){
+
+        public Builder cityId(String value) {
             this.cityId = value;
             return this;
         }
-         
-          public Builder contactId(String value){
+
+        public Builder contactId(String value) {
             this.contactId = value;
             return this;
         }
-          
-           public Builder positionIds(Set<String> value){
+
+        public Builder positionIds(Set<String> value) {
             this.positionIds = value;
             return this;
-        }           
+        }
 
         public Builder copy(Office value) {
             this.id = value.id;
@@ -133,9 +134,9 @@ public class Office implements Serializable{
             this.active = value.active;
             this.dateEstablished = value.dateEstablished;
             this.officeTypeId = value.officeTypeId;
-           this.cityId = value.cityId;
-           this.contactId = value.contactId;
-           this.positionIds = value.positionIds;
+            this.cityId = value.cityId;
+            this.contactId = value.contactId;
+            this.positionIds = value.positionIds;
             return this;
         }
 

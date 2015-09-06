@@ -24,23 +24,24 @@ public class Number implements Serializable {
         return number;
     }
 
-    private Number(){}
+    private Number() {
+    }
 
-    private Number(Builder builder){
+    private Number(Builder builder) {
         this.id = builder.id;
         this.number = builder.number;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String number;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder number(String value){
+        public Builder number(String value) {
             this.number = value;
             return this;
         }

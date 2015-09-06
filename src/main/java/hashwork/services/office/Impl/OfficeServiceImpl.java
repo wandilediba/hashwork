@@ -9,18 +9,19 @@ import hashwork.domain.office.Office;
 import hashwork.repository.office.Impl.OfficeRepositoryImpl;
 import hashwork.repository.office.OfficeRepository;
 import hashwork.services.office.OfficeService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
 public class OfficeServiceImpl implements OfficeService {
 
     private final OfficeRepository repo = new OfficeRepositoryImpl();
+
     @Override
     public Office findById(String id) {
-     return repo.findById(id);
+        return repo.findById(id);
     }
 
     @Override
@@ -30,17 +31,17 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     public Office update(Office entity) {
-     return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
     public void delete(Office entity) {
-       repo.delete(entity);
+        repo.delete(entity);
     }
 
     @Override
     public Set<Office> findAll() {
-       return repo.findAll();
+        return repo.findAll();
     }
-    
+
 }
