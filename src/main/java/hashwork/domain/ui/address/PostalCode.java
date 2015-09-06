@@ -24,24 +24,23 @@ public class PostalCode implements Serializable {
         return postalCode;
     }
 
-    private PostalCode() {
-    }
+    private PostalCode(){}
 
-    private PostalCode(Builder builder) {
+    private PostalCode(Builder builder){
         this.id = builder.id;
         this.postalCode = builder.postalCode;
     }
 
-    public static class Builder {
+    public static class Builder{
         private String id;
         private String postalCode;
 
-        public Builder id(String value) {
+        public Builder id(String value){
             this.id = value;
             return this;
         }
 
-        public Builder postalCode(String value) {
+        public Builder postalCode(String value){
             this.postalCode = value;
             return this;
         }

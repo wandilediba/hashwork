@@ -7,7 +7,7 @@ import hashwork.domain.ui.country.Country;
  * Created by garran on 2015/09/01.
  */
 public class CountryFactory {
-    public static Country getSuburb(String countries) {
+    public static Country getCountry(String countries) {
         Country country = new Country.Builder()
                 .id(KeyGenerator.getEntityId())
                 .country(countries).build();

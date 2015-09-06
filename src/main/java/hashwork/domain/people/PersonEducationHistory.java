@@ -14,10 +14,42 @@ public class PersonEducationHistory implements Serializable {
     private String educationTypeId;
     private String degreeId;
     private String notes;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public String getInstitutionName() {
+        return institutionName;
+    }
+
+    public String getInstitutionLocation() {
+        return institutionLocation;
+    }
+
+    public int getYearOfGraduation() {
+        return yearOfGraduation;
+    }
+
+    public String getEducationTypeId() {
+        return educationTypeId;
+    }
+
+    public String getDegreeId() {
+        return degreeId;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
         
+    
     private PersonEducationHistory()
     {
-    
     }
         public PersonEducationHistory(Builder builder){
         this.id =  builder.id;

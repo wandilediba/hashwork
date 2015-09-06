@@ -14,7 +14,6 @@ import java.util.Set;
 public class GenderListRepositoryImpl implements GenderListRepository {
     Map<String, GenderList> lists = new HashMap<>();
 
-
     public GenderListRepositoryImpl() {
 
     }
