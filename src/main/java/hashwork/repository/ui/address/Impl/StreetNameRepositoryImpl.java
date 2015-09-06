@@ -1,4 +1,5 @@
 package hashwork.repository.ui.address.Impl;
+
 import hashwork.domain.ui.address.StreetName;
 import hashwork.repository.ui.address.StreetNameRepository;
 
@@ -6,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 /**
  * Created by garran on 2015/08/30.
  */

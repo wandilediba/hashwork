@@ -1,4 +1,5 @@
 package hashwork.repository.ui.address;
+
 import hashwork.domain.ui.address.Suburb;
 import hashwork.factories.ui.address.SuburbFactory;
 import hashwork.repository.ui.address.Impl.SuburbRepositoryImpl;

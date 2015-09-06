@@ -1,10 +1,12 @@
 package hashwork.factories.ui.address;
+
 import hashwork.domain.ui.address.PostalCode;
 import hashwork.repository.ui.address.Impl.PostalCodeRepositoryImpl;
 import hashwork.repository.ui.address.PostalCodeRepository;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 /**
  * Created by garran on 2015/08/30.
  */

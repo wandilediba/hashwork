@@ -31,16 +31,16 @@ public class PayrollTaxCalculations implements Serializable {
         this.taxCodesId = builder.taxCodesId;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String taxCodesId;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder taxCodesId(String value){
+        public Builder taxCodesId(String value) {
             this.taxCodesId = value;
             return this;
         }
@@ -51,7 +51,7 @@ public class PayrollTaxCalculations implements Serializable {
             return this;
         }
 
-        public PayrollTaxCalculations build(){
+        public PayrollTaxCalculations build() {
             return new PayrollTaxCalculations(this);
         }
     }
