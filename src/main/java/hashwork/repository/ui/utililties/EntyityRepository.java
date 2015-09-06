@@ -1,4 +1,4 @@
-package hashwork.repository.ui.address;
+package hashwork.repository.ui.utililties;
 
 /**
  * Created by hashcode on 2015/08/22.
