@@ -35,11 +35,11 @@ public class PensionFund implements Serializable {
         return percentageAsOfDate;
     }
 
-    private PensionFund(){
+    private PensionFund() {
 
     }
 
-    private PensionFund(Builder builder){
+    private PensionFund(Builder builder) {
         this.id = builder.id;
         this.pensionCode = builder.pensionCode;
         this.description = builder.description;
@@ -47,30 +47,34 @@ public class PensionFund implements Serializable {
         this.percentageAsOfDate = builder.percentageAsOfDate;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String pensionCode;
         private String description;
         private BigDecimal percentage;
         private Date percentageAsOfDate;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
-        public Builder pensionCode(String value){
+
+        public Builder pensionCode(String value) {
             this.pensionCode = value;
             return this;
         }
-        public Builder description(String value){
+
+        public Builder description(String value) {
             this.description = value;
             return this;
         }
-        public Builder percentage(BigDecimal value){
+
+        public Builder percentage(BigDecimal value) {
             this.percentage = value;
             return this;
         }
-        public Builder percentageAsOfDate(Date value){
+
+        public Builder percentageAsOfDate(Date value) {
             this.percentageAsOfDate = value;
             return this;
         }
@@ -84,6 +88,7 @@ public class PensionFund implements Serializable {
             this.percentageAsOfDate = value.percentageAsOfDate;
             return this;
         }
+
         public PensionFund build() {
             return new PensionFund(this);
         }

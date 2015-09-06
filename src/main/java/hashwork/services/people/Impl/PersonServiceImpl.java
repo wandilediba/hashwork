@@ -9,17 +9,18 @@ import hashwork.domain.people.Person;
 import hashwork.repository.people.Impl.PersonRepositoryImpl;
 import hashwork.repository.people.PersonRepository;
 import hashwork.services.people.PersonService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonServiceImpl implements PersonService{
-     private final PersonRepository repo = new PersonRepositoryImpl();
+public class PersonServiceImpl implements PersonService {
+    private final PersonRepository repo = new PersonRepositoryImpl();
+
     @Override
     public Person findById(String s) {
-       return repo.findById(s);
+        return repo.findById(s);
     }
 
     @Override
@@ -29,7 +30,7 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public Person update(Person entity) {
-         return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public Set<Person> findAll() {
-       return repo.findAll();
+        return repo.findAll();
     }
-    
+
 }

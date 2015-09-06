@@ -7,21 +7,22 @@ package hashwork.repository.people.Impl;
 
 import hashwork.domain.people.PersonDemographics;
 import hashwork.repository.people.PersonDemographicsRepository;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonDemographicsRepositoryImpl implements PersonDemographicsRepository  {
-     Map<String, PersonDemographics> lists = new HashMap<>();
+public class PersonDemographicsRepositoryImpl implements PersonDemographicsRepository {
+    Map<String, PersonDemographics> lists = new HashMap<>();
 
-   public PersonDemographicsRepositoryImpl() {
+    public PersonDemographicsRepositoryImpl() {
 
     }
+
     @Override
     public PersonDemographics findById(String s) {
         return lists.get(s);
@@ -29,7 +30,7 @@ public class PersonDemographicsRepositoryImpl implements PersonDemographicsRepos
 
     @Override
     public PersonDemographics save(PersonDemographics entity) {
-       return lists.put(entity.getId(), entity);
+        return lists.put(entity.getId(), entity);
     }
 
     @Override
@@ -39,19 +40,19 @@ public class PersonDemographicsRepositoryImpl implements PersonDemographicsRepos
 
     @Override
     public void delete(PersonDemographics entity) {
-      lists.remove(entity.getId());
+        lists.remove(entity.getId());
     }
 
     @Override
     public Set<PersonDemographics> findAll() {
-       
+
         Set<PersonDemographics> set = new HashSet<>();
         for (Map.Entry<String, PersonDemographics> entry : lists.entrySet()) {
             set.add(entry.getValue());
         }
         return set;
-        
+
     }
-   
-        
+
+
 }

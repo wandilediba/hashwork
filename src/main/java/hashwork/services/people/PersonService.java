@@ -12,6 +12,6 @@ import hashwork.services.Services;
  *
  * @author BONGANI
  */
-public interface PersonService extends Services <Person, String>{
+public interface PersonService extends Services<Person, String> {
     
 }

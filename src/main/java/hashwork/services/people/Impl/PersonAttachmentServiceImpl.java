@@ -11,14 +11,15 @@ import hashwork.repository.people.Impl.PersonAttachmentRepositoryImpl;
 import hashwork.repository.people.PersonAttachmentRepository;
 import hashwork.services.people.PersonAddressService;
 import hashwork.services.people.PersonAttachmentService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonAttachmentServiceImpl implements PersonAttachmentService{
- private final PersonAttachmentRepository repo = new PersonAttachmentRepositoryImpl();
+public class PersonAttachmentServiceImpl implements PersonAttachmentService {
+    private final PersonAttachmentRepository repo = new PersonAttachmentRepositoryImpl();
+
     @Override
     public PersonAttachment findById(String s) {
         return repo.findById(s);
@@ -26,7 +27,7 @@ public class PersonAttachmentServiceImpl implements PersonAttachmentService{
 
     @Override
     public PersonAttachment save(PersonAttachment entity) {
-       return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
@@ -36,13 +37,13 @@ public class PersonAttachmentServiceImpl implements PersonAttachmentService{
 
     @Override
     public void delete(PersonAttachment entity) {
-           repo.delete(entity);
+        repo.delete(entity);
     }
 
     @Override
     public Set<PersonAttachment> findAll() {
-       return repo.findAll();
+        return repo.findAll();
     }
 
-   
+
 }

@@ -9,19 +9,18 @@ import hashwork.app.util.KeyGenerator;
 import hashwork.domain.office.OfficeType;
 
 /**
- *
  * @author BONGANI
  */
 public class OfficeTypeFactory {
-    
+
     public static OfficeType getOfficeType(String id, String name) {
         OfficeType officeType = new OfficeType
                 .Builder()
                 .id(id)
                 .name(name)
-                .id(KeyGenerator.getEntityId())   
-                .build();                             
+                .id(KeyGenerator.getEntityId())
+                .build();
         return officeType;
     }
-    
+
 }

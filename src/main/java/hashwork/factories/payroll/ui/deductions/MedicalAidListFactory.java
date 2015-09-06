@@ -10,8 +10,8 @@ import java.util.Map;
  * Created by zamzam on 15/09/05.
  */
 public class MedicalAidListFactory {
-    public static MedicalAidList getMedicalAidList(Map<String,String> values,
-                                                   BigDecimal monthlyContribution){
+    public static MedicalAidList getMedicalAidList(Map<String, String> values,
+                                                   BigDecimal monthlyContribution) {
         MedicalAidList medicalAidList = new MedicalAidList
                 .Builder()
                 .id(KeyGenerator.getEntityId())

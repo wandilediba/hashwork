@@ -11,9 +11,9 @@ import java.util.Map;
  * Created by zamzam on 15/09/05.
  */
 public class PensionFundFactory {
-    public static PensionFund getPensionFund(Map<String,String> values,
+    public static PensionFund getPensionFund(Map<String, String> values,
                                              BigDecimal percentage,
-                                             Date percentageAsOfDate){
+                                             Date percentageAsOfDate) {
         PensionFund pensionFund = new PensionFund
                 .Builder()
                 .id(KeyGenerator.getEntityId())

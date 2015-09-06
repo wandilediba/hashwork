@@ -9,14 +9,15 @@ import hashwork.domain.people.PersonLanguage;
 import hashwork.repository.people.Impl.PersonLanguageRepositoryImpl;
 import hashwork.repository.people.PersonLanguageRepository;
 import hashwork.services.people.PersonLanguageService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonLanguageServiceImpl implements PersonLanguageService{
-     private final PersonLanguageRepository repo = new PersonLanguageRepositoryImpl();
+public class PersonLanguageServiceImpl implements PersonLanguageService {
+    private final PersonLanguageRepository repo = new PersonLanguageRepositoryImpl();
+
     @Override
     public PersonLanguage findById(String s) {
         return repo.findById(s);
@@ -24,12 +25,12 @@ public class PersonLanguageServiceImpl implements PersonLanguageService{
 
     @Override
     public PersonLanguage save(PersonLanguage entity) {
-         return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
     public PersonLanguage update(PersonLanguage entity) {
-         return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
@@ -41,5 +42,5 @@ public class PersonLanguageServiceImpl implements PersonLanguageService{
     public Set<PersonLanguage> findAll() {
         return repo.findAll();
     }
-    
+
 }

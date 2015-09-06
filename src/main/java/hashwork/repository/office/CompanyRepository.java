@@ -9,9 +9,8 @@ import hashwork.domain.office.Company;
 import hashwork.repository.CrudRepository;
 
 /**
- *
  * @author BONGANI
  */
-public interface CompanyRepository extends CrudRepository <Company, String> {
-    
+public interface CompanyRepository extends CrudRepository<Company, String> {
+
 }

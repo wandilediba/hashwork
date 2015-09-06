@@ -1,5 +1,6 @@
 package hashwork.client.sidebar;
 
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Accordion;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
@@ -9,7 +10,7 @@ import hashwork.client.sidebar.trees.*;
 /**
  * Created by hashcode on 2015/08/16.
  */
-public class SideBar extends Accordion {
+public class SideBar extends VerticalLayout {
     private final MainLayout main;
     public static final String HOME_CONTENT = "HOME ";
     public static final String MANAGE_EMPLOYEES = "Manage EMPLOYEES ";
@@ -23,13 +24,14 @@ public class SideBar extends Accordion {
     public static final String MANAGE_YOUR_ACCOUNT = "Manage YOUR ACCOUNT";
     public static final String DECISION_CENTER = "Decision CENTER";
     public static final String USERS_PROFILE = "Users PROFILE";
+    final Accordion accordion = new Accordion();
+
 
     public SideBar(MainLayout main) {
         this.main = main;
         setSizeFull();
-        addStyleName(ValoTheme.ACCORDION_BORDERLESS);
-        setHeight("600px");
-        //Configure Manage People Menu
+        setMargin(true);
+
         VerticalLayout homeMenu = new VerticalLayout();
         HomeTree homeTree = new HomeTree(main);
         homeMenu.addComponent(homeTree);
@@ -80,20 +82,21 @@ public class SideBar extends Accordion {
         decisionMenu.addComponent(decisionTree);
 
         // Add the components as tabs in the Accordion.
-        addTab(homeMenu, HOME_CONTENT, null);
-        addTab(profileMenu, USERS_PROFILE, null);
-        addTab(employeesMenu, MANAGE_EMPLOYEES, null);
-        addTab(selfServiceMenu, EMPLOYEE_SELF_SERVICE, null);
-        addTab(trainingMenu, MANAGE_TRAINING, null);
-        addTab(decisionMenu, DECISION_CENTER, null);
 
-        addTab(applicationsMenu, MANAGE_JOB_APPLICATIONS, null);
+        accordion.addTab(homeMenu, HOME_CONTENT, FontAwesome.HOME);
+        accordion.addTab(profileMenu, USERS_PROFILE, FontAwesome.USER);
+        accordion.addTab(employeesMenu, MANAGE_EMPLOYEES, FontAwesome.BUILDING);
+        accordion.addTab(selfServiceMenu, EMPLOYEE_SELF_SERVICE, FontAwesome.KEYBOARD_O).setStyleName(ValoTheme.LABEL_COLORED);
+        accordion.addTab(trainingMenu, MANAGE_TRAINING, FontAwesome.UNIVERSITY);
+        accordion.addTab(decisionMenu, DECISION_CENTER, FontAwesome.KEY);
 
-        addTab(positionMenu, MANAGE_POSITIONS, null);
-        addTab(accountsMenu, MANAGE_YOUR_ACCOUNT, null);
-        addTab(reportsMenu, MANAGE_REPORTS, null);
-        addTab(usersTree, MANAGE_USERS, null);
-        addTab(systemsMenu, SETUP_SYSTEM, null);
+        accordion.addTab(applicationsMenu, MANAGE_JOB_APPLICATIONS, FontAwesome.SEARCH_PLUS);
 
+        accordion.addTab(positionMenu, MANAGE_POSITIONS, FontAwesome.BUILDING_O);
+        accordion.addTab(accountsMenu, MANAGE_YOUR_ACCOUNT, FontAwesome.GEAR);
+        accordion.addTab(reportsMenu, MANAGE_REPORTS, FontAwesome.BAR_CHART_O);
+        accordion.addTab(usersTree, MANAGE_USERS, FontAwesome.USERS);
+        accordion.addTab(systemsMenu, SETUP_SYSTEM, FontAwesome.GEARS);
+        addComponent(accordion);
     }
 }

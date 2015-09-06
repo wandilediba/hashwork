@@ -1,7 +1,11 @@
-// Import all the mixins for this theme
-@import "dashboard";
+@import "variables";
+@import "valotest";
 
-.dashboard {
-  // Output the actual theme selectors
-  @include dashboard;
+.tests-valo {
+  @include valotest;
+}
+
+html {
+  width: 100px;
+  min-width: 100%;
 }

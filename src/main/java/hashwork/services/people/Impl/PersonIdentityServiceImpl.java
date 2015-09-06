@@ -9,22 +9,23 @@ import hashwork.domain.people.PersonIdentity;
 import hashwork.repository.people.Impl.PersonIdentityRepositoryImpl;
 import hashwork.repository.people.PersonIdentityRepository;
 import hashwork.services.people.PersonIdentityService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonIdentityServiceImpl implements PersonIdentityService{
+public class PersonIdentityServiceImpl implements PersonIdentityService {
     private final PersonIdentityRepository repo = new PersonIdentityRepositoryImpl();
+
     @Override
     public PersonIdentity findById(String s) {
-       return repo.findById(s);
+        return repo.findById(s);
     }
 
     @Override
     public PersonIdentity save(PersonIdentity entity) {
-       return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
@@ -34,12 +35,12 @@ public class PersonIdentityServiceImpl implements PersonIdentityService{
 
     @Override
     public void delete(PersonIdentity entity) {
-          repo.delete(entity);
+        repo.delete(entity);
     }
 
     @Override
     public Set<PersonIdentity> findAll() {
         return repo.findAll();
     }
-    
+
 }

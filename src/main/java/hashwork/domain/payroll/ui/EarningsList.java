@@ -36,24 +36,24 @@ public class EarningsList implements Serializable {
         this.earningsDesc = builder.earningsDesc;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String earningsType;
         private String earningsDesc;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
-            return  this;
+            return this;
         }
 
-        public Builder earningsType(String value){
+        public Builder earningsType(String value) {
             this.earningsType = value;
-            return  this;
+            return this;
         }
 
-        public Builder earningsDesc(String value){
-            this.earningsDesc= value;
-            return  this;
+        public Builder earningsDesc(String value) {
+            this.earningsDesc = value;
+            return this;
         }
 
         public Builder copy(EarningsList value) {
@@ -64,7 +64,7 @@ public class EarningsList implements Serializable {
             return this;
         }
 
-        public EarningsList build(){
+        public EarningsList build() {
             return new EarningsList(this);
         }
     }

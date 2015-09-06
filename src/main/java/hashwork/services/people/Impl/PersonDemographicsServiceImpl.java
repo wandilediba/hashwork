@@ -9,14 +9,15 @@ import hashwork.domain.people.PersonDemographics;
 import hashwork.repository.people.Impl.PersonDemographicsRepositoryImpl;
 import hashwork.repository.people.PersonDemographicsRepository;
 import hashwork.services.people.PersonDemographicsService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonDemographicsServiceImpl implements PersonDemographicsService{
-   private final PersonDemographicsRepository repo = new PersonDemographicsRepositoryImpl();
+public class PersonDemographicsServiceImpl implements PersonDemographicsService {
+    private final PersonDemographicsRepository repo = new PersonDemographicsRepositoryImpl();
+
     @Override
     public PersonDemographics findById(String s) {
         return repo.findById(s);
@@ -24,7 +25,7 @@ public class PersonDemographicsServiceImpl implements PersonDemographicsService{
 
     @Override
     public PersonDemographics save(PersonDemographics entity) {
-         return repo.save(entity);
+        return repo.save(entity);
     }
 
     @Override
@@ -34,12 +35,12 @@ public class PersonDemographicsServiceImpl implements PersonDemographicsService{
 
     @Override
     public void delete(PersonDemographics entity) {
-         repo.delete(entity);
+        repo.delete(entity);
     }
 
     @Override
     public Set<PersonDemographics> findAll() {
         return repo.findAll();
     }
-    
+
 }

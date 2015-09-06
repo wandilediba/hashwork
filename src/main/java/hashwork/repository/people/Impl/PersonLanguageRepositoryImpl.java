@@ -7,21 +7,22 @@ package hashwork.repository.people.Impl;
 
 import hashwork.domain.people.PersonLanguage;
 import hashwork.repository.people.PersonLanguageRepository;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonLanguageRepositoryImpl implements PersonLanguageRepository{
-Map<String, PersonLanguage> lists = new HashMap<>();
+public class PersonLanguageRepositoryImpl implements PersonLanguageRepository {
+    Map<String, PersonLanguage> lists = new HashMap<>();
 
-   public PersonLanguageRepositoryImpl() {
+    public PersonLanguageRepositoryImpl() {
 
     }
+
     @Override
     public PersonLanguage findById(String s) {
         return lists.get(s);
@@ -29,7 +30,7 @@ Map<String, PersonLanguage> lists = new HashMap<>();
 
     @Override
     public PersonLanguage save(PersonLanguage entity) {
-       return lists.put(entity.getId(), entity);
+        return lists.put(entity.getId(), entity);
     }
 
     @Override
@@ -39,17 +40,17 @@ Map<String, PersonLanguage> lists = new HashMap<>();
 
     @Override
     public void delete(PersonLanguage entity) {
-      lists.remove(entity.getId());
+        lists.remove(entity.getId());
     }
 
     @Override
     public Set<PersonLanguage> findAll() {
-    
-      Set<PersonLanguage> set = new HashSet<>();
+
+        Set<PersonLanguage> set = new HashSet<>();
         for (Map.Entry<String, PersonLanguage> entry : lists.entrySet()) {
             set.add(entry.getValue());
         }
         return set;
     }
-    
+
 }

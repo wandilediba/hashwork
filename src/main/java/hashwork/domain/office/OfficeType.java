@@ -16,24 +16,25 @@ public class OfficeType implements Serializable{
     public String getName() {
         return name;
     }
-        
+
     private OfficeType() {
     }
-    private OfficeType(Builder builder){
-           this.id = builder.id;
-           this.name = builder.name;
-       }
 
-    public static class Builder{
+    private OfficeType(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+    }
+
+    public static class Builder {
         private String id;
         private String name;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder name(String value){
+        public Builder name(String value) {
             this.name = value;
             return this;
         }

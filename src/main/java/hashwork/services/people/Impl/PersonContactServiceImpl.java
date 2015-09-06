@@ -9,14 +9,15 @@ import hashwork.domain.people.PersonContact;
 import hashwork.repository.people.Impl.PersonContactRepositoryImpl;
 import hashwork.repository.people.PersonContactRepository;
 import hashwork.services.people.PersonContactService;
+
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class PersonContactServiceImpl implements PersonContactService{
-     private final PersonContactRepository repo = new PersonContactRepositoryImpl();
+public class PersonContactServiceImpl implements PersonContactService {
+    private final PersonContactRepository repo = new PersonContactRepositoryImpl();
+
     @Override
     public PersonContact findById(String s) {
         return repo.findById(s);
@@ -39,7 +40,7 @@ public class PersonContactServiceImpl implements PersonContactService{
 
     @Override
     public Set<PersonContact> findAll() {
-       return repo.findAll();
+        return repo.findAll();
     }
-    
+
 }

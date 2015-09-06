@@ -9,9 +9,8 @@ import hashwork.domain.people.PersonContinuingEducation;
 import hashwork.repository.CrudRepository;
 
 /**
- *
  * @author BONGANI
  */
-public interface PersonContinuingEducationRepository extends CrudRepository< PersonContinuingEducation, String> {
-    
+public interface PersonContinuingEducationRepository extends CrudRepository<PersonContinuingEducation, String> {
+
 }

@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package hashwork.factories.office;
+
 import hashwork.app.util.KeyGenerator;
 import hashwork.domain.office.Company;
 
 
 /**
- *
  * @author BONGANI
  */
 public class CompanyFactory {
@@ -18,11 +18,11 @@ public class CompanyFactory {
                 .Builder()
                 .id(id)
                 .name(name)
-                .id(KeyGenerator.getEntityId())   
-                .build();                             
+                .id(KeyGenerator.getEntityId())
+                .build();
         return company;
     }
-    
+
 }
 
 
