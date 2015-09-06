@@ -18,19 +18,19 @@ public class BenefitType implements Serializable {
     public String getId() {
         return id;
     }
-    
+
     public String getBenefitTypeName() {
         return benefitTypeName;
     }
-    
+
     public BigDecimal getAmount() {
         return amount;
     }
-    
+
     public String getCurrencyId() {
         return currencyId;
     }
-    
+
     private BenefitType() {
 
     }
@@ -40,16 +40,16 @@ public class BenefitType implements Serializable {
         this.benefitTypeName = builder.benefitTypeName;
         this.amount = builder.amount;
         this.currencyId = builder.currencyId;
-        
+
     }
-    
+
     public static class Builder {
         private String id;
         //Allowance, Travel Advance and Bonus.
         private String benefitTypeName;
         private BigDecimal amount;
         private String currencyId;
-        
+
         public Builder id(String value) {
             this.id = value;
             return this;
@@ -59,24 +59,24 @@ public class BenefitType implements Serializable {
             this.benefitTypeName = value;
             return this;
         }
-        
+
         public Builder amount(BigDecimal value) {
             this.amount = value;
             return this;
         }
-         
+
         public Builder currencyId(String value) {
             this.currencyId = value;
             return this;
         }
 
-      
+
         public Builder copy(BenefitType value) {
             this.id = value.id;
             this.benefitTypeName = value.benefitTypeName;
             this.amount = value.amount;
             this.currencyId = value.currencyId;
-           
+
             return this;
         }
 
@@ -89,9 +89,9 @@ public class BenefitType implements Serializable {
     public String toString() {
         return "BenefitType{" +
                 "id=" + id +
-                ", benefitTypeName='" + benefitTypeName + '\'' + 
-                ", amount='" + amount + '\'' +      
-                ", currencyId='" + currencyId + '\'' +      
+                ", benefitTypeName='" + benefitTypeName + '\'' +
+                ", amount='" + amount + '\'' +
+                ", currencyId='" + currencyId + '\'' +
                 '}';
     }
 
@@ -103,7 +103,8 @@ public class BenefitType implements Serializable {
         BenefitType that = (BenefitType) o;
 
         if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
-        if (getBenefitTypeName() != null ? !getBenefitTypeName().equals(that.getBenefitTypeName()) : that.getBenefitTypeName() != null) return false;
+        if (getBenefitTypeName() != null ? !getBenefitTypeName().equals(that.getBenefitTypeName()) : that.getBenefitTypeName() != null)
+            return false;
         if (getAmount() != null ? !getAmount().equals(that.getAmount()) : that.getAmount() != null) return false;
         return !(getCurrencyId() != null ? !getCurrencyId().equals(that.getCurrencyId()) : that.getCurrencyId() != null);
 

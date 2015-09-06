@@ -29,7 +29,7 @@ public class Currency implements Serializable {
         return symbol;
     }
 
-    private Currency(Builder builder){
+    private Currency(Builder builder) {
         this.id = builder.id;
         this.code = builder.code;
         this.name = builder.name;
@@ -44,22 +44,22 @@ public class Currency implements Serializable {
         private String name;
         private String symbol;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder code(String value){
+        public Builder code(String value) {
             this.code = value;
             return this;
         }
 
-        public Builder name(String value){
+        public Builder name(String value) {
             this.name = value;
             return this;
         }
 
-        public Builder symbol(String value){
+        public Builder symbol(String value) {
             this.symbol = value;
             return this;
         }
@@ -73,7 +73,7 @@ public class Currency implements Serializable {
             return this;
         }
 
-        public Currency build(){
+        public Currency build() {
             return new Currency(this);
         }
 
