@@ -11,4 +11,12 @@ public class BenefitFrequency implements Serializable {
     private String id;
     //Anual , Weekly, Monthly etc
     private String frequency;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getFrequency() {
+        return frequency;
+    }
 }
