@@ -38,7 +38,7 @@ public class RolesListForm extends FormLayout {
         description.setNullRepresentation("");
 
         // Add the bean validator
-        rolename.addValidator(new BeanValidator(RolesListModel.class, "rolename"));
+        rolename.addValidator(new BeanValidator(RolesListModel.class, "roleName"));
         rolename.setImmediate(true);
         description.addValidator(new BeanValidator(RolesListModel.class, "description"));
         description.setImmediate(true);

@@ -59,11 +59,13 @@ public class PersonAttachment implements Serializable {
             this.id =  value.id;
             this.fileName = value.fileName;
             this.personId = value.personId;
-
             return this;
+        }
+        
+        public PersonAttachment build(){
+            return new PersonAttachment(this);
 
         }
-
-
     }
+    
 }

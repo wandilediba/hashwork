@@ -64,8 +64,13 @@ public class PersonAddress implements Serializable {
             this.description = value;
             return this;
         }
-        public Builder postalCode(String value){
+        public Builder addressTypeId(String value){
             this.addressTypeId = value;
+            return this;
+        }
+        
+        public Builder postalCode(String value){
+            this.postalCode = value;
             return this;
         }
 

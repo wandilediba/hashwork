@@ -32,6 +32,10 @@ public class PersonContact implements Serializable {
         return status;
     }
 
+    private PersonContact()
+    {
+      // empty constructor
+    }
     public PersonContact(Builder builder) {
         this.id = builder.id;
         this.personId = builder.personId;
@@ -79,15 +83,11 @@ public class PersonContact implements Serializable {
             this.addressTypeId = value.addressTypeId;
             this.status = value.status;
             this.contactValue = value.contactValue;
-
             return this;
-
         }
 
         public PersonContact build(){
             return new PersonContact(this);
         }
-
     }
-
 }

@@ -65,4 +65,13 @@ public class GenderList implements Serializable {
         result = 31 * result + (getGender() != null ? getGender().hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "GenderList{" +
+                "id='" + id + '\'' +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
+
 }

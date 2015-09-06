@@ -68,6 +68,17 @@
             <artifactId>testng</artifactId>
             <version>6.9.6</version>
         </dependency>
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>1.2.3.RELEASE</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
