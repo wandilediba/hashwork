@@ -21,6 +21,7 @@ public class CompetencyRequest implements Serializable {
     private String rejectComment;
 
 
+    private CompetencyRequest(){}
     public String getId() {
         return id;
     }

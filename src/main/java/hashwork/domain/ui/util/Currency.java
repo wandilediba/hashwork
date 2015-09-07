@@ -13,6 +13,8 @@ public class Currency implements Serializable {
     private String name;
     private String symbol;
 
+    private Currency(){}
+
     public String getId() {
         return id;
     }

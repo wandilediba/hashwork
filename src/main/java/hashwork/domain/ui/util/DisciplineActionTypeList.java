@@ -11,6 +11,8 @@ public class DisciplineActionTypeList implements Serializable {
     private String name;
     private String description;
 
+    private DisciplineActionTypeList(){}
+
     public String getId() {
         return id;
     }

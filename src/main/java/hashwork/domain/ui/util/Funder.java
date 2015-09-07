@@ -14,6 +14,8 @@ public class Funder implements Serializable {
     private String cityId;
     private String LocationContactId;
 
+    private Funder(){}
+
     public String getId() {
         return id;
     }
