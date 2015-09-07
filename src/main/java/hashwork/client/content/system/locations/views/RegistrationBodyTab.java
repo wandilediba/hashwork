@@ -10,8 +10,10 @@ import hashwork.app.facade.LocationFacade;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.locations.LocationMenu;
 import hashwork.client.content.system.locations.forms.RegistrationBodyForm;
+import hashwork.client.content.system.locations.model.RegistrationBodyModel;
 import hashwork.client.content.system.locations.table.RegistrationBodyTable;
 import hashwork.domain.ui.location.RegistrationBody;
+import hashwork.factories.ui.location.RegistrationBodyFactory;
 
 /**
  * Created by hashcode on 2015/09/07.
@@ -62,7 +64,7 @@ public class RegistrationBodyTab extends VerticalLayout implements
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            LocationFacade.registrationBodyService.save(getEntity(binder));
+            LocationFacade.registrationBodyService.save(getNewEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -74,7 +76,7 @@ public class RegistrationBodyTab extends VerticalLayout implements
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            LocationFacade.registrationBodyService.update(getEntity(binder));
+            LocationFacade.registrationBodyService.update(getUpdateEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -84,14 +86,12 @@ public class RegistrationBodyTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        LocationFacade.registrationBodyService.delete(getEntity(binder));
+        RegistrationBody registrationBody = LocationFacade.registrationBodyService.findById(table.getValue().toString());
+        LocationFacade.registrationBodyService.delete(registrationBody);
         getHome();
     }
 
-    private RegistrationBody getEntity(FieldGroup binder) {
-        return ((BeanItem<RegistrationBody>) binder.getItemDataSource()).getBean();
 
-    }
 
     private void getHome() {
         main.content.setSecondComponent(new LocationMenu(main, "REGISTRATIONBODY"));
@@ -125,5 +125,45 @@ public class RegistrationBodyTab extends VerticalLayout implements
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    //    String name,
+//    String description,
+//    String coreActivity,
+//    String active,
+//    Date asOfDate
+    private RegistrationBody getNewEntity(FieldGroup binder) {
+        final RegistrationBodyModel model = ((BeanItem<RegistrationBodyModel>) binder.getItemDataSource()).getBean();
+        final RegistrationBody RegistrationBody = RegistrationBodyFactory.getRegistrationBody
+                (model.getName(),
+                        model.getDescription(),
+                        model.getCoreActivity(),
+                        model.getActive(),
+                        model.getAsOfDate());
+        return RegistrationBody;
+    }
+
+    private RegistrationBody getUpdateEntity(FieldGroup binder) {
+        final RegistrationBodyModel bean = ((BeanItem<RegistrationBodyModel>) binder.getItemDataSource()).getBean();
+        final RegistrationBody RegistrationBody = LocationFacade.registrationBodyService.findById(table.getValue().toString());
+        final RegistrationBody updatedRoleList = new RegistrationBody
+                .Builder().copy(RegistrationBody)
+                .description(bean.getDescription())
+                .name(bean.getName())
+                .coreActivity(bean.getActive())
+                .active(bean.getActive())
+                .asOfDate(bean.getAsOfDate())
+                .build();
+        return updatedRoleList;
+    }
+
+    private RegistrationBodyModel getModel(RegistrationBody registrationBody) {
+        final RegistrationBodyModel model = new RegistrationBodyModel();
+        model.setDescription(registrationBody.getDescription());
+        model.setName(registrationBody.getName());
+        model.setActive(registrationBody.getActive());
+        model.setCoreActivity(registrationBody.getCoreActivity());
+        model.setAsOfDate(registrationBody.getAsOfDate());
+        return model;
     }
 }

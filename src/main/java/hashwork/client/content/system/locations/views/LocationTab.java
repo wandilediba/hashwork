@@ -16,6 +16,7 @@ import hashwork.domain.ui.location.Location;
 import hashwork.domain.ui.location.LocationType;
 import hashwork.factories.ui.location.LocationFactory;
 
+
 /**
  * Created by hashcode on 2015/09/07.
  */
@@ -66,8 +67,7 @@ public class LocationTab extends VerticalLayout implements
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-
-            LocationFacade.locationService.save(getEntity(binder));
+            LocationFacade.locationService.save(getNewEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -79,7 +79,7 @@ public class LocationTab extends VerticalLayout implements
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            LocationFacade.locationService.update(getEntity(binder));
+            LocationFacade.locationService.update(getUpdateEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -89,16 +89,11 @@ public class LocationTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-//        LocationFacade.locationService.delete(getEntity(binder).getId());
+        Location location = LocationFacade.locationService.findById(table.getValue().toString());
+        LocationFacade.locationService.delete(location);
         getHome();
     }
 
-    private Location getEntity(FieldGroup binder) {
-        Location location = getLocation(((BeanItem<LocationModel>) binder.getItemDataSource()).getBean());
-
-        return location;
-
-    }
 
     private void getHome() {
         main.content.setSecondComponent(new LocationMenu(main, "LOCATION"));
@@ -176,5 +171,47 @@ public class LocationTab extends VerticalLayout implements
             return locationType.getId();
         return null;
 
+    }
+
+    private Location getNewEntity(FieldGroup binder) {
+        final LocationModel model = ((BeanItem<LocationModel>) binder.getItemDataSource()).getBean();
+
+        final Location location = LocationFactory.getLocation(
+                model.getName(),
+                model.getCode(),
+                model.getLatitude(),
+                model.getLongitude(),
+                model.getLocationTypeId(),
+                model.getChildrenIds(),
+                model.getParentId());
+        return location;
+    }
+
+    private Location getUpdateEntity(FieldGroup binder) {
+        final LocationModel bean = ((BeanItem<LocationModel>) binder.getItemDataSource()).getBean();
+        final Location Location = LocationFacade.locationService.findById(table.getValue().toString());
+        final Location updatedLocation = new Location
+                .Builder().copy(Location)
+                .name(bean.getName())
+                .code(bean.getCode())
+                .latitude(bean.getLatitude())
+                .longitude(bean.getLongitude())
+                .locationTypeId(bean.getParentId())
+                .childrenIds(bean.getChildrenIds())
+                .parentId(bean.getParentId())
+                .build();
+        return updatedLocation;
+    }
+
+    private LocationModel getModel(Location location) {
+        final LocationModel model = new LocationModel();
+        model.setChildrenIds(location.getChildrenIds());
+        model.setCode(location.getCode());
+        model.setLatitude(location.getLatitude());
+        model.setLocationTypeId(location.getLocationTypeId());
+        model.setLongitude(location.getLongitude());
+        model.setName(location.getName());
+        model.setParentId(location.getParentId());
+        return model;
     }
 }
