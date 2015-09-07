@@ -4,22 +4,24 @@ import hashwork.app.util.KeyGenerator;
 import hashwork.domain.ui.location.RegistrationBody;
 
 import java.util.Date;
-import java.util.Map;
 
 /**
- * Created by zamzam on 15/09/06.
+ * Created by garran on 2015/09/06.
  */
 public class RegistrationBodyFactory {
-    public static RegistrationBody getRegistrationBody(Map<String, String> values,
-                                                       Date asOfDate){
-        RegistrationBody registrationBody = new RegistrationBody
-                .Builder()
+    public static RegistrationBody getRegistrationBody(String name,
+                                                       String description,
+                                                       String coreActivity,
+                                                       String active,
+                                                       Date asOfDate) {
+        RegistrationBody registrationBody = new RegistrationBody.Builder()
                 .id(KeyGenerator.getEntityId())
-                .name(values.get("name"))
-                .description(values.get("desc"))
-                .coreActivity(values.get("coreActivity"))
-                .active(values.get("active"))
-                .asOfDate(asOfDate).build();
+                .name(name)
+                .description(description)
+                .coreActivity(coreActivity)
+                .active(active)
+                .asOfDate(asOfDate)
+                .build();
         return registrationBody;
     }
 }

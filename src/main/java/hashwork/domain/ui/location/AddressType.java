@@ -11,17 +11,17 @@ public class AddressType implements Serializable {
     //Home Address or Work Address
     private String addressTypeName;
 
-    public String getAddressTypeName() {
-        return addressTypeName;
-    }
-
     public String getId() {
         return id;
     }
 
-    private AddressType(){
-
+    public String getAddressTypeName() {
+        return addressTypeName;
     }
+
+    private AddressType() {
+    }
+
     private AddressType(Builder builder){
         this.id = builder.id;
         this.addressTypeName = builder.addressTypeName;
@@ -29,16 +29,16 @@ public class AddressType implements Serializable {
 
     public static class Builder{
         private String id;
-        //Home Address or Work Address
         private String addressTypeName;
 
         public Builder id(String value){
             this.id = value;
-            return  this;
+            return this;
         }
+
         public Builder addressTypeName(String value){
             this.addressTypeName = value;
-            return  this;
+            return this;
         }
 
         public Builder copy(AddressType value) {
@@ -47,10 +47,9 @@ public class AddressType implements Serializable {
             return this;
         }
 
-        public AddressType build(){
+        public AddressType build() {
             return new AddressType(this);
         }
-
     }
 
     @Override
@@ -60,23 +59,15 @@ public class AddressType implements Serializable {
 
         AddressType that = (AddressType) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        return !(addressTypeName != null ? !addressTypeName.equals(that.addressTypeName) : that.addressTypeName != null);
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        return !(getAddressTypeName() != null ? !getAddressTypeName().equals(that.getAddressTypeName()) : that.getAddressTypeName() != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (addressTypeName != null ? addressTypeName.hashCode() : 0);
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getAddressTypeName() != null ? getAddressTypeName().hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "AddressType{" +
-                "id='" + id + '\'' +
-                ", addressTypeName='" + addressTypeName + '\'' +
-                '}';
     }
 }

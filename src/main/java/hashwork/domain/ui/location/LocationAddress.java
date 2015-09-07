@@ -6,19 +6,11 @@ import java.io.Serializable;
  * Created by hashcode on 2015/08/16.
  */
 public class LocationAddress implements Serializable {
-    //created id value - zamzam
-
-    private static final long serialVersionUID = 1L;
-    private String id;
     private String postalAddress;
     private String physicalAddress;
     private String contactNumber;
     private String postalCode;
     private String emailAddress;
-
-    public String getId() {
-        return id;
-    }
 
     public String getPostalAddress() {
         return postalAddress;
@@ -40,11 +32,10 @@ public class LocationAddress implements Serializable {
         return emailAddress;
     }
 
-    private LocationAddress(){
-
+    private LocationAddress() {
     }
+
     private LocationAddress(Builder builder){
-        this.id = builder.id;
         this.postalAddress = builder.postalAddress;
         this.physicalAddress = builder.physicalAddress;
         this.contactNumber = builder.contactNumber;
@@ -53,62 +44,49 @@ public class LocationAddress implements Serializable {
     }
 
     public static class Builder{
-        private String id;
         private String postalAddress;
         private String physicalAddress;
         private String contactNumber;
         private String postalCode;
         private String emailAddress;
 
-        public Builder id(String value){
-            this.id = value;
+        public Builder postalAddress(String value) {
+            this.postalAddress = value;
             return this;
         }
 
-        public Builder postalAddress(String value){
-            this.postalAddress= value;
-            return  this;
-        }
         public Builder physicalAddress(String value){
-            this.physicalAddress= value;
-            return  this;
+            this.physicalAddress = value;
+            return this;
         }
+
         public Builder contactNumber(String value){
-            this.contactNumber= value;
-            return  this;
+            this.contactNumber = value;
+            return this;
         }
+
         public Builder postalCode(String value){
-            this.postalCode= value;
-            return  this;
+            this.postalCode = value;
+            return this;
         }
+
         public Builder emailAddress(String value){
-            this.emailAddress= value;
-            return  this;
+            this.emailAddress = value;
+            return this;
         }
 
         public Builder copy(LocationAddress value) {
             this.postalAddress = value.postalAddress;
-            this.physicalAddress = value.contactNumber;
+            this.physicalAddress = value.physicalAddress;
             this.contactNumber = value.contactNumber;
             this.postalCode = value.postalCode;
             this.emailAddress = value.emailAddress;
             return this;
         }
 
-        public LocationAddress build(){
+        public LocationAddress build() {
             return new LocationAddress(this);
         }
-    }
-
-    @Override
-    public String toString() {
-        return "LocationAddress{" +
-                "postalAddress='" + postalAddress + '\'' +
-                ", physicalAddress='" + physicalAddress + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", postalCode='" + postalCode + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
-                '}';
     }
 
     @Override

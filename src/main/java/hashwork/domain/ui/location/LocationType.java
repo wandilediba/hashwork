@@ -25,9 +25,9 @@ public class LocationType implements Serializable {
         return code;
     }
 
-    private LocationType(){
-
+    private LocationType() {
     }
+
     private LocationType(Builder builder){
         this.id = builder.id;
         this.name = builder.name;
@@ -41,15 +41,17 @@ public class LocationType implements Serializable {
 
         public Builder id(String value){
             this.id = value;
-            return  this;
+            return this;
         }
+
         public Builder name(String value){
             this.name = value;
-            return  this;
+            return this;
         }
+
         public Builder code(String value){
             this.code = value;
-            return  this;
+            return this;
         }
 
         public Builder copy(LocationType value) {
@@ -59,18 +61,9 @@ public class LocationType implements Serializable {
             return this;
         }
 
-        public LocationType build(){
+        public LocationType build() {
             return new LocationType(this);
         }
-    }
-
-    @Override
-    public String toString() {
-        return "LocationType{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                '}';
     }
 
     @Override

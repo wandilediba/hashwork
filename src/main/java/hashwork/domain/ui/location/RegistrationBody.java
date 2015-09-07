@@ -39,9 +39,9 @@ public class RegistrationBody implements Serializable {
         return asOfDate;
     }
 
-    private RegistrationBody(){
-
+    private RegistrationBody() {
     }
+
     private RegistrationBody(Builder builder){
         this.id = builder.id;
         this.name = builder.name;
@@ -49,6 +49,7 @@ public class RegistrationBody implements Serializable {
         this.coreActivity = builder.coreActivity;
         this.active = builder.active;
         this.asOfDate = builder.asOfDate;
+
     }
 
     public static class Builder{
@@ -61,27 +62,29 @@ public class RegistrationBody implements Serializable {
 
         public Builder id(String value){
             this.id = value;
-            return  this;
+            return this;
         }
+
         public Builder name(String value){
-            this.id = value;
-            return  this;
+            this.name = value;
+            return this;
         }
+
         public Builder description(String value){
             this.description = value;
-            return  this;
+            return this;
         }
         public Builder coreActivity(String value){
             this.coreActivity = value;
-            return  this;
+            return this;
         }
         public Builder active(String value){
             this.active = value;
-            return  this;
+            return this;
         }
         public Builder asOfDate(Date value){
             this.asOfDate = value;
-            return  this;
+            return this;
         }
 
         public Builder copy(RegistrationBody value) {
@@ -91,25 +94,40 @@ public class RegistrationBody implements Serializable {
             this.coreActivity = value.coreActivity;
             this.active = value.active;
             this.asOfDate = value.asOfDate;
-
             return this;
         }
 
-        public RegistrationBody build(){
+        public RegistrationBody build() {
             return new RegistrationBody(this);
         }
     }
 
     @Override
-    public String toString() {
-        return "RegistrationBody{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", coreActivity='" + coreActivity + '\'' +
-                ", active='" + active + '\'' +
-                ", asOfDate=" + asOfDate +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RegistrationBody)) return false;
+
+        RegistrationBody that = (RegistrationBody) o;
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
+        if (getDescription() != null ? !getDescription().equals(that.getDescription()) : that.getDescription() != null)
+            return false;
+        if (getCoreActivity() != null ? !getCoreActivity().equals(that.getCoreActivity()) : that.getCoreActivity() != null)
+            return false;
+        if (getActive() != null ? !getActive().equals(that.getActive()) : that.getActive() != null) return false;
+        return !(getAsOfDate() != null ? !getAsOfDate().equals(that.getAsOfDate()) : that.getAsOfDate() != null);
+
     }
 
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getCoreActivity() != null ? getCoreActivity().hashCode() : 0);
+        result = 31 * result + (getActive() != null ? getActive().hashCode() : 0);
+        result = 31 * result + (getAsOfDate() != null ? getAsOfDate().hashCode() : 0);
+        return result;
+    }
 }

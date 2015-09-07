@@ -19,9 +19,9 @@ public class ContactList implements Serializable {
         return name;
     }
 
-    private ContactList(){
-
+    private ContactList() {
     }
+
     private ContactList(Builder builder){
         this.id = builder.id;
         this.name = builder.name;
@@ -33,11 +33,12 @@ public class ContactList implements Serializable {
 
         public Builder id(String value){
             this.id = value;
-            return  this;
+            return this;
         }
+
         public Builder name(String value){
             this.name = value;
-            return  this;
+            return this;
         }
 
         public Builder copy(ContactList value) {
@@ -46,7 +47,7 @@ public class ContactList implements Serializable {
             return this;
         }
 
-        public ContactList build(){
+        public ContactList build() {
             return new ContactList(this);
         }
     }
