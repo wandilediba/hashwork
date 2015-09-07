@@ -11,8 +11,7 @@ import java.util.Set;
  * Created by hashcode on 2015/09/07.
  */
 public class LocationTable extends Table {
-
-
+    
     private final MainLayout main;
 
     public LocationTable(MainLayout main) {
