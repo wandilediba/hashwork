@@ -11,6 +11,9 @@ public class AccidentTypeList implements Serializable {
     private String  name;
     private String description;
 
+
+    private AccidentTypeList(){}
+
     public String getId() {
         return id;
     }

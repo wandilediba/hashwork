@@ -11,6 +11,8 @@ public class Status implements Serializable {
     private String statusType;
     private String statusValues;
 
+    private Status(){}
+
     public String getId() {
         return id;
     }
