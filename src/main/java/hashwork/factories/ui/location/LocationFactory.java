@@ -18,6 +18,7 @@ public class LocationFactory {
                                        String parentId) {
         Location location = new Location.Builder()
                 .id(KeyGenerator.getEntityId())
+                .name(name)
                 .code(code)
                 .latitude(latitude)
                 .longitude(longitude)

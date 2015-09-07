@@ -1,9 +1,11 @@
 package hashwork.repository.ui.location.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.ui.location.RegistrationBody;
 import hashwork.repository.ui.location.RegistrationBodyRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +14,8 @@ import java.util.Set;
  * Created by garran on 2015/09/06.
  */
 public class RegistrationBodyRepositoryImpl implements RegistrationBodyRepository {
-    Map<String, RegistrationBody> lists = new HashMap<>();
+    Redisson redisson = Connection.getConnection();
+    RMap<String, RegistrationBody> lists = redisson.getMap("registrationbody");
 
     @Override
     public RegistrationBody findById(String s) {

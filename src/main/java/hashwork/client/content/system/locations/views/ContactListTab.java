@@ -10,8 +10,10 @@ import hashwork.app.facade.LocationFacade;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.locations.LocationMenu;
 import hashwork.client.content.system.locations.forms.ContactListForm;
+import hashwork.client.content.system.locations.model.ContactListModel;
 import hashwork.client.content.system.locations.table.ContactListTable;
 import hashwork.domain.ui.location.ContactList;
+import hashwork.factories.ui.location.ContactListFactory;
 
 /**
  * Created by hashcode on 2015/09/07.
@@ -63,7 +65,7 @@ public class ContactListTab extends VerticalLayout implements
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            LocationFacade.contactListService.save(getEntity(binder));
+            LocationFacade.contactListService.save(getNewEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -75,7 +77,7 @@ public class ContactListTab extends VerticalLayout implements
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            LocationFacade.contactListService.update(getEntity(binder));
+            LocationFacade.contactListService.update(getUpdateEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -85,14 +87,12 @@ public class ContactListTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        LocationFacade.contactListService.delete(getEntity(binder));
+        ContactList contactList = LocationFacade.contactListService.findById(table.getValue().toString());
+        LocationFacade.contactListService.delete(contactList);
         getHome();
     }
 
-    private ContactList getEntity(FieldGroup binder) {
-        return ((BeanItem<ContactList>) binder.getItemDataSource()).getBean();
 
-    }
 
     private void getHome() {
         main.content.setSecondComponent(new LocationMenu(main, "CONTACTLIST"));
@@ -126,5 +126,27 @@ public class ContactListTab extends VerticalLayout implements
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private ContactList getNewEntity(FieldGroup binder) {
+        final ContactListModel bean = ((BeanItem<ContactListModel>) binder.getItemDataSource()).getBean();
+        final ContactList ContactList = ContactListFactory.getContactList(bean.getName());
+        return ContactList;
+    }
+
+    private ContactList getUpdateEntity(FieldGroup binder) {
+        final ContactListModel bean = ((BeanItem<ContactListModel>) binder.getItemDataSource()).getBean();
+        final ContactList ContactList = LocationFacade.contactListService.findById(table.getValue().toString());
+        final ContactList updatedContactList = new ContactList
+                .Builder().copy(ContactList)
+                .name(bean.getName())
+                .build();
+        return updatedContactList;
+    }
+
+    private ContactListModel getModel(ContactList contactList) {
+        final ContactListModel model = new ContactListModel();
+        model.setName(contactList.getName());
+        return model;
     }
 }

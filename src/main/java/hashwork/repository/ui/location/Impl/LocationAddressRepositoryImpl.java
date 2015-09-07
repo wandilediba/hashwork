@@ -1,9 +1,11 @@
 package hashwork.repository.ui.location.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.ui.location.LocationAddress;
 import hashwork.repository.ui.location.LocationAddressRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +14,9 @@ import java.util.Set;
  * Created by garran on 2015/09/06.
  */
 public class LocationAddressRepositoryImpl implements LocationAddressRepository {
-    Map<String, LocationAddress> lists = new HashMap<>();
+
+    Redisson redisson = Connection.getConnection();
+    RMap<String, LocationAddress> lists = redisson.getMap("locationAddress");
 
     @Override
     public LocationAddress findById(String s) {

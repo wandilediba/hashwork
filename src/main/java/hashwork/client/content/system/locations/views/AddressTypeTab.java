@@ -10,8 +10,10 @@ import hashwork.app.facade.LocationFacade;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.locations.LocationMenu;
 import hashwork.client.content.system.locations.forms.AddressTypeForm;
+import hashwork.client.content.system.locations.model.AddressTypeModel;
 import hashwork.client.content.system.locations.table.AddressTypeTable;
 import hashwork.domain.ui.location.AddressType;
+import hashwork.factories.ui.location.AddressTypeFactory;
 
 /**
  * Created by hashcode on 2015/09/07.
@@ -62,7 +64,7 @@ public class AddressTypeTab extends VerticalLayout implements
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            LocationFacade.addressTypeService.save(getEntity(binder));
+            LocationFacade.addressTypeService.save(getNewEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -74,7 +76,7 @@ public class AddressTypeTab extends VerticalLayout implements
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            LocationFacade.addressTypeService.update(getEntity(binder));
+            LocationFacade.addressTypeService.update(getUpdateEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -84,14 +86,12 @@ public class AddressTypeTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        LocationFacade.addressTypeService.delete(getEntity(binder));
+        AddressType addressType = LocationFacade.addressTypeService.findById(table.getValue().toString());
+        LocationFacade.addressTypeService.delete(addressType);
         getHome();
     }
 
-    private AddressType getEntity(FieldGroup binder) {
-        return ((BeanItem<AddressType>) binder.getItemDataSource()).getBean();
 
-    }
 
     private void getHome() {
         main.content.setSecondComponent(new LocationMenu(main, "ADDRESSTYPE"));
@@ -125,5 +125,27 @@ public class AddressTypeTab extends VerticalLayout implements
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private AddressType getNewEntity(FieldGroup binder) {
+        final AddressTypeModel model = ((BeanItem<AddressTypeModel>) binder.getItemDataSource()).getBean();
+        final AddressType AddressType = AddressTypeFactory.getAddressType(model.getAddressTypeName());
+        return AddressType;
+    }
+
+    private AddressType getUpdateEntity(FieldGroup binder) {
+        final AddressTypeModel bean = ((BeanItem<AddressTypeModel>) binder.getItemDataSource()).getBean();
+        final AddressType AddressType = LocationFacade.addressTypeService.findById(table.getValue().toString());
+        final AddressType updatedAddressType = new AddressType
+                .Builder().copy(AddressType)
+                .addressTypeName(bean.getAddressTypeName())
+                .build();
+        return updatedAddressType;
+    }
+
+    private AddressTypeModel getModel(AddressType addressType) {
+        final AddressTypeModel model = new AddressTypeModel();
+        model.setAddressTypeName(addressType.getAddressTypeName());
+        return model;
     }
 }

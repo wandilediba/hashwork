@@ -2,13 +2,11 @@ package hashwork.client.content.system.locations.forms;
 
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.BeanValidator;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
-import hashwork.app.facade.LocationFacade;
+import hashwork.app.util.fields.UIComboBoxHelper;
+import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.locations.model.LocationModel;
-import hashwork.domain.ui.location.LocationType;
-
-import java.util.Set;
 
 
 /**
@@ -18,6 +16,8 @@ public class LocationForm extends FormLayout {
     private final LocationModel bean;
     public final BeanItem<LocationModel> item;
     public final FieldGroup binder;
+    private final UIComponentHelper UIComponent = new UIComponentHelper();
+    private final UIComboBoxHelper UIComboBox = new UIComboBoxHelper();
     // Define Buttons
     public Button save = new Button("Save");
     public Button edit = new Button("Edit");
@@ -26,65 +26,76 @@ public class LocationForm extends FormLayout {
     public Button delete = new Button("Delete");
 
     public LocationForm() {
+
         bean = new LocationModel();
         item = new BeanItem<LocationModel>(bean);
         binder = new FieldGroup(item);
 
-        TextField name = new TextField("Name");
-        name.setNullRepresentation("");
-        TextField code = new TextField("Code");
-        code.setNullRepresentation("");
-        TextField latitude = new TextField("Latitude");
-        latitude.setNullRepresentation("");
-        TextField longitude = new TextField("Longitude");
-        longitude.setNullRepresentation("");
-        Set<LocationType> locationTypes = LocationFacade.locationTypeService.findAll();
+        HorizontalLayout buttons = getButtons();
+        buttons.setSizeFull();
+        // Determines which properties are shown
+        update.setVisible(false);
+        delete.setVisible(false);
 
-        ComboBox locationType = new ComboBox("Location Type:");
-        for (LocationType lt : locationTypes) {
-            locationType.addItem(lt.getId());
-            locationType.setItemCaption(lt.getId(), lt.getName());
-        }
+//        private String name;
+//        private String code;
+//        private String latitude;
+//        private String longitude;
+//        private String locationTypeId;
+//        private List<String> childrenIds; // Province has Cities as Children
+//        private String parentId; //Location Id of Parent, e.g Country --> Province-->City
 
 
+        ComboBox locationTypes = UIComboBox.getLocationTypeComboBox("Location Type :", "locationTypeId", LocationModel.class, binder);
+        TextField name = UIComponent.getTextField("Location Name :", "name", LocationModel.class, binder);
 
-        // Add the bean validator
-        name.addValidator(new BeanValidator(LocationModel.class, "name"));
-        name.setImmediate(true);
-        code.addValidator(new BeanValidator(LocationModel.class, "code"));
-        code.setImmediate(true);
-        latitude.addValidator(new BeanValidator(LocationModel.class, "latitude"));
-        latitude.setImmediate(true);
-        longitude.addValidator(new BeanValidator(LocationModel.class, "longitude"));
-        longitude.setImmediate(true);
-        locationType.addValidator(new BeanValidator(LocationModel.class, "locationTypeId"));
-        locationType.setImmediate(true);
+        ComboBox parent = UIComboBox.getLocationComboBox("Parent Location :", "parentId", LocationModel.class, binder);
+        TextField code = UIComponent.getTextField("Location  Code :", "code", LocationModel.class, binder);
+        TextField latitude = UIComponent.getTextField("Latitude :", "latitude", LocationModel.class, binder);
+        TextField longitude = UIComponent.getTextField("Longitude :", "longitude", LocationModel.class, binder);
 
 
         // Create a field group and use it to bind the fields in the layout
 
-        binder.bind(name, "name");
-        addComponent(name);
-        binder.bind(code, "code");
-        addComponent(code);
-        binder.bind(latitude, "latitude");
-        addComponent(latitude);
-        binder.bind(longitude, "longitude");
-        addComponent(longitude);
-        binder.bind(locationType, "locationTypeId");
-        addComponent(locationType);
 
+        GridLayout grid = new GridLayout(4, 10);
+        grid.setSizeFull();
+
+        // First ROW
+        grid.addComponent(parent, 0, 0);
+        grid.addComponent(name, 1, 0);
+        grid.addComponent(code, 2, 0);
+
+        //Second ROW
+        grid.addComponent(locationTypes, 0, 1);
+        grid.addComponent(latitude, 1, 1);
+        grid.addComponent(longitude, 2, 1);
+
+
+        grid.addComponent(new Label("<hr/>", ContentMode.HTML), 0, 4, 2, 4);
+        grid.addComponent(buttons, 0, 5, 2, 5);
+
+
+        addComponent(grid);
+        addComponent(buttons);
+
+
+    }
+
+    // Add the bean validator
+    private HorizontalLayout getButtons() {
         HorizontalLayout buttons = new HorizontalLayout();
+        save.setSizeFull();
+        edit.setSizeFull();
+        cancel.setSizeFull();
+        update.setSizeFull();
+        delete.setSizeFull();
+
         buttons.addComponent(save);
         buttons.addComponent(edit);
         buttons.addComponent(cancel);
         buttons.addComponent(update);
         buttons.addComponent(delete);
-
-        // Determines which properties are shown, and in which order:
-        edit.setVisible(false);
-        update.setVisible(false);
-        delete.setVisible(false);
-        addComponent(buttons);
+        return buttons;
     }
 }

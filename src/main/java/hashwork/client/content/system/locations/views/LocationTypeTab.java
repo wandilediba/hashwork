@@ -10,8 +10,10 @@ import hashwork.app.facade.LocationFacade;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.locations.LocationMenu;
 import hashwork.client.content.system.locations.forms.LocationTypeForm;
+import hashwork.client.content.system.locations.model.LocationTypeModel;
 import hashwork.client.content.system.locations.table.LocationTypeTable;
 import hashwork.domain.ui.location.LocationType;
+import hashwork.factories.ui.location.LocationTypeFactory;
 
 /**
  * Created by hashcode on 2015/09/07.
@@ -62,7 +64,7 @@ public class LocationTypeTab extends VerticalLayout implements
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            LocationFacade.locationTypeService.save(getEntity(binder));
+            LocationFacade.locationTypeService.save(getNewEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -74,7 +76,7 @@ public class LocationTypeTab extends VerticalLayout implements
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            LocationFacade.locationTypeService.update(getEntity(binder));
+            LocationFacade.locationTypeService.update(getUpdateEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -84,14 +86,12 @@ public class LocationTypeTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        LocationFacade.locationTypeService.delete(getEntity(binder));
+        LocationType locationType = LocationFacade.locationTypeService.findById(table.getValue().toString());
+        LocationFacade.locationTypeService.delete(locationType);
         getHome();
     }
 
-    private LocationType getEntity(FieldGroup binder) {
-        return ((BeanItem<LocationType>) binder.getItemDataSource()).getBean();
 
-    }
 
     private void getHome() {
         main.content.setSecondComponent(new LocationMenu(main, "LANDING"));
@@ -125,6 +125,31 @@ public class LocationTypeTab extends VerticalLayout implements
         form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
+    }
+
+    private LocationType getNewEntity(FieldGroup binder) {
+        final LocationTypeModel bean = ((BeanItem<LocationTypeModel>) binder.getItemDataSource()).getBean();
+        final LocationType LocationType = LocationTypeFactory
+                .getLocationType(bean.getName(), bean.getCode());
+        return LocationType;
+    }
+
+    private LocationType getUpdateEntity(FieldGroup binder) {
+        final LocationTypeModel bean = ((BeanItem<LocationTypeModel>) binder.getItemDataSource()).getBean();
+        final LocationType LocationType = LocationFacade.locationTypeService.findById(table.getValue().toString());
+        final LocationType updatedRoleList = new LocationType
+                .Builder().copy(LocationType)
+                .name(bean.getName())
+                .code(bean.getCode()).build();
+        return updatedRoleList;
+    }
+
+    private LocationTypeModel getModel(LocationType LocationType) {
+        final LocationTypeModel model = new LocationTypeModel();
+        model.setName(LocationType.getName());
+        model.setCode(LocationType.getCode());
+
+        return model;
     }
 
 }
