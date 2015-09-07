@@ -1,6 +1,7 @@
 package hashwork.services.ui.location.Impl;
 
 import hashwork.domain.ui.location.ContactList;
+import hashwork.repository.ui.location.Impl.ContactListRepositoryImpl;
 import hashwork.services.ui.location.ContactListService;
 
 import java.util.Set;
@@ -12,27 +13,28 @@ public class ContactListServiceImpl implements ContactListService {
 
     @Override
     public ContactList findById(String id) {
-        return null;
+        return new ContactListRepositoryImpl().findById(id);
     }
 
     @Override
     public ContactList save(ContactList entity) {
-        return null;
+        return new ContactListRepositoryImpl().save(entity);
     }
 
     @Override
     public ContactList update(ContactList entity) {
-        return null;
+        return new ContactListRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(ContactList entity) {
+        new ContactListRepositoryImpl().delete(entity);
 
     }
 
     @Override
     public Set<ContactList> findAll() {
-        return null;
+        return new ContactListRepositoryImpl().findAll();
     }
 
 }

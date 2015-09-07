@@ -1,6 +1,7 @@
 package hashwork.services.ui.location.Impl;
 
 import hashwork.domain.ui.location.Location;
+import hashwork.repository.ui.location.Impl.LocationRepositoryImpl;
 import hashwork.services.ui.location.LocationService;
 
 import java.util.Set;
@@ -12,27 +13,28 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Location findById(String id) {
-        return null;
+        return new LocationRepositoryImpl().findById(id);
     }
 
     @Override
     public Location save(Location entity) {
-        return null;
+        return new LocationRepositoryImpl().save(entity);
     }
 
     @Override
     public Location update(Location entity) {
-        return null;
+        return new LocationRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(Location entity) {
+        new LocationRepositoryImpl().delete(entity);
 
     }
 
     @Override
     public Set<Location> findAll() {
-        return null;
+        return new LocationRepositoryImpl().findAll();
     }
 
 }

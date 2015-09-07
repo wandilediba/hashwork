@@ -1,6 +1,7 @@
 package hashwork.services.ui.location.Impl;
 
 import hashwork.domain.ui.location.AddressType;
+import hashwork.repository.ui.location.Impl.AddressTypeRepositoryImpl;
 import hashwork.services.ui.location.AddressTypeService;
 
 import java.util.Set;
@@ -10,29 +11,31 @@ import java.util.Set;
  */
 public class AddressTypeServiceImpl implements AddressTypeService {
 
+
     @Override
     public AddressType findById(String id) {
-        return null;
+        return new AddressTypeRepositoryImpl().findById(id);
     }
 
     @Override
     public AddressType save(AddressType entity) {
-        return null;
+        return new AddressTypeRepositoryImpl().save(entity);
     }
 
     @Override
     public AddressType update(AddressType entity) {
-        return null;
+        return new AddressTypeRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(AddressType entity) {
+        new AddressTypeRepositoryImpl().delete(entity);
 
     }
 
     @Override
     public Set<AddressType> findAll() {
-        return null;
+        return new AddressTypeRepositoryImpl().findAll();
     }
 
 }

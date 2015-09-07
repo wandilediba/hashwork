@@ -1,6 +1,7 @@
 package hashwork.services.ui.location.Impl;
 
 import hashwork.domain.ui.location.RegistrationBody;
+import hashwork.repository.ui.location.Impl.RegistrationBodyRepositoryImpl;
 import hashwork.services.ui.location.RegistrationBodyService;
 
 import java.util.Set;
@@ -12,27 +13,28 @@ public class RegistrationBodyServiceImpl implements RegistrationBodyService {
 
     @Override
     public RegistrationBody findById(String id) {
-        return null;
+        return new RegistrationBodyRepositoryImpl().findById(id);
     }
 
     @Override
     public RegistrationBody save(RegistrationBody entity) {
-        return null;
+        return new RegistrationBodyRepositoryImpl().save(entity);
     }
 
     @Override
     public RegistrationBody update(RegistrationBody entity) {
-        return null;
+        return new RegistrationBodyRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(RegistrationBody entity) {
+        new RegistrationBodyRepositoryImpl().delete(entity);
 
     }
 
     @Override
     public Set<RegistrationBody> findAll() {
-        return null;
+        return new RegistrationBodyRepositoryImpl().findAll();
     }
 
 }

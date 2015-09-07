@@ -3,11 +3,12 @@ package hashwork.client.content.system.locations.forms;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.validator.BeanValidator;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
+import com.vaadin.ui.*;
+import hashwork.app.facade.LocationFacade;
 import hashwork.client.content.system.locations.model.LocationModel;
+import hashwork.domain.ui.location.LocationType;
+
+import java.util.Set;
 
 
 /**
@@ -33,6 +34,18 @@ public class LocationForm extends FormLayout {
         name.setNullRepresentation("");
         TextField code = new TextField("Code");
         code.setNullRepresentation("");
+        TextField latitude = new TextField("Latitude");
+        latitude.setNullRepresentation("");
+        TextField longitude = new TextField("Longitude");
+        longitude.setNullRepresentation("");
+        Set<LocationType> locationTypes = LocationFacade.locationTypeService.findAll();
+
+        ComboBox locationType = new ComboBox("Location Type:");
+        for (LocationType lt : locationTypes) {
+            locationType.addItem(lt.getId());
+            locationType.setItemCaption(lt.getId(), lt.getName());
+        }
+
 
 
         // Add the bean validator
@@ -40,15 +53,26 @@ public class LocationForm extends FormLayout {
         name.setImmediate(true);
         code.addValidator(new BeanValidator(LocationModel.class, "code"));
         code.setImmediate(true);
+        latitude.addValidator(new BeanValidator(LocationModel.class, "latitude"));
+        latitude.setImmediate(true);
+        longitude.addValidator(new BeanValidator(LocationModel.class, "longitude"));
+        longitude.setImmediate(true);
+        locationType.addValidator(new BeanValidator(LocationModel.class, "locationTypeId"));
+        locationType.setImmediate(true);
 
 
         // Create a field group and use it to bind the fields in the layout
 
         binder.bind(name, "name");
         addComponent(name);
-
         binder.bind(code, "code");
         addComponent(code);
+        binder.bind(latitude, "latitude");
+        addComponent(latitude);
+        binder.bind(longitude, "longitude");
+        addComponent(longitude);
+        binder.bind(locationType, "locationTypeId");
+        addComponent(locationType);
 
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.addComponent(save);

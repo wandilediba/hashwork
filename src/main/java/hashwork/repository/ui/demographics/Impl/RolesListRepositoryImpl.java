@@ -14,7 +14,7 @@ import java.util.Set;
  * Created by hashcode on 2015/08/22.
  */
 public class RolesListRepositoryImpl implements RolesListRepository {
-    Redisson redisson = Connection.getCinnection();
+    Redisson redisson = Connection.getConnection();
     RMap<String, RolesList> rolelist = redisson.getMap("rolelist");
 
     @Override
