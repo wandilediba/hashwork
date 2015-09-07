@@ -14,6 +14,7 @@ public class RegistrationBody implements Serializable {
     private String coreActivity;
     private String active;
     private Date asOfDate;
+    
 
     public String getId() {
         return id;
