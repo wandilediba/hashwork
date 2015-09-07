@@ -11,16 +11,16 @@ public class BenefitFrequency implements Serializable {
     private String id;
     //Anual , Weekly, Monthly etc
     private String frequency;
-    
-  
+
+
     public String getId() {
         return id;
     }
-    
+
     public String getBenefitFrequency() {
         return frequency;
     }
-    
+
     private BenefitFrequency() {
 
     }
@@ -29,11 +29,11 @@ public class BenefitFrequency implements Serializable {
         this.id = builder.id;
         this.frequency = builder.frequency;
     }
-    
+
     public static class Builder {
         private String id;
         private String frequency;
-        
+
         public Builder id(String value) {
             this.id = value;
             return this;
@@ -44,11 +44,11 @@ public class BenefitFrequency implements Serializable {
             return this;
         }
 
-      
+
         public Builder copy(BenefitFrequency value) {
             this.id = value.id;
             this.frequency = value.frequency;
-           
+
             return this;
         }
 
@@ -61,7 +61,7 @@ public class BenefitFrequency implements Serializable {
     public String toString() {
         return "BenefitFrequency{" +
                 "id=" + id +
-                ", frequency='" + frequency + '\'' +              
+                ", frequency='" + frequency + '\'' +
                 '}';
     }
 
@@ -79,10 +79,10 @@ public class BenefitFrequency implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = getId() != null ? getId().hashCode() : 0;       
+        int result = getId() != null ? getId().hashCode() : 0;
         result = 31 * result + (getBenefitFrequency() != null ? getBenefitFrequency().hashCode() : 0);
         return result;
     }
-    
+
 
 }
