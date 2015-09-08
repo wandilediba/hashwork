@@ -128,11 +128,6 @@ public class RegistrationBodyTab extends VerticalLayout implements
         table.addValueChangeListener((Property.ValueChangeListener) this);
     }
 
-    //    String name,
-//    String description,
-//    String coreActivity,
-//    String active,
-//    Date asOfDate
     private RegistrationBody getNewEntity(FieldGroup binder) {
         final RegistrationBodyModel model = ((BeanItem<RegistrationBodyModel>) binder.getItemDataSource()).getBean();
         final RegistrationBody RegistrationBody = RegistrationBodyFactory.getRegistrationBody

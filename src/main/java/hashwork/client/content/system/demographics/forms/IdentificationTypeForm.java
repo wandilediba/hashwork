@@ -33,7 +33,7 @@ public class IdentificationTypeForm extends FormLayout {
         final UIComponentHelper UIComponent = new UIComponentHelper();
 
         TextField idvalue = UIComponent.getTextField("Identification Number :", "idvalue", IdentificationTypeModel.class, binder);
-        TextField description = UIComponent.getTextField("Identication Description :", "description", IdentificationTypeModel.class, binder);
+        TextField description = UIComponent.getTextField("Identification Description :", "description", IdentificationTypeModel.class, binder);
         addComponent(idvalue);
         addComponent(description);
 
