@@ -5,7 +5,6 @@
  */
 package hashwork.repository.payroll.core.deductions.Impl;
 
-import hashwork.domain.payroll.core.deductions.EmployeeDeductions;
 import hashwork.domain.payroll.core.deductions.EmployeeMedicalAid;
 import hashwork.repository.payroll.core.deductions.EmployeeMedicalAidRepository;
 import java.util.HashMap;
