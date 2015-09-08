@@ -56,7 +56,8 @@ public class AddressTypeTab extends VerticalLayout implements
         final Property property = event.getProperty();
         if (property == table) {
             final AddressType addressType = LocationFacade.addressTypeService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<AddressType>(addressType));
+            final AddressTypeModel model = getModel(addressType);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
         }
     }

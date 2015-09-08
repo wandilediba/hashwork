@@ -2,11 +2,12 @@ package hashwork.client.content.system.demographics.forms;
 
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.BeanValidator;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
+import hashwork.app.util.fields.ButtonsHelper;
+import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.demographics.model.RaceListModel;
 
 /**
@@ -26,33 +27,16 @@ public class RaceListForm extends FormLayout {
 
     public RaceListForm() {
         bean = new RaceListModel();
-        item = new BeanItem<RaceListModel>(bean);
+        item = new BeanItem<>(bean);
         binder = new FieldGroup(item);
+        final UIComponentHelper UIComponent = new UIComponentHelper();
 
-        TextField racename = new TextField("Race Name");
-        racename.setNullRepresentation("");
-
-
-        // Add the bean validator
-        racename.addValidator(new BeanValidator(RaceListModel.class, "raceName"));
-        racename.setImmediate(true);
+        TextField roleName = UIComponent.getTextField("Race :", "raceName", RaceListModel.class, binder);
+        addComponent(roleName);
 
 
-        // Create a field group and use it to bind the fields in the layout
-
-        binder.bind(racename, "raceName");
-        addComponent(racename);
-        HorizontalLayout buttons = new HorizontalLayout();
-        buttons.addComponent(save);
-        buttons.addComponent(edit);
-        buttons.addComponent(cancel);
-        buttons.addComponent(update);
-        buttons.addComponent(delete);
-
-        // Determines which properties are shown, and in which order:
-        edit.setVisible(false);
-        update.setVisible(false);
-        delete.setVisible(false);
+        HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
+        buttons.setSizeFull();
         addComponent(buttons);
     }
 }

@@ -2,11 +2,12 @@ package hashwork.client.content.system.demographics.forms;
 
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.BeanValidator;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
+import hashwork.app.util.fields.ButtonsHelper;
+import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.demographics.model.LanguageProficiencyModel;
 
 /**
@@ -26,33 +27,17 @@ public class LanguageProficiencyForm extends FormLayout {
 
     public LanguageProficiencyForm() {
         bean = new LanguageProficiencyModel();
-        item = new BeanItem<LanguageProficiencyModel>(bean);
+        item = new BeanItem<>(bean);
         binder = new FieldGroup(item);
-
-        TextField proficiency = new TextField("Language Proficiency");
-        proficiency.setNullRepresentation("");
-
-
-        // Add the bean validator
-        proficiency.addValidator(new BeanValidator(LanguageProficiencyModel.class, "proficiency"));
-        proficiency.setImmediate(true);
+        final UIComponentHelper UIComponent = new UIComponentHelper();
 
         // Create a field group and use it to bind the fields in the layout
-
-        binder.bind(proficiency, "proficiency");
-
+        TextField proficiency = UIComponent.getTextField("Language Proficiency :", "proficiency", LanguageProficiencyModel.class, binder);
         addComponent(proficiency);
-        HorizontalLayout buttons = new HorizontalLayout();
-        buttons.addComponent(save);
-        buttons.addComponent(edit);
-        buttons.addComponent(cancel);
-        buttons.addComponent(update);
-        buttons.addComponent(delete);
 
-        // Determines which properties are shown, and in which order:
-        edit.setVisible(false);
-        update.setVisible(false);
-        delete.setVisible(false);
+
+        HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
+        buttons.setSizeFull();
         addComponent(buttons);
     }
 }

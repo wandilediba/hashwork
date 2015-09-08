@@ -20,7 +20,7 @@ public class UIComponentHelper<T> implements Serializable {
         return label;
     }
 
-    public TextField getTextField(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
+    public TextField getGridTextField(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         TextField textField = new TextField(fieldText);
         textField.setWidth(250, Sizeable.Unit.PIXELS);
         textField.setNullRepresentation("");
@@ -30,9 +30,9 @@ public class UIComponentHelper<T> implements Serializable {
         return textField;
     }
 
-    public TextField getTextField(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder, int fieldWidth) {
+    public TextField getTextField(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         TextField textField = new TextField(fieldText);
-        textField.setWidth(fieldWidth, Sizeable.Unit.PIXELS);
+        textField.setSizeFull();
         textField.setNullRepresentation("");
         textField.addValidator(new BeanValidator(fieldClass, fieldName));
         textField.setImmediate(true);
@@ -142,7 +142,7 @@ public class UIComponentHelper<T> implements Serializable {
         return passwordField;
     }
 
-    public DateField getDateField(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
+    public DateField getGridDateField(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         DateField dateField = new DateField(fieldText);
         dateField.setWidth(250, Sizeable.Unit.PIXELS);
         dateField.addValidator(new BeanValidator(fieldClass, fieldName));
@@ -152,16 +152,16 @@ public class UIComponentHelper<T> implements Serializable {
         return dateField;
     }
 
-    public DateField getDateField(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder, int fieldWidth) {
+    public DateField getDateField(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         DateField dateField = new DateField(fieldText);
-        dateField.setWidth(fieldWidth, Sizeable.Unit.PIXELS);
+        dateField.setSizeFull();
         dateField.addValidator(new BeanValidator(fieldClass, fieldName));
         dateField.setImmediate(true);
         binder.bind(dateField, fieldName);
         return dateField;
     }
 
-    public CheckBox getCheckBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
+    public CheckBox getGridCheckBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         CheckBox checkbox = new CheckBox(fieldText);
         checkbox.setWidth(250, Sizeable.Unit.PIXELS);
 //        checkbox.setNullRepresentation("");
@@ -171,9 +171,9 @@ public class UIComponentHelper<T> implements Serializable {
         return checkbox;
     }
 
-    public CheckBox getCheckBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder, int fieldWidth) {
+    public CheckBox getCheckBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         CheckBox checkbox = new CheckBox(fieldText);
-        checkbox.setWidth(fieldWidth, Sizeable.Unit.PIXELS);
+        checkbox.setSizeFull();
 //        checkbox.setNullRepresentation("");
         checkbox.addValidator(new BeanValidator(fieldClass, fieldName));
         checkbox.setImmediate(true);
