@@ -4,6 +4,7 @@ import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import hashwork.app.util.fields.UIComboBoxHelper;
 import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.locations.model.LocationModel;
@@ -28,7 +29,7 @@ public class LocationForm extends FormLayout {
     public LocationForm() {
 
         bean = new LocationModel();
-        item = new BeanItem<LocationModel>(bean);
+        item = new BeanItem<>(bean);
         binder = new FieldGroup(item);
 
         HorizontalLayout buttons = getButtons();
@@ -36,14 +37,7 @@ public class LocationForm extends FormLayout {
         // Determines which properties are shown
         update.setVisible(false);
         delete.setVisible(false);
-
-//        private String name;
-//        private String code;
-//        private String latitude;
-//        private String longitude;
-//        private String locationTypeId;
-//        private List<String> childrenIds; // Province has Cities as Children
-//        private String parentId; //Location Id of Parent, e.g Country --> Province-->City
+        edit.setVisible(false);
 
 
         ComboBox locationTypes = UIComboBox.getLocationTypeComboBox("Location Type :", "locationTypeId", LocationModel.class, binder);
@@ -85,11 +79,17 @@ public class LocationForm extends FormLayout {
     // Add the bean validator
     private HorizontalLayout getButtons() {
         HorizontalLayout buttons = new HorizontalLayout();
+        buttons.setSpacing(true);
         save.setSizeFull();
+        save.addStyleName(ValoTheme.BUTTON_FRIENDLY);
         edit.setSizeFull();
+        edit.addStyleName(ValoTheme.BUTTON_FRIENDLY);
         cancel.setSizeFull();
+        cancel.addStyleName(ValoTheme.BUTTON_PRIMARY);
         update.setSizeFull();
+        update.addStyleName(ValoTheme.BUTTON_FRIENDLY);
         delete.setSizeFull();
+        delete.addStyleName(ValoTheme.BUTTON_DANGER);
 
         buttons.addComponent(save);
         buttons.addComponent(edit);

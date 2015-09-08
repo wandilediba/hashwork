@@ -13,7 +13,6 @@ import hashwork.client.content.system.locations.forms.LocationForm;
 import hashwork.client.content.system.locations.model.LocationModel;
 import hashwork.client.content.system.locations.table.LocationTable;
 import hashwork.domain.ui.location.Location;
-import hashwork.domain.ui.location.LocationType;
 import hashwork.factories.ui.location.LocationFactory;
 
 
@@ -58,8 +57,8 @@ public class LocationTab extends VerticalLayout implements
         final Property property = event.getProperty();
         if (property == table) {
             final Location location = LocationFacade.locationService.findById(table.getValue().toString());
-            final LocationModel locationBean = getLocationModel(location);
-            form.binder.setItemDataSource(new BeanItem<LocationModel>(locationBean));
+            final LocationModel locationBean = getModel(location);
+            form.binder.setItemDataSource(new BeanItem<>(locationBean));
             setReadFormProperties();
         }
     }
@@ -128,50 +127,50 @@ public class LocationTab extends VerticalLayout implements
         //Register Table Listerners
         table.addValueChangeListener((Property.ValueChangeListener) this);
     }
+//
+//    private Location getLocation(LocationModel model) {
+//        LocationType lt = LocationFacade.locationTypeService.findById(model.getLocationTypeId());
+//        Location parent = null;
+//        if (model.getParentId() != null) {
+//            parent = LocationFacade.locationService.findById(model.getParentId());
+//        }
+//
+//        Location location = new LocationFactory().getLocation(
+//                model.getName(),
+//                model.getCode(),
+//                model.getLatitude(),
+//                model.getLongitude(),
+//                model.getLocationTypeId(),
+//                model.getChildrenIds(),
+//                model.getParentId()
+//        );
+//        return location;
+//    }
 
-    private Location getLocation(LocationModel model) {
-        LocationType lt = LocationFacade.locationTypeService.findById(model.getLocationTypeId());
-        Location parent = null;
-        if (model.getParentId() != null) {
-            parent = LocationFacade.locationService.findById(model.getParentId());
-        }
+//    private LocationModel getLocationModel(Location location) {
+//        LocationModel locationModel = new LocationModel();
+//        locationModel.setCode(location.getCode());
+//        locationModel.setLatitude(location.getLatitude());
+//        locationModel.setLocationTypeId(location.getLocationTypeId());
+//        locationModel.setLongitude(location.getLongitude());
+//        locationModel.setName(location.getName());
+//        locationModel.setParentId(location.getParentId());
+//        return locationModel;
+//    }
 
-        Location location = new LocationFactory().getLocation(
-                model.getName(),
-                model.getCode(),
-                model.getLatitude(),
-                model.getLongitude(),
-                model.getLocationTypeId(),
-                model.getChildrenIds(),
-                model.getParentId()
-        );
-        return location;
-    }
-
-    private LocationModel getLocationModel(Location location) {
-        LocationModel locationModel = new LocationModel();
-        locationModel.setCode(location.getCode());
-        locationModel.setLatitude(location.getLatitude());
-        locationModel.setLocationTypeId(location.getLocationTypeId());
-        locationModel.setLongitude(location.getLongitude());
-        locationModel.setName(location.getName());
-        locationModel.setParentId(location.getParentId());
-        return locationModel;
-    }
-
-    private String getParentId(Location parent) {
-        if (parent != null) {
-            return parent.getName();
-        }
-        return null;
-    }
-
-    private String getLocationId(LocationType locationType) {
-        if (locationType != null)
-            return locationType.getId();
-        return null;
-
-    }
+//    private String getParentId(Location parent) {
+//        if (parent != null) {
+//            return parent.getName();
+//        }
+//        return null;
+//    }
+//
+//    private String getLocationId(LocationType locationType) {
+//        if (locationType != null)
+//            return locationType.getId();
+//        return null;
+//
+//    }
 
     private Location getNewEntity(FieldGroup binder) {
         final LocationModel model = ((BeanItem<LocationModel>) binder.getItemDataSource()).getBean();
@@ -188,19 +187,22 @@ public class LocationTab extends VerticalLayout implements
     }
 
     private Location getUpdateEntity(FieldGroup binder) {
-        final LocationModel bean = ((BeanItem<LocationModel>) binder.getItemDataSource()).getBean();
+        final LocationModel model = ((BeanItem<LocationModel>) binder.getItemDataSource()).getBean();
         final Location Location = LocationFacade.locationService.findById(table.getValue().toString());
+
         final Location updatedLocation = new Location
                 .Builder().copy(Location)
-                .name(bean.getName())
-                .code(bean.getCode())
-                .latitude(bean.getLatitude())
-                .longitude(bean.getLongitude())
-                .locationTypeId(bean.getParentId())
-                .childrenIds(bean.getChildrenIds())
-                .parentId(bean.getParentId())
+                .name(model.getName())
+                .code(model.getCode())
+                .latitude(model.getLatitude())
+                .longitude(model.getLongitude())
+                .locationTypeId(model.getLocationTypeId())
+                .childrenIds(model.getChildrenIds())
+                .parentId(model.getParentId())
                 .build();
         return updatedLocation;
+
+
     }
 
     private LocationModel getModel(Location location) {
