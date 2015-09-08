@@ -6,8 +6,8 @@
 package hashwork.repository.payroll.core.Impl;
 
 import hashwork.domain.payroll.core.TaxThresholds;
-import hashwork.domain.ui.demographics.GenderList;
 import hashwork.repository.payroll.core.TaxThresholdsRepository;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Set;
  *
  * @author BKLAAS1
  */
-public class TaxThresholdsRepositoryImpl implements TaxThresholdsRepository{
+public class TaxThresholdsRepositoryImpl implements TaxThresholdsRepository {
   Map<String, TaxThresholds> lists = new HashMap<>();
   
   public TaxThresholdsRepositoryImpl() {

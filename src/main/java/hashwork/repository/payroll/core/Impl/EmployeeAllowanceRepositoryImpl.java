@@ -6,8 +6,8 @@
 package hashwork.repository.payroll.core.Impl;
 
 import hashwork.domain.payroll.core.EmployeeAllowance;
-import hashwork.domain.ui.demographics.GenderList;
 import hashwork.repository.payroll.core.EmployeeAllowanceRepository;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Set;
  *
  * @author BKLAAS1
  */
-public class EmployeeAllowanceRepositoryImpl implements EmployeeAllowanceRepository{
+public class EmployeeAllowanceRepositoryImpl implements EmployeeAllowanceRepository {
 Map<String, EmployeeAllowance> lists = new HashMap<>();
 
     public EmployeeAllowanceRepositoryImpl() {

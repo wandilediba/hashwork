@@ -6,7 +6,6 @@
 package hashwork.repository.payroll.core.Impl;
 
 import hashwork.domain.payroll.core.EmployeeTaxCertificate;
-import hashwork.domain.ui.demographics.GenderList;
 import hashwork.repository.payroll.core.EmployeeTaxCertificateRepository;
 import java.util.HashMap;
 import java.util.HashSet;
