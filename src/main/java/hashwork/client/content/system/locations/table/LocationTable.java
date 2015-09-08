@@ -24,6 +24,7 @@ public class LocationTable extends Table {
         addContainerProperty("Longitude", String.class, null);
         addContainerProperty("Type", String.class, null);
         addContainerProperty("Parent", String.class, null);
+        addContainerProperty("Children", Long.class, null);
         // Add Data Columns
         Set<Location> locations = LocationFacade.locationService.findAll();
         for (Location location : locations) {
@@ -32,7 +33,8 @@ public class LocationTable extends Table {
                     location.getLatitude(),
                     location.getLongitude(),
                     getLocationType(location.getLocationTypeId()),
-                    getParentName(location.getParentId())}, location.getId());
+                    getParentName(location.getParentId()),
+                    LocationFacade.locationService.numberofChildred(location.getId())}, location.getId());
         }
         // Allow selecting items from the table.
         setNullSelectionAllowed(false);

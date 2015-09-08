@@ -56,7 +56,8 @@ public class LocationTypeTab extends VerticalLayout implements
         final Property property = event.getProperty();
         if (property == table) {
             final LocationType locationType = LocationFacade.locationTypeService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<LocationType>(locationType));
+            final LocationTypeModel model = getModel(locationType);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
         }
     }
