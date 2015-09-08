@@ -11,6 +11,9 @@ public class AccidentTypeList implements Serializable {
     private String  name;
     private String description;
 
+
+    private AccidentTypeList(){}
+
     public String getId() {
         return id;
     }
@@ -23,7 +26,7 @@ public class AccidentTypeList implements Serializable {
         return description;
     }
 
-    private AccidentTypeList(Builder builder){
+    private AccidentTypeList(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.description = builder.description;
@@ -33,35 +36,34 @@ public class AccidentTypeList implements Serializable {
     public static class Builder {
 
         private String id;
-        private String  name;
+        private String name;
         private String description;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder name(String value){
+        public Builder name(String value) {
             this.name = value;
             return this;
         }
 
-        public Builder description(String value){
+        public Builder description(String value) {
             this.description = value;
             return this;
         }
 
-        public Builder copy(AccidentTypeList value){
+        public Builder copy(AccidentTypeList value) {
             this.id = value.id;
             this.name = value.name;
             this.description = value.description;
             return this;
         }
-        public AccidentTypeList build(){
+
+        public AccidentTypeList build() {
             return new AccidentTypeList(this);
         }
-
-
 
 
     }

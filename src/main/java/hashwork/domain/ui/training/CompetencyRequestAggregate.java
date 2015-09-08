@@ -11,6 +11,8 @@ public class CompetencyRequestAggregate implements Serializable {
     private String status;
     private int count;
 
+    private CompetencyRequestAggregate(){}
+
     public String getId() {
         return id;
     }
@@ -27,7 +29,7 @@ public class CompetencyRequestAggregate implements Serializable {
         return count;
     }
 
-    private CompetencyRequestAggregate(Builder builder){
+    private CompetencyRequestAggregate(Builder builder) {
         this.id = builder.id;
         this.competencyName = builder.competencyName;
         this.count = builder.count;
@@ -35,28 +37,28 @@ public class CompetencyRequestAggregate implements Serializable {
 
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String competencyName;
         private String status;
         private int count;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder competencyName(String value){
+        public Builder competencyName(String value) {
             this.competencyName = value;
             return this;
         }
 
-        public Builder status(String value){
+        public Builder status(String value) {
             this.status = value;
             return this;
         }
 
-        public Builder count(int value){
+        public Builder count(int value) {
             this.count = value;
             return this;
         }
@@ -70,7 +72,7 @@ public class CompetencyRequestAggregate implements Serializable {
             return this;
         }
 
-        public CompetencyRequestAggregate build(){
+        public CompetencyRequestAggregate build() {
             return new CompetencyRequestAggregate(this);
         }
 

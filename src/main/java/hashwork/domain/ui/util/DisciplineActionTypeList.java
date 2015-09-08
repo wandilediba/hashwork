@@ -11,6 +11,8 @@ public class DisciplineActionTypeList implements Serializable {
     private String name;
     private String description;
 
+    private DisciplineActionTypeList(){}
+
     public String getId() {
         return id;
     }
@@ -23,28 +25,28 @@ public class DisciplineActionTypeList implements Serializable {
         return description;
     }
 
-    private DisciplineActionTypeList(Builder builder){
+    private DisciplineActionTypeList(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.description = builder.description;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String name;
         private String description;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder name(String value){
+        public Builder name(String value) {
             this.name = value;
             return this;
         }
 
-        public Builder description(String value){
+        public Builder description(String value) {
             this.description = value;
             return this;
         }
@@ -57,10 +59,9 @@ public class DisciplineActionTypeList implements Serializable {
             return this;
         }
 
-        public DisciplineActionTypeList build(){
+        public DisciplineActionTypeList build() {
             return new DisciplineActionTypeList(this);
         }
-
 
 
     }

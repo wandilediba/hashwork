@@ -21,6 +21,7 @@ public class CompetencyRequest implements Serializable {
     private String rejectComment;
 
 
+    private CompetencyRequest(){}
     public String getId() {
         return id;
     }
@@ -65,7 +66,7 @@ public class CompetencyRequest implements Serializable {
         return rejectComment;
     }
 
-    public static  class Builder {
+    public static class Builder {
         private String id;
         private String competencyName;
         private String competencyId;
@@ -128,7 +129,8 @@ public class CompetencyRequest implements Serializable {
             return this;
 
         }
-        public CompetencyRequest build(){
+
+        public CompetencyRequest build() {
             return new CompetencyRequest(this);
         }
     }

@@ -14,6 +14,8 @@ public class Funder implements Serializable {
     private String cityId;
     private String LocationContactId;
 
+    private Funder(){}
+
     public String getId() {
         return id;
     }
@@ -34,7 +36,7 @@ public class Funder implements Serializable {
         return LocationContactId;
     }
 
-    private Funder(Builder builder){
+    private Funder(Builder builder) {
         this.id = builder.id;
         this.trainingFunderName = builder.trainingFunderName;
         this.cityId = builder.cityId;
@@ -43,33 +45,34 @@ public class Funder implements Serializable {
     }
 
 
-    public static class Builder{
+    public static class Builder {
         private String id;
         private String trainingFunderName;
         private String costCenter;
         private String cityId;
         private String LocationContactId;
 
-        public Builder id(String value){
+        public Builder id(String value) {
             this.id = value;
             return this;
         }
 
-        public Builder trainingFunderName(String value){
+        public Builder trainingFunderName(String value) {
             this.trainingFunderName = value;
             return this;
         }
 
-        public Builder costCenter(String value){
+        public Builder costCenter(String value) {
             this.costCenter = value;
             return this;
         }
-        public Builder cityId(String value){
+
+        public Builder cityId(String value) {
             this.cityId = value;
             return this;
         }
 
-        public Builder LocationContactId(String value){
+        public Builder LocationContactId(String value) {
             this.LocationContactId = value;
             return this;
         }
@@ -83,7 +86,8 @@ public class Funder implements Serializable {
             return this;
 
         }
-        public Funder build(){
+
+        public Funder build() {
             return new Funder(this);
         }
     }

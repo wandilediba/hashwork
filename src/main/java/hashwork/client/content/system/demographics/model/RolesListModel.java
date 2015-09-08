@@ -11,6 +11,7 @@ public class RolesListModel implements Serializable {
     private String roleName;
     private String description;
 
+
     public String getRoleName() {
         return roleName;
     }
