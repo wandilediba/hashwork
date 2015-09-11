@@ -2,11 +2,12 @@ package hashwork.client.content.system.locations.forms;
 
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.BeanValidator;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
+import hashwork.app.util.fields.ButtonsHelper;
+import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.locations.model.AddressTypeModel;
 
 
@@ -26,34 +27,16 @@ public class AddressTypeForm extends FormLayout {
 
     public AddressTypeForm() {
         bean = new AddressTypeModel();
-        item = new BeanItem<AddressTypeModel>(bean);
+        item = new BeanItem<>(bean);
         binder = new FieldGroup(item);
 
-        TextField addressTypeName = new TextField("Address Type Name");
-        addressTypeName.setNullRepresentation("");
+        final UIComponentHelper UIComponent = new UIComponentHelper();
 
-
-        // Add the bean validator
-        addressTypeName.addValidator(new BeanValidator(AddressTypeModel.class, "addressTypeName"));
-        addressTypeName.setImmediate(true);
-
-
-        // Create a field group and use it to bind the fields in the layout
-
-        binder.bind(addressTypeName, "addressTypeName");
+        TextField addressTypeName = UIComponent.getTextField("Address Type Name :", "addressTypeName", AddressTypeModel.class, binder);
         addComponent(addressTypeName);
 
-        HorizontalLayout buttons = new HorizontalLayout();
-        buttons.addComponent(save);
-        buttons.addComponent(edit);
-        buttons.addComponent(cancel);
-        buttons.addComponent(update);
-        buttons.addComponent(delete);
-
-        // Determines which properties are shown, and in which order:
-        edit.setVisible(false);
-        update.setVisible(false);
-        delete.setVisible(false);
+        HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
+        buttons.setSizeFull();
         addComponent(buttons);
     }
 }

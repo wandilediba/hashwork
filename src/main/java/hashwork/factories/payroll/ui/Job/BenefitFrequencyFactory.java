@@ -1,4 +1,4 @@
-package hashwork.factories.payroll.ui.job;
+package hashwork.factories.payroll.ui.Job;
 
 import hashwork.app.util.KeyGenerator;
 import hashwork.domain.ui.job.BenefitFrequency;

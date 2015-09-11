@@ -5,6 +5,7 @@ import hashwork.repository.ui.location.Impl.LocationRepositoryImpl;
 import hashwork.services.ui.location.LocationService;
 
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * Created by garran on 2015/09/06.
@@ -37,4 +38,17 @@ public class LocationServiceImpl implements LocationService {
         return new LocationRepositoryImpl().findAll();
     }
 
+    @Override
+    public boolean hasChildren(String id) {
+        final Predicate<Location> notNull = location -> location.getParentId() != null;
+        final Predicate<Location> filtered = location -> location.getParentId().equalsIgnoreCase(id);
+        return findAll().parallelStream().filter(notNull).filter(filtered).count() > 0;
+    }
+
+    @Override
+    public long numberofChildred(String id) {
+        final Predicate<Location> notNull = location -> location.getParentId() != null;
+        final Predicate<Location> filtered = location -> location.getParentId().equalsIgnoreCase(id);
+        return findAll().parallelStream().filter(notNull).filter(filtered).count();
+    }
 }

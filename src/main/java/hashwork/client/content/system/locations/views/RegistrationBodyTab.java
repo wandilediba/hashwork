@@ -55,8 +55,9 @@ public class RegistrationBodyTab extends VerticalLayout implements
     public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final RegistrationBody locationType = LocationFacade.registrationBodyService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<RegistrationBody>(locationType));
+            final RegistrationBody registrationBody = LocationFacade.registrationBodyService.findById(table.getValue().toString());
+            final RegistrationBodyModel model = getModel(registrationBody);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
         }
     }
@@ -127,11 +128,6 @@ public class RegistrationBodyTab extends VerticalLayout implements
         table.addValueChangeListener((Property.ValueChangeListener) this);
     }
 
-    //    String name,
-//    String description,
-//    String coreActivity,
-//    String active,
-//    Date asOfDate
     private RegistrationBody getNewEntity(FieldGroup binder) {
         final RegistrationBodyModel model = ((BeanItem<RegistrationBodyModel>) binder.getItemDataSource()).getBean();
         final RegistrationBody RegistrationBody = RegistrationBodyFactory.getRegistrationBody

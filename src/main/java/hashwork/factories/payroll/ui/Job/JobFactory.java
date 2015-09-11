@@ -1,4 +1,4 @@
-package hashwork.factories.payroll.ui.job;
+package hashwork.factories.payroll.ui.Job;
 
 /**
  * Created by zamzam on 15/09/06.

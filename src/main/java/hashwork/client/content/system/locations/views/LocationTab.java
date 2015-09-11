@@ -57,8 +57,8 @@ public class LocationTab extends VerticalLayout implements
         final Property property = event.getProperty();
         if (property == table) {
             final Location location = LocationFacade.locationService.findById(table.getValue().toString());
-            final LocationModel locationBean = getModel(location);
-            form.binder.setItemDataSource(new BeanItem<>(locationBean));
+            final LocationModel model = getModel(location);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
         }
     }
@@ -89,8 +89,12 @@ public class LocationTab extends VerticalLayout implements
 
     private void deleteForm(FieldGroup binder) {
         Location location = LocationFacade.locationService.findById(table.getValue().toString());
-        LocationFacade.locationService.delete(location);
-        getHome();
+        if (LocationFacade.locationService.hasChildren(table.getValue().toString())) {
+            Notification.show("CANNOT DELETE", "Object has related Items. Delete Related Items First", Notification.Type.ERROR_MESSAGE);
+        } else {
+            LocationFacade.locationService.delete(location);
+            getHome();
+        }
     }
 
 
@@ -109,7 +113,7 @@ public class LocationTab extends VerticalLayout implements
 
     private void setReadFormProperties() {
         form.binder.setReadOnly(true);
-        //Buttons Behaviou
+        //Buttons Behaviour
         form.save.setVisible(false);
         form.edit.setVisible(true);
         form.cancel.setVisible(true);
@@ -124,57 +128,13 @@ public class LocationTab extends VerticalLayout implements
         form.cancel.addClickListener((Button.ClickListener) this);
         form.update.addClickListener((Button.ClickListener) this);
         form.delete.addClickListener((Button.ClickListener) this);
-        //Register Table Listerners
+        //Register Table Listeners
         table.addValueChangeListener((Property.ValueChangeListener) this);
     }
-//
-//    private Location getLocation(LocationModel model) {
-//        LocationType lt = LocationFacade.locationTypeService.findById(model.getLocationTypeId());
-//        Location parent = null;
-//        if (model.getParentId() != null) {
-//            parent = LocationFacade.locationService.findById(model.getParentId());
-//        }
-//
-//        Location location = new LocationFactory().getLocation(
-//                model.getName(),
-//                model.getCode(),
-//                model.getLatitude(),
-//                model.getLongitude(),
-//                model.getLocationTypeId(),
-//                model.getChildrenIds(),
-//                model.getParentId()
-//        );
-//        return location;
-//    }
 
-//    private LocationModel getLocationModel(Location location) {
-//        LocationModel locationModel = new LocationModel();
-//        locationModel.setCode(location.getCode());
-//        locationModel.setLatitude(location.getLatitude());
-//        locationModel.setLocationTypeId(location.getLocationTypeId());
-//        locationModel.setLongitude(location.getLongitude());
-//        locationModel.setName(location.getName());
-//        locationModel.setParentId(location.getParentId());
-//        return locationModel;
-//    }
-
-//    private String getParentId(Location parent) {
-//        if (parent != null) {
-//            return parent.getName();
-//        }
-//        return null;
-//    }
-//
-//    private String getLocationId(LocationType locationType) {
-//        if (locationType != null)
-//            return locationType.getId();
-//        return null;
-//
-//    }
 
     private Location getNewEntity(FieldGroup binder) {
         final LocationModel model = ((BeanItem<LocationModel>) binder.getItemDataSource()).getBean();
-
         final Location location = LocationFactory.getLocation(
                 model.getName(),
                 model.getCode(),
@@ -189,7 +149,6 @@ public class LocationTab extends VerticalLayout implements
     private Location getUpdateEntity(FieldGroup binder) {
         final LocationModel model = ((BeanItem<LocationModel>) binder.getItemDataSource()).getBean();
         final Location Location = LocationFacade.locationService.findById(table.getValue().toString());
-
         final Location updatedLocation = new Location
                 .Builder().copy(Location)
                 .name(model.getName())

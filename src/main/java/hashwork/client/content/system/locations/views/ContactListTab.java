@@ -57,7 +57,8 @@ public class ContactListTab extends VerticalLayout implements
         final Property property = event.getProperty();
         if (property == table) {
             final ContactList contactList = LocationFacade.contactListService.findById(table.getValue().toString());
-            form.binder.setItemDataSource(new BeanItem<ContactList>(contactList));
+            final ContactListModel model = getModel(contactList);
+            form.binder.setItemDataSource(new BeanItem<>(model));
             setReadFormProperties();
         }
     }

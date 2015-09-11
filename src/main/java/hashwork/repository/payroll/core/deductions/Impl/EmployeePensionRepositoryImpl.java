@@ -5,9 +5,9 @@
  */
 package hashwork.repository.payroll.core.deductions.Impl;
 
-import hashwork.domain.payroll.core.deductions.EmployeeDeductions;
 import hashwork.domain.payroll.core.deductions.EmployeePension;
 import hashwork.repository.payroll.core.deductions.EmployeePensionRepository;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Set;
  *
  * @author BKLAAS1
  */
-public class EmployeePensionRepositoryImpl implements EmployeePensionRepository{
+public class EmployeePensionRepositoryImpl implements EmployeePensionRepository {
 Map<String, EmployeePension> lists = new HashMap<>();
  public EmployeePensionRepositoryImpl() {
 

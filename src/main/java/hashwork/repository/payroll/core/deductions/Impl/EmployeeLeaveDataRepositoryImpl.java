@@ -5,9 +5,9 @@
  */
 package hashwork.repository.payroll.core.deductions.Impl;
 
-import hashwork.domain.payroll.core.CompanyPayroll;
 import hashwork.domain.payroll.core.deductions.EmployeeLeaveData;
 import hashwork.repository.payroll.core.deductions.EmployeeLeaveDataRepository;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Set;
  *
  * @author BKLAAS1
  */
-public class EmployeeLeaveDataRepositoryImpl implements EmployeeLeaveDataRepository{
+public class EmployeeLeaveDataRepositoryImpl implements EmployeeLeaveDataRepository {
  Map<String, EmployeeLeaveData> lists = new HashMap<>();
  
   public EmployeeLeaveDataRepositoryImpl() {
