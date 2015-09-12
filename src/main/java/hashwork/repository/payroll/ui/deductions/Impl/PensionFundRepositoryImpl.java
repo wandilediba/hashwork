@@ -1,7 +1,10 @@
 package hashwork.repository.payroll.ui.deductions.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.payroll.ui.deductions.PensionFund;
 import hashwork.repository.payroll.ui.deductions.PensionFundRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,7 +15,8 @@ import java.util.Set;
  * Created by zamzam on 15/09/09.
  */
 public class PensionFundRepositoryImpl implements PensionFundRepository {
-    Map<String, PensionFund> lists = new HashMap<>();
+    Redisson redisson = Connection.getConnection();
+    RMap<String, PensionFund> lists = redisson.getMap("pensionFund");
 
     public PensionFundRepositoryImpl() {
 

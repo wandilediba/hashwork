@@ -5,8 +5,11 @@
  */
 package hashwork.repository.payroll.core.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.payroll.core.EmployeeEarnings;
 import hashwork.repository.payroll.core.EmployeeEarningsRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,7 +21,9 @@ import java.util.Set;
  * @author BKLAAS1
  */
 public class EmployeeEarningsRepositoryImpl implements EmployeeEarningsRepository {
-Map<String, EmployeeEarnings> lists = new HashMap<>();
+    Redisson redisson = Connection.getConnection();
+    RMap<String, EmployeeEarnings> lists = redisson.getMap("empEarnings");
+
     public EmployeeEarningsRepositoryImpl() {
 
     }

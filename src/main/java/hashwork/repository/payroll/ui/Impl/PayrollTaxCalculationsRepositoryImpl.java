@@ -1,7 +1,10 @@
 package hashwork.repository.payroll.ui.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.payroll.ui.PayrollTaxCalculations;
 import hashwork.repository.payroll.ui.PayrollTaxCalculationsRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,7 +15,8 @@ import java.util.Set;
  * Created by zamzam on 15/09/09.
  */
 public class PayrollTaxCalculationsRepositoryImpl implements PayrollTaxCalculationsRepository {
-    Map<String, PayrollTaxCalculations> lists = new HashMap<>();
+    Redisson redisson = Connection.getConnection();
+    RMap<String, PayrollTaxCalculations> lists = redisson.getMap("payrolltaxCalc");
 
     public PayrollTaxCalculationsRepositoryImpl(){}
     @Override

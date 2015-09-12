@@ -5,8 +5,12 @@
  */
 package hashwork.repository.payroll.core.deductions.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.payroll.core.deductions.EmployeeDeductions;
 import hashwork.repository.payroll.core.deductions.EmployeeDeductionsRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,7 +21,8 @@ import java.util.Set;
  * @author BKLAAS1
  */
 public class EmployeeDeductionsRepositoryImpl  implements  EmployeeDeductionsRepository{
- Map<String, EmployeeDeductions> lists = new HashMap<>();
+    Redisson redisson = Connection.getConnection();
+    RMap<String, EmployeeDeductions> lists = redisson.getMap("empDeductions");
 
  public EmployeeDeductionsRepositoryImpl() {
 
