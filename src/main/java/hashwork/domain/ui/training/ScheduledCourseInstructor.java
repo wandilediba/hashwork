@@ -51,7 +51,7 @@ public class ScheduledCourseInstructor implements Serializable {
             return this;
         }
 
-        public Builder trainderId(String value) {
+        public Builder trainerId(String value) {
             this.trainerId = value;
             return this;
         }

@@ -5,8 +5,12 @@
  */
 package hashwork.repository.payroll.core.deductions.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.payroll.core.deductions.EmployeeUIFContribution;
 import hashwork.repository.payroll.core.deductions.EmployeeUIFContributionRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -18,7 +22,8 @@ import java.util.Set;
  */
 public class EmployeeUIFContributionRepositoryImpl implements EmployeeUIFContributionRepository{
 
-    Map<String, EmployeeUIFContribution> lists = new HashMap<>();
+    Redisson redisson = Connection.getConnection();
+    RMap<String, EmployeeUIFContribution> lists = redisson.getMap("EmpUIContribution");
  
    public EmployeeUIFContributionRepositoryImpl() {
 

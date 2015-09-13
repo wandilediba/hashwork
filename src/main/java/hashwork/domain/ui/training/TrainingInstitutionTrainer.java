@@ -44,8 +44,6 @@ public class TrainingInstitutionTrainer implements Serializable {
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.qualification = builder.qualification;
-
-
     }
 
     public static  class Builder{

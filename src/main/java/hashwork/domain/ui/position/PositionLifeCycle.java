@@ -8,14 +8,35 @@ import java.util.Date;
  */
 public class PositionLifeCycle implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String Id;
+    private String id;
     private String positionId;
     private Date dateofAction;
     private String status;
 
+    public PositionLifeCycle(){}
 
+    public String getId() {
+        return id;
+    }
 
-public PositionLifeCycle(){}
+    public String getPositionId() {
+        return positionId;
+    }
+
+    public Date getDateofAction() {
+        return dateofAction;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    private PositionLifeCycle(Builder builder) {
+        this.id = builder.id;
+        this.positionId = builder.positionId;
+        this.dateofAction = builder.dateofAction;
+        this.status = builder.status;
+    }
 
     public static class Builder{
         private String id;
@@ -45,28 +66,16 @@ public PositionLifeCycle(){}
         }
 
         public Builder copy(PositionLifeCycle value) {
-            this.id = value.Id;
+            this.id = value.id;
             this.dateofAction = value.dateofAction;
             this.status = value.status;
             this.positionId = value.positionId;
             return this;
         }
-    }
 
-    public String getId() {
-        return Id;
-    }
-
-    public String getPositionId() {
-        return positionId;
-    }
-
-    public Date getDateofAction() {
-        return dateofAction;
-    }
-
-    public String getStatus() {
-        return status;
+        public PositionLifeCycle build(){
+            return new PositionLifeCycle(this);
+        }
     }
 
     @Override
@@ -76,7 +85,7 @@ public PositionLifeCycle(){}
 
         PositionLifeCycle that = (PositionLifeCycle) o;
 
-        if (!Id.equals(that.Id)) return false;
+        if (!id.equals(that.id)) return false;
         if (!positionId.equals(that.positionId)) return false;
         if (!dateofAction.equals(that.dateofAction)) return false;
         return status.equals(that.status);
@@ -85,7 +94,7 @@ public PositionLifeCycle(){}
 
     @Override
     public int hashCode() {
-        int result = Id.hashCode();
+        int result = id.hashCode();
         result = 31 * result + positionId.hashCode();
         result = 31 * result + dateofAction.hashCode();
         result = 31 * result + status.hashCode();
