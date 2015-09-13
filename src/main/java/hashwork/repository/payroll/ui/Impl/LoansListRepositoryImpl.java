@@ -1,9 +1,10 @@
 package hashwork.repository.payroll.ui.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.payroll.ui.LoansList;
 import hashwork.repository.payroll.ui.LoansListRepository;
-
-import java.util.HashMap;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +13,8 @@ import java.util.Set;
  * Created by zamzam on 15/09/09.
  */
 public class LoansListRepositoryImpl implements LoansListRepository {
-    Map<String, LoansList> lists = new HashMap<>();
+    Redisson redisson = Connection.getConnection();
+    RMap<String, LoansList> lists = redisson.getMap("loanlist");
 
     public LoansListRepositoryImpl(){}
     @Override

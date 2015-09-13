@@ -1,8 +1,8 @@
 package hashwork.services.payroll.ui.job.Impl;
 
 import hashwork.domain.payroll.ui.LoansList;
-import hashwork.repository.payroll.ui.job.Impl.LoanListRepositoryImpl;
-import hashwork.repository.payroll.ui.job.LoanListRepository;
+import hashwork.repository.payroll.ui.Impl.LoansListRepositoryImpl;
+import hashwork.repository.payroll.ui.LoansListRepository;
 import hashwork.services.payroll.ui.job.LoanListService;
 
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by zamzam on 15/09/08.
  */
 public class LoanListServiceImpl implements LoanListService {
-    private final LoanListRepository repo = new LoanListRepositoryImpl();
+    private final LoansListRepository repo = new LoansListRepositoryImpl();
 
     @Override
     public LoansList findById(String s) {

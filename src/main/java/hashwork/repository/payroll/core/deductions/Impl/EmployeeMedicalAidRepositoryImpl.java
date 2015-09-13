@@ -5,8 +5,12 @@
  */
 package hashwork.repository.payroll.core.deductions.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.payroll.core.deductions.EmployeeMedicalAid;
 import hashwork.repository.payroll.core.deductions.EmployeeMedicalAidRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,7 +21,8 @@ import java.util.Set;
  * @author BKLAAS1
  */
 public class EmployeeMedicalAidRepositoryImpl implements EmployeeMedicalAidRepository{
- Map<String, EmployeeMedicalAid> lists = new HashMap<>();
+    Redisson redisson = Connection.getConnection();
+    RMap<String, EmployeeMedicalAid> lists = redisson.getMap("empMedicalAid");
  
  public EmployeeMedicalAidRepositoryImpl() {
 
