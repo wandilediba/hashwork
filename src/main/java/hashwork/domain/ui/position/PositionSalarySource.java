@@ -35,6 +35,7 @@ public class PositionSalarySource implements Serializable {
     public String getCurrencyId() {
         return currencyId;
     }
+
     private PositionSalarySource(Builder builder){
         this.id = builder.id;
         this.amount = builder.amount;
