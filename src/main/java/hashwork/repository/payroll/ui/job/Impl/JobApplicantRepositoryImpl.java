@@ -2,7 +2,7 @@ package hashwork.repository.payroll.ui.job.Impl;
 
 import hashwork.app.conf.Connection;
 import hashwork.domain.payroll.ui.job.JobApplicant;
-import hashwork.repository.payroll.ui.job.JobApplicationRepository;
+import hashwork.repository.payroll.ui.job.JobApplicantRepository;
 import org.redisson.Redisson;
 import org.redisson.core.RMap;
 
@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * Created by zamzam on 15/09/12.
  */
-public class JobApplicationRepositoryImpl implements JobApplicationRepository {
+public class JobApplicantRepositoryImpl implements JobApplicantRepository {
     Redisson redisson = Connection.getConnection();
     RMap<String, JobApplicant> lists = redisson.getMap("JobApplicant");
 
