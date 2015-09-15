@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * Created by garran on 2015/09/13.
  */
-public class TrainingInstitutionRepositpryImpl implements TrainingInstitutionRepositpry {
+public class TrainingInstitutionRepositoryImpl implements TrainingInstitutionRepositpry {
     Redisson redisson = Connection.getConnection();
     RMap<String, TrainingInstitution> lists = redisson.getMap("addresstype");
 
