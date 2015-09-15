@@ -6,5 +6,5 @@ import hashwork.repository.CrudRepository;
 /**
  * Created by zamzam on 15/09/12.
  */
-public interface JobApplicationRepository extends CrudRepository<JobApplicant,String> {
+public interface JobApplicantRepository extends CrudRepository<JobApplicant,String> {
 }
