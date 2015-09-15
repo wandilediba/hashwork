@@ -1,4 +1,4 @@
-package hashwork.client.content.positions.inactive.forms;
+package hashwork.client.content.positions.table;
 
 /**
  * Created by hashcode on 2015/08/22.
