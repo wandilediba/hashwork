@@ -6,27 +6,23 @@
 package hashwork.factories.people;
 
 import hashwork.app.util.KeyGenerator;
-import hashwork.domain.people.PersonAttachment;
+import hashwork.domain.people.PersonRole;
 
 /**
  *
  * @author BONGANI
  */
-public class PersonAttachmentFactory {
-    
-     public static PersonAttachment getPersonAttachment (String personId,String fileName)
+public class PersonRoleFactory {
+     public static PersonRole getPersonRole (String persondId,String roleId)
     {
-        PersonAttachment personAttachment = new PersonAttachment.Builder()
+        PersonRole personRole = new PersonRole.Builder()
                 .id(KeyGenerator.getEntityId())
-                .personId(personId)
-                .fileName(fileName)                
+                .persondId(persondId)
+                .roleId(roleId)               
                 .build();
                 
-      return personAttachment;
+      return personRole;
     
-    }    
+    }
     
 }
-
-
-  
