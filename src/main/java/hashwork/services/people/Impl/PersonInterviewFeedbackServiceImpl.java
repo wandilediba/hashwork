@@ -16,31 +16,31 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonInterviewFeedbackServiceImpl implements PersonInterviewFeedbackService {
-    private final PersonInterviewFeedbackRepository repo = new PersonInterviewFeedbackRepositoryImpl();
+   // private final PersonInterviewFeedbackRepository repo = new PersonInterviewFeedbackRepositoryImpl();
 
     @Override
     public PersonInterviewFeedback findById(String s) {
-        return repo.findById(s);
+        return new PersonInterviewFeedbackRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonInterviewFeedback save(PersonInterviewFeedback entity) {
-        return repo.save(entity);
+         return new PersonInterviewFeedbackRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonInterviewFeedback update(PersonInterviewFeedback entity) {
-        return repo.save(entity);
+         return new PersonInterviewFeedbackRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonInterviewFeedback entity) {
-        repo.delete(entity);
+        new PersonInterviewFeedbackRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonInterviewFeedback> findAll() {
-        return repo.findAll();
+       return new PersonInterviewFeedbackRepositoryImpl().findAll();
     }
 
 }

@@ -16,31 +16,31 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonContinuiningEducationServiceImpl implements PersonContinuinigEducationService {
-    private final PersonContinuingEducationRepository repo = new PersonContinuingEducationRepositoryImpl();
+    //private final PersonContinuingEducationRepository repo = new PersonContinuingEducationRepositoryImpl();
 
     @Override
     public PersonContinuingEducation findById(String s) {
-        return repo.findById(s);
+        return new PersonContinuingEducationRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonContinuingEducation save(PersonContinuingEducation entity) {
-        return repo.save(entity);
+        return new PersonContinuingEducationRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonContinuingEducation update(PersonContinuingEducation entity) {
-        return repo.save(entity);
+       return new PersonContinuingEducationRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonContinuingEducation entity) {
-        repo.delete(entity);
+        new PersonContinuingEducationRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonContinuingEducation> findAll() {
-        return repo.findAll();
+       return new PersonContinuingEducationRepositoryImpl().findAll();
     }
 
 }

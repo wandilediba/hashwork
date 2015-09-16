@@ -18,31 +18,31 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonPositionServiceImpl implements PersonPositionService {
-    private final PersonPositionRepository repo = new PersonPositionRepositoryImpl();
+    //private final PersonPositionRepository repo = new PersonPositionRepositoryImpl();
 
     @Override
     public PersonPosition findById(String s) {
-        return repo.findById(s);
+       return new PersonPositionRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonPosition save(PersonPosition entity) {
-        return repo.save(entity);
+        return new PersonPositionRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonPosition update(PersonPosition entity) {
-        return repo.save(entity);
+       return new PersonPositionRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonPosition entity) {
-        repo.delete(entity);
+         new PersonPositionRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonPosition> findAll() {
-        return repo.findAll();
+        return new PersonPositionRepositoryImpl().findAll();
     }
 
 }

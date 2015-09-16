@@ -5,6 +5,8 @@
  */
 package hashwork.repository.people.Impl;
 
+import hashwork.app.conf.Connection;
+import hashwork.domain.people.PersonAddress;
 import hashwork.domain.people.PersonBenefits;
 import hashwork.repository.people.PersonBenifitsRepository;
 
@@ -12,13 +14,16 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 /**
  * @author BONGANI
  */
 public class PersonBenifitsRepositoryImpl implements PersonBenifitsRepository {
-    Map<String, PersonBenefits> lists = new HashMap<>();
-
+    Redisson redisson = Connection.getConnection();
+    RMap<String, PersonBenefits> lists = redisson.getMap("addresstype");
+    
     public PersonBenifitsRepositoryImpl() {
 
     }

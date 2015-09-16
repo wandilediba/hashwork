@@ -16,31 +16,31 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonEducationHistoryServiceImpl implements PersonEducationHistoryService {
-    private final PersonEducationHistoryRepository repo = new PersonEducationHistoryRepositoryImpl();
+   // private final PersonEducationHistoryRepository repo = new PersonEducationHistoryRepositoryImpl();
 
     @Override
     public PersonEducationHistory findById(String s) {
-        return repo.findById(s);
+        return new PersonEducationHistoryRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonEducationHistory save(PersonEducationHistory entity) {
-        return repo.save(entity);
+         return new PersonEducationHistoryRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonEducationHistory update(PersonEducationHistory entity) {
-        return repo.save(entity);
+        return new PersonEducationHistoryRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonEducationHistory entity) {
-        repo.delete(entity);
+         new PersonEducationHistoryRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonEducationHistory> findAll() {
-        return repo.findAll();
+       return new PersonEducationHistoryRepositoryImpl().findAll();
     }
 
 }

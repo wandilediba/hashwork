@@ -5,6 +5,8 @@
  */
 package hashwork.repository.people.Impl;
 
+import hashwork.app.conf.Connection;
+import hashwork.domain.people.PersonAddress;
 import hashwork.domain.people.PersonIdentity;
 import hashwork.repository.people.PersonIdentityRepository;
 
@@ -12,16 +14,18 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 
 /**
  * @author BONGANI
  */
 public class PersonIdentityRepositoryImpl implements PersonIdentityRepository {
-
-    Map<String, PersonIdentity> lists = new HashMap<>();
-
-    public PersonIdentityRepositoryImpl() {
+     Redisson redisson = Connection.getConnection();
+    RMap<String, PersonIdentity> lists = redisson.getMap("addresstype");
+    
+   public PersonIdentityRepositoryImpl() {
 
     }
 

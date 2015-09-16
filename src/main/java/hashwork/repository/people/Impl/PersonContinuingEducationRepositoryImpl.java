@@ -5,6 +5,8 @@
  */
 package hashwork.repository.people.Impl;
 
+import hashwork.app.conf.Connection;
+import hashwork.domain.people.PersonAddress;
 import hashwork.domain.people.PersonContinuingEducation;
 import hashwork.repository.people.PersonContinuingEducationRepository;
 
@@ -12,13 +14,16 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 /**
  * @author BONGANI
  */
 public class PersonContinuingEducationRepositoryImpl implements PersonContinuingEducationRepository {
-    Map<String, PersonContinuingEducation> lists = new HashMap<>();
-
+    Redisson redisson = Connection.getConnection();
+    RMap<String, PersonContinuingEducation> lists = redisson.getMap("addresstype");
+    
     public PersonContinuingEducationRepositoryImpl() {
 
     }

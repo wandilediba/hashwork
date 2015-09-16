@@ -16,31 +16,31 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonHiringDecisionServiceImpl implements PersonHiringDecisionService {
-    private final PersonHiringDecisionRepository repo = new PersonHiringDecisionRepositoryImpl();
+   // private final PersonHiringDecisionRepository repo = new PersonHiringDecisionRepositoryImpl();
 
     @Override
     public PersonHiringDecision findById(String s) {
-        return repo.findById(s);
+        return new PersonHiringDecisionRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonHiringDecision save(PersonHiringDecision entity) {
-        return repo.save(entity);
+        return new PersonHiringDecisionRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonHiringDecision update(PersonHiringDecision entity) {
-        return repo.save(entity);
+        return new PersonHiringDecisionRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonHiringDecision entity) {
-        repo.delete(entity);
+         new PersonHiringDecisionRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonHiringDecision> findAll() {
-        return repo.findAll();
+       return new PersonHiringDecisionRepositoryImpl().findAll();
     }
 
 }

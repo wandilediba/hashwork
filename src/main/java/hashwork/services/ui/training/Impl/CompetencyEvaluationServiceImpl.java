@@ -29,7 +29,6 @@ public class CompetencyEvaluationServiceImpl implements CompetencyEvaluationServ
     @Override
     public void delete(CompetencyEvaluation entity) {
         new CompetencyEvaluationRepositoryImpl().delete(entity);
-
     }
 
     @Override

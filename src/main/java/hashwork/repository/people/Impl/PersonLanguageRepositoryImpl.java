@@ -5,20 +5,25 @@
  */
 package hashwork.repository.people.Impl;
 
+import hashwork.app.conf.Connection;
+import hashwork.domain.people.PersonAddress;
 import hashwork.domain.people.PersonLanguage;
 import hashwork.repository.people.PersonLanguageRepository;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;;
+import java.util.Set;import org.redisson.Redisson;
+import org.redisson.core.RMap;
+;
 
 /**
  * @author BONGANI
  */
 public class PersonLanguageRepositoryImpl implements PersonLanguageRepository {
-    Map<String, PersonLanguage> lists = new HashMap<>();
-
+     Redisson redisson = Connection.getConnection();
+    RMap<String, PersonLanguage> lists = redisson.getMap("addresstype");
+    
     public PersonLanguageRepositoryImpl() {
 
     }
