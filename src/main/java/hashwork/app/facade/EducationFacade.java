@@ -26,10 +26,10 @@ import hashwork.services.ui.location.Impl.RegistrationBodyServiceImpl;
  */
 public class EducationFacade {
     
-     public final static CompetencyService contactListService = new CompetencyServiceImpl();
-    public final static CompetencyTypeService registrationBodyService = new CompetencyTypeServiceImpl();
-    public final static DegreeService locationTypeService = new DegreeServiceImpl();
-    public final static EducationTypeService locationService = new EducationTypeServiceImpl();
-    public final static EvaluationService addressTypeService = new EvaluationServiceImpl();
+     public final static CompetencyService competencyService = new CompetencyServiceImpl();
+    public final static CompetencyTypeService competencyTypeService = new CompetencyTypeServiceImpl();
+    public final static DegreeService degreeService = new DegreeServiceImpl();
+    public final static EducationTypeService educationTypeService = new EducationTypeServiceImpl();
+    public final static EvaluationService evaluationService = new EvaluationServiceImpl();
     
 }
