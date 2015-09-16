@@ -16,31 +16,31 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonRoleServiceImpl implements PersonRoleService {
-    private final PersonRoleRepository repo = new PersonRoleRepositoryImpl();
+    //private final PersonRoleRepository repo = new PersonRoleRepositoryImpl();
 
     @Override
     public PersonRole findById(String s) {
-        return repo.findById(s);
+         return new PersonRoleRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonRole save(PersonRole entity) {
-        return repo.save(entity);
+       return new PersonRoleRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonRole update(PersonRole entity) {
-        return repo.save(entity);
+         return new PersonRoleRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonRole entity) {
-        repo.delete(entity);
+       new PersonRoleRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonRole> findAll() {
-        return repo.findAll();
+       return new PersonRoleRepositoryImpl().findAll();
     }
 
 }
