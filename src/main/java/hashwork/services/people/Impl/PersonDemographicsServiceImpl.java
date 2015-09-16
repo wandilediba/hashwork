@@ -16,31 +16,31 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonDemographicsServiceImpl implements PersonDemographicsService {
-    private final PersonDemographicsRepository repo = new PersonDemographicsRepositoryImpl();
+   // private final PersonDemographicsRepository repo = new PersonDemographicsRepositoryImpl();
 
     @Override
     public PersonDemographics findById(String s) {
-        return repo.findById(s);
+        return new PersonDemographicsRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonDemographics save(PersonDemographics entity) {
-        return repo.save(entity);
+       return new PersonDemographicsRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonDemographics update(PersonDemographics entity) {
-        return repo.save(entity);
+       return new PersonDemographicsRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonDemographics entity) {
-        repo.delete(entity);
+        new PersonDemographicsRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonDemographics> findAll() {
-        return repo.findAll();
+        return new PersonDemographicsRepositoryImpl().findAll();
     }
 
 }
