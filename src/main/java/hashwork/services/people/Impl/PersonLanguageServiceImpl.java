@@ -16,31 +16,31 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonLanguageServiceImpl implements PersonLanguageService {
-    private final PersonLanguageRepository repo = new PersonLanguageRepositoryImpl();
+   // private final PersonLanguageRepository repo = new PersonLanguageRepositoryImpl();
 
     @Override
     public PersonLanguage findById(String s) {
-        return repo.findById(s);
+        return new PersonLanguageRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonLanguage save(PersonLanguage entity) {
-        return repo.save(entity);
+       return new PersonLanguageRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonLanguage update(PersonLanguage entity) {
-        return repo.save(entity);
+       return new PersonLanguageRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonLanguage entity) {
-        repo.delete(entity);
+         new PersonLanguageRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonLanguage> findAll() {
-        return repo.findAll();
+       return new PersonLanguageRepositoryImpl().findAll();
     }
 
 }

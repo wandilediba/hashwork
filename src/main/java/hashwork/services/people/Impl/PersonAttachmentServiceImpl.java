@@ -18,32 +18,30 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonAttachmentServiceImpl implements PersonAttachmentService {
-    private final PersonAttachmentRepository repo = new PersonAttachmentRepositoryImpl();
-
+ 
     @Override
     public PersonAttachment findById(String s) {
-        return repo.findById(s);
+          return new PersonAttachmentRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonAttachment save(PersonAttachment entity) {
-        return repo.save(entity);
+        return new PersonAttachmentRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonAttachment update(PersonAttachment entity) {
-        return repo.save(entity);
+         return new PersonAttachmentRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonAttachment entity) {
-        repo.delete(entity);
+         new PersonAttachmentRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonAttachment> findAll() {
-        return repo.findAll();
+       return new PersonAttachmentRepositoryImpl().findAll();
     }
-
 
 }
