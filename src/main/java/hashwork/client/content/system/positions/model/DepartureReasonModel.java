@@ -7,7 +7,6 @@ import java.io.Serializable;
  */
 public class DepartureReasonModel implements Serializable {
 
-
     private String reasonName;
     private String description;
 
