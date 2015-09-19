@@ -7,14 +7,10 @@ import hashwork.domain.ui.education.EducationType;
  */
 public class EducationTypeModel {
 
-    private static final long serialVersionUID = 1L;
+
     private String id;
     //"Competent," "Not Competent" and "Not Assessed"
     private String name;
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public String getId() {
         return id;

@@ -9,16 +9,13 @@ import java.io.Serializable;
 
 public class DegreeModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+
     private String id;
     private String studyField;
     private String educationTypeId;
     //Bachelor , Diploma , Masters , PhD
     private String degreeName;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public String getId() {
         return id;

@@ -11,14 +11,9 @@ import java.io.Serializable;
 
 public class CompetencyTypeModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     private String id;
     // Computer Skills, Client Interaction and Accounting based on Company Competency Model
     private String name;
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public String getId() {
         return id;

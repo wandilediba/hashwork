@@ -6,7 +6,6 @@ import java.io.Serializable;
  * Created by hashcode on 2015/09/05.
  */
 public class CompetencyModel implements Serializable, Comparable<CompetencyModel> {
-    private static final long serialVersionUID = 1L;
 
     //competency type Computer Skills, specific competencies could include Data Entry, Software Use and Document Formatting
     private String name;
