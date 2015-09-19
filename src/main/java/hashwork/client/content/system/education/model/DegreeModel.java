@@ -36,43 +36,19 @@ public class DegreeModel implements Serializable {
         return degreeName;
     }
 
-    private DegreeModel(Builder builder) {
-        this.id = builder.id;
-        this.studyField = builder.studyField;
-        this.educationTypeId = builder.educationTypeId;
-        this.degreeName = builder.degreeName;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public static class Builder {
-        private String id;
-        private String studyField;
-        private String educationTypeId;
-        private String degreeName;
+    public void setStudyField(String studyField) {
+        this.studyField = studyField;
+    }
 
-        public Builder id(String value) {
-            this.id = value;
-            return this;
-        }
-        public Builder studyField(String value) {
-            this.studyField = value;
-            return this;
-        }
-        public Builder educationType(String value) {
-            this.educationTypeId = value;
-            return this;
-        }
-        public Builder degreeName(String value) {
-            this.degreeName = value;
-            return this;
-        }
+    public void setEducationTypeId(String educationTypeId) {
+        this.educationTypeId = educationTypeId;
+    }
 
-        public Builder copy(DegreeModel value) {
-            this.degreeName = value.degreeName;
-            this.id = value.id;
-            this.studyField = value.studyField;
-            this.educationTypeId = value.educationTypeId;
-            return this;
-        }
-
+    public void setDegreeName(String degreeName) {
+        this.degreeName = degreeName;
     }
 }

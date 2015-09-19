@@ -24,31 +24,12 @@ public class EducationTypeModel {
         return name;
     }
 
-    private EducationTypeModel(Builder builder) {
-        this.id = builder.id;
-        this.name = builder.name;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public static class Builder {
-        private String id;
-        private String name;
-
-        public Builder id(String value) {
-            this.id = value;
-            return this;
-        }
-
-        public Builder name(String value) {
-            this.name = value;
-            return this;
-        }
-
-        public Builder copy(EducationTypeModel value) {
-            this.name = value.name;
-            this.id = value.id;
-            return this;
-        }
-
+    public void setName(String name) {
+        this.name = name;
     }
 }
 

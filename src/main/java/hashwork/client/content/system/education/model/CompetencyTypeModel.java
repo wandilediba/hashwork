@@ -28,31 +28,11 @@ public class CompetencyTypeModel implements Serializable {
         return name;
     }
 
-    private CompetencyTypeModel(Builder builder) {
-        this.name = builder.name;
-        this.id = builder.id;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public static class Builder {
-        private String name;
-        private String id;
-
-        public Builder name(String value) {
-            this.name = value;
-            return this;
-        }
-
-        public Builder id(String value) {
-            this.id = value;
-            return this;
-        }
-
-        public Builder copy(CompetencyTypeModel value) {
-            this.name = value.name;
-            this.id = value.id;
-            return this;
-        }
-
+    public void setName(String name) {
+        this.name = name;
     }
-
 }
