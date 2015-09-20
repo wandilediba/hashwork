@@ -95,7 +95,6 @@ public class PersonDemographics implements Serializable {
         }
 
         public PersonDemographics build(){
-
             return new PersonDemographics(this);
         }
     }
