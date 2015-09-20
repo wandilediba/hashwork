@@ -6,7 +6,6 @@ import java.io.Serializable;
  * Created by bulelani on 2015/09/19.
  */
 public class AccidentTypeList implements Serializable {
-    private static final long serialVersionUID = 1L;
     private String id;
     private String  name;
     private String description;
@@ -17,10 +16,6 @@ public class AccidentTypeList implements Serializable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public String getName() {

@@ -6,7 +6,6 @@ import java.io.Serializable;
  * Created by bulelani on 2015/09/19.
  */
 public class Funder implements Serializable {
-    private static final long serialVersionUID = 1L;
 
     private String id;
     private String trainingFunderName;
@@ -14,9 +13,6 @@ public class Funder implements Serializable {
     private String cityId;
     private String LocationContactId;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public String getId() {
         return id;
