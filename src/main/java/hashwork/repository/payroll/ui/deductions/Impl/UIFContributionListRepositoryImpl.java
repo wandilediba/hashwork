@@ -14,11 +14,11 @@ import java.util.Set;
 /**
  * Created by zamzam on 15/09/09.
  */
-public class UIFContributionListImpl implements UIFContributionListRepository {
+public class UIFContributionListRepositoryImpl implements UIFContributionListRepository {
     Redisson redisson = Connection.getConnection();
     RMap<String, UIFContributionList> lists = redisson.getMap("uifContributionList");
 
-    public UIFContributionListImpl() {
+    public UIFContributionListRepositoryImpl() {
 
     }
 

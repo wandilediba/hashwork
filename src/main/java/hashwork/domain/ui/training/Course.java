@@ -114,7 +114,12 @@ public class Course  implements Serializable, Comparable<Course> {
             return this;
         }
 
-        public Builder courseObjective(int value){
+        public Builder courseObjective(String value){
+            this.courseObjective = value;
+            return this;
+        }
+
+        public Builder creditHours(int value){
             this.creditHours = value;
             return this;
         }
