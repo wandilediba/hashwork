@@ -8,5 +8,5 @@ import hashwork.services.payroll.ui.deductions.Impl.AllowanceTypeListServiceImpl
  */
 public class PayrollUiDeductionsFacade {
     public final static AllowanceTypeListService allowanceTypeListService = new AllowanceTypeListServiceImpl();
-    
+
 }
