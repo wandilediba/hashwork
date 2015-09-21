@@ -14,6 +14,26 @@ public class EmployeePayslip implements Serializable {
     private BigDecimal netPay;
     private Date payslipGenerateDate;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public BigDecimal getNetPay() {
+        return netPay;
+    }
+
+    public Date getPayslipGenerateDate() {
+        return payslipGenerateDate;
+    }
+
     private EmployeePayslip() {
     }
 
