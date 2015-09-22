@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class Course  implements Serializable, Comparable<Course> {
 
-    private static final long serialVersionUID = 1L;
     private String id;
     private String courseName;
     private String courseCategoryId;
@@ -18,10 +17,6 @@ public class Course  implements Serializable, Comparable<Course> {
     private String courseObjective;
     private int creditHours;
     private List<String> courseCompetenciesId;
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public String getId() {
         return id;
