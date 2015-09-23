@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by zenzile on 2015/09/19.
  */
-public class CompetencyRequest implements Serializable {
+public class CompetencyRequestModel implements Serializable {
 
     private String id;
     private String competencyName;
