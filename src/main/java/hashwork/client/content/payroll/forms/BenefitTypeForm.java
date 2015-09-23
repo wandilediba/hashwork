@@ -34,10 +34,10 @@ public class BenefitTypeForm extends FormLayout {
 
         TextField benefitTypeName = UIComponent.getTextField("Benefit Type Name :", "benefitTypeName", BenefitTypeModel.class, binder);
         TextField amount = UIComponent.getTextField("Amount :", "amount", BenefitTypeModel.class, binder);
-      //  TextField currencyId = UIComponent.getTextField("Currency ID :", "currencyId", BenefitTypeModel.class, binder);
+        //  TextField currencyId = UIComponent.getTextField("CurrencyModel ID :", "currencyId", BenefitTypeModel.class, binder);
 
         //ComboBox Fields
-        ComboBox currencyId = UIComboBox.getLocationTypeComboBox("Currency :", "currencyId", BenefitTypeModel.class, binder);
+        ComboBox currencyId = UIComboBox.getLocationTypeComboBox("CurrencyModel :", "currencyId", BenefitTypeModel.class, binder);
 
         addComponent(benefitTypeName);
         addComponent(amount);

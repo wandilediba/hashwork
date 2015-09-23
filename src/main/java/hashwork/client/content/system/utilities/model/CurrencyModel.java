@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by bulelani on 2015/09/19.
  */
-public class Currency implements Serializable {
+public class CurrencyModel implements Serializable {
 
     private String id;
     private String code;
