@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by bulelani on 2015/09/19.
  */
-public class Status implements Serializable {
+public class StatusModel implements Serializable {
     private String id;
     private String statusType;
     private String statusValues;
