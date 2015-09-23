@@ -1,7 +1,7 @@
 package hashwork.factories.payroll.ui.Job;
 
 import hashwork.app.util.KeyGenerator;
-import hashwork.domain.ui.job.BenefitFrequency;
+import hashwork.domain.payroll.ui.job.BenefitFrequency;
 
 /**
  * Created by zamzam on 15/09/06.

@@ -5,9 +5,9 @@ import java.io.Serializable;
 /**
  * Created by bulelani on 2015/09/19.
  */
-public class AccidentTypeList implements Serializable {
+public class DisciplineActionTypeListModel implements Serializable {
     private String id;
-    private String  name;
+    private String name;
     private String description;
 
     public String getId() {

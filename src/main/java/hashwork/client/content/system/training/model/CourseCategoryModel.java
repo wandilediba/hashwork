@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by zenzile on 2015/09/19.
  */
-public class CourseCategory  implements Serializable {
+public class CourseCategoryModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private String id;

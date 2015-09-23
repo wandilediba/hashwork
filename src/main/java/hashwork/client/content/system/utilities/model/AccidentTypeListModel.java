@@ -3,11 +3,12 @@ package hashwork.client.content.system.utilities.model;
 import java.io.Serializable;
 
 /**
- * Created by bulelani on 2015/09/19.
+ * Created by DibaW on 9/23/2015.
  */
-public class DisciplineActionTypeList implements Serializable {
+public class AccidentTypeListModel implements Serializable{
+
     private String id;
-    private String name;
+    private String  name;
     private String description;
 
     public String getId() {

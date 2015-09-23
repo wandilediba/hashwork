@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by zenzile on 2015/09/19.
  */
-public class CourseCompetencies implements Serializable {
+public class CourseCompetenciesModel implements Serializable {
     private String id;
     private String courseId;
     private String  competencyId;
