@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/hashwork.iml" filepath="$PROJECT_DIR$/hashwork.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zm.hashcode.hashwork.iml" filepath="$PROJECT_DIR$/zm.hashcode.hashwork.iml" />
     </modules>
   </component>
 </project>

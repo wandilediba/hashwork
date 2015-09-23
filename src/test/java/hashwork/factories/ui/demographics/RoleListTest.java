@@ -39,8 +39,6 @@ public class RoleListTest {
     public void read() throws Exception {
         RolesList rolesList = repo.findById(id);
         Assert.assertNotNull(rolesList);
-
-
     }
 
     @Test(dependsOnMethods = "read")
@@ -58,7 +56,5 @@ public class RoleListTest {
         repo.delete(rolesList);
         RolesList deletedDolesList = repo.findById(id);
         Assert.assertNull(deletedDolesList);
-
-
     }
 }

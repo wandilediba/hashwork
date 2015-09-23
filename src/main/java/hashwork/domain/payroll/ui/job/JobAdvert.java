@@ -47,6 +47,7 @@ public class JobAdvert implements Serializable {
     }
 
     private JobAdvert(){}
+
     private JobAdvert(Builder builder){
         this.Id = builder.Id;
         this.jobId = builder.jobId;

@@ -16,31 +16,31 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonBenefitsServiceImpl implements PersonBenefitsService {
-    private final PersonBenifitsRepository repo = new PersonBenifitsRepositoryImpl();
+   // private final PersonBenifitsRepository repo = new PersonBenifitsRepositoryImpl();
 
     @Override
     public PersonBenefits findById(String s) {
-        return repo.findById(s);
+       return new PersonBenifitsRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonBenefits save(PersonBenefits entity) {
-        return repo.save(entity);
+         return new PersonBenifitsRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonBenefits update(PersonBenefits entity) {
-        return repo.save(entity);
+          return new PersonBenifitsRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonBenefits entity) {
-        repo.delete(entity);
+        new PersonBenifitsRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonBenefits> findAll() {
-        return repo.findAll();
+        return new PersonBenifitsRepositoryImpl().findAll();
     }
 
 }

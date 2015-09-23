@@ -31,7 +31,7 @@ public class MaritalStatusListForm extends FormLayout {
         binder = new FieldGroup(item);
         final UIComponentHelper UIComponent = new UIComponentHelper();
 
-        TextField statusName = UIComponent.getTextField("Marital Status List :", "statusName", MaritalStatusListModel.class, binder);
+        TextField statusName = UIComponent.getTextField("Marital StatusModel List :", "statusName", MaritalStatusListModel.class, binder);
         addComponent(statusName);
 
         HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);

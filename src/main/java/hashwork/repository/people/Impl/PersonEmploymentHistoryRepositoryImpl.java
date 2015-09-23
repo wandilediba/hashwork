@@ -5,6 +5,8 @@
  */
 package hashwork.repository.people.Impl;
 
+import hashwork.app.conf.Connection;
+import hashwork.domain.people.PersonAddress;
 import hashwork.domain.people.PersonEmploymentHistory;
 import hashwork.repository.people.PersonEmploymentHistoryRepository;
 
@@ -12,14 +14,17 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 /**
  * @author BONGANI
  */
 public class PersonEmploymentHistoryRepositoryImpl implements PersonEmploymentHistoryRepository {
-    Map<String, PersonEmploymentHistory> lists = new HashMap<>();
-
-    public PersonEmploymentHistoryRepositoryImpl() {
+    Redisson redisson = Connection.getConnection();
+    RMap<String, PersonEmploymentHistory> lists = redisson.getMap("addresstype");
+    
+   public PersonEmploymentHistoryRepositoryImpl() {
 
     }
 

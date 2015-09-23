@@ -45,6 +45,17 @@ public class Job implements Serializable, Comparable<Job>{
         return positionIds;
     }
 
+    private Job(){}
+    private Job(Builder builder){
+        this.id = builder.id;
+        this.title = builder.title;
+        this.code = builder.code;
+        this.description = builder.description;
+        this.salaryGradeId = builder.salaryGradeId;
+        this.jobClassificationId = builder.jobClassificationId;
+        this.positionIds = builder.positionIds;
+    }
+
     public static class Builder{
         private String id;
         private String title;
@@ -94,9 +105,9 @@ public class Job implements Serializable, Comparable<Job>{
             return this;
         }
 
-        /*public Job build(){
+        public Job build(){
             return new Job(this);
-        }*/
+        }
     }
 
     @Override
