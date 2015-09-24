@@ -10,11 +10,23 @@ import hashwork.domain.ui.location.LocationType;
 
 import java.io.Serializable;
 import java.util.Set;
+import java.util.function.Consumer;
 
 /**
  * Created by hashcode on 2015/09/07.
  */
 public class UIComboBoxHelper<T> implements Serializable {
+
+    public ComboBox getComboBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder, final Consumer<ComboBox> getData) {
+        ComboBox comboBox = new ComboBox(fieldText);
+        getData.accept(comboBox);
+        comboBox.addValidator(new BeanValidator(fieldClass, fieldName));
+        comboBox.setImmediate(true);
+        comboBox.setNullSelectionAllowed(false);
+        comboBox.setWidth(250, Sizeable.Unit.PIXELS);
+        binder.bind(comboBox, fieldName);
+        return comboBox;
+    }
     public ComboBox getUploadComboBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         ComboBox comboBox = new ComboBox(fieldText);
         comboBox.addValidator(new BeanValidator(fieldClass, fieldName));
@@ -27,7 +39,6 @@ public class UIComboBoxHelper<T> implements Serializable {
 
     public ComboBox getEmptyComboBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         ComboBox comboBox = new ComboBox(fieldText);
-
         comboBox.addValidator(new BeanValidator(fieldClass, fieldName));
         comboBox.setImmediate(true);
         comboBox.setNullSelectionAllowed(false);
@@ -36,7 +47,7 @@ public class UIComboBoxHelper<T> implements Serializable {
         return comboBox;
     }
 
-    public ComboBox getLocationComboBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
+    public ComboBox getLocationComboBox1(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         ComboBox comboBox = new ComboBox(fieldText);
         Set<Location> locations = LocationFacade.locationService.findAll();
 
@@ -53,7 +64,7 @@ public class UIComboBoxHelper<T> implements Serializable {
         return comboBox;
     }
 
-    public ComboBox getLocationTypeComboBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
+    public ComboBox getLocationTypeComboBox1(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         ComboBox comboBox = new ComboBox(fieldText);
         Set<LocationType> locationTypeList = LocationFacade.locationTypeService.findAll();
 

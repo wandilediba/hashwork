@@ -4,10 +4,16 @@ import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
+import hashwork.app.facade.LocationFacade;
 import hashwork.app.util.fields.ButtonsHelper;
 import hashwork.app.util.fields.UIComboBoxHelper;
 import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.locations.model.LocationModel;
+import hashwork.domain.ui.location.Location;
+import hashwork.domain.ui.location.LocationType;
+
+import java.util.Set;
+import java.util.function.Consumer;
 
 
 /**
@@ -41,22 +47,40 @@ public class LocationForm extends FormLayout {
         TextField latitude = UIComponent.getGridTextField("Latitude :", "latitude", LocationModel.class, binder);
         TextField longitude = UIComponent.getGridTextField("Longitude :", "longitude", LocationModel.class, binder);
 
-        //ComboBox Fields
-        ComboBox locationTypes = UIComboBox.getLocationTypeComboBox("Location Type :", "locationTypeId", LocationModel.class, binder);
-        ComboBox parent = UIComboBox.getLocationComboBox("Parent Location :", "parentId", LocationModel.class, binder);
 
+        //ComboBox Fields
+        final ComboBox locationTypeId = UIComboBox.getComboBox("Location Type :", "locationTypeId", LocationModel.class, binder, new Consumer<ComboBox>() {
+            public void accept(ComboBox comboBox) {
+                Set<LocationType> locationTypes = LocationFacade.locationTypeService.findAll();
+                for (LocationType locationType : locationTypes) {
+                    comboBox.addItem(locationType.getId());
+                    comboBox.setItemCaption(locationType.getId(), locationType.getName());
+                }
+            }
+        });
+
+        //ComboBox Fields
+        final ComboBox parentId = UIComboBox.getComboBox("Parent Location  :", "parentId", LocationModel.class, binder, new Consumer<ComboBox>() {
+            public void accept(ComboBox comboBox) {
+                Set<Location> locations = LocationFacade.locationService.findAll();
+                for (Location location : locations) {
+                    comboBox.addItem(location.getId());
+                    comboBox.setItemCaption(location.getId(), location.getName());
+                }
+            }
+        });
 
         // Create a field group and use it to bind the fields in the layout
         GridLayout grid = new GridLayout(4, 10);
         grid.setSizeFull();
 
         // First ROW
-        grid.addComponent(parent, 0, 0);
+        grid.addComponent(parentId, 0, 0);
         grid.addComponent(name, 1, 0);
         grid.addComponent(code, 2, 0);
 
         //Second ROW
-        grid.addComponent(locationTypes, 0, 1);
+        grid.addComponent(locationTypeId, 0, 1);
         grid.addComponent(latitude, 1, 1);
         grid.addComponent(longitude, 2, 1);
 

@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class DepartureReasonRepsitoryImpl implements DepartureReasonRepsitory {
     Redisson redisson = Connection.getConnection();
-    RMap<String, DepartureReason> lists = redisson.getMap("addresstype");
+    RMap<String, DepartureReason> lists = redisson.getMap("departurereason");
 
     @Override
     public DepartureReason findById(String s) {

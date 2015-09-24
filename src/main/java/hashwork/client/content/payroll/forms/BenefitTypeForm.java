@@ -36,12 +36,12 @@ public class BenefitTypeForm extends FormLayout {
         TextField amount = UIComponent.getTextField("Amount :", "amount", BenefitTypeModel.class, binder);
         //  TextField currencyId = UIComponent.getTextField("CurrencyModel ID :", "currencyId", BenefitTypeModel.class, binder);
 
-        //ComboBox Fields
-        ComboBox currencyId = UIComboBox.getLocationTypeComboBox("CurrencyModel :", "currencyId", BenefitTypeModel.class, binder);
-
-        addComponent(benefitTypeName);
+//        //ComboBox Fields
+//        ComboBox currencyId = UIComboBox.getLocationTypeComboBox("CurrencyModel :", "currencyId", BenefitTypeModel.class, binder);
+//
+//        addComponent(benefitTypeName);
         addComponent(amount);
-        addComponent(currencyId);
+//        addComponent(currencyId);
 
         HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
         buttons.setSizeFull();
