@@ -7,10 +7,7 @@ import hashwork.app.util.fields.ButtonsHelper;
 import hashwork.app.util.fields.UIComboBoxHelper;
 import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.education.model.EvaluationModel;
-import hashwork.client.content.system.locations.model.LocationModel;
 import hashwork.client.content.system.locations.model.LocationTypeModel;
-import hashwork.domain.ui.education.Evaluation;
-import hashwork.services.ui.education.EvaluationService;
 //import hashwork.services.ui.education.Impl.EvaluationServiceImpl;
 
 /**

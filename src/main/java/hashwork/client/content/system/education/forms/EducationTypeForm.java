@@ -10,7 +10,6 @@ import hashwork.app.util.fields.ButtonsHelper;
 import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.education.model.EducationTypeModel;
 import hashwork.client.content.system.locations.model.LocationTypeModel;
-import hashwork.services.ui.education.EducationTypeService;
 //import hashwork.services.ui.education.Impl.EducationTypeServiceImpl;
 
 /**

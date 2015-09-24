@@ -7,7 +7,6 @@ import hashwork.app.util.fields.ButtonsHelper;
 import hashwork.app.util.fields.UIComboBoxHelper;
 import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.education.model.CompetencyTypeModel;
-import hashwork.services.ui.education.CompetencyTypeService;
 //import hashwork.services.ui.education.Impl.CompetencyTypeServiceImpl;
 
 /**
