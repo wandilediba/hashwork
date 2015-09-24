@@ -78,7 +78,21 @@ public class Currency implements Serializable {
         public Currency build() {
             return new Currency(this);
         }
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Currency currency = (Currency) o;
+
+        return !(id != null ? !id.equals(currency.id) : currency.id != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

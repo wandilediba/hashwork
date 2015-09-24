@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class CurrencyRepositoryImpl implements CurrencyRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, Currency> lists = redisson.getMap("addresstype");
+    RMap<String, Currency> lists = redisson.getMap("currency");
 
     @Override
     public Currency findById(String s) {
