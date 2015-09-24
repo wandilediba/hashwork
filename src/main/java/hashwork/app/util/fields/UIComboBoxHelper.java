@@ -5,6 +5,7 @@ import com.vaadin.data.validator.BeanValidator;
 import com.vaadin.server.Sizeable;
 import com.vaadin.ui.ComboBox;
 import hashwork.app.facade.LocationFacade;
+import hashwork.client.content.system.education.model.EvaluationModel;
 import hashwork.domain.ui.location.Location;
 import hashwork.domain.ui.location.LocationType;
 
@@ -69,6 +70,7 @@ public class UIComboBoxHelper<T> implements Serializable {
         binder.bind(comboBox, fieldName);
         return comboBox;
     }
+
 
 
 }
