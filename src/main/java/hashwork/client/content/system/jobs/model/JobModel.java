@@ -1,7 +1,6 @@
 package hashwork.client.content.system.jobs.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by hashcode on 2015/09/16.
@@ -14,19 +13,12 @@ public class JobModel implements Serializable {
     private String description;
     private String salaryGradeId;
     private String jobClassificationId;
-    private List<String> positionIds;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public List<String> getPositionIds() {
-        return positionIds;
-    }
 
-    public void setPositionIds(List<String> positionIds) {
-        this.positionIds = positionIds;
-    }
 
     public String getSalaryGradeId() {
         return salaryGradeId;

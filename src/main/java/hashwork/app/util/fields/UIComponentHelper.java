@@ -40,7 +40,7 @@ public class UIComponentHelper<T> implements Serializable {
         return textField;
     }
 
-    public TextField getBigDecimalTextField(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
+    public TextField getGridBigDecimalTextField(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         TextField textField = new TextField();
         textField.setCaption(fieldText);
 
@@ -92,7 +92,7 @@ public class UIComponentHelper<T> implements Serializable {
 
     }
 
-    public TextArea getTextArea(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
+    public TextArea getGridTextArea(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         TextArea textArea = new TextArea(fieldText);
         textArea.setWidth(250, Sizeable.Unit.PIXELS);
         textArea.setNullRepresentation("");

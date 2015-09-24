@@ -34,6 +34,6 @@ public class BenefitFrequencyTable extends Table {
         // Send changes in selection immediately to server.
         setImmediate(true);
     }
-    
+
 
 }

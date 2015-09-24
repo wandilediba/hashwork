@@ -1,9 +1,7 @@
 package hashwork.client.content.system.positions.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by hashcode on 2015/09/16.
@@ -24,9 +22,6 @@ public class PositionModel implements Serializable {
     private String positionComments;
 
     private String officeId;
-
-    private List<String> subodinateIds = new ArrayList<>();
-
     private String supervisorId; // PositionId
 
     private String departmentId;
@@ -111,14 +106,6 @@ public class PositionModel implements Serializable {
 
     public void setOfficeId(String officeId) {
         this.officeId = officeId;
-    }
-
-    public List<String> getSubodinateIds() {
-        return subodinateIds;
-    }
-
-    public void setSubodinateIds(List<String> subodinateIds) {
-        this.subodinateIds = subodinateIds;
     }
 
     public String getSupervisorId() {
