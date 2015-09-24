@@ -38,23 +38,23 @@ public class JobAdvertForm extends FormLayout {
         TextField description = UIComponent.getGridTextField("Job Advert Description :", "latitude", JobAdvertModel.class, binder);
         TextField active = UIComponent.getGridTextField("Longitude :", "longitude", JobAdvertModel.class, binder);
 
-        //ComboBox Fields
-        ComboBox jobId = UIComboBox.getLocationTypeComboBox("Job Type :", "jobId", JobAdvertModel.class, binder);
-        ComboBox applicants = UIComboBox.getLocationComboBox("Applicants Type :", "applicantsIds", JobAdvertModel.class, binder);
+//        //ComboBox Fields
+//        ComboBox jobId = UIComboBox.getLocationTypeComboBox("Job Type :", "jobId", JobAdvertModel.class, binder);
+//        ComboBox applicants = UIComboBox.getLocationComboBox("Applicants Type :", "applicantsIds", JobAdvertModel.class, binder);
 
         // Create a field group and use it to bind the fields in the layout
         GridLayout grid = new GridLayout(4, 10);
         grid.setSizeFull();
 
-        // First ROW
-        grid.addComponent(jobId, 0, 0);
-        grid.addComponent(start, 1, 0);
-        grid.addComponent(closingDate, 2, 0);
-
-        //Second ROW
-        grid.addComponent(applicants, 0, 1);
-        grid.addComponent(description, 1, 1);
-        grid.addComponent(active, 2, 1);
+//        // First ROW
+//        grid.addComponent(jobId, 0, 0);
+//        grid.addComponent(start, 1, 0);
+//        grid.addComponent(closingDate, 2, 0);
+//
+//        //Second ROW
+//        grid.addComponent(applicants, 0, 1);
+//        grid.addComponent(description, 1, 1);
+//        grid.addComponent(active, 2, 1);
 
 
         HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);

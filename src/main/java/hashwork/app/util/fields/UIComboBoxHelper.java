@@ -47,7 +47,7 @@ public class UIComboBoxHelper<T> implements Serializable {
         return comboBox;
     }
 
-    public ComboBox getLocationComboBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
+    public ComboBox getLocationComboBox1(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         ComboBox comboBox = new ComboBox(fieldText);
         Set<Location> locations = LocationFacade.locationService.findAll();
 
@@ -64,7 +64,7 @@ public class UIComboBoxHelper<T> implements Serializable {
         return comboBox;
     }
 
-    public ComboBox getLocationTypeComboBox(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
+    public ComboBox getLocationTypeComboBox1(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         ComboBox comboBox = new ComboBox(fieldText);
         Set<LocationType> locationTypeList = LocationFacade.locationTypeService.findAll();
 

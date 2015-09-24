@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import hashwork.app.facade.JobFacade;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.jobs.JobsMenu;
+import hashwork.client.content.system.jobs.JobsTabValues;
 import hashwork.client.content.system.jobs.forms.BenefitFrequencyForm;
 import hashwork.client.content.system.jobs.model.BenefitFrequencyModel;
 import hashwork.client.content.system.jobs.table.BenefitFrequencyTable;
@@ -99,7 +100,7 @@ public class BenefitFrequencyTab extends VerticalLayout implements
 
 
     private void getHome() {
-        main.content.setSecondComponent(new JobsMenu(main, "BenefitFrequency"));
+        main.content.setSecondComponent(new JobsMenu(main, JobsTabValues.BENEFITFREQUENCY.name()));
     }
 
     private void setEditFormProperties() {

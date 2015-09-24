@@ -8,6 +8,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import hashwork.app.facade.PositionFacade;
 import hashwork.client.content.MainLayout;
+import hashwork.client.content.system.positions.PositionTabValues;
 import hashwork.client.content.system.positions.PositionsMenu;
 import hashwork.client.content.system.positions.forms.PositionForm;
 import hashwork.client.content.system.positions.model.PositionModel;
@@ -103,7 +104,7 @@ public class PositionTab extends VerticalLayout implements
 
 
     private void getHome() {
-        main.content.setSecondComponent(new PositionsMenu(main, "Position"));
+        main.content.setSecondComponent(new PositionsMenu(main, PositionTabValues.POSITION.name()));
     }
 
     private void setEditFormProperties() {

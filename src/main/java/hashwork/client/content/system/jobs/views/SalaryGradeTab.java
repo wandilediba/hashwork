@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import hashwork.app.facade.JobFacade;
 import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.jobs.JobsMenu;
+import hashwork.client.content.system.jobs.JobsTabValues;
 import hashwork.client.content.system.jobs.forms.SalaryGradeForm;
 import hashwork.client.content.system.jobs.model.SalaryGradeModel;
 import hashwork.client.content.system.jobs.table.SalaryGradeTable;
@@ -103,7 +104,7 @@ public class SalaryGradeTab extends VerticalLayout implements
 
 
     private void getHome() {
-        main.content.setSecondComponent(new JobsMenu(main, "SalaryGrade"));
+        main.content.setSecondComponent(new JobsMenu(main, JobsTabValues.SALARYGRADE.name()));
     }
 
     private void setEditFormProperties() {

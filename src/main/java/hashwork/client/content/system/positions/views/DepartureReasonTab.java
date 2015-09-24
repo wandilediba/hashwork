@@ -8,6 +8,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import hashwork.app.facade.PositionFacade;
 import hashwork.client.content.MainLayout;
+import hashwork.client.content.system.positions.PositionTabValues;
 import hashwork.client.content.system.positions.PositionsMenu;
 import hashwork.client.content.system.positions.forms.DepartureReasonForm;
 import hashwork.client.content.system.positions.model.DepartureReasonModel;
@@ -98,7 +99,7 @@ public class DepartureReasonTab extends VerticalLayout implements
     }
 
     private void getHome() {
-        main.content.setSecondComponent(new PositionsMenu(main, "DepartureReason"));
+        main.content.setSecondComponent(new PositionsMenu(main, PositionTabValues.DEPARTUREREASON.name()));
     }
 
     private void setEditFormProperties() {

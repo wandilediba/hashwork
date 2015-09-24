@@ -36,8 +36,8 @@ public class JobApplicantForm extends FormLayout {
 
      //   TextField applicantId = UIComponent.getTextField("Applicant :", "applicantId", JobApplicantModel.class, binder);
         //ComboBox Fields
-        ComboBox applicantId = UIComboBox.getLocationTypeComboBox("Location Type :", "locationTypeId", JobApplicantModel.class, binder);
-        addComponent(applicantId);
+//        ComboBox applicantId = UIComboBox.getLocationTypeComboBox("Location Type :", "locationTypeId", JobApplicantModel.class, binder);
+//        addComponent(applicantId);
 
         HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
         buttons.setSizeFull();

@@ -18,8 +18,6 @@ public class DepartureReasonTable extends Table {
     public DepartureReasonTable(MainLayout main) {
         this.main = main;
         setSizeFull();
-//            private String reasonName;
-//    private String description;
 
         addContainerProperty("Depature Reason", String.class, null);
         addContainerProperty("Description", String.class, null);
@@ -29,7 +27,8 @@ public class DepartureReasonTable extends Table {
         for (DepartureReason departureReason : departureReasons) {
             addItem(new Object[]{
                             departureReason.getReasonName(),
-                            departureReason.getDescription()},
+                            departureReason.getDescription()
+                    },
                     departureReason.getId());
         }
         // Allow selecting items from the table.
