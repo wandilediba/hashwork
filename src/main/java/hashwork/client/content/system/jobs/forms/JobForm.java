@@ -74,12 +74,16 @@ public class JobForm extends FormLayout {
 
         // First ROW
         grid.addComponent(title, 0, 0);
-        grid.addComponent(code, 0, 1);
-        grid.addComponent(salaryGradeId, 2, 0);
+        grid.addComponent(code, 1, 0);
+
 
         //Second ROW
-        grid.addComponent(description, 1, 1);
-        grid.addComponent(jobClassificationId, 2, 1);
+        grid.addComponent(jobClassificationId, 0, 1);
+        grid.addComponent(salaryGradeId, 1, 1);
+
+        //SPAN ROW 1 and 2
+        grid.addComponent(description, 2, 0, 2, 1);
+
 
 
         HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
