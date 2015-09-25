@@ -39,11 +39,11 @@ public class SalaryGradeForm extends FormLayout {
 
         // Text Fields
         TextField gradeName = UIComponent.getGridTextField("Grade Name :", "gradeName", SalaryGradeModel.class, binder);
-        TextField notes = UIComponent.getGridTextField("Notes :", "notes", SalaryGradeModel.class, binder);
+        TextArea notes = UIComponent.getTextAreaFull("Notes :", "notes", SalaryGradeModel.class, binder);
         TextField midAmount = UIComponent.getGridBigDecimalTextField("Mid Amount :", "midAmount", SalaryGradeModel.class, binder);
-        TextField endAmount = UIComponent.getGridBigDecimalTextField("Mid Amount :", "endAmount", SalaryGradeModel.class, binder);
-        TextField startAmount = UIComponent.getGridBigDecimalTextField("Mid Amount :", "startAmount", SalaryGradeModel.class, binder);
-        TextField currentAmount = UIComponent.getGridBigDecimalTextField("Mid Amount :", "currentAmount", SalaryGradeModel.class, binder);
+        TextField endAmount = UIComponent.getGridBigDecimalTextField("End Amount :", "endAmount", SalaryGradeModel.class, binder);
+        TextField startAmount = UIComponent.getGridBigDecimalTextField("Start Amount :", "startAmount", SalaryGradeModel.class, binder);
+        TextField currentAmount = UIComponent.getGridBigDecimalTextField("Current Amount :", "currentAmount", SalaryGradeModel.class, binder);
 
         //ComboBox Fields
         final ComboBox currencyId = UIComboBox.getComboBox("Currency :", "currencyId", SalaryGradeModel.class, binder, new Consumer<ComboBox>() {
@@ -71,7 +71,7 @@ public class SalaryGradeForm extends FormLayout {
         grid.addComponent(endAmount, 1, 1);
         grid.addComponent(currencyId, 2, 1);
 
-        grid.addComponent(notes, 0, 3);
+        grid.addComponent(notes, 0, 3, 2, 3);
 
 
         HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);

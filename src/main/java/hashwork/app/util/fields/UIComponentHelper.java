@@ -48,21 +48,10 @@ public class UIComponentHelper<T> implements Serializable {
         textField.setWidth(250, Sizeable.Unit.PIXELS);
         textField.setNullRepresentation("");
         textField.setRequiredError("Field is Required");
-        textField.setComponentError(new UserError("Invalid format"));
+//        textField.setComponentError(new UserError("Invalid format"));
         textField.addValidator(new BeanValidator(fieldClass, fieldName));
         textField.setImmediate(true);
         binder.bind(textField, fieldName);
-
-
-        /*    TextField textField = new TextField();
-         textField.setCaption(label);
-         textField.setConverter(new BigDecimalConverter());
-         textField.setWidth(250, Unit.PIXELS);;
-         textField.setNullRepresentation("");
-         textField.setRequiredError("Field is Required");
-         textField.addValidator(new BeanValidator(SalaryGradeBean.class, field));
-         textField.setImmediate(true);
-         binder.bind(textField, field);*/
 
         return textField;
     }
@@ -73,7 +62,7 @@ public class UIComponentHelper<T> implements Serializable {
 //        textField.setConverter(new BigDecimalConverter());
         textField.setWidth(fieldWidth, Sizeable.Unit.PIXELS);
         textField.setNullRepresentation("");
-        textField.setRequiredError("Field is Required");
+//        textField.setRequiredError("Field is Required");
         textField.setComponentError(new UserError("Bad value"));
         textField.addValidator(new BeanValidator(fieldClass, fieldName));
         textField.setImmediate(true);
@@ -81,9 +70,10 @@ public class UIComponentHelper<T> implements Serializable {
         return textField;
     }
 
-    public TextArea getTextArea510px(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
+    public TextArea getTextAreaFull(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder) {
         TextArea textArea = new TextArea(fieldText);
-        textArea.setWidth(510, Sizeable.Unit.PIXELS);
+//        textArea.setWidth(510, Sizeable.Unit.PIXELS);
+        textArea.setSizeFull();
         textArea.setNullRepresentation("");
         //textArea.addValidator(new BeanValidator(fieldClass.getClass(), fieldName));
         textArea.setImmediate(true);
@@ -102,15 +92,7 @@ public class UIComponentHelper<T> implements Serializable {
         return textArea;
     }
 
-    /*private TextArea getTextArea(String label, String field) {
-     TextArea textArea = new TextArea(label);
-     textArea.setWidth(250, Unit.PIXELS);
-     textArea.setNullRepresentation("");
-     textArea.addValidator(new BeanValidator(OfficeBean.class, field));
-     textArea.setImmediate(true);
-     binder.bind(textArea, field);
-     return textArea;
-     }*/
+
     public TextArea getTextArea(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder, int fieldWidth) {
         TextArea textArea = new TextArea(fieldText);
         textArea.setWidth(fieldWidth, Sizeable.Unit.PIXELS);

@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class PositionSalarySourceRepositoryImpl implements PositionSalarySourceRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, PositionSalarySource> lists = redisson.getMap("addresstype");
+    RMap<String, PositionSalarySource> lists = redisson.getMap("positionsalarysource");
 
     @Override
     public PositionSalarySource findById(String s) {
