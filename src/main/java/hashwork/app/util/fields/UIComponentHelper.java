@@ -92,15 +92,7 @@ public class UIComponentHelper<T> implements Serializable {
         return textArea;
     }
 
-    /*private TextArea getTextArea(String label, String field) {
-     TextArea textArea = new TextArea(label);
-     textArea.setWidth(250, Unit.PIXELS);
-     textArea.setNullRepresentation("");
-     textArea.addValidator(new BeanValidator(OfficeBean.class, field));
-     textArea.setImmediate(true);
-     binder.bind(textArea, field);
-     return textArea;
-     }*/
+
     public TextArea getTextArea(String fieldText, String fieldName, Class<T> fieldClass, FieldGroup binder, int fieldWidth) {
         TextArea textArea = new TextArea(fieldText);
         textArea.setWidth(fieldWidth, Sizeable.Unit.PIXELS);
