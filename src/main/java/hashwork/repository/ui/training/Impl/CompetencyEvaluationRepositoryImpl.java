@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class CompetencyEvaluationRepositoryImpl implements CompetencyEvaluationRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, CompetencyEvaluation> lists = redisson.getMap("addresstype");
+    RMap<String, CompetencyEvaluation> lists = redisson.getMap("competencyEvaluation");
 
     @Override
     public CompetencyEvaluation findById(String s) {

@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class ContinuingEducationCourseRespositoryImpl implements ContinuingEducationCourseRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, ContinuingEducationCourse> lists = redisson.getMap("addresstype");
+    RMap<String, ContinuingEducationCourse> lists = redisson.getMap("continuingEducationCourse");
 
     @Override
     public ContinuingEducationCourse findById(String s) {

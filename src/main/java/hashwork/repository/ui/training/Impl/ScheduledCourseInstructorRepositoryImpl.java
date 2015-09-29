@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class ScheduledCourseInstructorRepositoryImpl implements ScheduledCourseInstructorRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, ScheduledCourseInstructor> lists = redisson.getMap("addresstype");
+    RMap<String, ScheduledCourseInstructor> lists = redisson.getMap("scheduledCourseInstructor");
 
     @Override
     public ScheduledCourseInstructor findById(String s) {

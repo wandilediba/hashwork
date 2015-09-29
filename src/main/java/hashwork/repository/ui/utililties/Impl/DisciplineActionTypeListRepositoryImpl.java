@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class DisciplineActionTypeListRepositoryImpl implements DisciplineActionTypeListRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, DisciplineActionTypeList> lists = redisson.getMap("addresstype");
+    RMap<String, DisciplineActionTypeList> lists = redisson.getMap("disciplineActionTypeList");
 
     @Override
     public DisciplineActionTypeList findById(String s) {
