@@ -22,7 +22,7 @@ import org.redisson.core.RMap;
  */
 public class PersonHiringDecisionRepositoryImpl implements PersonHiringDecisionRepository {
      Redisson redisson = Connection.getConnection();
-    RMap<String, PersonHiringDecision> lists = redisson.getMap("addresstype");
+    RMap<String, PersonHiringDecision> lists = redisson.getMap("PersonHiringDecision");
     
     public PersonHiringDecisionRepositoryImpl() {
 

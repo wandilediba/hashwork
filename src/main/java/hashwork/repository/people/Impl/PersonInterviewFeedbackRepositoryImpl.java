@@ -22,7 +22,7 @@ import org.redisson.core.RMap;
  */
 public class PersonInterviewFeedbackRepositoryImpl implements PersonInterviewFeedbackRepository {
       Redisson redisson = Connection.getConnection();
-    RMap<String, PersonInterviewFeedback> lists = redisson.getMap("addresstype");
+    RMap<String, PersonInterviewFeedback> lists = redisson.getMap("PersonInterviewFeedback");
     
     public PersonInterviewFeedbackRepositoryImpl() {
 

@@ -24,7 +24,7 @@ import org.redisson.core.RMap;
 public class PersonContactRepositoryImpl implements PersonContactRepository {
     
     Redisson redisson = Connection.getConnection();
-    RMap<String, PersonContact> lists = redisson.getMap("addresstype");
+    RMap<String, PersonContact> lists = redisson.getMap("PersonContact");
     
     public PersonContactRepositoryImpl() {
 
