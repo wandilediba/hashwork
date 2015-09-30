@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class StatusRepositoryImpl implements StatusRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, Status> lists = redisson.getMap("addresstype");
+    RMap<String, Status> lists = redisson.getMap("status");
 
     @Override
     public Status findById(String s) {

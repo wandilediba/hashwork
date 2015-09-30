@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class ScheduledCourseEvaluationRepositoryImpl implements ScheduledCourseEvaluationRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, ScheduledCourseEvaluation> lists = redisson.getMap("addresstype");
+    RMap<String, ScheduledCourseEvaluation> lists = redisson.getMap("scheduledCourseEvaluation");
 
     @Override
     public ScheduledCourseEvaluation findById(String s) {

@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class FunderRepositoryImpl implements FunderRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, Funder> lists = redisson.getMap("addresstype");
+    RMap<String, Funder> lists = redisson.getMap("funder");
 
     @Override
     public Funder findById(String s) {

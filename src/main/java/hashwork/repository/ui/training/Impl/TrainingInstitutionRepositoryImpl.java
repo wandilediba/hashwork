@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class TrainingInstitutionRepositoryImpl implements TrainingInstitutionRepositpry {
     Redisson redisson = Connection.getConnection();
-    RMap<String, TrainingInstitution> lists = redisson.getMap("addresstype");
+    RMap<String, TrainingInstitution> lists = redisson.getMap("trainingInstitution");
 
     @Override
     public TrainingInstitution findById(String s) {
