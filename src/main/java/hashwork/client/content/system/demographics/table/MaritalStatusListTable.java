@@ -19,7 +19,7 @@ public class MaritalStatusListTable extends Table {
         this.main = main;
         setSizeFull();
 
-        addContainerProperty("Status Name", String.class, null);
+        addContainerProperty("StatusModel Name", String.class, null);
 
         // Add Data Columns
         Set<MaritalStatusList> maritalStatusLists = maritalStatusListService.findAll();

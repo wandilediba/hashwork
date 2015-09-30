@@ -1,9 +1,6 @@
 package hashwork.client.content.system.locations.model;
 
 import java.io.Serializable;
-//package hashwork.client.content.system.locations.model;
-
-import java.io.Serializable;
 import java.util.Date;
 
 /**
