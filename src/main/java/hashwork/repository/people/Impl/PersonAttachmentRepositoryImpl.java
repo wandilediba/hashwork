@@ -24,7 +24,7 @@ import org.redisson.core.RMap;
 public class PersonAttachmentRepositoryImpl implements PersonAttachmentRepository {
 
     Redisson redisson = Connection.getConnection();
-    RMap<String, PersonAttachment> lists = redisson.getMap("addresstype");
+    RMap<String, PersonAttachment> lists = redisson.getMap("PersonAttachment");
     
     public PersonAttachmentRepositoryImpl() {
 
