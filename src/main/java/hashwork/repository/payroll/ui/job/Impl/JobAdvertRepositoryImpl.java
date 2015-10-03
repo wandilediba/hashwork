@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class JobAdvertRepositoryImpl implements JobAdvertRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, JobAdvert> lists = redisson.getMap("jobadvert");
+    RMap<String, JobAdvert> lists = redisson.getMap("JobAdvert");
 
     @Override
     public JobAdvert findById(String s) {

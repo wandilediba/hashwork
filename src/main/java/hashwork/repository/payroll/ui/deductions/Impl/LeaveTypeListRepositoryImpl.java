@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class LeaveTypeListRepositoryImpl implements LeaveTypeListRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, LeaveTypeList> lists = redisson.getMap("leaveTypeList");
+    RMap<String, LeaveTypeList> lists = redisson.getMap("LeaveTypeList");
 
     public LeaveTypeListRepositoryImpl() {
 
