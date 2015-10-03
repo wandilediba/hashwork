@@ -15,9 +15,9 @@ public class JobFactory {
                 .id(KeyGenerator.getEntityId())
                 .title(values.get("title"))
                 .code(values.get("code"))
-                .description(values.get("desc"))
+                .description(values.get("description"))
                 .salaryGradeId(values.get("salaryGradeId"))
-                .jobClassificationId(values.get("jobClassId"))
+                .jobClassificationId(values.get("jobClassificationId"))
                 .build();
         return job;
     }

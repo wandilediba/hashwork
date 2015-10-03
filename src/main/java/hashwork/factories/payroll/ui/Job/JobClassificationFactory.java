@@ -13,11 +13,11 @@ public class JobClassificationFactory {
         JobClassification jobClassification = new JobClassification
                 .Builder()
                 .id(KeyGenerator.getEntityId())
-                .currentTitle(values.get("currTitle"))
+                .currentTitle(values.get("currentTitle"))
                 .oldTitle(values.get("oldTitle"))
                 .oldCode(values.get("oldCode"))
-                .currentCode(values.get("currCode"))
-                .codeConversion(values.get("codeConvo"))
+                .currentCode(values.get("currentCode"))
+                .codeConversion(values.get("codeConversion"))
                 .comment(values.get("comment")).build();
         return jobClassification;
 
