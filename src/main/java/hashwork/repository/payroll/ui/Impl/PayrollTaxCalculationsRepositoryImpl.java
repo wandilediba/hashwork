@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class PayrollTaxCalculationsRepositoryImpl implements PayrollTaxCalculationsRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, PayrollTaxCalculations> lists = redisson.getMap("payrolltaxCalc");
+    RMap<String, PayrollTaxCalculations> lists = redisson.getMap("PayrollTaxCalculations");
 
     public PayrollTaxCalculationsRepositoryImpl(){}
     @Override

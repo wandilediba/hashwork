@@ -18,7 +18,7 @@ public class EmployeeUIFContributionFactory {
                 .Builder()
                 .id(KeyGenerator.getEntityId())
                 .personaId(values.get("personId"))
-                .country(values.get("counry"))
+                .country(values.get("country"))
                 .contribution(amounts.get("contribution"))
                 .currentAmount(amounts.get("currentAmount"))
                 .lastContributionDate(lastContributionDate).build();

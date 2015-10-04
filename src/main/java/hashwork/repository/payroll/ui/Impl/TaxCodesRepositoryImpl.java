@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class TaxCodesRepositoryImpl implements TaxCodesRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, TaxCodes> lists = redisson.getMap("taxcode");
+    RMap<String, TaxCodes> lists = redisson.getMap("TaxCodes");
 
     public TaxCodesRepositoryImpl(){}
     @Override

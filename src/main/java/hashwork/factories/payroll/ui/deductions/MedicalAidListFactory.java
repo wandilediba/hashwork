@@ -17,7 +17,7 @@ public class MedicalAidListFactory {
                 .id(KeyGenerator.getEntityId())
                 .monthlyContribution(monthlyContribution)
                 .medicalAidType(values.get("medicalAidType"))
-                .description(values.get("desc")).build();
+                .description(values.get("description")).build();
         return medicalAidList;
     }
 }

@@ -17,7 +17,7 @@ public class LoanListFactory {
         LoansList loansList = new LoansList
                 .Builder()
                 .id(KeyGenerator.getEntityId())
-                .loanDesc(stringValues.get("loanDesc"))
+                .loanDesc(stringValues.get("loanDescription"))
                 .loanType(stringValues.get("loanType"))
                 .loanPaybackPeriod(loanPaybackPeriod)
                 .maxLoanAmt(bigDecimalValues.get("maxLoanAmt"))
