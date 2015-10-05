@@ -2,6 +2,7 @@ package hashwork.client.content.home;
 
 import com.hs18.vaadin.addon.graph.GraphJSComponent;
 import com.hs18.vaadin.addon.graph.listener.GraphJsLeftClickListener;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
@@ -35,7 +36,7 @@ public class LandindPageView extends VerticalLayout {
         graphJSComponent.setImmediate(true);
 
         String lhtml = "<div id='graph' class='graph' ></div>";//add style='overflow:scroll' if required
-        Label graphLabel = new Label(lhtml, Label.CONTENT_XHTML);
+        Label graphLabel = new Label(lhtml, ContentMode.HTML);
 
         addComponent(graphLabel);
         addComponent(graphJSComponent);
