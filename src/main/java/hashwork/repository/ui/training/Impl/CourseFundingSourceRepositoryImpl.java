@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class CourseFundingSourceRepositoryImpl implements CourseFundingSourceRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, CourseFundingSource> lists = redisson.getMap("addresstype");
+    RMap<String, CourseFundingSource> lists = redisson.getMap("courseFundingSource");
 
     @Override
     public CourseFundingSource findById(String s) {

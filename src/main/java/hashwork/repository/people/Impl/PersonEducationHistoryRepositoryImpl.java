@@ -22,7 +22,7 @@ import org.redisson.core.RMap;
  */
 public class PersonEducationHistoryRepositoryImpl implements PersonEducationHistoryRepository {
      Redisson redisson = Connection.getConnection();
-    RMap<String, PersonEducationHistory> lists = redisson.getMap("addresstype");
+    RMap<String, PersonEducationHistory> lists = redisson.getMap("PersonEducationHistory");
     
    public PersonEducationHistoryRepositoryImpl() {
 

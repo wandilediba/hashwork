@@ -7,20 +7,22 @@ package hashwork.repository.people.Impl;
 
 import hashwork.app.conf.Connection;
 import hashwork.domain.people.Person;
+import hashwork.domain.people.PersonAddress;
 import hashwork.repository.people.PersonRepository;
-import org.redisson.Redisson;
-import org.redisson.core.RMap;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 /**
  * @author BONGANI
  */
 public class PersonRepositoryImpl implements PersonRepository {
      Redisson redisson = Connection.getConnection();
-    RMap<String, Person> lists = redisson.getMap("people");
+    RMap<String, Person> lists = redisson.getMap("Person");
     
   
     public PersonRepositoryImpl() {

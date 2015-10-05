@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class CourseRequestRepositoryImpl implements CourseRequestRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, CourseRequest> lists = redisson.getMap("addresstype");
+    RMap<String, CourseRequest> lists = redisson.getMap("courseRequest");
 
     @Override
     public CourseRequest findById(String s) {

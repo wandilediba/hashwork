@@ -22,7 +22,7 @@ import org.redisson.core.RMap;
  */
 public class PersonLanguageRepositoryImpl implements PersonLanguageRepository {
      Redisson redisson = Connection.getConnection();
-    RMap<String, PersonLanguage> lists = redisson.getMap("addresstype");
+    RMap<String, PersonLanguage> lists = redisson.getMap("PersonLanguage");
     
     public PersonLanguageRepositoryImpl() {
 

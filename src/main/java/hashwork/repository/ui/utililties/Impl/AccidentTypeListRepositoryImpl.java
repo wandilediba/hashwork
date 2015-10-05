@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class AccidentTypeListRepositoryImpl implements AccidentTypeListRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, AccidentTypeList> lists = redisson.getMap("addresstype");
+    RMap<String, AccidentTypeList> lists = redisson.getMap("accidentTypeList");
 
     @Override
     public AccidentTypeList findById(String s) {

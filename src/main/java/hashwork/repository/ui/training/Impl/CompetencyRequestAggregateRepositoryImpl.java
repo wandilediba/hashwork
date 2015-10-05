@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class CompetencyRequestAggregateRepositoryImpl implements CompetencyRequestAggregateRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, CompetencyRequestAggregate> lists = redisson.getMap("addresstype");
+    RMap<String, CompetencyRequestAggregate> lists = redisson.getMap("competencyRequestAggregate");
 
     @Override
     public CompetencyRequestAggregate findById(String s) {
