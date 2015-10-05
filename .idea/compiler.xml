@@ -22,11 +22,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="hashwork" />
+      </profile>
+      <profile default="false" name="Annotation profile for zm.hashcode.hashwork" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="zm.hashcode.hashwork" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="hashwork" target="1.8" />
+      <module name="zm.hashcode.hashwork" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
