@@ -1,7 +1,6 @@
 package hashwork.domain.payroll.ui.job;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by hashcode on 2015/08/16.
@@ -15,7 +14,6 @@ public class Job implements Serializable, Comparable<Job>{
     private String description;
     private String salaryGradeId;
     private String jobClassificationId;
-    private List<String> positionIds;
 
     public String getId() {
         return id;
@@ -41,8 +39,15 @@ public class Job implements Serializable, Comparable<Job>{
         return jobClassificationId;
     }
 
-    public List<String> getPositionIds() {
-        return positionIds;
+
+    private Job(){}
+    private Job(Builder builder){
+        this.id = builder.id;
+        this.title = builder.title;
+        this.code = builder.code;
+        this.description = builder.description;
+        this.salaryGradeId = builder.salaryGradeId;
+        this.jobClassificationId = builder.jobClassificationId;
     }
 
     public static class Builder{
@@ -52,7 +57,7 @@ public class Job implements Serializable, Comparable<Job>{
         private String description;
         private String salaryGradeId;
         private String jobClassificationId;
-        private List<String> positionIds;
+
 
         public Builder id(String value){
             this.id = value;
@@ -78,10 +83,7 @@ public class Job implements Serializable, Comparable<Job>{
             this.jobClassificationId = value;
             return this;
         }
-        public Builder positionIds(List<String> value){
-            this.positionIds = value;
-            return this;
-        }
+
 
         public Builder copy(Job value) {
             this.id = value.id;
@@ -90,13 +92,12 @@ public class Job implements Serializable, Comparable<Job>{
             this.description = value.description;
             this.salaryGradeId = value.salaryGradeId;
             this.jobClassificationId = value.jobClassificationId;
-            this.positionIds = value.positionIds;
             return this;
         }
 
-        /*public Job build(){
+        public Job build(){
             return new Job(this);
-        }*/
+        }
     }
 
     @Override

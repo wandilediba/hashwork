@@ -13,6 +13,8 @@ public class CompetencyEvaluation implements Serializable {
     private String compTypeName;
     private String description;
 
+    private CompetencyEvaluation(){}
+
     public String getId() {
         return id;
     }

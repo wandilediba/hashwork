@@ -5,10 +5,12 @@
  */
 package hashwork.repository.people.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.people.Person;
 import hashwork.repository.people.PersonRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -17,8 +19,10 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonRepositoryImpl implements PersonRepository {
-    Map<String, Person> lists = new HashMap<>();
-
+     Redisson redisson = Connection.getConnection();
+    RMap<String, Person> lists = redisson.getMap("people");
+    
+  
     public PersonRepositoryImpl() {
 
     }

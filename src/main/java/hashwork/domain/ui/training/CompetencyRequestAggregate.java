@@ -11,6 +11,8 @@ public class CompetencyRequestAggregate implements Serializable {
     private String status;
     private int count;
 
+    private CompetencyRequestAggregate(){}
+
     public String getId() {
         return id;
     }

@@ -17,31 +17,30 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonAddressServiceImpl implements PersonAddressService {
-    private final PersonAddressRepository repo = new PersonAddressRepositoryImpl();
 
     @Override
     public PersonAddress findById(String s) {
-        return repo.findById(s);
+         return new PersonAddressRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonAddress save(PersonAddress entity) {
-        return repo.save(entity);
+         return new PersonAddressRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonAddress update(PersonAddress entity) {
-        return repo.save(entity);
+       return new PersonAddressRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonAddress entity) {
-        repo.delete(entity);
+        new PersonAddressRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonAddress> findAll() {
-        return repo.findAll();
+        return new PersonAddressRepositoryImpl().findAll();
     }
 
 }

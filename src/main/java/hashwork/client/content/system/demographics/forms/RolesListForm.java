@@ -2,11 +2,12 @@ package hashwork.client.content.system.demographics.forms;
 
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.BeanValidator;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
+import hashwork.app.util.fields.ButtonsHelper;
+import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.demographics.model.RolesListModel;
 
 /**
@@ -26,40 +27,18 @@ public class RolesListForm extends FormLayout {
 
     public RolesListForm() {
         bean = new RolesListModel();
-        item = new BeanItem<RolesListModel>(bean);
+        item = new BeanItem<>(bean);
         binder = new FieldGroup(item);
+        final UIComponentHelper UIComponent = new UIComponentHelper();
 
-//         private String rolename;
-//    private String description;
-
-        TextField rolename = new TextField("Role Name");
-        rolename.setNullRepresentation("");
-        TextField description = new TextField("Description");
-        description.setNullRepresentation("");
-
-        // Add the bean validator
-        rolename.addValidator(new BeanValidator(RolesListModel.class, "roleName"));
-        rolename.setImmediate(true);
-        description.addValidator(new BeanValidator(RolesListModel.class, "description"));
-        description.setImmediate(true);
-
-        // Create a field group and use it to bind the fields in the layout
-
-        binder.bind(rolename, "roleName");
-        binder.bind(description, "description");
-        addComponent(rolename);
+        TextField roleName = UIComponent.getTextField("Role Name :", "roleName", RolesListModel.class, binder);
+        TextField description = UIComponent.getTextField("Description :", "description", RolesListModel.class, binder);
+        addComponent(roleName);
         addComponent(description);
-        HorizontalLayout buttons = new HorizontalLayout();
-        buttons.addComponent(save);
-        buttons.addComponent(edit);
-        buttons.addComponent(cancel);
-        buttons.addComponent(update);
-        buttons.addComponent(delete);
 
-        // Determines which properties are shown, and in which order:
-        edit.setVisible(false);
-        update.setVisible(false);
-        delete.setVisible(false);
+
+        HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
+        buttons.setSizeFull();
         addComponent(buttons);
     }
 

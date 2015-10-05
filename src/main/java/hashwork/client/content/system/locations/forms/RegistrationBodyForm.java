@@ -2,8 +2,9 @@ package hashwork.client.content.system.locations.forms;
 
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.BeanValidator;
 import com.vaadin.ui.*;
+import hashwork.app.util.fields.ButtonsHelper;
+import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.system.locations.model.RegistrationBodyModel;
 
 
@@ -23,50 +24,24 @@ public class RegistrationBodyForm extends FormLayout {
 
     public RegistrationBodyForm() {
         bean = new RegistrationBodyModel();
-        item = new BeanItem<RegistrationBodyModel>(bean);
+        item = new BeanItem<>(bean);
         binder = new FieldGroup(item);
+        final UIComponentHelper UIComponent = new UIComponentHelper();
 
-        TextField name = new TextField("Name");
-        name.setNullRepresentation("");
-        TextField description = new TextField("Description");
-        description.setNullRepresentation("");
-        TextField coreActivity = new TextField("Core Activity");
-        coreActivity.setNullRepresentation("");
-        TextField active = new TextField("Active");
-        active.setNullRepresentation("");
-        DateField date = new DateField("Date Created");
-
-
-        // Add the bean validator
-        name.addValidator(new BeanValidator(RegistrationBodyModel.class, "name"));
-        name.setImmediate(true);
-        date.addValidator(new BeanValidator(RegistrationBodyModel.class, "asOfDate"));
-        date.setImmediate(true);
-
-        // Create a field group and use it to bind the fields in the layout
-
-        binder.bind(name, "name");
-        binder.bind(description, "description");
-        binder.bind(coreActivity, "coreActivity");
-        binder.bind(active, "active");
-        binder.bind(date, "asOfDate");
+        TextField name = UIComponent.getTextField("Name :", "name", RegistrationBodyModel.class, binder);
+        TextField description = UIComponent.getTextField("Description :", "description", RegistrationBodyModel.class, binder);
+        TextField coreActivity = UIComponent.getTextField("Core Activity :", "coreActivity", RegistrationBodyModel.class, binder);
+        TextField active = UIComponent.getTextField("Active :", "active", RegistrationBodyModel.class, binder);
+        DateField date = UIComponent.getDateField("Date Created :", "asOfDate", RegistrationBodyModel.class, binder);
 
         addComponent(name);
         addComponent(description);
         addComponent(coreActivity);
         addComponent(active);
         addComponent(date);
-        HorizontalLayout buttons = new HorizontalLayout();
-        buttons.addComponent(save);
-        buttons.addComponent(edit);
-        buttons.addComponent(cancel);
-        buttons.addComponent(update);
-        buttons.addComponent(delete);
 
-        // Determines which properties are shown, and in which order:
-        edit.setVisible(false);
-        update.setVisible(false);
-        delete.setVisible(false);
+        HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
+        buttons.setSizeFull();
         addComponent(buttons);
     }
 }
