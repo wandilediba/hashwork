@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class LoansListRepositoryImpl implements LoansListRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, LoansList> lists = redisson.getMap("loanlist");
+    RMap<String, LoansList> lists = redisson.getMap("LoansList");
 
     public LoansListRepositoryImpl(){}
     @Override

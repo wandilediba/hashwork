@@ -15,8 +15,8 @@ public class LeaveTypeListFactory {
         LeaveTypeList leaveTypeList = new LeaveTypeList
                 .Builder()
                 .id(KeyGenerator.getEntityId())
-                .leaveType(values.get("leavetype"))
-                .description(values.get("desc"))
+                .leaveType(values.get("leaveType"))
+                .description(values.get("description"))
                 .paidLeave(paidLeave)
                 .maxLeaveDays(maxLeaveDays).build();
         return leaveTypeList;

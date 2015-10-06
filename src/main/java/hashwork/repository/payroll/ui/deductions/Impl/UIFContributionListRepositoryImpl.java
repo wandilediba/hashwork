@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class UIFContributionListRepositoryImpl implements UIFContributionListRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, UIFContributionList> lists = redisson.getMap("uifContributionList");
+    RMap<String, UIFContributionList> lists = redisson.getMap("UIFContributionList");
 
     public UIFContributionListRepositoryImpl() {
 

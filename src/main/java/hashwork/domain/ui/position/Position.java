@@ -1,9 +1,7 @@
 package hashwork.domain.ui.position;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by hashcode on 2015/08/16.
@@ -25,7 +23,6 @@ public class Position implements Serializable, Comparable<Position> {
     private String positionComments;
 
     private String officeId;
-    private List<String> subodinateIds = new ArrayList<String>();
 
     private String supervisorId; // PositionId
 
@@ -89,10 +86,6 @@ public class Position implements Serializable, Comparable<Position> {
         return officeId;
     }
 
-    public List<String> getSubodinateIds() {
-        return subodinateIds;
-    }
-
     public String getSupervisorId() {
         return supervisorId;
     }
@@ -117,7 +110,6 @@ public class Position implements Serializable, Comparable<Position> {
         this.positionStatusId = builder.positionStatusId;
         this.positionComments = builder.positionComments;
         this.officeId = builder.officeId;
-        this.subodinateIds = builder.subodinateIds;
         this.supervisorId = builder.supervisorId;
         this.departmentId = builder.departmentId;
         this.jobId = builder.jobId;
@@ -135,7 +127,6 @@ public class Position implements Serializable, Comparable<Position> {
         private String positionStatusId;
         private String positionComments;
         private String officeId;
-        private List<String> subodinateIds = new ArrayList<String>();
         private String supervisorId; // PositionId
         private String departmentId;
         private String jobId;
@@ -195,10 +186,6 @@ public class Position implements Serializable, Comparable<Position> {
             return this;
         }
 
-        public Builder subodinateIds(List<String> value) {
-            this.subodinateIds = value;
-            return this;
-        }
 
         public Builder supervisorId(String value) {
             this.supervisorId = value;
@@ -227,7 +214,6 @@ public class Position implements Serializable, Comparable<Position> {
             this.positionStatusId = value.positionStatusId;
             this.positionComments = value.positionComments;
             this.officeId = value.officeId;
-            this.subodinateIds = value.subodinateIds;
             this.supervisorId = value.supervisorId;
             this.departmentId = value.departmentId;
             this.jobId = value.jobId;

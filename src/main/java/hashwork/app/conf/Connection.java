@@ -10,7 +10,7 @@ public class Connection {
     public static Redisson getConnection() {
         // connects to single Redis server via Config
         Config config = new Config();
-        config.useSingleServer().setAddress("127.0.0.1:6379");
+        config.useSingleServer().setAddress("localhost:6379");
         return Redisson.create(config);
     }
 }

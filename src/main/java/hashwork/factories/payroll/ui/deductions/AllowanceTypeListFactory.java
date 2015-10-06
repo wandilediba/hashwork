@@ -16,7 +16,7 @@ public class AllowanceTypeListFactory {
                 .Builder()
                 .id(KeyGenerator.getEntityId())
                 .allowanceType(values.get("allowanceType"))
-                .description(values.get("desc"))
+                .description(values.get("description"))
                 .maxAmount(maxAmount).build();
 
         return allowanceTypeList;

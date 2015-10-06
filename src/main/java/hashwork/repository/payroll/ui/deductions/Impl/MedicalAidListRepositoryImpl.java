@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class MedicalAidListRepositoryImpl implements MedicalAidListRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, MedicalAidList> lists = redisson.getMap("MedAidList");
+    RMap<String, MedicalAidList> lists = redisson.getMap("MedicalAidList");
 
     public MedicalAidListRepositoryImpl() {
 

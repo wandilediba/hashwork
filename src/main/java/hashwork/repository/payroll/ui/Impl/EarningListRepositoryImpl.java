@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class EarningListRepositoryImpl implements EarningListRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, EarningsList> lists = redisson.getMap("earninglist");
+    RMap<String, EarningsList> lists = redisson.getMap("earningslist");
 
     public EarningListRepositoryImpl(){}
     @Override

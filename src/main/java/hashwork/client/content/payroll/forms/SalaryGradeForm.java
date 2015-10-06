@@ -42,8 +42,8 @@ public class SalaryGradeForm extends FormLayout {
         TextField startAmount = UIComponent.getGridTextField("Longitude :", "longitude", SalaryGradeModel.class, binder);
         TextField currentAmount = UIComponent.getGridTextField("Longitude :", "longitude", SalaryGradeModel.class, binder);
 
-        //ComboBox Fields
-        ComboBox currencyId = UIComboBox.getLocationTypeComboBox("Location Type :", "locationTypeId", SalaryGradeModel.class, binder);
+//        //ComboBox Fields
+//        ComboBox currencyId = UIComboBox.getLocationTypeComboBox("Location Type :", "locationTypeId", SalaryGradeModel.class, binder);
 
         // Create a field group and use it to bind the fields in the layout
         GridLayout grid = new GridLayout(4, 10);
@@ -60,7 +60,7 @@ public class SalaryGradeForm extends FormLayout {
         grid.addComponent(currentAmount, 2, 1);
         
         //Third ROW
-        grid.addComponent(currencyId, 0, 2);
+//        grid.addComponent(currencyId, 0, 2);
         
 
 

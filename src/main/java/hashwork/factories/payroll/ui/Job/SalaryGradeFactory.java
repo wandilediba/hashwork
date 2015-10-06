@@ -17,10 +17,10 @@ public class SalaryGradeFactory {
                 .id(KeyGenerator.getEntityId())
                 .gradeName(values.get("gradeName"))
                 .notes(values.get("notes"))
-                .midAmount(amounts.get("midAmt"))
-                .endAmount(amounts.get("endAmt"))
-                .startAmount(amounts.get("startAmt"))
-                .currentAmount(amounts.get("currAmt"))
+                .midAmount(amounts.get("midAmount"))
+                .endAmount(amounts.get("endAmount"))
+                .startAmount(amounts.get("startAmount"))
+                .currentAmount(amounts.get("currentAmount"))
                 .currencyId(values.get("currId")).build();
         return salaryGrade;
     }

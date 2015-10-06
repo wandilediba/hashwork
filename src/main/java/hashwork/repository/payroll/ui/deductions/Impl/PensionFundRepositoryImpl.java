@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class PensionFundRepositoryImpl implements PensionFundRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, PensionFund> lists = redisson.getMap("pensionFund");
+    RMap<String, PensionFund> lists = redisson.getMap("PensionFund");
 
     public PensionFundRepositoryImpl() {
 

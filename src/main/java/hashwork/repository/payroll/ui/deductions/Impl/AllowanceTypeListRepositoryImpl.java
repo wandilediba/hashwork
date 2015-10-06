@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class AllowanceTypeListRepositoryImpl implements AllowanceTypeListRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, AllowanceTypeList> lists = redisson.getMap("allowanceTypeList");
+    RMap<String, AllowanceTypeList> lists = redisson.getMap("AllowanceTypeList");
 
     public AllowanceTypeListRepositoryImpl() {
 

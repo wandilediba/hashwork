@@ -38,10 +38,14 @@ public class JobForm extends FormLayout {
         TextField description = UIComponent.getGridTextField("Job Description :", "description", JobModel.class, binder);
       //  TextField salaryGrade = UIComponent.getGridTextField("Longitude :", "longitude", JobModel.class, binder);
 
-        //ComboBox Fields
-        ComboBox salaryGrade = UIComboBox.getLocationTypeComboBox("Salary Grade :", "salaryGrade", JobModel.class, binder);
-        ComboBox jobClassificationId = UIComboBox.getLocationComboBox("Job Classification :", "jobClassificationId", JobModel.class, binder);
-        ComboBox position = UIComboBox.getLocationComboBox("Job Position :", "position", JobModel.class, binder);
+//        //ComboBox Fields
+//        ComboBox salaryGrade = UIComboBox.getComboBox("Salary Grade :", "salaryGrade", JobModel.class, binder);
+//        ComboBox jobClassificationId = UIComboBox.getComboBox("Job Classification :", "jobClassificationId", JobModel.class, binder);
+//        ComboBox position = UIComboBox.getLocationComboBox("Job Position :", "position", JobModel.class, binder);
+
+
+
+
 
 
         // Create a field group and use it to bind the fields in the layout
@@ -53,10 +57,10 @@ public class JobForm extends FormLayout {
         grid.addComponent(code, 1, 0);
         grid.addComponent(description, 2, 0);
 
-        //Second ROW
-        grid.addComponent(salaryGrade, 0, 1);
-        grid.addComponent(jobClassificationId, 1, 1);
-        grid.addComponent(position, 2, 1);
+//        //Second ROW
+//        grid.addComponent(salaryGrade, 0, 1);
+//        grid.addComponent(jobClassificationId, 1, 1);
+//        grid.addComponent(position, 2, 1);
 
 
         HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);

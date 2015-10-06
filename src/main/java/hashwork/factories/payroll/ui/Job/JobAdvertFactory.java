@@ -13,16 +13,16 @@ import java.util.Map;
 public class JobAdvertFactory {
     public static JobAdvert getJobAdvert(Map<String,String> values,
                                          Map<String,Date> dates,
-                                         List<String> appIds){
+                                         List<String> applicantsIds){
         JobAdvert jobAdvert = new JobAdvert
                .Builder()
                 .Id(KeyGenerator.getEntityId())
                 .jobId(values.get("jobId"))
                 .start(dates.get("start"))
                 .closingDate(dates.get("closingDate"))
-                .description(values.get("desc"))
+                .description(values.get("description"))
                 .active(values.get("active"))
-                .applicantsIds(appIds).build();
+                .applicantsIds(applicantsIds).build();
         return jobAdvert;
     }
 }

@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class PositionLifeCycleRepositoryImpl implements PositionLifeCycleRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, PositionLifeCycle> lists = redisson.getMap("addresstype");
+    RMap<String, PositionLifeCycle> lists = redisson.getMap("positionlifecycles");
 
     @Override
     public PositionLifeCycle findById(String s) {

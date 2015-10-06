@@ -15,7 +15,8 @@ import java.util.Set;
  */
 public class PositionRepositoryImpl implements PositionRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, Position> lists = redisson.getMap("addresstype");
+
+    RMap<String, Position> lists = redisson.getMap("positions");
 
     @Override
     public Position findById(String s) {
