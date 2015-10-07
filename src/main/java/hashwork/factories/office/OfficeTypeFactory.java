@@ -13,10 +13,9 @@ import hashwork.domain.office.OfficeType;
  */
 public class OfficeTypeFactory {
 
-    public static OfficeType getOfficeType(String id, String name) {
+    public static OfficeType getOfficeType(String name) {
         OfficeType officeType = new OfficeType
                 .Builder()
-                .id(id)
                 .name(name)
                 .id(KeyGenerator.getEntityId())
                 .build();

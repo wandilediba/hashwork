@@ -2,6 +2,7 @@ package hashwork.domain.office;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,7 +17,7 @@ public class Office implements Serializable{
     private String officeTypeId;
     private String cityId;
     private String contactId;
-    private Set<String> positionIds;
+    private List<String> positionIds;
 
     public String getId() {
         return id;
@@ -50,10 +51,13 @@ public class Office implements Serializable{
         return contactId;
     }
 
-    public Set<String> getPositionIds() {
+    public List<String> getPositionIds() {
         return positionIds;
     }
 
+    public void setPositionIds(List<String> positionIds) {
+        this.positionIds = positionIds;
+    }
 
     private Office() {
     }
@@ -80,7 +84,7 @@ public class Office implements Serializable{
         private String officeTypeId;
         private String cityId;
         private String contactId;
-        private Set<String> positionIds;
+        private List<String> positionIds;
 
         public Builder id(String value) {
             this.id = value;
@@ -122,7 +126,7 @@ public class Office implements Serializable{
             return this;
         }
 
-        public Builder positionIds(Set<String> value) {
+        public Builder positionIds(List<String> value) {
             this.positionIds = value;
             return this;
         }

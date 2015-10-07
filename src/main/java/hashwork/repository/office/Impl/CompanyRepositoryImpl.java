@@ -6,8 +6,11 @@
 package hashwork.repository.office.Impl;
 
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.office.Company;
 import hashwork.repository.office.CompanyRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,11 +22,8 @@ import java.util.Set;
  * @author BONGANI
  */
 public class CompanyRepositoryImpl implements CompanyRepository {
-    Map<String, Company> lists = new HashMap<>();
-
-    public CompanyRepositoryImpl() {
-
-    }
+    Redisson redisson = Connection.getConnection();
+    RMap<String, Company> lists = redisson.getMap("Company");
 
     @Override
     public Company findById(String s) {
@@ -47,12 +47,10 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
     @Override
     public Set<Company> findAll() {
-
         Set<Company> set = new HashSet<>();
         for (Map.Entry<String, Company> entry : lists.entrySet()) {
             set.add(entry.getValue());
         }
         return set;
-
     }
 }

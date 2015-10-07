@@ -5,8 +5,11 @@
  */
 package hashwork.repository.office.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.office.Department;
 import hashwork.repository.office.DepartmentRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 import java.util.Set;
 import java.util.HashMap;
@@ -18,14 +21,11 @@ import java.util.Set;
  * @author BONGANI
  */
 public class DepartmentRepositoryImpl implements DepartmentRepository {
-    Map<String, Department> lists = new HashMap<>();
-
-    public DepartmentRepositoryImpl() {
-    }
+    Redisson redisson = Connection.getConnection();
+    RMap<String, Department> lists = redisson.getMap("Department");
 
     @Override
     public Department findById(String s) {
-
         return lists.get(s);
     }
 
@@ -46,13 +46,11 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
     @Override
     public Set<Department> findAll() {
-
         Set<Department> set = new HashSet<>();
         for (Map.Entry<String, Department> entry : lists.entrySet()) {
             set.add(entry.getValue());
         }
         return set;
-
     }
 
 }

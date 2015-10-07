@@ -13,10 +13,9 @@ import hashwork.domain.office.Company;
  * @author BONGANI
  */
 public class CompanyFactory {
-    public static Company getCompany(String id, String name) {
+    public static Company getCompany(String name) {
         Company company = new Company
                 .Builder()
-                .id(id)
                 .name(name)
                 .id(KeyGenerator.getEntityId())
                 .build();

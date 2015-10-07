@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Department implements Serializable{
     private String id;
-    private String name;;
+    private String name;
     private String description;
     private boolean active;
     private Date dateEstablished;

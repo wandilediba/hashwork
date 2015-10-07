@@ -5,8 +5,11 @@
  */
 package hashwork.repository.office.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.office.OfficeType;
 import hashwork.repository.office.OfficeTypeRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,11 +20,8 @@ import java.util.Set;
  * @author BONGANI
  */
 public class OfficeTypeRepositoryImpl implements OfficeTypeRepository {
-    Map<String, OfficeType> lists = new HashMap<>();
-
-    public OfficeTypeRepositoryImpl() {
-
-    }
+    Redisson redisson = Connection.getConnection();
+    RMap<String, OfficeType> lists = redisson.getMap("OfficeType");
 
     @Override
     public OfficeType findById(String s) {
@@ -51,5 +51,4 @@ public class OfficeTypeRepositoryImpl implements OfficeTypeRepository {
         }
         return set;
     }
-
 }

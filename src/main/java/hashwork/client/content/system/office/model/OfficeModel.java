@@ -2,12 +2,14 @@ package hashwork.client.content.system.office.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by garran on 2015/09/20.
  */
 public class OfficeModel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
     private String description;
     private String active;
@@ -15,7 +17,7 @@ public class OfficeModel implements Serializable {
     private String officeTypeId;
     private String cityId;
     private String contactId;
-    private Set<String> positionIds;
+    private List<String> positionIds;
 
     public String getName() {
         return name;
@@ -73,11 +75,11 @@ public class OfficeModel implements Serializable {
         this.contactId = contactId;
     }
 
-    public Set<String> getPositionIds() {
+    public List<String> getPositionIds() {
         return positionIds;
     }
 
-    public void setPositionIds(Set<String> positionIds) {
+    public void setPositionIds(List<String> positionIds) {
         this.positionIds = positionIds;
     }
 }
