@@ -38,7 +38,7 @@ public class DegreeForm extends FormLayout {
 
        //TextField ç = UIComponent.getTextField("Education Type ID :", "educationTypeId", DegreeModel.class, binder);
         //ComboBox Fields
-        final ComboBox educationTypeId = UIComboBox.getComboBox("Currency :", "currencyId", DegreeModel.class, binder, new Consumer<ComboBox>() {
+        final ComboBox educationTypeId = UIComboBox.getComboBox("Education Type ID :", "educationTypeId", DegreeModel.class, binder, new Consumer<ComboBox>() {
             public void accept(ComboBox comboBox) {
                 Set<EducationType> educationType = EducationFacade.educationTypeService.findAll();
                 for (EducationType educType : educationType) {
