@@ -21,7 +21,7 @@ import org.redisson.core.RMap;
 public class EducationTypeRepositoryImpl implements EducationTypeRepository {
 
     Redisson redisson = Connection.getConnection();
-    RMap<String, EducationType> lists = redisson.getMap("addresstype");
+    RMap<String, EducationType> lists = redisson.getMap("educationyype");
     
     @Override
     public EducationType findById(String s) {
