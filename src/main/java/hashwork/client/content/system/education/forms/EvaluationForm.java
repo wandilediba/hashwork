@@ -31,7 +31,7 @@ public class EvaluationForm extends FormLayout {
         binder = new FieldGroup(item);
         final UIComponentHelper UIComponent = new UIComponentHelper();
 
-        TextField name = UIComponent.getTextField("Name :", "name", EvaluationModel.class, binder);
+        TextField name = UIComponent.getTextField("Evaluation Name :", "name", EvaluationModel.class, binder);
         addComponent(name);
 
         HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);

@@ -49,7 +49,7 @@ public class CompetencyForm extends FormLayout {
         });*/
 
         //ComboBox Fields
-        final ComboBox competencyTypeId = UIComboBox.getComboBox("Currency :", "currencyId", CompetencyModel.class, binder, new Consumer<ComboBox>() {
+        final ComboBox competencyTypeId = UIComboBox.getComboBox("Competency ID :", "competencyTypeId", CompetencyModel.class, binder, new Consumer<ComboBox>() {
             public void accept(ComboBox comboBox) {
                 Set<Competency> competencies = EducationFacade.competencyService.findAll();
                 for (Competency competency : competencies) {
