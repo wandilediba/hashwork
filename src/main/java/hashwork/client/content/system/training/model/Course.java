@@ -95,7 +95,6 @@ public class Course  implements Serializable, Comparable<Course> {
         this.courseCompetenciesId = courseCompetenciesId;
     }
 
-    @Override
     public int compareTo(Course o) {
         return 0;
     }
