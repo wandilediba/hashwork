@@ -21,7 +21,7 @@ import org.redisson.core.RMap;
 public class CompetencyRepositoryImpl implements CompetencyRepository {
    
     Redisson redisson = Connection.getConnection();
-    RMap<String, Competency> lists = redisson.getMap("addresstype");
+    RMap<String, Competency> lists = redisson.getMap("competency");
     
     @Override
     public Competency findById(String s) {

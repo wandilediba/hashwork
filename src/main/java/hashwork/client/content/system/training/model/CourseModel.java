@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by zenzile on 2015/09/19.
  */
-public class Course  implements Serializable, Comparable<Course> {
+public class CourseModel implements Serializable, Comparable<CourseModel> {
 
     private static final long serialVersionUID = 1L;
     private String id;
@@ -96,7 +96,7 @@ public class Course  implements Serializable, Comparable<Course> {
     }
 
     @Override
-    public int compareTo(Course o) {
+    public int compareTo(CourseModel o) {
         return 0;
     }
 }

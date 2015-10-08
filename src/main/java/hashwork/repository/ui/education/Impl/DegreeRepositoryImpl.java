@@ -22,7 +22,7 @@ import org.redisson.core.RMap;
  */
 public class DegreeRepositoryImpl implements DegreeRepository {
   Redisson redisson = Connection.getConnection();
-    RMap<String, Degree> lists = redisson.getMap("addresstype");
+    RMap<String, Degree> lists = redisson.getMap("degree");
     
     @Override
     public Degree findById(String s) {
