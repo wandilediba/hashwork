@@ -100,3 +100,4 @@ public class Course  implements Serializable, Comparable<Course> {
         return 0;
     }
 }
+
