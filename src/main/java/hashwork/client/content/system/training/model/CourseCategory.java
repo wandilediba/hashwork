@@ -7,9 +7,13 @@ import java.io.Serializable;
  */
 public class CourseCategory  implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String id;
     private String categoryName;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public String getId() {
         return id;

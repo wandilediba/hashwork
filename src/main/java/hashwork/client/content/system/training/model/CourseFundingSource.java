@@ -7,11 +7,16 @@ import java.math.BigDecimal;
  * Created by zenzile on 2015/09/19.
  */
 public class CourseFundingSource implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String id;
     private String courseId;
     private String funderId;
     private BigDecimal amount;
     private String currencyId;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public String getId() {
         return id;

@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class CompetencyEvaluation implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String id;
     //Attended , Competetent ..
     private String compTypeName;
@@ -34,5 +35,9 @@ public class CompetencyEvaluation implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 }
