@@ -9,6 +9,7 @@ import com.vaadin.ui.Table;
 import hashwork.app.facade.TrainingFacade;
 import hashwork.client.content.MainLayout;
 import hashwork.domain.ui.training.Course;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -38,9 +39,10 @@ public class CourseTable extends Table{
                 course.getCourseStatusId(),
                 course.getCourseTopic(), 
                 course.getCreditHours(),
-                course.getInstitutionNameId(),
-                course.getCourseCategoryId(),                
-                course.getCourseCompetenciesId()}, course.getId());
+                getInstitutionName(course.getInstitutionNameId()),
+                getCourseCategory(course.getCourseCategoryId()),                
+                course.getCourseCompetenciesId()}, 
+                course.getId());
         }
         // Allow selecting items from the table.
         setNullSelectionAllowed(false);
@@ -52,4 +54,21 @@ public class CourseTable extends Table{
 
     }
     
+    
+    private String getInstitutionName(String institutionNameId) {
+        if (institutionNameId != null) {
+            return TrainingFacade.courseService.findById(institutionNameId).getCourseName();
+       }
+       return null;
+   }
+//    
+   private String getCourseCategory(String courseCategoryId) {
+        if (courseCategoryId != null) {
+            return TrainingFacade.courseCategoryService.findById(courseCategoryId).getCategoryName();
+        }
+        return null;
+    }
+
+
+
 }
