@@ -22,7 +22,7 @@ import org.redisson.core.RMap;
 public class CompetencyTypeRepositoryImpl implements CompetencyTypeRepository {
 
       Redisson redisson = Connection.getConnection();
-    RMap<String, CompetencyType> lists = redisson.getMap("addresstype");
+    RMap<String, CompetencyType> lists = redisson.getMap("competencytype");
     
     @Override
     public CompetencyType findById(String s) {

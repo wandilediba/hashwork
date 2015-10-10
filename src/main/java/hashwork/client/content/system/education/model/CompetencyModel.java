@@ -17,4 +17,28 @@ public class CompetencyModel implements Serializable, Comparable<CompetencyModel
     public int compareTo(CompetencyModel o) {
         return name.compareTo(o.name);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCompetencyTypeId() {
+        return competencyTypeId;
+    }
+
+    public void setCompetencyTypeId(String competencyTypeId) {
+        this.competencyTypeId = competencyTypeId;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

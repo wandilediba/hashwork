@@ -21,7 +21,7 @@ import org.redisson.core.RMap;
 public class EvaluationRepositoryImpl implements EvaluationRepository{
 
     Redisson redisson = Connection.getConnection();
-    RMap<String, Evaluation> lists = redisson.getMap("addresstype");
+    RMap<String, Evaluation> lists = redisson.getMap("evaluation");
     
     @Override
     public Evaluation findById(String s) {

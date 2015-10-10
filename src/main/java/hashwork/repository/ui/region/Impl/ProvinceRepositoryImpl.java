@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class ProvinceRepositoryImpl implements ProvinceRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, Province> lists = redisson.getMap("addresstype");
+    RMap<String, Province> lists = redisson.getMap("province");
 
     @Override
     public Province findById(String s) {

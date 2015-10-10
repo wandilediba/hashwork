@@ -5,8 +5,12 @@
  */
 package hashwork.repository.office.Impl;
 
+import hashwork.app.conf.Connection;
 import hashwork.domain.office.Department;
+import hashwork.domain.ui.location.AddressType;
 import hashwork.repository.office.DepartmentRepository;
+import org.redisson.Redisson;
+import org.redisson.core.RMap;
 
 import java.util.Set;
 import java.util.HashMap;
@@ -18,7 +22,8 @@ import java.util.Set;
  * @author BONGANI
  */
 public class DepartmentRepositoryImpl implements DepartmentRepository {
-    Map<String, Department> lists = new HashMap<>();
+    Redisson redisson = Connection.getConnection();
+    RMap<String, Department> lists = redisson.getMap("department");;
 
     public DepartmentRepositoryImpl() {
     }

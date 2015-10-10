@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by zenzile on 2015/09/19.
  */
-public class ContinuingEducationCourse implements Serializable {
+public class ContinuingEducationCourseModel implements Serializable {
     private static final long serialVersionUID = 1L;
     private String id;
     private String courseName;
