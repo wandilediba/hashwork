@@ -1,4 +1,4 @@
-package hashwork.domain.ui.location;
+package hashwork.domain.office;
 
 import java.io.Serializable;
 
