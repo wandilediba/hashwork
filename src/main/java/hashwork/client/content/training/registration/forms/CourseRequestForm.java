@@ -2,17 +2,19 @@ package hashwork.client.content.training.registration.forms;
 
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.BeanValidator;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
 import hashwork.app.facade.TrainingFacade;
 import hashwork.app.facade.UtilFacade;
+import hashwork.app.util.fields.ButtonsHelper;
+import hashwork.app.util.fields.UIComboBoxHelper;
+import hashwork.app.util.fields.UIComponentHelper;
 import hashwork.client.content.training.registration.model.CourseRequestModel;
 import hashwork.domain.ui.training.CompetencyRequestAggregate;
 import hashwork.domain.ui.training.TrainingInstitution;
 import hashwork.domain.ui.util.Funder;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -31,20 +33,22 @@ public class CourseRequestForm extends FormLayout {
     public final ListSelect competences = new ListSelect();
     public final ListSelect funders = new ListSelect();
     public final ListSelect trainingInstitutions = new ListSelect();
+    private final UIComboBoxHelper UIComboBox;
+    private final UIComponentHelper UIComponent;
 
     public CourseRequestForm() {
         bean = new CourseRequestModel();
-        item = new BeanItem<CourseRequestModel>(bean);
+        item = new BeanItem<>(bean);
         binder = new FieldGroup(item);
-        HorizontalLayout buttons = getButtons();
-        buttons.setSizeFull();
-        // Determines which properties are shown
-        update.setVisible(false);
-        delete.setVisible(false);
+        UIComponent = new UIComponentHelper();
+        UIComboBox = new UIComboBoxHelper();
 
-        TextField requestName = getTextField("Request Name", "requestName");
-        DateField prefferedStart = getDateField("Preffered Start Date", "prefferedStart");
-        DateField preferredEnd = getDateField("Preffered End Date", "preferredEnd");
+
+        TextField requestName = UIComponent.getGridTextField("Request Name :", "requestName", CourseRequestModel.class, binder);
+
+        DateField prefferedStart = UIComponent.getGridDateField("Preferred End Date :", "prefferedStart", CourseRequestModel.class, binder);
+        DateField preferredEnd = UIComponent.getGridDateField("Preferred End Date :", "preferredEnd", CourseRequestModel.class, binder);
+
 
         ListSelect competenciesList = getCompetenciesList("Select Competencies", "competencies");
         ListSelect fundersList = getFundersList("Select Funders", "requestors");
@@ -59,35 +63,21 @@ public class CourseRequestForm extends FormLayout {
         grid.addComponent(competenciesList, 0, 2);
         grid.addComponent(trainingInstitutionList, 1, 2);
         grid.addComponent(fundersList, 2, 2);
-        grid.addComponent(new Label("<hr/>", ContentMode.HTML), 0, 3, 2, 3);
-        grid.addComponent(buttons, 0, 4, 2, 4);
+
+        HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
+        buttons.setSizeFull();
+        grid.addComponent(new Label("<hr/>", ContentMode.HTML), 0, 6, 2, 6);
+        grid.addComponent(buttons, 0, 8, 2, 8);
 
         addComponent(grid);
 
     }
 
-    private TextField getTextField(String label, String field) {
-        TextField textField = new TextField(label);
-        textField.setWidth(250, Unit.PIXELS);
-        textField.setNullRepresentation("");
-        textField.addValidator(new BeanValidator(CourseRequestModel.class, field));
-        textField.setImmediate(true);
-        binder.bind(textField, field);
-        return textField;
-    }
 
-    private DateField getDateField(String label, String field) {
-        DateField textField = new DateField(label);
-        textField.setWidth(250, Unit.PIXELS);
-        textField.addValidator(new BeanValidator(CourseRequestModel.class, field));
-        textField.setImmediate(true);
-        binder.bind(textField, field);
-        return textField;
-    }
 
     private ListSelect getTrainingInstitutionList(String label, String field) {
         trainingInstitutions.setCaption(label);
-        List<TrainingInstitution> trainingInst = TrainingFacade.getTrainingInstitutionModelService().findAll();
+        Set<TrainingInstitution> trainingInst = TrainingFacade.trainingInstitutionService.findAll();
         for (TrainingInstitution trainingInstitution : trainingInst) {
             trainingInstitutions.setItemCaption(trainingInstitution.getId(), trainingInstitution.getTrainingInstitution());
             trainingInstitutions.setNullSelectionAllowed(false);
@@ -101,7 +91,7 @@ public class CourseRequestForm extends FormLayout {
 
     private ListSelect getFundersList(String label, String field) {
         funders.setCaption(label);
-        List<Funder> fundersc = UtilFacade.getFunderModelService().findAll();
+        Set<Funder> fundersc = UtilFacade.funderService.findAll();
         for (Funder funder : fundersc) {
             funders.setItemCaption(funder.getId(), funder.getTrainingFunderName());
             funders.setNullSelectionAllowed(false);
@@ -113,26 +103,11 @@ public class CourseRequestForm extends FormLayout {
         return funders;
     }
 
-    private HorizontalLayout getButtons() {
-        HorizontalLayout buttons = new HorizontalLayout();
-        save.setSizeFull();
-        edit.setSizeFull();
-        cancel.setSizeFull();
-        update.setSizeFull();
-        delete.setSizeFull();
-
-        buttons.addComponent(save);
-        buttons.addComponent(edit);
-        buttons.addComponent(cancel);
-        buttons.addComponent(update);
-        buttons.addComponent(delete);
-        return buttons;
-    }
 
     //getCompetenciesList
     private ListSelect getCompetenciesList(String label, String field) {
         competences.setCaption(label);
-        List<CompetencyRequestAggregate> competencies = TrainingFacade.getCompetencyRequestService().getApprovedRequests();
+        Set<CompetencyRequestAggregate> competencies = TrainingFacade.competencyRequestAggregateService.getApprovedRequests();
         for (CompetencyRequestAggregate competency : competencies) {
             competences.setItemCaption(competency.getId(), competency.getCompetencyName());
             competences.setNullSelectionAllowed(false);

@@ -10,7 +10,7 @@ import hashwork.domain.ui.training.CourseRequest;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -31,7 +31,7 @@ public class CourseRequestTable extends Table {
 
 
         // Add Data Columns
-        List<CourseRequest> courseRequests = TrainingFacade.getCourseRequestService().findAll();
+        Set<CourseRequest> courseRequests = TrainingFacade.courseRequestService.findAll();
         for (CourseRequest courseRequest : courseRequests) {
 
             Button detailsButton = new Button("Details", new Button.ClickListener() {

@@ -1,19 +1,30 @@
 package hashwork.client.content.training.registration.forms;
 
 import com.vaadin.data.fieldgroup.FieldGroup;
-import com.vaadin.data.validator.BeanValidator;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.data.util.BeanItem;
+import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.*;
 import hashwork.app.facade.LocationFacade;
+import hashwork.app.util.fields.ButtonsHelper;
+import hashwork.app.util.fields.UIComboBoxHelper;
+import hashwork.app.util.fields.UIComponentHelper;
+import hashwork.client.content.system.training.model.TrainingInstitutionModel;
+import hashwork.domain.ui.location.Location;
+
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * Created by hashcode on 2015/10/08.
  */
 public class TrainingInstitutionForm extends FormLayout {
 
-    private final TrainingInstitutionBean bean;
-    public final BeanItem<TrainingInstitutionBean> item;
+    private final TrainingInstitutionModel bean;
+    public final BeanItem<TrainingInstitutionModel> item;
     public final FieldGroup binder;
+    private final UIComponentHelper UIComponent;
+    private final UIComboBoxHelper UIComboBox;
     // Define Buttons
     public Button save = new Button("Save");
     public Button edit = new Button("Edit");
@@ -22,23 +33,36 @@ public class TrainingInstitutionForm extends FormLayout {
     public Button delete = new Button("Delete");
 
     public TrainingInstitutionForm() {
-        bean = new TrainingInstitutionBean();
-        item = new BeanItem<TrainingInstitutionBean>(bean);
+        bean = new TrainingInstitutionModel();
+        item = new BeanItem<>(bean);
         binder = new FieldGroup(item);
-        HorizontalLayout buttons = getButtons();
-        // Determines which properties are shown
-        update.setVisible(false);
-        delete.setVisible(false);
+        UIComponent = new UIComponentHelper();
+        UIComboBox = new UIComboBoxHelper();
+
+        TextField trainingTrainingInstitutionName = UIComponent.getGridTextField("TrainingInstitution  Name :", "trainingInstitution", TrainingInstitutionModel.class, binder);
+        TextField contactNumber = UIComponent.getGridTextField("Contact Number :", "contactNumber", TrainingInstitutionModel.class, binder);
+        TextField emailAddress = UIComponent.getGridTextField("Email Address :", "emailAddress", TrainingInstitutionModel.class, binder);
+        TextField postalCode = UIComponent.getGridTextField("Postal Code :", "postalCode", TrainingInstitutionModel.class, binder);
 
 
-        TextField trainingTrainingInstitutionName = getTextField("TrainingInstitution  Name", "trainingInstitution");
-        TextField contactNumber = getTextField("Contact Number", "contactNumber");
-        TextField emailAddress = getTextField("Email Address", "emailAddress");
-        TextField postalCode = getTextField("Postal Code", "postalCode");
-        TextArea postalAddress = getTextArea("Postal Address", "postalAddress");
-        TextArea physicalAddress = getTextArea("Physical  Address", "physicalAddress");
-        ComboBox city = getComboBox("City", "city");
+        TextArea postalAddress = UIComponent.getGridTextArea("Postal Address:", "postalAddress", TrainingInstitutionModel.class, binder);
+        TextArea physicalAddress = UIComponent.getGridTextArea("Physical  Address :", "physicalAddress", TrainingInstitutionModel.class, binder);
 
+
+        final ComboBox city = UIComboBox.getComboBox("City :", "city", TrainingInstitutionModel.class, binder, new Consumer<ComboBox>() {
+            public void accept(ComboBox comboBox) {
+                Set<Location> cities = LocationFacade.locationService
+                        .findAll()
+                        .parallelStream()
+                        .filter(city -> city.getId() != city.getParentId())
+                        .collect(Collectors.toSet());
+
+                for (Location city : cities) {
+                    comboBox.addItem(city.getId());
+                    comboBox.setItemCaption(city.getId(), city.getName());
+                }
+            }
+        });
 
         GridLayout grid = new GridLayout(4, 10);
         grid.setSizeFull();
@@ -49,59 +73,14 @@ public class TrainingInstitutionForm extends FormLayout {
         grid.addComponent(postalAddress, 1, 1, 1, 2);
         grid.addComponent(postalCode, 2, 1);
         grid.addComponent(city, 2, 2);
-        grid.addComponent(buttons, 0, 3, 2, 3);
 
-        addComponent(grid);
+        HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
+        buttons.setSizeFull();
+        grid.addComponent(new Label("<hr/>", ContentMode.HTML), 0, 6, 2, 6);
+        grid.addComponent(buttons, 0, 8, 2, 8);
     }
 
-    private TextArea getTextArea(String label, String field) {
-        TextArea textArea = new TextArea(label);
-        textArea.setWidth(250, Unit.PIXELS);
-        textArea.setNullRepresentation("");
-        textArea.addValidator(new BeanValidator(TrainingInstitutionBean.class, field));
-        textArea.setImmediate(true);
-        binder.bind(textArea, field);
-        return textArea;
 
-    }
 
-    private TextField getTextField(String label, String field) {
-        TextField textField = new TextField(label);
-        textField.setWidth(250, Unit.PIXELS);
-        textField.setNullRepresentation("");
-        textField.addValidator(new BeanValidator(TrainingInstitutionBean.class, field));
-        textField.setImmediate(true);
-        binder.bind(textField, field);
-        return textField;
-    }
 
-    private ComboBox getComboBox(String label, String field) {
-        ComboBox comboBox = new ComboBox(label);
-        List<Location> locations = LocationFacade.getLocationModelService().findAll();
-
-//        List<Location> sortedCopy = Ordering.from(byLastName).compound(byFirstName).reverse().sortedCopy(locations);
-//        List<Location> sortedList = Ordering.natural().reverse().sortedCopy(this);
-
-        Collection<Location> cities = Collections2.filter(locations, new CityPredicate());
-        for (Location location : cities) {
-            comboBox.addItem(location.getId());
-            comboBox.setItemCaption(location.getId(), location.getName());
-        }
-        comboBox.addValidator(new BeanValidator(TrainingInstitutionBean.class, field));
-        comboBox.setImmediate(true);
-        comboBox.setWidth(250, Unit.PIXELS);
-        binder.bind(comboBox, field);
-        return comboBox;
-    }
-
-    private HorizontalLayout getButtons() {
-        HorizontalLayout buttons = new HorizontalLayout();
-        buttons.addComponent(save);
-        buttons.addComponent(edit);
-        buttons.addComponent(cancel);
-        buttons.addComponent(update);
-        buttons.addComponent(delete);
-
-        return buttons;
-    }
 }

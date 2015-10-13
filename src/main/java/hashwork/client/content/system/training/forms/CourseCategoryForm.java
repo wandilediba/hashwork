@@ -2,18 +2,21 @@ package hashwork.client.content.system.training.forms;
 
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.BeanValidator;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
-import hashwork.domain.ui.training.CourseCategory;
+import com.vaadin.ui.TextField;
+import hashwork.app.util.fields.ButtonsHelper;
+import hashwork.app.util.fields.UIComponentHelper;
+import hashwork.client.content.system.training.model.CourseCategoryModel;
 
 /**
  * Created by hashcode on 2015/10/08.
  */
 public class CourseCategoryForm extends FormLayout {
 
-    private final CourseCategory bean;
-    public final BeanItem<CourseCategory> item;
+    private final CourseCategoryModel bean;
+    public final BeanItem<CourseCategoryModel> item;
     public final FieldGroup binder;
     // Define Buttons
     public Button save = new Button("Save");
@@ -23,36 +26,16 @@ public class CourseCategoryForm extends FormLayout {
     public Button delete = new Button("Delete");
 
     public CourseCategoryForm() {
-        bean = new CourseCategory();
-        item = new BeanItem<CourseCategory>(bean);
+        bean = new CourseCategoryModel();
+        item = new BeanItem<>(bean);
         binder = new FieldGroup(item);
+        final UIComponentHelper UIComponent = new UIComponentHelper();
 
-        TextField categoryName = new TextField("Course Category Name");
-        categoryName.setNullRepresentation("");
+        TextField gender = UIComponent.getTextField("Course Category Name :", "categoryName", CourseCategoryModel.class, binder);
+        addComponent(gender);
 
-
-        // Add the bean validator
-        categoryName.addValidator(new BeanValidator(CourseCategory.class, "categoryName"));
-        categoryName.setImmediate(true);
-
-
-        // Create a field group and use it to bind the fields in the layout
-
-        binder.bind(categoryName, "categoryName");
-
-        addComponent(categoryName);
-
-        HorizontalLayout buttons = new HorizontalLayout();
-        buttons.addComponent(save);
-        buttons.addComponent(edit);
-        buttons.addComponent(cancel);
-        buttons.addComponent(update);
-        buttons.addComponent(delete);
-
-        // Determines which properties are shown, and in which order:
-        edit.setVisible(false);
-        update.setVisible(false);
-        delete.setVisible(false);
+        HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
+        buttons.setSizeFull();
         addComponent(buttons);
     }
 }

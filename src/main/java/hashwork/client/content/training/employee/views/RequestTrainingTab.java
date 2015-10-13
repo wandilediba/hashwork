@@ -4,12 +4,9 @@ import com.vaadin.data.Property;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
-import hashwork.app.facade.EducationFacade;
-import hashwork.app.facade.TrainingFacade;
+import hashwork.client.content.MainLayout;
+import hashwork.client.content.training.employee.EmployeeTrainingMenu;
 import hashwork.client.content.training.employee.forms.RequestTrainingForm;
-import hashwork.domain.people.Person;
-import hashwork.domain.ui.education.Competency;
-import hashwork.domain.ui.training.CompetencyRequest;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,11 +17,11 @@ import java.util.Collection;
 public class RequestTrainingTab extends VerticalLayout implements
         Button.ClickListener, Property.ValueChangeListener {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
     private final RequestTrainingForm form;
     private Collection<String> competencyIds = new ArrayList<String>();
 
-    public RequestTrainingTab(HashWorkMain app) {
+    public RequestTrainingTab(MainLayout app) {
         main = app;
         form = new RequestTrainingForm(main);
         setSizeFull();
@@ -34,7 +31,7 @@ public class RequestTrainingTab extends VerticalLayout implements
     }
 
     @Override
-    public void buttonClick(ClickEvent event) {
+    public void buttonClick(Button.ClickEvent event) {
         final Button source = event.getButton();
         if (source == form.submitRequest) {
             submitRequest(competencyIds);
@@ -44,7 +41,7 @@ public class RequestTrainingTab extends VerticalLayout implements
     }
 
     @Override
-    public void valueChange(ValueChangeEvent event) {
+    public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == form.select) {
             Collection<String> ids = (Collection<String>) property.getValue();
@@ -58,26 +55,26 @@ public class RequestTrainingTab extends VerticalLayout implements
 
     private void addListeners() {
         //Register Button Listeners
-        form.cancelSubmission.addClickListener((ClickListener) this);
-        form.submitRequest.addClickListener((ClickListener) this);
+        form.cancelSubmission.addClickListener((Button.ClickListener) this);
+        form.submitRequest.addClickListener((Button.ClickListener) this);
 
         //Register Form Listerners
-        form.select.addValueChangeListener((ValueChangeListener) this);
+        form.select.addValueChangeListener((Property.ValueChangeListener) this);
         form.select.setImmediate(true);
     }
 
     private void submitRequest(Collection<String> competencyIds) {
-        Person requester = new GetUserCredentials().getLoggedInUser();
+//        Person requester = new GetUserCredentials().getLoggedInUser();
         if (competencyIds.size() > 0) {
             for (String competencyId : competencyIds) {
-                Competency competency = EducationFacade.getCompetencyModelService().findById(competencyId);
-                CompetencyRequest request = new TrainingFactory.CompetencyRequestBuilder(competency.getName(), competency.getId())
-                        .requestDate(new Date())
-                        .requestorId(requester.getId())
-                        .requestorName(requester.getFirstName() + " " + requester.getLastName())
-                        .status(CompetencyRequestStatus.PENDING.name())
-                        .build();
-                TrainingFacade.getCompetencyRequestsModelService().persist(request);
+//                Competency competency = EducationFacade.getCompetencyModelService().findById(competencyId);
+//                CompetencyRequest request = new TrainingFactory.CompetencyRequestBuilder(competency.getName(), competency.getId())
+//                        .requestDate(new Date())
+//                        .requestorId(requester.getId())
+//                        .requestorName(requester.getFirstName() + " " + requester.getLastName())
+//                        .status(CompetencyRequestStatus.PENDING.name())
+//                        .build();
+//                TrainingFacade.getCompetencyRequestsModelService().persist(request);
             }
             Notification.show("Your Requests Have been Submitted", Notification.Type.HUMANIZED_MESSAGE);
             getHome();

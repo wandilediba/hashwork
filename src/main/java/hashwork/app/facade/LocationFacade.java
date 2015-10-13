@@ -13,4 +13,5 @@ public class LocationFacade {
     public final static LocationTypeService locationTypeService = new LocationTypeServiceImpl();
     public final static LocationService locationService = new LocationServiceImpl();
     public final static AddressTypeService addressTypeService = new AddressTypeServiceImpl();
+    public final static LocationAddressService locationAddressService = new LocationAddressServiceImpl();
 }

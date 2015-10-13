@@ -1,22 +1,27 @@
 package hashwork.client.content.training.registration.table;
 
+import com.vaadin.data.Property;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.themes.Reindeer;
 import hashwork.app.facade.TrainingFacade;
+import hashwork.client.content.MainLayout;
+import hashwork.client.content.training.registration.InstitutionRegistrationMenu;
 import hashwork.domain.ui.training.Course;
 import hashwork.domain.ui.training.ScheduledCourse;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by hashcode on 2015/10/08.
  */
 public class AllScheduledCoursesTable extends Table {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
 
-    public AllScheduledCoursesTable(HashWorkMain main) {
+    public AllScheduledCoursesTable(MainLayout main) {
         this.main = main;
         setSizeFull();
         addContainerProperty("Institution", String.class, null);
@@ -32,7 +37,7 @@ public class AllScheduledCoursesTable extends Table {
 
 
         // Add Data Columns
-        List<ScheduledCourse> scheduledCourses = TrainingFacade.getCourseScheduleModelService().findAll();
+        Set<ScheduledCourse> scheduledCourses = TrainingFacade.scheduledCourseService.findAll();
         for (final ScheduledCourse scheduledCourse : scheduledCourses) {
 
 
@@ -47,8 +52,12 @@ public class AllScheduledCoursesTable extends Table {
             Button approveButton = new Button("Approve", new Button.ClickListener() {
                 @Override
                 public void buttonClick(Button.ClickEvent event) {
-                    scheduledCourse.setStatus("APPROVED");
-                    TrainingFacade.getCourseScheduleModelService().merge(scheduledCourse);
+                    ScheduledCourse approvedScheduled = new ScheduledCourse
+                            .Builder()
+                            .copy(scheduledCourse)
+                            .status("APPROVED")
+                            .build();
+                    TrainingFacade.scheduledCourseService.save(scheduledCourse);
                     getHome();
                 }
             });
@@ -66,8 +75,8 @@ public class AllScheduledCoursesTable extends Table {
 
 
             addItem(new Object[]{
-                    scheduledCourse.getCourseName().getInstitutionName().getTrainingInstitution(),
-                    getCourseName(scheduledCourse.getCourseName()),
+                    trainingInstitution(scheduledCourse.getCourseNameId()),
+                    getCourseName(scheduledCourse.getCourseNameId()),
                     scheduledCourse.getVenue(),
                     scheduledCourse.getStartDate(),
                     scheduledCourse.getEndDate(),
@@ -86,11 +95,15 @@ public class AllScheduledCoursesTable extends Table {
         setImmediate(true);
     }
 
-    private String getCourseName(Course courseName) {
-        if (courseName != null) {
-            return courseName.getCourseName();
-        }
+    private String trainingInstitution(String courseNameId) {
+        Course course = TrainingFacade.courseService.findById(courseNameId);
+        course.getInstitutionNameId();
         return null;
+    }
+
+    private String getCourseName(String courseNameId) {
+        Course course = TrainingFacade.courseService.findById(courseNameId);
+        return course.getCourseName();
     }
 
     private String getStatus(ScheduledCourse scheduledCourse) {

@@ -5,7 +5,7 @@ import hashwork.app.facade.TrainingFacade;
 import hashwork.client.content.MainLayout;
 import hashwork.domain.ui.training.CompetencyRequestAggregate;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -22,7 +22,7 @@ public class ApprovedRequestCompetenciesTable extends Table {
         addContainerProperty("Status", String.class, null);
 
 
-        List<CompetencyRequestAggregate> requests = TrainingFacade.getCompetencyRequestService().getApprovedRequests();
+        Set<CompetencyRequestAggregate> requests = TrainingFacade.competencyRequestAggregateService.getApprovedRequests();
 
         for (CompetencyRequestAggregate re : requests) {
 

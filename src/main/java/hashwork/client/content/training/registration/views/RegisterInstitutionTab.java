@@ -2,25 +2,19 @@ package hashwork.client.content.training.registration.views;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
-import hashwork.app.facade.LocationFacade;
-import hashwork.app.facade.PersonFacade;
 import hashwork.app.facade.TrainingFacade;
+import hashwork.client.content.MainLayout;
+import hashwork.client.content.system.training.model.TrainingInstitutionModel;
 import hashwork.client.content.training.registration.InstitutionRegistrationMenu;
 import hashwork.client.content.training.registration.forms.TrainingInstitutionForm;
 import hashwork.client.content.training.registration.table.TrainingInstitutionTable;
-import hashwork.domain.people.Person;
-import hashwork.domain.people.PersonRole;
-import hashwork.domain.ui.demographics.RolesList;
-import hashwork.domain.ui.location.LocationAddress;
+import hashwork.domain.office.LocationAddress;
+import hashwork.domain.ui.location.Location;
 import hashwork.domain.ui.training.TrainingInstitution;
-import hashwork.factories.office.OfficeFactory;
-import hashwork.factories.people.PersonFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -28,11 +22,11 @@ import java.util.List;
 public class RegisterInstitutionTab extends VerticalLayout implements
         Button.ClickListener, Property.ValueChangeListener {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
     private final TrainingInstitutionForm form;
     private final TrainingInstitutionTable table;
 
-    public RegisterInstitutionTab(HashWorkMain app) {
+    public RegisterInstitutionTab(MainLayout app) {
         main = app;
         form = new TrainingInstitutionForm();
         table = new TrainingInstitutionTable(main);
@@ -43,7 +37,7 @@ public class RegisterInstitutionTab extends VerticalLayout implements
     }
 
     @Override
-    public void buttonClick(ClickEvent event) {
+    public void buttonClick(Button.ClickEvent event) {
         final Button source = event.getButton();
         if (source == form.save) {
             saveForm(form.binder);
@@ -59,12 +53,12 @@ public class RegisterInstitutionTab extends VerticalLayout implements
     }
 
     @Override
-    public void valueChange(ValueChangeEvent event) {
+    public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final TrainingInstitution trainingInstitution = TrainingFacade.getTrainingInstitutionModelService().findById(table.getValue().toString());
-            final TrainingInstitutionBean bean = getBean(trainingInstitution);
-            form.binder.setItemDataSource(new BeanItem<TrainingInstitutionBean>(bean));
+            final TrainingInstitution trainingInstitution = TrainingFacade.trainingInstitutionService.findById(table.getValue().toString());
+            final TrainingInstitutionModel bean = getBean(trainingInstitution);
+            form.binder.setItemDataSource(new BeanItem<TrainingInstitutionModel>(bean));
             setReadFormProperties();
         }
     }
@@ -73,7 +67,7 @@ public class RegisterInstitutionTab extends VerticalLayout implements
         try {
             binder.commit();
             TrainingInstitution trainingInstitution = getEntity(binder);
-            TrainingFacade.getTrainingInstitutionModelService().persist(trainingInstitution);
+            TrainingFacade.trainingInstitutionService.save(trainingInstitution);
             createInstitutionContact(trainingInstitution);
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
@@ -86,7 +80,7 @@ public class RegisterInstitutionTab extends VerticalLayout implements
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            TrainingFacade.getTrainingInstitutionModelService().merge(getEntity(binder));
+            TrainingFacade.trainingInstitutionService.save(getEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -96,24 +90,24 @@ public class RegisterInstitutionTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        TrainingFacade.getTrainingInstitutionModelService().removeById(getEntity(binder).getId());
+        TrainingFacade.trainingInstitutionService.delete((getEntity(binder)));
         getHome();
     }
 
     private TrainingInstitution getEntity(FieldGroup binder) {
-        final TrainingInstitutionBean trainingInstitutionBean = ((BeanItem<TrainingInstitutionBean>) binder.getItemDataSource()).getBean();
-        final Location city = LocationFacade.getLocationModelService().findById(trainingInstitutionBean.getCity());
-        final LocationAddress address = new OfficeFactory.LocationAddressBuilder(trainingInstitutionBean.getPostalAddress())
-                .contactNumber(trainingInstitutionBean.getContactNumber())
-                .physicalAddress(trainingInstitutionBean.getPhysicalAddress())
-                .postalCode(trainingInstitutionBean.getPostalCode())
-                .emailAddress(trainingInstitutionBean.getEmailAddress())
+        final TrainingInstitutionModel trainingInstitutionBean = ((BeanItem<TrainingInstitutionModel>) binder.getItemDataSource()).getBean();
+//        final Location city = LocationFacade.getLocationModelService().findById(trainingInstitutionBean.getCity());
+//        final LocationAddress address = new OfficeFactory.LocationAddressBuilder(trainingInstitutionBean.getPostalAddress())
+//                .contactNumber(trainingInstitutionBean.getContactNumber())
+//                .physicalAddress(trainingInstitutionBean.getPhysicalAddress())
+//                .postalCode(trainingInstitutionBean.getPostalCode())
+//                .emailAddress(trainingInstitutionBean.getEmailAddress())
+//                .build();
+        final TrainingInstitution trainingInstitution = new TrainingInstitution.Builder()
+//                .city(city)
+//                .contact(address)
                 .build();
-        final TrainingInstitution trainingInstitution = new TrainingFactory.TrainingInstitutionBuilder(trainingInstitutionBean.getTrainingInstitution())
-                .city(city)
-                .contact(address)
-                .build();
-        trainingInstitution.setId(trainingInstitutionBean.getId());
+
         return trainingInstitution;
 
     }
@@ -143,26 +137,21 @@ public class RegisterInstitutionTab extends VerticalLayout implements
 
     private void addListeners() {
         //Register Button Listeners
-        form.save.addClickListener((ClickListener) this);
-        form.edit.addClickListener((ClickListener) this);
-        form.cancel.addClickListener((ClickListener) this);
-        form.update.addClickListener((ClickListener) this);
-        form.delete.addClickListener((ClickListener) this);
+        form.save.addClickListener((Button.ClickListener) this);
+        form.edit.addClickListener((Button.ClickListener) this);
+        form.cancel.addClickListener((Button.ClickListener) this);
+        form.update.addClickListener((Button.ClickListener) this);
+        form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
-        table.addValueChangeListener((ValueChangeListener) this);
+        table.addValueChangeListener((Property.ValueChangeListener) this);
     }
 
-    private TrainingInstitutionBean getBean(TrainingInstitution trainingInstitution) {
+    private TrainingInstitutionModel getBean(TrainingInstitution trainingInstitution) {
         //REFACTOR Law of Demeter Violation
-        TrainingInstitutionBean bean = new TrainingInstitutionBean();
-        bean.setCity(trainingInstitution.getCity().getId());
-        bean.setContactNumber(trainingInstitution.getContact().getContactNumber());
-        bean.setEmailAddress(trainingInstitution.getContact().getEmailAddress());
-        bean.setId(trainingInstitution.getId());
-        bean.setPhysicalAddress(trainingInstitution.getContact().getPhysicalAddress());
-        bean.setPostalAddress(trainingInstitution.getContact().getPostalAddress());
-        bean.setPostalCode(trainingInstitution.getContact().getPostalCode());
-        bean.setTrainingInstitution(trainingInstitution.getTrainingInstitution());
+        TrainingInstitutionModel bean = new TrainingInstitutionModel();
+//
+
+
         return bean;
     }
 
@@ -203,16 +192,16 @@ public class RegisterInstitutionTab extends VerticalLayout implements
     }
 
     private void createInstitutionContact(TrainingInstitution trainingInstitution) {
-        RolesList rolesList = DemographicsFacade.getRolesListModelService().getByPropertyName("rolename", "ROLE_TRAINER");
-        PersonRole role = PersonFactory.getPersonRole(rolesList);
-        List<PersonRole> roles = new ArrayList<PersonRole>();
-        roles.add(role);
-
-        Person person = new PersonFactory.PersonBuilder(trainingInstitution.getTrainingInstitution(), "Training Institution")
-                .authvalue("test123") //Replace with a password Service Connected to Mail
-                .emailAdress(trainingInstitution.getContact().getEmailAddress())
-                .personRoles(roles)
-                .build();
-        PersonFacade.getEmployeeModelService().persist(person);
+//        RolesList rolesList = DemographicsFacade.getRolesListModelService().getByPropertyName("rolename", "ROLE_TRAINER");
+//        PersonRole role = PersonFactory.getPersonRole(rolesList);
+//        List<PersonRole> roles = new ArrayList<PersonRole>();
+//        roles.add(role);
+//
+//        Person person = new PersonFactory.PersonBuilder(trainingInstitution.getTrainingInstitution(), "Training Institution")
+//                .authvalue("test123") //Replace with a password Service Connected to Mail
+//                .emailAdress(trainingInstitution.getContact().getEmailAddress())
+//                .personRoles(roles)
+//                .build();
+//        PersonFacade.getEmployeeModelService().persist(person);
     }
 }

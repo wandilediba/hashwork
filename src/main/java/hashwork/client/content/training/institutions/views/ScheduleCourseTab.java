@@ -2,13 +2,17 @@ package hashwork.client.content.training.institutions.views;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import hashwork.app.facade.TrainingFacade;
-import hashwork.domain.people.Person;
+import hashwork.client.content.MainLayout;
+import hashwork.client.content.training.institutions.InstitutionManagementMenu;
+import hashwork.client.content.training.institutions.forms.ScheduledCourseForm;
+import hashwork.client.content.training.institutions.model.ScheduledCourseModel;
+import hashwork.client.content.training.institutions.table.ScheduledCourseTable;
 import hashwork.domain.ui.training.*;
-import hashwork.domain.ui.util.Funder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +23,11 @@ import java.util.List;
 public class ScheduleCourseTab extends VerticalLayout implements
         Button.ClickListener, Property.ValueChangeListener {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
     private final ScheduledCourseTable table;
     private final ScheduledCourseForm form;
 
-    public ScheduleCourseTab(HashWorkMain app) {
+    public ScheduleCourseTab(MainLayout app) {
 
         main = app;
         form = new ScheduledCourseForm();
@@ -92,7 +96,7 @@ public class ScheduleCourseTab extends VerticalLayout implements
         try {
 
             binder.commit();
-            TrainingFacade.getCourseScheduleModelService().merge(getEntity(binder));
+            TrainingFacade.scheduledCourseService.save(getEntity(binder));
 
         } catch (FieldGroup.CommitException e) {
             Notification.show("Values MISSING!", Notification.Type.TRAY_NOTIFICATION);
@@ -101,7 +105,7 @@ public class ScheduleCourseTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        TrainingFacade.getCourseScheduleModelService().remove(getEntity(binder));
+        TrainingFacade.scheduledCourseService.delete(getEntity(binder));
         getHome();
     }
 
@@ -110,10 +114,10 @@ public class ScheduleCourseTab extends VerticalLayout implements
 
             binder.commit();
             ScheduledCourse scheduledCourse = getEntity(binder);
-            TrainingFacade.getCourseScheduleModelService().persist(scheduledCourse);
-            Course course = scheduledCourse.getCourseName();
-            course.getScheduledCourses().add(scheduledCourse);
-            TrainingFacade.getCourseModelService().merge(course);
+            TrainingFacade.scheduledCourseService.save(scheduledCourse);
+//            Course course = scheduledCourse.getCourseName();
+//            course.getScheduledCourses().add(scheduledCourse);
+//            TrainingFacade.scheduledCourseService.save(course);
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -124,21 +128,21 @@ public class ScheduleCourseTab extends VerticalLayout implements
     }
 
     private ScheduledCourse getEntity(FieldGroup binder) {
-        ScheduledCourseBean bean = ((BeanItem<ScheduledCourseBean>) binder.getItemDataSource()).getBean();
+        ScheduledCourseModel bean = ((BeanItem<ScheduledCourseModel>) binder.getItemDataSource()).getBean();
 
 //        Status status = UtilFacade.getStatusModelService().findById(bean.getCourseStatusId());
 
-        Course course = TrainingFacade.getCourseModelService().findById(bean.getCourseNameId());
+        Course course = TrainingFacade.courseService.findById(bean.getCourseNameId());
 
-        ScheduledCourse scheduledCourse = new TrainingFactory.CourseScheduleBuilder(course)
+        ScheduledCourse scheduledCourse = new ScheduledCourse.Builder()
                 .courseCapacity(bean.getCourseCapacity())
-                .courseFunders(getFunders(course.getCourseRequest()))
-                .courseRequestors(getCourseRequestors(course.getCourseRequest()))
-                .dateRequested(course.getCourseRequest().getRequestedDate())
-                .endDate(bean.getEndDate())
-                .startDate(bean.getStartDate())
-                .venue(bean.getVenue())
-                .status("PROPOSED")
+//                .courseFunders(getFunders(course.getCourseRequest()))
+//                .courseRequestors(getCourseRequestors(course.getCourseRequest()))
+//                .dateRequested(course.getCourseRequest().getRequestedDate())
+//                .endDate(bean.getEndDate())
+//                .startDate(bean.getStartDate())
+//                .venue(bean.getVenue())
+//                .status("PROPOSED")
                 .build();
 
         return scheduledCourse;
@@ -151,19 +155,19 @@ public class ScheduleCourseTab extends VerticalLayout implements
     private List<CourseFundingSource> getFunders(CourseRequest courseRequest) {
 
         List<CourseFundingSource> cs = new ArrayList<CourseFundingSource>();
-        List<Funder> f = courseRequest.getFunder();
-        for (Funder funder : f) {
-            cs.add(TrainingFactory.getCourseFunder(funder));
-        }
+//        List<Funder> f = courseRequest.getFunder();
+//        for (Funder funder : f) {
+//            cs.add(TrainingFactory.getCourseFunder(funder));
+//        }
         return cs;
     }
 
     private List<ScheduledCourseRequestor> getCourseRequestors(CourseRequest courseRequest) {
         List<ScheduledCourseRequestor> scheduledCourseRequestor = new ArrayList<ScheduledCourseRequestor>();
-        List<Person> req = courseRequest.getRequestors();
-        for (Person person : req) {
-            scheduledCourseRequestor.add(TrainingFactory.getCourseRequestors(person));
-        }
+//        List<Person> req = courseRequest.getRequestors();
+//        for (Person person : req) {
+//            scheduledCourseRequestor.add(TrainingFactory.getCourseRequestors(person));
+//        }
         return scheduledCourseRequestor;
     }
 }

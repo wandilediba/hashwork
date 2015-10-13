@@ -4,11 +4,12 @@ import com.vaadin.data.Property;
 import com.vaadin.ui.Table;
 import hashwork.app.facade.TrainingFacade;
 import hashwork.client.content.MainLayout;
+import hashwork.domain.ui.training.Course;
 import hashwork.domain.ui.training.ScheduledCourse;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -28,10 +29,10 @@ public class ScheduledCourseApprovedTable extends Table {
         addContainerProperty("End Date ", Date.class, null);
 
         // Add Data Columns
-        List<ScheduledCourse> scheduledCourses = TrainingFacade.getCourseService().getApprovedScheduledCourse();
+        Set<ScheduledCourse> scheduledCourses = TrainingFacade.scheduledCourseService.getApprovedScheduledCourse();
         for (ScheduledCourse scheduledCourse : scheduledCourses) {
             addItem(new Object[]{
-                    scheduledCourse.getCourseName().getCourseName(),
+                    courseName(scheduledCourse.getCourseNameId()),
                     scheduledCourse.getCourseCapacity(),
                     scheduledCourse.getNumOfStuds(),
                     scheduledCourse.getVenue(),
@@ -47,6 +48,11 @@ public class ScheduledCourseApprovedTable extends Table {
         // Send changes in selection immediately to server.
         setImmediate(true);
 
+    }
+
+    private String courseName(String courseNameId) {
+        Course course = TrainingFacade.courseService.findById(courseNameId);
+        return course.getCourseName();
     }
 
     @Override

@@ -8,8 +8,14 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import hashwork.app.facade.TrainingFacade;
 import hashwork.app.facade.UtilFacade;
+import hashwork.client.content.MainLayout;
+import hashwork.client.content.training.institutions.InstitutionManagementMenu;
+import hashwork.client.content.training.institutions.forms.ScheduledCourseForm;
+import hashwork.client.content.training.institutions.model.CourseModel;
+import hashwork.client.content.training.institutions.table.ScheduledCourseTable;
 import hashwork.domain.ui.training.Course;
 import hashwork.domain.ui.training.ScheduledCourse;
+import hashwork.domain.ui.util.Status;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -17,12 +23,12 @@ import hashwork.domain.ui.training.ScheduledCourse;
 public class AssessParticipantTab extends VerticalLayout implements
         Button.ClickListener, Property.ValueChangeListener {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
     private final ScheduledCourseTable table;
     private final ScheduledCourseForm form;
 
 
-    public AssessParticipantTab(HashWorkMain app) {
+    public AssessParticipantTab(MainLayout app) {
 
         main = app;
         form = new ScheduledCourseForm();
@@ -52,7 +58,7 @@ public class AssessParticipantTab extends VerticalLayout implements
     public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final ScheduledCourse schecduleCourse = TrainingFacade.getCourseScheduleModelService().findById(table.getValue().toString());
+            final ScheduledCourse schecduleCourse = TrainingFacade.scheduledCourseService.findById(table.getValue().toString());
             form.binder.setItemDataSource(new BeanItem<ScheduledCourse>(schecduleCourse));
             setReadFormProperties();
         }
@@ -92,7 +98,7 @@ public class AssessParticipantTab extends VerticalLayout implements
         try {
 
             binder.commit();
-            TrainingFacade.getCourseScheduleModelService().merge(getEntity(binder));
+            TrainingFacade.scheduledCourseService.save(getEntity(binder));
 
         } catch (FieldGroup.CommitException e) {
             Notification.show("Values MISSING!", Notification.Type.TRAY_NOTIFICATION);
@@ -101,15 +107,15 @@ public class AssessParticipantTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        TrainingFacade.getCourseScheduleModelService().remove(getEntity(binder));
+        TrainingFacade.scheduledCourseService.delete(getEntity(binder));
         getHome();
     }
 
     private ScheduledCourse getEntity(FieldGroup binder) {
-        CourseBean bean = ((BeanItem<CourseBean>) binder.getItemDataSource()).getBean();
-        Status status = UtilFacade.getStatusModelService().findById(bean.getCourseStatusId());
+        CourseModel bean = ((BeanItem<CourseModel>) binder.getItemDataSource()).getBean();
+        Status status = UtilFacade.statusService.findById(bean.getCourseStatusId());
 
-        Course course = TrainingFacade.getCourseModelService().findById(bean.getCourseName());
+        Course course = TrainingFacade.courseService.findById(bean.getCourseName());
 
         return null;
     }
@@ -118,7 +124,7 @@ public class AssessParticipantTab extends VerticalLayout implements
         try {
 
             binder.commit();
-            TrainingFacade.getCourseScheduleModelService().persist(getEntity(binder));
+            TrainingFacade.scheduledCourseService.save(getEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {

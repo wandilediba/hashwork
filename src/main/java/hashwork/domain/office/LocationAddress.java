@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by hashcode on 2015/08/16.
  */
 public class LocationAddress implements Serializable {
+    private String id;
     private String postalAddress;
     private String physicalAddress;
     private String contactNumber;
@@ -36,6 +37,7 @@ public class LocationAddress implements Serializable {
     }
 
     private LocationAddress(Builder builder){
+        this.id = builder.id;
         this.postalAddress = builder.postalAddress;
         this.physicalAddress = builder.physicalAddress;
         this.contactNumber = builder.contactNumber;
@@ -44,6 +46,7 @@ public class LocationAddress implements Serializable {
     }
 
     public static class Builder{
+        private String id;
         private String postalAddress;
         private String physicalAddress;
         private String contactNumber;
@@ -52,6 +55,11 @@ public class LocationAddress implements Serializable {
 
         public Builder postalAddress(String value) {
             this.postalAddress = value;
+            return this;
+        }
+
+        public Builder id(String value) {
+            this.id = value;
             return this;
         }
 
@@ -76,6 +84,7 @@ public class LocationAddress implements Serializable {
         }
 
         public Builder copy(LocationAddress value) {
+            this.id = value.id;
             this.postalAddress = value.postalAddress;
             this.physicalAddress = value.physicalAddress;
             this.contactNumber = value.contactNumber;
@@ -92,29 +101,13 @@ public class LocationAddress implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LocationAddress)) return false;
-
+        if (o == null || getClass() != o.getClass()) return false;
         LocationAddress that = (LocationAddress) o;
-
-        if (getPostalAddress() != null ? !getPostalAddress().equals(that.getPostalAddress()) : that.getPostalAddress() != null)
-            return false;
-        if (getPhysicalAddress() != null ? !getPhysicalAddress().equals(that.getPhysicalAddress()) : that.getPhysicalAddress() != null)
-            return false;
-        if (getContactNumber() != null ? !getContactNumber().equals(that.getContactNumber()) : that.getContactNumber() != null)
-            return false;
-        if (getPostalCode() != null ? !getPostalCode().equals(that.getPostalCode()) : that.getPostalCode() != null)
-            return false;
-        return !(getEmailAddress() != null ? !getEmailAddress().equals(that.getEmailAddress()) : that.getEmailAddress() != null);
-
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        int result = getPostalAddress() != null ? getPostalAddress().hashCode() : 0;
-        result = 31 * result + (getPhysicalAddress() != null ? getPhysicalAddress().hashCode() : 0);
-        result = 31 * result + (getContactNumber() != null ? getContactNumber().hashCode() : 0);
-        result = 31 * result + (getPostalCode() != null ? getPostalCode().hashCode() : 0);
-        result = 31 * result + (getEmailAddress() != null ? getEmailAddress().hashCode() : 0);
-        return result;
+        return id.hashCode();
     }
 }

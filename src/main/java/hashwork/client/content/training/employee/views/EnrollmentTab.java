@@ -6,6 +6,8 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import hashwork.app.facade.PersonFacade;
 import hashwork.app.facade.TrainingFacade;
+import hashwork.client.content.MainLayout;
+import hashwork.client.content.training.employee.EmployeeTrainingMenu;
 import hashwork.client.content.training.employee.forms.TrainingEnrollmentForm;
 import hashwork.client.content.training.employee.table.ScheduledCourseApprovedTable;
 import hashwork.domain.people.Person;
@@ -20,13 +22,13 @@ import java.util.Collection;
 public class EnrollmentTab extends VerticalLayout implements
         Button.ClickListener, Property.ValueChangeListener {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
     private final TrainingEnrollmentForm form;
     private final ScheduledCourseApprovedTable table;
     private String scheduledCourseId;
     private Collection<String> participantIds = new ArrayList<String>();
 
-    public EnrollmentTab(HashWorkMain app) {
+    public EnrollmentTab(MainLayout app) {
         main = app;
         form = new TrainingEnrollmentForm(main);
         table = new ScheduledCourseApprovedTable(main);
@@ -37,7 +39,7 @@ public class EnrollmentTab extends VerticalLayout implements
     }
 
     @Override
-    public void buttonClick(ClickEvent event) {
+    public void buttonClick(Button.ClickEvent event) {
         final Button source = event.getButton();
         if (source == form.enroll) {
             if (scheduledCourseId != null) {
@@ -52,7 +54,7 @@ public class EnrollmentTab extends VerticalLayout implements
     }
 
     @Override
-    public void valueChange(ValueChangeEvent event) {
+    public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
             scheduledCourseId = (String) property.getValue();
@@ -69,19 +71,19 @@ public class EnrollmentTab extends VerticalLayout implements
 
     private void addListeners() {
         //Register Button Listeners
-        form.cancel.addClickListener((ClickListener) this);
-        form.enroll.addClickListener((ClickListener) this);
+        form.cancel.addClickListener((Button.ClickListener) this);
+        form.enroll.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
-        table.addValueChangeListener((ValueChangeListener) this);
-        form.select.addValueChangeListener((ValueChangeListener) this);
+        table.addValueChangeListener((Property.ValueChangeListener) this);
+        form.select.addValueChangeListener((Property.ValueChangeListener) this);
     }
 
     private void enrolPaticipants(String scheduledCourseId, Collection<String> participantIds) {
-        ScheduledCourse scheduledCourse = TrainingFacade.getCourseScheduleModelService().findById(scheduledCourseId);
+        ScheduledCourse scheduledCourse = TrainingFacade.scheduledCourseService.findById(scheduledCourseId);
         for (String string : participantIds) {
-            Person person = PersonFacade.getEmployeeModelService().findById(string);
-            scheduledCourse.getParticipants().add(person);
+            Person person = PersonFacade.personService.findById(string);
+//            scheduledCourse.getParticipants().add(person);
         }
-        TrainingFacade.getCourseScheduleModelService().merge(scheduledCourse);
+        TrainingFacade.scheduledCourseService.save(scheduledCourse);
     }
 }

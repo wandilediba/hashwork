@@ -9,6 +9,7 @@ import com.vaadin.ui.Table;
 import hashwork.app.facade.TrainingFacade;
 import hashwork.client.content.MainLayout;
 import hashwork.domain.ui.training.TrainingInstitution;
+
 import java.util.Set;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Set;
  * @author BONGANI
  */
 public class TrainingInstitutionTable extends Table{
-    
+
     private final MainLayout main;
 
     public TrainingInstitutionTable(MainLayout main) {
@@ -26,16 +27,15 @@ public class TrainingInstitutionTable extends Table{
         addContainerProperty("TrainingInstitution", String.class, null);
         addContainerProperty("LocationContact", String.class, null);
         addContainerProperty("CityId", String.class, null);
-       
 
 
         // Add Data Columns
         Set<TrainingInstitution> trainingInstitutions = TrainingFacade.trainingInstitutionService.findAll();
         for (TrainingInstitution trainingInstitution : trainingInstitutions) {
             addItem(new Object[]{trainingInstitution.getTrainingInstitution(),
-                trainingInstitution.getLocationContact(),
-                trainingInstitution.getCityId()}, 
-                trainingInstitution.getId());
+                            trainingInstitution.getLocationContactId(),
+                            trainingInstitution.getCityId()},
+                    trainingInstitution.getId());
         }
         // Allow selecting items from the table.
         setNullSelectionAllowed(false);

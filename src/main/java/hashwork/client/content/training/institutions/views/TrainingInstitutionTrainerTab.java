@@ -7,6 +7,10 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import hashwork.app.facade.TrainingFacade;
+import hashwork.client.content.MainLayout;
+import hashwork.client.content.training.institutions.InstitutionManagementMenu;
+import hashwork.client.content.training.institutions.forms.TrainingInstitutionTrainerForm;
+import hashwork.client.content.training.institutions.table.TrainingInstitutionTrainerTable;
 import hashwork.domain.ui.training.TrainingInstitutionTrainer;
 
 /**
@@ -15,11 +19,11 @@ import hashwork.domain.ui.training.TrainingInstitutionTrainer;
 public class TrainingInstitutionTrainerTab extends VerticalLayout implements
         Button.ClickListener, Property.ValueChangeListener {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
     private final TrainingInstitutionTrainerForm form;
     private final TrainingInstitutionTrainerTable table;
 
-    public TrainingInstitutionTrainerTab(HashWorkMain app) {
+    public TrainingInstitutionTrainerTab(MainLayout app) {
         main = app;
         form = new TrainingInstitutionTrainerForm();
         table = new TrainingInstitutionTrainerTable(main);
@@ -30,7 +34,7 @@ public class TrainingInstitutionTrainerTab extends VerticalLayout implements
     }
 
     @Override
-    public void buttonClick(ClickEvent event) {
+    public void buttonClick(Button.ClickEvent event) {
         final Button source = event.getButton();
         if (source == form.save) {
             saveForm(form.binder);
@@ -46,10 +50,10 @@ public class TrainingInstitutionTrainerTab extends VerticalLayout implements
     }
 
     @Override
-    public void valueChange(ValueChangeEvent event) {
+    public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final TrainingInstitutionTrainer educationType = TrainingFacade.getTrainingInstitutionTrainerModelService().findById(table.getValue().toString());
+            final TrainingInstitutionTrainer educationType = TrainingFacade.trainingInstitutionTrainerService.findById(table.getValue().toString());
             form.binder.setItemDataSource(new BeanItem<TrainingInstitutionTrainer>(educationType));
             setReadFormProperties();
         }
@@ -58,7 +62,7 @@ public class TrainingInstitutionTrainerTab extends VerticalLayout implements
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            TrainingFacade.getTrainingInstitutionTrainerModelService().persist(getEntity(binder));
+            TrainingFacade.trainingInstitutionTrainerService.save(getEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -70,7 +74,7 @@ public class TrainingInstitutionTrainerTab extends VerticalLayout implements
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            TrainingFacade.getTrainingInstitutionTrainerModelService().merge(getEntity(binder));
+            TrainingFacade.trainingInstitutionTrainerService.save(getEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -80,7 +84,7 @@ public class TrainingInstitutionTrainerTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        TrainingFacade.getTrainingInstitutionTrainerModelService().remove(getEntity(binder));
+        TrainingFacade.trainingInstitutionTrainerService.delete(getEntity(binder));
         getHome();
     }
 
@@ -114,12 +118,12 @@ public class TrainingInstitutionTrainerTab extends VerticalLayout implements
 
     private void addListeners() {
         //Register Button Listeners
-        form.save.addClickListener((ClickListener) this);
-        form.edit.addClickListener((ClickListener) this);
-        form.cancel.addClickListener((ClickListener) this);
-        form.update.addClickListener((ClickListener) this);
-        form.delete.addClickListener((ClickListener) this);
+        form.save.addClickListener((Button.ClickListener) this);
+        form.edit.addClickListener((Button.ClickListener) this);
+        form.cancel.addClickListener((Button.ClickListener) this);
+        form.update.addClickListener((Button.ClickListener) this);
+        form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
-        table.addValueChangeListener((ValueChangeListener) this);
+        table.addValueChangeListener((Property.ValueChangeListener) this);
     }
 }

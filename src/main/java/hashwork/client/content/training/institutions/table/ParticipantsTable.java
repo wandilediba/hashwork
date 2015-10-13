@@ -2,7 +2,6 @@ package hashwork.client.content.training.institutions.table;
 
 import com.vaadin.data.Property;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.themes.Reindeer;
 import hashwork.app.facade.TrainingFacade;
@@ -11,7 +10,7 @@ import hashwork.domain.ui.training.Course;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -32,18 +31,18 @@ public class ParticipantsTable extends Table {
 
 
         // Add Data Columns
-        List<Course> courses = TrainingFacade.getCourseService().getInstitutionCourses();
+        Set<Course> courses = TrainingFacade.courseService.getInstitutionCourses();
         for (final Course course : courses) {
 
             Button delete = new Button("Delete", new Button.ClickListener() {
                 @Override
                 public void buttonClick(Button.ClickEvent event) {
-                    if (course.getScheduledCourses().size() > 0) {
-                        Notification.show("Course Has Schedule, Delete Schedule First!", Notification.Type.ERROR_MESSAGE);
-                    } else {
-                        TrainingFacade.getCourseModelService().remove(course);
-                        main.content.setSecondComponent(new InstitutionManagementMenu(main, "CREATE"));
-                    }
+//                    if (course.get.size() > 0) {
+//                        Notification.show("Course Has Schedule, Delete Schedule First!", Notification.Type.ERROR_MESSAGE);
+//                    } else {
+//                        TrainingFacade.getCourseModelService().remove(course);
+//                        main.content.setSecondComponent(new InstitutionManagementMenu(main, "CREATE"));
+//                    }
 
                 }
             });
@@ -53,9 +52,9 @@ public class ParticipantsTable extends Table {
 
 
             addItem(new Object[]{course.getCourseName(),
-                    course.getCourseCategory().getCategoryName(),
-                    course.getInstitutionName().getTrainingInstitution(),
-                    course.getCourseStatus().getStatusValues(),
+                    course.getCourseCategoryId(),
+                    course.getInstitutionNameId(),
+                    course.getCourseStatusId(),
                     course.getCreditHours(),
                     delete
             }, course.getId());

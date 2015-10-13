@@ -3,6 +3,9 @@ package hashwork.client.content.training.registration;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 import hashwork.client.content.MainLayout;
+import hashwork.client.content.training.registration.views.CourseRequestTab;
+import hashwork.client.content.training.registration.views.CourseScheduledTab;
+import hashwork.client.content.training.registration.views.RegisterInstitutionTab;
 
 /**
  * Created by hashcode on 2015/10/08.

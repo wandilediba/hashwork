@@ -1,8 +1,11 @@
 package hashwork.client.content.system.training.tables;
 
 import com.vaadin.ui.Table;
+import hashwork.app.facade.LocationFacade;
 import hashwork.app.facade.TrainingFacade;
 import hashwork.client.content.MainLayout;
+import hashwork.domain.office.LocationAddress;
+import hashwork.domain.ui.location.Location;
 import hashwork.domain.ui.training.TrainingInstitution;
 
 import java.util.Set;
@@ -30,11 +33,12 @@ public class TrainingInstitutionTable extends Table {
         Set<TrainingInstitution> trainingInstitutions = TrainingFacade.trainingInstitutionService.findAll();
         for (TrainingInstitution trainingInstitution : trainingInstitutions) {
             addItem(new Object[]{trainingInstitution.getTrainingInstitution(),
-                    trainingInstitution.getContact().getContactNumber(),
-                    trainingInstitution.getContact().getPostalAddress(),
-                    trainingInstitution.getContact().getPhysicalAddress(),
-                    trainingInstitution.getContact().getPostalCode(),
-                    trainingInstitution.getCity().getName()}, trainingInstitution.getId());
+                    contactNumber(trainingInstitution.getLocationContactId()),
+                    postalAddress(trainingInstitution.getLocationContactId()),
+                    physicalAddress(trainingInstitution.getLocationContactId()),
+                    postalCode(trainingInstitution.getLocationContactId()),
+                    cityName(trainingInstitution.getCityId())
+            }, trainingInstitution.getId());
         }
         // Allow selecting items from the table.
         setNullSelectionAllowed(false);
@@ -44,5 +48,31 @@ public class TrainingInstitutionTable extends Table {
         setImmediate(true);
 
 
+    }
+
+    private String cityName(String cityId) {
+        Location city = LocationFacade.locationService.findById(cityId);
+        return city.getName();
+    }
+
+    private String postalCode(String locationContactId) {
+        LocationAddress address = LocationFacade.locationAddressService.findById(locationContactId);
+        return address.getPostalCode();
+    }
+
+    private String physicalAddress(String locationContactId) {
+        LocationAddress address = LocationFacade.locationAddressService.findById(locationContactId);
+
+        return address.getPhysicalAddress();
+    }
+
+    private String postalAddress(String locationContactId) {
+        LocationAddress address = LocationFacade.locationAddressService.findById(locationContactId);
+        return address.getPostalAddress();
+    }
+
+    private Object contactNumber(String locationContactId) {
+        LocationAddress address = LocationFacade.locationAddressService.findById(locationContactId);
+        return address.getContactNumber();
     }
 }

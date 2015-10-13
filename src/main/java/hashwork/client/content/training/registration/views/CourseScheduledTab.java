@@ -2,16 +2,16 @@ package hashwork.client.content.training.registration.views;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
-import hashwork.app.facade.LocationFacade;
 import hashwork.app.facade.UtilFacade;
-import hashwork.client.content.training.registration.table.AllScheduledCoursesTable;
+import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.utilities.UtilitiesMenu;
-import hashwork.domain.ui.location.LocationAddress;
+import hashwork.client.content.system.utilities.model.FunderModel;
+import hashwork.client.content.training.registration.table.AllScheduledCoursesTable;
 import hashwork.domain.ui.util.Funder;
-import hashwork.factories.office.OfficeFactory;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -19,11 +19,11 @@ import hashwork.factories.office.OfficeFactory;
 public class CourseScheduledTab extends VerticalLayout implements
         Button.ClickListener, Property.ValueChangeListener {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
 
     private final AllScheduledCoursesTable table;
 
-    public CourseScheduledTab(HashWorkMain app) {
+    public CourseScheduledTab(MainLayout app) {
         main = app;
 
         table = new AllScheduledCoursesTable(main);
@@ -33,13 +33,13 @@ public class CourseScheduledTab extends VerticalLayout implements
     }
 
     @Override
-    public void buttonClick(ClickEvent event) {
+    public void buttonClick(Button.ClickEvent event) {
         final Button source = event.getButton();
 
     }
 
     @Override
-    public void valueChange(ValueChangeEvent event) {
+    public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
 
@@ -49,7 +49,7 @@ public class CourseScheduledTab extends VerticalLayout implements
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            UtilFacade.getFunderModelService().persist(getEntity(binder));
+            UtilFacade.funderService.save(getEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -61,7 +61,7 @@ public class CourseScheduledTab extends VerticalLayout implements
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            UtilFacade.getFunderModelService().merge(getEntity(binder));
+            UtilFacade.funderService.save(getEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -71,24 +71,22 @@ public class CourseScheduledTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        UtilFacade.getFunderModelService().removeById(getEntity(binder).getId());
+        UtilFacade.funderService.delete(getEntity(binder));
         getHome();
     }
 
     private Funder getEntity(FieldGroup binder) {
-        final FunderBean funderBean = ((BeanItem<FunderBean>) binder.getItemDataSource()).getBean();
-        final Location city = LocationFacade.getLocationModelService().findById(funderBean.getCity());
-        final LocationAddress address = new OfficeFactory.LocationAddressBuilder(funderBean.getPostalAddress())
-                .contactNumber(funderBean.getContactNumber())
-                .physicalAddress(funderBean.getPhysicalAddress())
-                .postalCode(funderBean.getPostalCode())
+        final FunderModel funderBean = ((BeanItem<FunderModel>) binder.getItemDataSource()).getBean();
+//        final Location city = LocationFacade.getLocationModelService().findById(funderBean.getCity());
+//        final LocationAddress address = new OfficeFactory.LocationAddressBuilder(funderBean.getPostalAddress())
+//                .contactNumber(funderBean.getContactNumber())
+//                .physicalAddress(funderBean.getPhysicalAddress())
+//                .postalCode(funderBean.getPostalCode())
+//                .build();
+        final Funder funder = new Funder.Builder()
+
                 .build();
-        final Funder funder = new UtilFactory.FunderBuilder(funderBean.getTrainingFunderName())
-                .costCenter(funderBean.getCostCenter())
-                .city(city)
-                .contact(address)
-                .build();
-        funder.setId(funderBean.getId());
+
         return funder;
 
     }
@@ -109,19 +107,12 @@ public class CourseScheduledTab extends VerticalLayout implements
         //Register Button Listeners
 
         //Register Table Listerners
-        table.addValueChangeListener((ValueChangeListener) this);
+        table.addValueChangeListener((Property.ValueChangeListener) this);
     }
 
-    private FunderBean getBean(Funder funder) {
-        FunderBean bean = new FunderBean();
-        bean.setCity(funder.getCity().getId());
-        bean.setContactNumber(funder.getContact().getContactNumber());
-        bean.setCostCenter(funder.getCostCenter());
-        bean.setId(funder.getId());
-        bean.setPhysicalAddress(funder.getContact().getPhysicalAddress());
-        bean.setPostalAddress(funder.getContact().getPostalAddress());
-        bean.setPostalCode(funder.getContact().getPostalCode());
-        bean.setTrainingFunderName(funder.getTrainingFunderName());
+    private FunderModel getBean(Funder funder) {
+        FunderModel bean = new FunderModel();
+
         return bean;
     }
 }

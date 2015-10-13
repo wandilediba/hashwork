@@ -2,6 +2,8 @@ package hashwork.client.content.training.employee.views;
 
 import com.vaadin.data.Property;
 import com.vaadin.ui.VerticalLayout;
+import hashwork.client.content.MainLayout;
+import hashwork.client.content.training.employee.EmployeeTrainingMenu;
 import hashwork.client.content.training.employee.table.ApprovedRequestCompetenciesTable;
 
 /**
@@ -10,11 +12,11 @@ import hashwork.client.content.training.employee.table.ApprovedRequestCompetenci
 public class ApprovedRequestTab extends VerticalLayout implements
         Property.ValueChangeListener {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
 
     private final ApprovedRequestCompetenciesTable table;
 
-    public ApprovedRequestTab(HashWorkMain app) {
+    public ApprovedRequestTab(MainLayout app) {
         main = app;
 
         table = new ApprovedRequestCompetenciesTable(main);
@@ -25,7 +27,7 @@ public class ApprovedRequestTab extends VerticalLayout implements
 
 
     @Override
-    public void valueChange(ValueChangeEvent event) {
+    public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
 
@@ -38,6 +40,6 @@ public class ApprovedRequestTab extends VerticalLayout implements
 
     private void addListeners() {
 
-        table.addValueChangeListener((ValueChangeListener) this);
+        table.addValueChangeListener((Property.ValueChangeListener) this);
     }
 }

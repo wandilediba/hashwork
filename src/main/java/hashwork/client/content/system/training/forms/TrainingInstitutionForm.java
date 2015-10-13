@@ -2,12 +2,19 @@ package hashwork.client.content.system.training.forms;
 
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.BeanValidator;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.*;
 import hashwork.app.facade.LocationFacade;
+import hashwork.app.util.fields.ButtonsHelper;
+import hashwork.app.util.fields.UIComboBoxHelper;
+import hashwork.app.util.fields.UIComponentHelper;
+import hashwork.client.content.system.positions.model.PositionModel;
 import hashwork.client.content.system.training.model.TrainingInstitutionModel;
+import hashwork.domain.ui.location.Location;
+
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -28,81 +35,55 @@ public class TrainingInstitutionForm extends FormLayout {
         bean = new TrainingInstitutionModel();
         item = new BeanItem<>(bean);
         binder = new FieldGroup(item);
-        HorizontalLayout buttons = getButtons();
-        // Determines which properties are shown
-        update.setVisible(false);
-        delete.setVisible(false);
+        final UIComponentHelper UIComponent = new UIComponentHelper();
+        final UIComboBoxHelper UIComboBox = new UIComboBoxHelper();
+
+        TextField trainingInstitution = UIComponent.getGridTextField("Training Institution :", "trainingInstitution", TrainingInstitutionModel.class, binder);
+        TextField contactNumber = UIComponent.getGridTextField("Contact Number :", "contactNumber", TrainingInstitutionModel.class, binder);
+        TextField postalCode = UIComponent.getGridTextField("Postal Code :", "postalCode", TrainingInstitutionModel.class, binder);
+
+        TextArea postalAddress = UIComponent.getGridTextArea("Postal Address :", "postalAddress", TrainingInstitutionModel.class, binder);
+        TextArea physicalAddress = UIComponent.getGridTextArea("Physical  Address :", "physicalAddress", TrainingInstitutionModel.class, binder);
 
 
-        TextField trainingFunderName = getTextField("Training Institution ", "trainingInstitution");
-        TextField contactNumber = getTextField("Contact Number", "contactNumber");
-        TextField postalCode = getTextField("Postal Code", "postalCode");
-        TextArea postalAddress = getTextArea("Postal Address", "postalAddress");
-        TextArea physicalAddress = getTextArea("Physical  Address", "physicalAddress");
-        ComboBox city = getComboBox("City", "city");
+        final ComboBox city = UIComboBox.getComboBox("City :", "city", PositionModel.class, binder, new Consumer<ComboBox>() {
+            public void accept(ComboBox comboBox) {
+                Set<Location> cities = LocationFacade.locationService
+                        .findAll()
+                        .parallelStream()
+                        .filter(city -> city.getId() != city.getParentId())
+                        .collect(Collectors.toSet());
+
+                for (Location city : cities) {
+                    comboBox.addItem(city.getId());
+                    comboBox.setItemCaption(city.getId(), city.getName());
+                }
+            }
+        });
 
 
+        // Create a field group and use it to bind the fields in the layout
         GridLayout grid = new GridLayout(4, 10);
         grid.setSizeFull();
-        grid.addComponent(trainingFunderName, 0, 0, 1, 0);
-        grid.addComponent(contactNumber, 2, 0);
-        grid.addComponent(physicalAddress, 0, 1, 0, 2);
-        grid.addComponent(postalAddress, 1, 1, 1, 2);
-        grid.addComponent(postalCode, 2, 1);
-        grid.addComponent(city, 2, 2);
-        grid.addComponent(buttons, 0, 3, 2, 3);
+
+        // First ROW
+        grid.addComponent(trainingInstitution, 0, 0);
+        grid.addComponent(contactNumber, 1, 0);
+        grid.addComponent(postalCode, 2, 0);
+
+        //Second ROW
+        grid.addComponent(postalAddress, 0, 1);
+        grid.addComponent(city, 1, 1);
+        grid.addComponent(physicalAddress, 2, 1);
+
+
+        HorizontalLayout buttons = ButtonsHelper.getButtons(save, edit, cancel, update, delete);
+        buttons.setSizeFull();
+        grid.addComponent(new Label("<hr/>", ContentMode.HTML), 0, 5, 2, 5);
+        grid.addComponent(buttons, 0, 6, 2, 6);
 
         addComponent(grid);
     }
 
-    private TextArea getTextArea(String label, String field) {
-        TextArea textArea = new TextArea(label);
-        textArea.setWidth(250, Unit.PIXELS);
-        textArea.setNullRepresentation("");
-        textArea.addValidator(new BeanValidator(TrainingInstitutionBean.class, field));
-        textArea.setImmediate(true);
-        binder.bind(textArea, field);
-        return textArea;
 
-    }
-
-    private TextField getTextField(String label, String field) {
-        TextField textField = new TextField(label);
-        textField.setWidth(250, Unit.PIXELS);
-        textField.setNullRepresentation("");
-        textField.addValidator(new BeanValidator(TrainingInstitutionBean.class, field));
-        textField.setImmediate(true);
-        binder.bind(textField, field);
-        return textField;
-    }
-
-    private ComboBox getComboBox(String label, String field) {
-        ComboBox comboBox = new ComboBox(label);
-        List<Location> locations = LocationFacade.getLocationModelService().findAll();
-
-//        List<Location> sortedCopy = Ordering.from(byLastName).compound(byFirstName).reverse().sortedCopy(locations);
-//        List<Location> sortedList = Ordering.natural().reverse().sortedCopy(this);
-
-        Collection<Location> cities = Collections2.filter(locations, new CityPredicate());
-        for (Location location : cities) {
-            comboBox.addItem(location.getId());
-            comboBox.setItemCaption(location.getId(), location.getName());
-        }
-        comboBox.addValidator(new BeanValidator(TrainingInstitutionBean.class, field));
-        comboBox.setImmediate(true);
-        comboBox.setWidth(250, Unit.PIXELS);
-        binder.bind(comboBox, field);
-        return comboBox;
-    }
-
-    private HorizontalLayout getButtons() {
-        HorizontalLayout buttons = new HorizontalLayout();
-        buttons.addComponent(save);
-        buttons.addComponent(edit);
-        buttons.addComponent(cancel);
-        buttons.addComponent(update);
-        buttons.addComponent(delete);
-
-        return buttons;
-    }
 }

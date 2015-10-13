@@ -2,6 +2,7 @@ package hashwork.client.content.training.registration.views;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
@@ -9,8 +10,10 @@ import hashwork.app.facade.EducationFacade;
 import hashwork.app.facade.PersonFacade;
 import hashwork.app.facade.TrainingFacade;
 import hashwork.app.facade.UtilFacade;
+import hashwork.client.content.MainLayout;
 import hashwork.client.content.training.registration.InstitutionRegistrationMenu;
 import hashwork.client.content.training.registration.forms.CourseRequestForm;
+import hashwork.client.content.training.registration.model.CourseRequestModel;
 import hashwork.client.content.training.registration.table.CourseRequestTable;
 import hashwork.domain.people.Person;
 import hashwork.domain.ui.education.Competency;
@@ -29,7 +32,7 @@ import java.util.List;
 public class CourseRequestTab extends VerticalLayout implements
         Button.ClickListener, Property.ValueChangeListener {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
     private final CourseRequestForm form;
     private final CourseRequestTable table;
     private Collection<String> requestorsIds = new ArrayList<String>();
@@ -37,7 +40,7 @@ public class CourseRequestTab extends VerticalLayout implements
     private Collection<String> fundersIds = new ArrayList<String>();
     private Collection<String> trainingInstitutionIds = new ArrayList();
 
-    public CourseRequestTab(HashWorkMain app) {
+    public CourseRequestTab(MainLayout app) {
         main = app;
         form = new CourseRequestForm();
         table = new CourseRequestTable(main);
@@ -48,7 +51,7 @@ public class CourseRequestTab extends VerticalLayout implements
     }
 
     @Override
-    public void buttonClick(ClickEvent event) {
+    public void buttonClick(Button.ClickEvent event) {
         final Button source = event.getButton();
         if (source == form.save) {
             saveForm(form.binder);
@@ -64,12 +67,12 @@ public class CourseRequestTab extends VerticalLayout implements
     }
 
     @Override
-    public void valueChange(ValueChangeEvent event) {
+    public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final CourseRequest courseRequest = TrainingFacade.getCourseRequestService().findById(table.getValue().toString());
-            final CourseRequestBean bean = getBean(courseRequest);
-            form.binder.setItemDataSource(new BeanItem<CourseRequestBean>(bean));
+            final CourseRequest courseRequest = TrainingFacade.courseRequestService.findById(table.getValue().toString());
+            final CourseRequestModel bean = getBean(courseRequest);
+            form.binder.setItemDataSource(new BeanItem<>(bean));
             setReadFormProperties();
         } else if (property == form.competences) {
             competenciesIds = (Collection<String>) property.getValue();
@@ -84,7 +87,7 @@ public class CourseRequestTab extends VerticalLayout implements
         try {
             getEntity(binder);// See Bind values
             binder.commit();
-            TrainingFacade.getCourseRequestService().persist(getEntity(binder));
+            TrainingFacade.courseRequestService.save(getEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -96,7 +99,7 @@ public class CourseRequestTab extends VerticalLayout implements
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            TrainingFacade.getCourseRequestService().merge(getEntity(binder));
+            TrainingFacade.courseRequestService.save(getEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -106,25 +109,20 @@ public class CourseRequestTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        TrainingFacade.getCourseRequestService().removeById(getEntity(binder).getId());
+        TrainingFacade.courseRequestService.delete(getEntity(binder));
         getHome();
     }
 
     private CourseRequest getEntity(FieldGroup binder) {
 
-        final CourseRequestBean courseRequestBean = ((BeanItem<CourseRequestBean>) binder.getItemDataSource()).getBean();
-        final CourseRequest courseRequest = new TrainingFactory.CourseRequestBuilder(courseRequestBean.getRequestName(), new Date())
-                .prefferedStart(courseRequestBean.getPrefferedStart())
-                .preferredEnd(courseRequestBean.getPreferredEnd())
-                .competencies(getCompetencies(competenciesIds))
-                .requestors(getRequestors(competenciesIds))
-                .funders(getFunders(fundersIds))
-                .status(CompetencyRequestStatus.REQUESTED.name())
-                .trainingInstitutions(getInstitutions(trainingInstitutionIds))
+        final CourseRequestModel courseRequestBean = ((BeanItem<CourseRequestModel>) binder.getItemDataSource()).getBean();
+        final CourseRequest courseRequest = new CourseRequest.Builder()
+
+
                 .build();
 
 
-        courseRequest.setId(courseRequestBean.getId());
+
         return courseRequest;
 
     }
@@ -154,32 +152,33 @@ public class CourseRequestTab extends VerticalLayout implements
 
     private void addListeners() {
         //Register Button Listeners
-        form.save.addClickListener((ClickListener) this);
-        form.edit.addClickListener((ClickListener) this);
-        form.cancel.addClickListener((ClickListener) this);
-        form.update.addClickListener((ClickListener) this);
-        form.delete.addClickListener((ClickListener) this);
+        form.save.addClickListener((Button.ClickListener) this);
+        form.edit.addClickListener((Button.ClickListener) this);
+        form.cancel.addClickListener((Button.ClickListener) this);
+        form.update.addClickListener((Button.ClickListener) this);
+        form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
-        table.addValueChangeListener((ValueChangeListener) this);
-        form.competences.addValueChangeListener((ValueChangeListener) this);
+        table.addValueChangeListener((Property.ValueChangeListener) this);
+        form.competences.addValueChangeListener((Property.ValueChangeListener) this);
         form.competences.setImmediate(true);
 
-        form.funders.addValueChangeListener((ValueChangeListener) this);
+        form.funders.addValueChangeListener((Property.ValueChangeListener) this);
         form.funders.setImmediate(true);
-        form.trainingInstitutions.addValueChangeListener((ValueChangeListener) this);
+        form.trainingInstitutions.addValueChangeListener((
+                Property.ValueChangeListener) this);
         form.trainingInstitutions.setImmediate(true);
     }
 
-    private CourseRequestBean getBean(CourseRequest courseRequest) {
-        CourseRequestBean bean = new CourseRequestBean();
-        bean.setCompetencies(getCompetencyIds(courseRequest.getCompetencies()));
-        bean.setFunder(getFunderIds(courseRequest.getFunder()));
-        bean.setPreferredEnd(courseRequest.getPreferredEnd());
-        bean.setId(courseRequest.getId());
-        bean.setPrefferedStart(courseRequest.getPrefferedStart());
-        bean.setRequestName(courseRequest.getRequestName());
-        bean.setRequestors(getRequestorsId(courseRequest.getRequestors()));
-        bean.setTrainingInstitutions(getTrainingInstitutionIds(courseRequest.getTrainingInstitutions()));
+    private CourseRequestModel getBean(CourseRequest courseRequest) {
+        CourseRequestModel bean = new CourseRequestModel();
+//        bean.setCompetencies(getCompetencyIds(courseRequest.getCompetencies()));
+//        bean.setFunder(getFunderIds(courseRequest.getFunder()));
+//        bean.setPreferredEnd(courseRequest.getPreferredEnd());
+//        bean.setId(courseRequest.getId());
+//        bean.setPrefferedStart(courseRequest.getPrefferedStart());
+//        bean.setRequestName(courseRequest.getRequestName());
+//        bean.setRequestors(getRequestorsId(courseRequest.getRequestors()));
+//        bean.setTrainingInstitutions(getTrainingInstitutionIds(courseRequest.getTrainingInstitutions()));
         return bean;
     }
 
@@ -210,7 +209,7 @@ public class CourseRequestTab extends VerticalLayout implements
     private List<Competency> getCompetencies(Collection<String> competenciesId) {
         List<Competency> competencies = new ArrayList<Competency>();
         for (String id : competenciesId) {
-            Competency competency = EducationFacade.getCompetencyModelService().findById(id);
+            Competency competency = EducationFacade.competencyService.findById(id);
             competencies.add(competency);
         }
         return competencies;
@@ -218,13 +217,13 @@ public class CourseRequestTab extends VerticalLayout implements
 
     private List<Person> getRequestors(Collection<String> competencesId) {
         Collection<String> requestIds = new HashSet<String>();
-        for (String id : competencesId) {
-            List<String> requestorsId = TrainingFacade.getCompetencyRequestService().getRequestorsIds(id);
-            requestIds.addAll(requestorsId);
-        }
+//        for (String id : competencesId) {
+//            List<String> requestorsId = TrainingFacade.competencyRequestService.getRequestorsIds(id);
+//            requestIds.addAll(requestorsId);
+//        }
         List<Person> persons = new ArrayList<Person>();
         for (String id : requestIds) {
-            Person person = PersonFacade.getEmployeeModelService().findById(id);
+            Person person = PersonFacade.personService.findById(id);
             persons.add(person);
         }
         return persons;
@@ -233,7 +232,7 @@ public class CourseRequestTab extends VerticalLayout implements
     private List<Funder> getFunders(Collection<String> fundersIds) {
         List<Funder> funders = new ArrayList<Funder>();
         for (String id : fundersIds) {
-            Funder funder = UtilFacade.getFunderModelService().findById(id);
+            Funder funder = UtilFacade.funderService.findById(id);
             funders.add(funder);
         }
         return funders;
@@ -242,7 +241,7 @@ public class CourseRequestTab extends VerticalLayout implements
     private List<TrainingInstitution> getInstitutions(Collection<String> trainingInstitutions) {
         List<TrainingInstitution> ti = new ArrayList<TrainingInstitution>();
         for (String id : trainingInstitutions) {
-            TrainingInstitution trainingInstitution = TrainingFacade.getTrainingInstitutionModelService().findById(id);
+            TrainingInstitution trainingInstitution = TrainingFacade.trainingInstitutionService.findById(id);
             ti.add(trainingInstitution);
         }
         return ti;

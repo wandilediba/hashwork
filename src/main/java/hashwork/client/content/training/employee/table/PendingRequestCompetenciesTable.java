@@ -5,9 +5,10 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.themes.Reindeer;
 import hashwork.app.facade.TrainingFacade;
 import hashwork.client.content.MainLayout;
+import hashwork.client.content.training.employee.EmployeeTrainingMenu;
 import hashwork.domain.ui.training.CompetencyRequestAggregate;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -25,19 +26,19 @@ public class PendingRequestCompetenciesTable extends Table {
         addContainerProperty("Approve", Button.class, null);
         addContainerProperty("Reject", Button.class, null);
 
-        List<CompetencyRequestAggregate> requests = TrainingFacade.getCompetencyRequestService().getPendingRequests();
+        Set<CompetencyRequestAggregate> requests = TrainingFacade.competencyRequestAggregateService.getPendingRequests();
         for (final CompetencyRequestAggregate re : requests) {
             Button approve = new Button("Approve", new Button.ClickListener() {
                 @Override
                 public void buttonClick(Button.ClickEvent event) {
-                    TrainingFacade.getCompetencyRequestService().aprroveRequests(re.getId());
+                    TrainingFacade.competencyRequestAggregateService.aprroveRequests(re.getId());
                     main.content.setSecondComponent(new EmployeeTrainingMenu(main, "PENDING"));
                 }
             });
             Button reject = new Button("Reject", new Button.ClickListener() {
                 @Override
                 public void buttonClick(Button.ClickEvent event) {
-                    TrainingFacade.getCompetencyRequestService().rejectRequests(re.getId());
+                    TrainingFacade.competencyRequestAggregateService.rejectRequests(re.getId());
                     main.content.setSecondComponent(new EmployeeTrainingMenu(main, "PENDING"));
                 }
             });

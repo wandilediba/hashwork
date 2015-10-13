@@ -2,15 +2,19 @@ package hashwork.client.content.system.training.views;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import hashwork.app.facade.LocationFacade;
 import hashwork.app.facade.TrainingFacade;
+import hashwork.client.content.MainLayout;
 import hashwork.client.content.system.training.TrainingMenu;
-import hashwork.domain.ui.location.LocationAddress;
+import hashwork.client.content.system.training.forms.TrainingInstitutionForm;
+import hashwork.client.content.system.training.model.TrainingInstitutionModel;
+import hashwork.client.content.system.training.tables.TrainingInstitutionTable;
+import hashwork.domain.ui.location.Location;
 import hashwork.domain.ui.training.TrainingInstitution;
-import hashwork.factories.office.OfficeFactory;
 
 /**
  * Created by hashcode on 2015/10/08.
@@ -18,11 +22,11 @@ import hashwork.factories.office.OfficeFactory;
 public class TrainingInstitutionTab extends VerticalLayout implements
         Button.ClickListener, Property.ValueChangeListener {
 
-    private final HashWorkMain main;
+    private final MainLayout main;
     private final TrainingInstitutionForm form;
     private final TrainingInstitutionTable table;
 
-    public TrainingInstitutionTab(HashWorkMain app) {
+    public TrainingInstitutionTab(MainLayout app) {
         main = app;
         form = new TrainingInstitutionForm();
         table = new TrainingInstitutionTable(main);
@@ -33,7 +37,7 @@ public class TrainingInstitutionTab extends VerticalLayout implements
     }
 
     @Override
-    public void buttonClick(ClickEvent event) {
+    public void buttonClick(Button.ClickEvent event) {
         final Button source = event.getButton();
         if (source == form.save) {
             saveForm(form.binder);
@@ -49,12 +53,12 @@ public class TrainingInstitutionTab extends VerticalLayout implements
     }
 
     @Override
-    public void valueChange(ValueChangeEvent event) {
+    public void valueChange(Property.ValueChangeEvent event) {
         final Property property = event.getProperty();
         if (property == table) {
-            final TrainingInstitution trainingInstitution = TrainingFacade.getTrainingInstitutionModelService().findById(table.getValue().toString());
-            final TrainingInstitutionBean bean = getBean(trainingInstitution);
-            form.binder.setItemDataSource(new BeanItem<TrainingInstitutionBean>(bean));
+            final TrainingInstitution trainingInstitution = TrainingFacade.trainingInstitutionService.findById(table.getValue().toString());
+            final TrainingInstitutionModel bean = getBean(trainingInstitution);
+            form.binder.setItemDataSource(new BeanItem<TrainingInstitutionModel>(bean));
             setReadFormProperties();
         }
     }
@@ -62,7 +66,7 @@ public class TrainingInstitutionTab extends VerticalLayout implements
     private void saveForm(FieldGroup binder) {
         try {
             binder.commit();
-            TrainingFacade.getTrainingInstitutionModelService().persist(getEntity(binder));
+            TrainingFacade.trainingInstitutionService.save(getEntity(binder));
             getHome();
             Notification.show("Record ADDED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -74,7 +78,7 @@ public class TrainingInstitutionTab extends VerticalLayout implements
     private void saveEditedForm(FieldGroup binder) {
         try {
             binder.commit();
-            TrainingFacade.getTrainingInstitutionModelService().merge(getEntity(binder));
+            TrainingFacade.trainingInstitutionService.save(getEntity(binder));
             getHome();
             Notification.show("Record UPDATED!", Notification.Type.TRAY_NOTIFICATION);
         } catch (FieldGroup.CommitException e) {
@@ -84,24 +88,24 @@ public class TrainingInstitutionTab extends VerticalLayout implements
     }
 
     private void deleteForm(FieldGroup binder) {
-        TrainingFacade.getTrainingInstitutionModelService().removeById(getEntity(binder).getId());
+        TrainingFacade.trainingInstitutionService.findById(getEntity(binder).getId());
         getHome();
     }
 
     private TrainingInstitution getEntity(FieldGroup binder) {
-        final TrainingInstitutionBean trainingInstitutionBean = ((BeanItem<TrainingInstitutionBean>) binder.getItemDataSource()).getBean();
-        final Location city = LocationFacade.getLocationModelService().findById(trainingInstitutionBean.getCity());
-        final LocationAddress address = new OfficeFactory.LocationAddressBuilder(trainingInstitutionBean.getPostalAddress())
-                .contactNumber(trainingInstitutionBean.getContactNumber())
-                .physicalAddress(trainingInstitutionBean.getPhysicalAddress())
-                .postalCode(trainingInstitutionBean.getPostalCode())
+        final TrainingInstitutionModel trainingInstitutionBean = ((BeanItem<TrainingInstitutionModel>) binder.getItemDataSource()).getBean();
+        final Location city = LocationFacade.locationService.findById(trainingInstitutionBean.getCity());
+//        final LocationAddress address = new OfficeFactory.LocationAddressBuilder(trainingInstitutionBean.getPostalAddress())
+//                .contactNumber(trainingInstitutionBean.getContactNumber())
+//                .physicalAddress(trainingInstitutionBean.getPhysicalAddress())
+//                .postalCode(trainingInstitutionBean.getPostalCode())
+//                .build();
+        final TrainingInstitution trainingInstitution = new TrainingInstitution.Builder()
+//                .TrainingInstitutionBuilder(trainingInstitutionBean.getTrainingInstitution())
+//                .city(city)
+//                .contact(address)
                 .build();
-        final TrainingInstitution trainingInstitution = new TrainingFactory
-                .TrainingInstitutionBuilder(trainingInstitutionBean.getTrainingInstitution())
-                .city(city)
-                .contact(address)
-                .build();
-        trainingInstitution.setId(trainingInstitutionBean.getId());
+//        trainingInstitution.setId(trainingInstitutionBean.getId());
         return trainingInstitution;
 
     }
@@ -131,23 +135,23 @@ public class TrainingInstitutionTab extends VerticalLayout implements
 
     private void addListeners() {
         //Register Button Listeners
-        form.save.addClickListener((ClickListener) this);
-        form.edit.addClickListener((ClickListener) this);
-        form.cancel.addClickListener((ClickListener) this);
-        form.update.addClickListener((ClickListener) this);
-        form.delete.addClickListener((ClickListener) this);
+        form.save.addClickListener((Button.ClickListener) this);
+        form.edit.addClickListener((Button.ClickListener) this);
+        form.cancel.addClickListener((Button.ClickListener) this);
+        form.update.addClickListener((Button.ClickListener) this);
+        form.delete.addClickListener((Button.ClickListener) this);
         //Register Table Listerners
-        table.addValueChangeListener((ValueChangeListener) this);
+        table.addValueChangeListener((Property.ValueChangeListener) this);
     }
 
-    private TrainingInstitutionBean getBean(TrainingInstitution trainingInstitution) {
-        TrainingInstitutionBean bean = new TrainingInstitutionBean();
-        bean.setCity(trainingInstitution.getCity().getId());
-        bean.setContactNumber(trainingInstitution.getContact().getContactNumber());
-        bean.setId(trainingInstitution.getId());
-        bean.setPhysicalAddress(trainingInstitution.getContact().getPhysicalAddress());
-        bean.setPostalAddress(trainingInstitution.getContact().getPostalAddress());
-        bean.setPostalCode(trainingInstitution.getContact().getPostalCode());
+    private TrainingInstitutionModel getBean(TrainingInstitution trainingInstitution) {
+        TrainingInstitutionModel bean = new TrainingInstitutionModel();
+//        bean.setCity(trainingInstitution.getCity().getId());
+//        bean.setContactNumber(trainingInstitution.getContact().getContactNumber());
+//        bean.setId(trainingInstitution.getId());
+//        bean.setPhysicalAddress(trainingInstitution.getContact().getPhysicalAddress());
+//        bean.setPostalAddress(trainingInstitution.getContact().getPostalAddress());
+//        bean.setPostalCode(trainingInstitution.getContact().getPostalCode());
         bean.setTrainingInstitution(trainingInstitution.getTrainingInstitution());
         return bean;
     }
