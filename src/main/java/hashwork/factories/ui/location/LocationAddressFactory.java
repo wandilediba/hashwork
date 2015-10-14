@@ -1,7 +1,7 @@
 package hashwork.factories.ui.location;
 
 import hashwork.app.util.KeyGenerator;
-import hashwork.domain.ui.location.LocationAddress;
+import hashwork.domain.office.LocationAddress;
 
 /**
  * Created by garran on 2015/09/06.
@@ -13,6 +13,7 @@ public class LocationAddressFactory {
                                                      String postalCode,
                                                      String emailAddress) {
         LocationAddress locationAddress = new LocationAddress.Builder()
+                .id(KeyGenerator.getEntityId())
                 .postalAddress(postalAddress)
                 .physicalAddress(physicalAddress)
                 .contactNumber(contactNumber)

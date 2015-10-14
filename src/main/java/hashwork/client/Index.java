@@ -10,7 +10,7 @@ import hashwork.client.content.login.LoginView;
 /**
  * Created by hashcode on 2015/08/16.
  */
-@Theme("tests-valo")
+@Theme("valo")
 @SpringUI(path = "")
 public class Index extends UI {
     @Override
