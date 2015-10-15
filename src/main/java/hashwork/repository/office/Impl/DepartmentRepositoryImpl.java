@@ -23,7 +23,8 @@ import java.util.Set;
  */
 public class DepartmentRepositoryImpl implements DepartmentRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, Department> lists = redisson.getMap("department");;
+    RMap<String, Department> lists = redisson.getMap("department");
+    ;
 
     public DepartmentRepositoryImpl() {
     }

@@ -17,6 +17,7 @@ public class UsersTree extends Tree implements ItemClickEvent.ItemClickListener 
         this.main = main;
         //add Items to Menu
         addItem(MANAGE_USERS);
+        
 
         //Add Listeners
         addItemClickListener((ItemClickEvent.ItemClickListener) this);

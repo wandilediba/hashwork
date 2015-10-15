@@ -74,7 +74,6 @@ public class CourseRequestForm extends FormLayout {
     }
 
 
-
     private ListSelect getTrainingInstitutionList(String label, String field) {
         trainingInstitutions.setCaption(label);
         Set<TrainingInstitution> trainingInst = TrainingFacade.trainingInstitutionService.findAll();
