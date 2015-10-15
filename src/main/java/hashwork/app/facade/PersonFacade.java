@@ -6,6 +6,7 @@ import hashwork.services.people.*;
 /**
  * Created by DibaW on 10/6/2015.
  */
+@Deprecated
 public class PersonFacade {
 
     public final static PersonService personService = new PersonServiceImpl();

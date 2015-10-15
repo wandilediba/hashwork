@@ -13,7 +13,7 @@ import java.util.Set;
 public class CourseCompetencyTable extends Table {
     private final MainLayout main;
 
-    public CourseCompetencyTable(MainLayout main){
+    public CourseCompetencyTable(MainLayout main) {
         this.main = main;
         setSizeFull();
 
@@ -21,9 +21,9 @@ public class CourseCompetencyTable extends Table {
         addContainerProperty("Competency Id", String.class, null);
 
         Set<CourseCompetencies> courseCompetencies = TrainingFacade.courseCompetenciesService.findAll();
-        for(CourseCompetencies courseCompetency: courseCompetencies){
+        for (CourseCompetencies courseCompetency : courseCompetencies) {
             addItem(new Object[]{courseCompetency.getCourseId(),
-                    courseCompetency.getCompetencyId()},
+                            courseCompetency.getCompetencyId()},
                     courseCompetency.getId());
         }
     }

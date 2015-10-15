@@ -13,7 +13,7 @@ import java.util.Set;
 public class ContinuingEducationCouseTable extends Table {
     private final MainLayout main;
 
-    public ContinuingEducationCouseTable(MainLayout main){
+    public ContinuingEducationCouseTable(MainLayout main) {
         this.main = main;
         setSizeFull();
 
@@ -21,9 +21,9 @@ public class ContinuingEducationCouseTable extends Table {
         addContainerProperty("Credit Hours", String.class, null);
 
         Set<ContinuingEducationCourse> continuingEducationCourses = TrainingFacade.continuingEducationCourseService.findAll();
-        for(ContinuingEducationCourse continuingEducationCourse: continuingEducationCourses){
+        for (ContinuingEducationCourse continuingEducationCourse : continuingEducationCourses) {
             addItem(new Object[]{continuingEducationCourse.getCourseName(),
-                    continuingEducationCourse.getCreditHours()},
+                            continuingEducationCourse.getCreditHours()},
                     getCurrentPageFirstItemId());
         }
 

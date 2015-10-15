@@ -14,7 +14,7 @@ public class CourseFundingSourceTable extends Table {
 
     private final MainLayout main;
 
-    public CourseFundingSourceTable(MainLayout main){
+    public CourseFundingSourceTable(MainLayout main) {
         this.main = main;
         setSizeFull();
 
@@ -24,11 +24,11 @@ public class CourseFundingSourceTable extends Table {
         addContainerProperty("Currency Id", String.class, null);
 
         Set<CourseFundingSource> courseFundingSources = TrainingFacade.courseFundingSourceService.findAll();
-        for(CourseFundingSource courseFundingSource: courseFundingSources){
+        for (CourseFundingSource courseFundingSource : courseFundingSources) {
             addItem(new Object[]{courseFundingSource.getCourseId(),
-                    courseFundingSource.getFunderId(),
-                    courseFundingSource.getAmount(),
-                    courseFundingSource.getCurrencyId()},
+                            courseFundingSource.getFunderId(),
+                            courseFundingSource.getAmount(),
+                            courseFundingSource.getCurrencyId()},
                     courseFundingSource.getId());
         }
 
