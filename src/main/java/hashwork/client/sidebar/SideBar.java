@@ -20,7 +20,7 @@ public class SideBar extends VerticalLayout {
     public static final String MANAGE_TRAINING = " Manage TRAINING";
     public static final String MANAGE_POSITIONS = "Manage POSITIONS";
     public static final String EMPLOYEE_SELF_SERVICE = "Employee SELF SERVICE";
-    public static final String MANAGE_JOB_APPLICATIONS = "Manage JOB APPLICATIONS";
+    public static final String MANAGE_JOB_APPLICATIONS = "Job APPLICATIONS";
     public static final String MANAGE_YOUR_ACCOUNT = "Manage YOUR ACCOUNT";
     public static final String DECISION_CENTER = "Decision CENTER";
     public static final String USERS_PROFILE = "Users PROFILE";
@@ -68,9 +68,6 @@ public class SideBar extends VerticalLayout {
         SelfServiceTree selfServiceTree = new SelfServiceTree(main);
         selfServiceMenu.addComponent(selfServiceTree);
 
-        VerticalLayout accountsMenu = new VerticalLayout();
-        AccountTree accountTree = new AccountTree(main);
-        accountsMenu.addComponent(accountTree);
 
         VerticalLayout usersMenu = new VerticalLayout();
         UsersTree usersTree = new UsersTree(main);
@@ -93,7 +90,6 @@ public class SideBar extends VerticalLayout {
         accordion.addTab(applicationsMenu, MANAGE_JOB_APPLICATIONS, FontAwesome.SEARCH_PLUS);
 
         accordion.addTab(positionMenu, MANAGE_POSITIONS, FontAwesome.BUILDING_O);
-        accordion.addTab(accountsMenu, MANAGE_YOUR_ACCOUNT, FontAwesome.GEAR);
         accordion.addTab(reportsMenu, MANAGE_REPORTS, FontAwesome.BAR_CHART_O);
         accordion.addTab(usersTree, MANAGE_USERS, FontAwesome.USERS);
         accordion.addTab(systemsMenu, SETUP_SYSTEM, FontAwesome.GEARS);

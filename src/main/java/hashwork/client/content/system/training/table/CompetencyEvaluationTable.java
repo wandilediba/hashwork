@@ -13,7 +13,7 @@ import java.util.Set;
 public class CompetencyEvaluationTable extends Table {
     private final MainLayout main;
 
-    public CompetencyEvaluationTable(MainLayout main){
+    public CompetencyEvaluationTable(MainLayout main) {
         this.main = main;
         setSizeFull();
 
@@ -22,9 +22,9 @@ public class CompetencyEvaluationTable extends Table {
         addContainerProperty("Description", String.class, null);
 
         Set<CompetencyEvaluation> competencyEvaluatons = TrainingFacade.competencyEvaluationService.findAll();
-        for(CompetencyEvaluation competencyEvaluaton: competencyEvaluatons){
+        for (CompetencyEvaluation competencyEvaluaton : competencyEvaluatons) {
             addItem(new Object[]{competencyEvaluaton.getCompTypeName(),
-                    competencyEvaluaton.getDescription()},
+                            competencyEvaluaton.getDescription()},
                     competencyEvaluaton.getId());
         }
         setNullSelectionAllowed(false);

@@ -13,7 +13,7 @@ import java.util.Set;
 public class CompetencyRequestTable extends Table {
     private final MainLayout main;
 
-    public CompetencyRequestTable(MainLayout main){
+    public CompetencyRequestTable(MainLayout main) {
         this.main = main;
         setSizeFull();
 
@@ -26,14 +26,14 @@ public class CompetencyRequestTable extends Table {
         addContainerProperty("Reject Comment", String.class, null);
 
         Set<CompetencyRequest> competencyRequests = TrainingFacade.competencyRequestService.findAll();
-        for(CompetencyRequest competencyRequest: competencyRequests){
+        for (CompetencyRequest competencyRequest : competencyRequests) {
             addItem(new Object[]{competencyRequest.getCompetencyName(),
-                    competencyRequest.getCompetencyId(),
-                    competencyRequest.getRequestDate(),
-                    competencyRequest.getRequestorName(),
-                    competencyRequest.getRequestorId(),
-                    competencyRequest.getStatus(),
-                    competencyRequest.getRejectComment()},
+                            competencyRequest.getCompetencyId(),
+                            competencyRequest.getRequestDate(),
+                            competencyRequest.getRequestorName(),
+                            competencyRequest.getRequestorId(),
+                            competencyRequest.getStatus(),
+                            competencyRequest.getRejectComment()},
                     competencyRequest.getId());
         }
         setNullSelectionAllowed(false);
