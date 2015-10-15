@@ -1,10 +1,13 @@
 package hashwork.repository.ui.office;
 import hashwork.domain.office.Department;
+import hashwork.factories.office.DepartmentFactory;
 import hashwork.repository.office.DepartmentRepository;
 import hashwork.repository.office.Impl.DepartmentRepositoryImpl;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.Date;
 
 /**
  * Created by garran on 2015/10/12.
@@ -20,16 +23,16 @@ public class DepartmentTest {
 
     @Test
     public void create() throws Exception {
-//        Date date = new Date();
-//        Department department1 = DepartmentFactory.getDepartment("1", "test1", date, true, "This is a test1");
-//        Department department2 = DepartmentFactory.getDepartment("2", "test2", date, true, "This is a test2");
-//        Department department3 = DepartmentFactory.getDepartment("3", "test3", date, true, "This is a test3");
-//        id = department1.getId();
-//        System.out.println(" department 1 " + department1.getId());
-//        System.out.println(" department 2 " + department2.getId());
-//        System.out.println(" department 3 " + department3);
-//        repo.save(department1);
-//        Assert.assertNotNull(department1.getId());
+        Date date = new Date();
+        Department department1 = DepartmentFactory.getDepartment("test1", date, true, "This is a test1");
+        Department department2 = DepartmentFactory.getDepartment("test2", date, true, "This is a test2");
+        Department department3 = DepartmentFactory.getDepartment("test3", date, true, "This is a test3");
+        id = department1.getId();
+        System.out.println(" department 1 " + department1.getId());
+        System.out.println(" department 2 " + department2.getId());
+        System.out.println(" department 3 " + department3);
+        repo.save(department1);
+        Assert.assertNotNull(department1.getId());
     }
 
     @Test(dependsOnMethods = "create")
