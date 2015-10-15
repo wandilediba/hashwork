@@ -14,10 +14,9 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class ScheduledCourseTable extends Table{
+public class ScheduledCourseTable extends Table {
 
     private final MainLayout main;
 
@@ -63,5 +62,5 @@ public class ScheduledCourseTable extends Table{
 
 
     }
-    
+
 }

@@ -13,35 +13,32 @@ import hashwork.domain.ui.training.TrainingInstitutionTrainer;
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class TrainingInstitutionTrainerTable extends Table{
-  
+public class TrainingInstitutionTrainerTable extends Table {
+
     private final MainLayout main;
-    
-    public TrainingInstitutionTrainerTable(MainLayout main)
-    {
-      this.main = main;
-      setSizeFull();
-      
-       addContainerProperty("FirstName", String.class, null);
-       addContainerProperty("LastName", String.class, null);
-       addContainerProperty("Title", String.class, null);
-       addContainerProperty("Qualification", String.class, null);
-      
-      //add columns
-      Set<TrainingInstitutionTrainer> trainingInstitutionTrainers = TrainingFacade.trainingInstitutionTrainerService.findAll();
-      for (TrainingInstitutionTrainer trainingInstitutionTrainer :  trainingInstitutionTrainers)
-      {
-       addItem(new Object[] {trainingInstitutionTrainer.getFirstName(), trainingInstitutionTrainer.getLastName(), trainingInstitutionTrainer.getQualification(), trainingInstitutionTrainer.getTitle()}, trainingInstitutionTrainer.getId());
-      
-      }
-      setNullSelectionAllowed(false);
-    
-      setSelectable(true);
-    
-      setImmediate(true);
+
+    public TrainingInstitutionTrainerTable(MainLayout main) {
+        this.main = main;
+        setSizeFull();
+
+        addContainerProperty("FirstName", String.class, null);
+        addContainerProperty("LastName", String.class, null);
+        addContainerProperty("Title", String.class, null);
+        addContainerProperty("Qualification", String.class, null);
+
+        //add columns
+        Set<TrainingInstitutionTrainer> trainingInstitutionTrainers = TrainingFacade.trainingInstitutionTrainerService.findAll();
+        for (TrainingInstitutionTrainer trainingInstitutionTrainer : trainingInstitutionTrainers) {
+            addItem(new Object[]{trainingInstitutionTrainer.getFirstName(), trainingInstitutionTrainer.getLastName(), trainingInstitutionTrainer.getQualification(), trainingInstitutionTrainer.getTitle()}, trainingInstitutionTrainer.getId());
+
+        }
+        setNullSelectionAllowed(false);
+
+        setSelectable(true);
+
+        setImmediate(true);
     }
-    
+
 }

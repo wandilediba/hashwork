@@ -122,7 +122,6 @@ public class CourseRequestTab extends VerticalLayout implements
                 .build();
 
 
-
         return courseRequest;
 
     }

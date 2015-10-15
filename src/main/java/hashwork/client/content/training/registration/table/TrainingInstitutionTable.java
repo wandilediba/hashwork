@@ -13,10 +13,9 @@ import hashwork.domain.ui.training.TrainingInstitution;
 import java.util.Set;
 
 /**
- *
  * @author BONGANI
  */
-public class TrainingInstitutionTable extends Table{
+public class TrainingInstitutionTable extends Table {
 
     private final MainLayout main;
 
@@ -46,5 +45,5 @@ public class TrainingInstitutionTable extends Table{
 
 
     }
-    
+
 }
