@@ -1,6 +1,6 @@
 package hashwork.services.ui.location.Impl;
 
-import hashwork.domain.ui.location.LocationAddress;
+import hashwork.domain.office.LocationAddress;
 import hashwork.repository.ui.location.Impl.LocationAddressRepositoryImpl;
 import hashwork.services.ui.location.LocationAddressService;
 

@@ -1,7 +1,7 @@
 package hashwork.repository.ui.location.Impl;
 
 import hashwork.app.conf.Connection;
-import hashwork.domain.ui.location.LocationAddress;
+import hashwork.domain.office.LocationAddress;
 import hashwork.repository.ui.location.LocationAddressRepository;
 import org.redisson.Redisson;
 import org.redisson.core.RMap;

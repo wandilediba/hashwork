@@ -10,7 +10,7 @@ import hashwork.client.content.users.UserManagementMenu;
  */
 public class UsersTree extends Tree implements ItemClickEvent.ItemClickListener {
     private final MainLayout main;
-    public static final Object MANAGE_USERS = "Manage USERS";
+    public static final Object MANAGE_USERS = "Manage System USERS";
     private static final String LANDING_TAB = "LANDING";
 
     public UsersTree(MainLayout main) {

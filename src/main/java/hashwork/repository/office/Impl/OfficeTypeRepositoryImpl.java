@@ -7,6 +7,7 @@ package hashwork.repository.office.Impl;
 
 import hashwork.app.conf.Connection;
 import hashwork.domain.office.OfficeType;
+import hashwork.domain.ui.location.AddressType;
 import hashwork.repository.office.OfficeTypeRepository;
 import org.redisson.Redisson;
 import org.redisson.core.RMap;
@@ -21,7 +22,11 @@ import java.util.Set;
  */
 public class OfficeTypeRepositoryImpl implements OfficeTypeRepository {
     Redisson redisson = Connection.getConnection();
-    RMap<String, OfficeType> lists = redisson.getMap("OfficeType");
+    RMap<String, OfficeType> lists = redisson.getMap("officetype");
+
+    public OfficeTypeRepositoryImpl() {
+
+    }
 
     @Override
     public OfficeType findById(String s) {
@@ -51,4 +56,5 @@ public class OfficeTypeRepositoryImpl implements OfficeTypeRepository {
         }
         return set;
     }
+
 }

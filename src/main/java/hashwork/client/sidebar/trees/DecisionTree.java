@@ -10,9 +10,12 @@ import hashwork.client.content.MainLayout;
 public class DecisionTree extends Tree implements ItemClickEvent.ItemClickListener {
     private final MainLayout main;
     private static final String LANDING_TAB = "LANDING";
+    private static final String MAKE_DECISIONS = "Make DECISIONS";
+
 
     public DecisionTree(MainLayout main) {
         this.main = main;
+        addItem(MAKE_DECISIONS);
     }
     @Override
     public void itemClick(ItemClickEvent event) {

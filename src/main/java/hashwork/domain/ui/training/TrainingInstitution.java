@@ -11,7 +11,7 @@ public class TrainingInstitution implements Serializable {
     private String id;
     private String trainingInstitution;
     private String cityId;
-    private String locationContact;
+    private String locationContactId;
 
 
     public String getId() {
@@ -26,8 +26,8 @@ public class TrainingInstitution implements Serializable {
         return cityId;
     }
 
-    public String getLocationContact() {
-        return locationContact;
+    public String getLocationContactId() {
+        return locationContactId;
     }
 
     private TrainingInstitution(){}
@@ -36,7 +36,7 @@ public class TrainingInstitution implements Serializable {
         this.id = builder.id;
         this.trainingInstitution = builder.trainingInstitution;
         this.cityId = builder.cityId;
-        this.locationContact = builder.locationContact;
+        this.locationContactId = builder.locationContactId;
 
     }
 
@@ -44,7 +44,7 @@ public class TrainingInstitution implements Serializable {
         private String id;
         private String trainingInstitution;
         private String cityId;
-        private String locationContact;
+        private String locationContactId;
 
 
         public Builder id(String value) {
@@ -62,8 +62,8 @@ public class TrainingInstitution implements Serializable {
             return this;
         }
 
-        public Builder locationContact(String value) {
-            this.locationContact = value;
+        public Builder locationContactId(String value) {
+            this.locationContactId = value;
             return this;
         }
 
@@ -71,7 +71,7 @@ public class TrainingInstitution implements Serializable {
             this.id = value.id;
             this.trainingInstitution = value.trainingInstitution;
             this.cityId = value.cityId;
-            this.locationContact = value.locationContact;
+            this.locationContactId = value.locationContactId;
 
             return this;
 
@@ -81,5 +81,21 @@ public class TrainingInstitution implements Serializable {
             return new TrainingInstitution(this);
         }
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TrainingInstitution that = (TrainingInstitution) o;
+
+        return id.equals(that.id);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }

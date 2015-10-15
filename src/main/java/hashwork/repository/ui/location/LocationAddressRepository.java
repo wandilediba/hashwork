@@ -1,6 +1,6 @@
 package hashwork.repository.ui.location;
 
-import hashwork.domain.ui.location.LocationAddress;
+import hashwork.domain.office.LocationAddress;
 import hashwork.repository.CrudRepository;
 
 /**
