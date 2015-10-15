@@ -1,6 +1,6 @@
 @include keyframes(animate-in-scale-up) {
   0% {
-   @include transform(scale(0));
+    @include transform(scale(0));
   }
 }
 

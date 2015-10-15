@@ -7,7 +7,8 @@ import java.util.Date;
  * Created by garran on 2015/09/20.
  */
 public class DepartmentModel implements Serializable {
-    private String name;;
+    private static final long serialVersionUID = 1L;
+    private String name;
     private String description;
     private boolean active;
     private Date dateEstablished;

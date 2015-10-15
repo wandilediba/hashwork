@@ -10,17 +10,17 @@ import java.util.Set;
 /**
  * Created by sihle on 2015/10/08.
  */
-public class CourseCategoryTable  extends Table {
+public class CourseCategoryTable extends Table {
     private final MainLayout main;
 
-    public CourseCategoryTable(MainLayout main){
+    public CourseCategoryTable(MainLayout main) {
         this.main = main;
         setSizeFull();
 
         addContainerProperty("Category Name", String.class, null);
 
         Set<CourseCategory> courseCategorys = TrainingFacade.courseCategoryService.findAll();
-        for(CourseCategory courseCategory: courseCategorys){
+        for (CourseCategory courseCategory : courseCategorys) {
             addItem(new Object[]{courseCategory.getCategoryName()},
                     courseCategory.getId()
             );

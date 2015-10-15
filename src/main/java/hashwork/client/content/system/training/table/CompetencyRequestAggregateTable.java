@@ -13,7 +13,7 @@ import java.util.Set;
 public class CompetencyRequestAggregateTable extends Table {
     private final MainLayout main;
 
-    public CompetencyRequestAggregateTable(MainLayout main){
+    public CompetencyRequestAggregateTable(MainLayout main) {
         this.main = main;
         setSizeFull();
 
@@ -21,11 +21,11 @@ public class CompetencyRequestAggregateTable extends Table {
         addContainerProperty("Status", String.class, null);
         addContainerProperty("Count", String.class, null);
 
-        Set<CompetencyRequestAggregate> competencyRequestAggregates = TrainingFacade.competencyRequestAggregateService.findAll();
-        for(CompetencyRequestAggregate competencyRequestAggregate: competencyRequestAggregates){
+        Set<CompetencyRequestAggregate> competencyRequestAggregates = TrainingFacade.competencyRequestAggregateService.getApprovedRequests();
+        for (CompetencyRequestAggregate competencyRequestAggregate : competencyRequestAggregates) {
             addItem(new Object[]{competencyRequestAggregate.getCompetencyName(),
-                    competencyRequestAggregate.getStatus(),
-                    competencyRequestAggregate.getCount()},
+                            competencyRequestAggregate.getStatus(),
+                            competencyRequestAggregate.getCount()},
                     competencyRequestAggregate.getId());
         }
         setNullSelectionAllowed(false);

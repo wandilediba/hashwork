@@ -9,25 +9,26 @@ import hashwork.app.util.KeyGenerator;
 import hashwork.domain.office.Office;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
  * @author BONGANI
  */
 public class OfficeFactory {
-    public static Office getOffice(String id, String name, String description, String active, Date dateEstablished, String cityId, String officeTypeId, String contactId, Set<String> positionIds) {
+    public static Office getOffice(Map<String,String> values, Date dateEstablished, List<String> positionIds) {
         Office office = new Office
                 .Builder()
-                .id(id)
-                .name(name)
-                .active(active)
-                .description(description)
-                .cityId(cityId)
-                .contactId(contactId)
-                .officeTypeId(officeTypeId)
+                .id(KeyGenerator.getEntityId())
+                .name(values.get("name"))
+                .active(values.get("active"))
+                .description(values.get("description"))
+                .cityId(values.get("cityId"))
+                .contactId(values.get("contactId"))
+                .officeTypeId(values.get("officeTypeId"))
                 .positionIds(positionIds)
                 .dateEstablished(dateEstablished)
-                .id(KeyGenerator.getEntityId())
                 .build();
         return office;
     }

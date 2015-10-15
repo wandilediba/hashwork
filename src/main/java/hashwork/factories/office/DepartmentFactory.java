@@ -9,10 +9,9 @@ import java.util.Date;
  * Created by hashcode on 2015/08/16.
  */
 public class DepartmentFactory {
-    public static Department getDepartment(String id, String name, Date dateEstablished, boolean active, String description) {
+    public static Department getDepartment(String name, Date dateEstablished, boolean active, String description) {
         Department department = new Department
                 .Builder()
-                .id(id)
                 .name(name)
                 .dateEstablished(dateEstablished)
                 .active(active)

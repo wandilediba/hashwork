@@ -7,20 +7,10 @@ import java.io.Serializable;
  */
 public class FunderModel implements Serializable {
 
-    private String id;
     private String trainingFunderName;
     private String costCenter;
     private String cityId;
     private String LocationContactId;
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTrainingFunderName() {
         return trainingFunderName;

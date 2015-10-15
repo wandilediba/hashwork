@@ -44,5 +44,4 @@ public class CompanyServiceImpl implements CompanyService {
         return repo.findAll();
     }
 
-
 }
