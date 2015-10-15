@@ -5,6 +5,13 @@
  */
 package hashwork.factories.people;
 
+import hashwork.domain.people.PersonDemographics;
+import hashwork.repository.people.Impl.PersonDemographicsRepositoryImpl;
+import hashwork.repository.people.PersonDemographicsRepository;
+import java.util.Date;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 
 /**
@@ -13,27 +20,49 @@ package hashwork.factories.people;
  */
 public class PersonDemographicsTest {
     
-    public PersonDemographicsTest() {
+     private PersonDemographicsRepository repo;
+    private  String id;
+
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        repo = new PersonDemographicsRepositoryImpl();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-
-  
-    public static void setUpClass() throws Exception {
+    @Test
+    public void create() throws Exception {
+        Date date = new Date();
+        PersonDemographics demographics1 = PersonDemographicsFactory.getPersonDemographics("Test1","Test2", date,"Test3", 2);
+        PersonDemographics demographics2 = PersonDemographicsFactory.getPersonDemographics("Test1","Test2", date,"Test3", 2);
+        PersonDemographics demographics3 = PersonDemographicsFactory.getPersonDemographics("Test1","Test2", date,"Test3", 2);
+        
+        System.out.println(" Demographics 1 " + demographics1.getId());
+        System.out.println(" Demographics 2 " + demographics2.getId());
+        System.out.println(" Demographics 3 " + demographics3);
+        repo.save(demographics1);
+        Assert.assertNotNull(demographics1.getId());
     }
 
-
-    public static void tearDownClass() throws Exception {
+    @Test(dependsOnMethods = "create")
+    public void read() throws Exception {
+        PersonDemographics personDemographics = repo.findById(id);
+        Assert.assertNotNull(personDemographics);
     }
 
-  
-    public void setUpMethod() throws Exception {
+    @Test(dependsOnMethods = "read")
+    public void update() throws Exception {
+        PersonDemographics personDemographics = repo.findById(id);
+        PersonDemographics newPersonDemographics = new PersonDemographics.Builder().copy(personDemographics).personId("TEST").build();
+        repo.update(newPersonDemographics);
+        PersonDemographics updatedPersonDemographics = repo.findById(id);
+        Assert.assertEquals("TEST", updatedPersonDemographics.getPersonId());
     }
 
-    public void tearDownMethod() throws Exception {
+    @Test(dependsOnMethods = "update")
+    public void delete() throws Exception {
+        PersonDemographics personDemographics = repo.findById(id);
+        repo.delete(personDemographics);
+        PersonDemographics deletedDemographics = repo.findById(id);
+        Assert.assertNull(deletedDemographics);
     }
 }

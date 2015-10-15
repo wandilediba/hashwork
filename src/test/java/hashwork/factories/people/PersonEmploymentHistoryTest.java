@@ -5,6 +5,14 @@
  */
 package hashwork.factories.people;
 
+import hashwork.domain.people.PersonEmploymentHistory;
+import hashwork.repository.people.Impl.PersonEmploymentHistoryRepositoryImpl;
+import hashwork.repository.people.PersonEmploymentHistoryRepository;
+import java.math.BigDecimal;
+import java.util.Date;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 
 /**
@@ -13,27 +21,53 @@ package hashwork.factories.people;
  */
 public class PersonEmploymentHistoryTest {
     
-    public PersonEmploymentHistoryTest() {
+    private PersonEmploymentHistoryRepository repo;
+    private String id;
+
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        repo = new PersonEmploymentHistoryRepositoryImpl();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void create() throws Exception {
+        BigDecimal amount = new BigDecimal("500.00");
+        Date date = new Date(); 
+        Boolean history = true;
+                
+        PersonEmploymentHistory employmenthistory1 = PersonEmploymentHistoryFactory.getPersonEmployement("Test1","Test2","Test3","Test4","Test5",history,"Test6",date,date,amount,amount,"Test7","Test8","Test");
+        PersonEmploymentHistory employmenthistory2 = PersonEmploymentHistoryFactory.getPersonEmployement ("Test1","Test2","Test3","Test4","Test5",history,"Test6",date,date,amount,amount,"Test7","Test8","Test");
+        PersonEmploymentHistory employmenthistory3 = PersonEmploymentHistoryFactory.getPersonEmployement ("Test1","Test2","Test3","Test4","Test5",history,"Test6",date,date,amount,amount,"Test7","Test8","Test");
+        
+        System.out.println(" EmploymentHistory1 1 " + employmenthistory1.getId());
+        System.out.println(" EmploymentHistory1 2 " + employmenthistory2.getId());
+        System.out.println(" EmploymentHistory1 3 " + employmenthistory3);
+        repo.save(employmenthistory1);
+        Assert.assertNotNull(employmenthistory1.getId());
 
-   
-    public static void setUpClass() throws Exception {
     }
 
-
-    public static void tearDownClass() throws Exception {
+    @Test(dependsOnMethods = "create")
+    public void read() throws Exception {
+        PersonEmploymentHistory employmentHistory = repo.findById(id);
+        Assert.assertNotNull(employmentHistory);
     }
 
- 
-    public void setUpMethod() throws Exception {
+    @Test(dependsOnMethods = "read")
+    public void update() throws Exception {
+        PersonEmploymentHistory employmentHistory = repo.findById(id);
+        PersonEmploymentHistory newPersonEmploymentHistory = new PersonEmploymentHistory.Builder().copy(employmentHistory).companyName("TEST").build();
+        repo.update(newPersonEmploymentHistory);
+        PersonEmploymentHistory updatedPersonEmploymentHistory = repo.findById(id);
+        Assert.assertEquals("TEST", updatedPersonEmploymentHistory.getCompanyName());
     }
 
-    public void tearDownMethod() throws Exception {
+    @Test(dependsOnMethods = "update")
+    public void delete() throws Exception {
+        PersonEmploymentHistory employmentHistory = repo.findById(id);
+        repo.delete(employmentHistory);
+        PersonEmploymentHistory deletedEmploymentHistory = repo.findById(id);
+        Assert.assertNull(deletedEmploymentHistory);
     }
 }

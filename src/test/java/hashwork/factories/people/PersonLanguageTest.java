@@ -5,6 +5,12 @@
  */
 package hashwork.factories.people;
 
+import hashwork.domain.people.PersonLanguage;
+import hashwork.repository.people.Impl.PersonLanguageRepositoryImpl;
+import hashwork.repository.people.PersonLanguageRepository;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 
 /**
@@ -13,28 +19,47 @@ package hashwork.factories.people;
  */
 public class PersonLanguageTest {
     
-    public PersonLanguageTest() {
+    private PersonLanguageRepository repo;
+    private String id;
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        repo = new PersonLanguageRepositoryImpl();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-
-   
-    public static void setUpClass() throws Exception {
+    @Test
+    public void create() throws Exception {
+        PersonLanguage language1 = PersonLanguageFactory.getPersonLanguage("Test1", "Test2","Test3","Test4","Test5");
+        PersonLanguage language2 = PersonLanguageFactory.getPersonLanguage ("Test1", "Test2","Test3","Test4","Test5");
+        PersonLanguage language3 = PersonLanguageFactory.getPersonLanguage ("Test1", "Test2","Test3","Test4","Test5");
+        
+        System.out.println(" Language 1 " + language1.getId());
+        System.out.println(" Language 2 " + language2.getId());
+        System.out.println(" Language 3 " + language3);
+        repo.save(language1);
+        Assert.assertNotNull(language1.getLanguageId(),"Xhosa");
     }
 
-   
-    public static void tearDownClass() throws Exception {
+    @Test(dependsOnMethods = "create")
+    public void read() throws Exception {
+        PersonLanguage personLanguage = repo.findById(id);
+        Assert.assertNotNull(personLanguage);
     }
 
-    
-    public void setUpMethod() throws Exception {
+    @Test(dependsOnMethods = "read")
+    public void update() throws Exception {
+        PersonLanguage personLanguage = repo.findById(id);
+        PersonLanguage newPersonLanguage = new PersonLanguage.Builder().copy(personLanguage).languageId("Xhosa").build();
+        repo.update(newPersonLanguage);
+        PersonLanguage updatedPersonLanguage = repo.findById(id);
+        Assert.assertEquals("Xhosa", updatedPersonLanguage.getLanguageId());
     }
 
-
-    public void tearDownMethod() throws Exception {
+    @Test(dependsOnMethods = "update")
+    public void delete() throws Exception {
+        PersonLanguage personLanguage = repo.findById(id);
+        repo.delete(personLanguage);
+        PersonLanguage deletedLanguage = repo.findById(id);
+        Assert.assertNull(deletedLanguage);
     }
 }

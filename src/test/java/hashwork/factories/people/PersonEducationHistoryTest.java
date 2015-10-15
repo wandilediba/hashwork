@@ -5,6 +5,12 @@
  */
 package hashwork.factories.people;
 
+import hashwork.domain.people.PersonEducationHistory;
+import hashwork.repository.people.Impl.PersonEducationHistoryRepositoryImpl;
+import hashwork.repository.people.PersonEducationHistoryRepository;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 
 /**
@@ -13,28 +19,49 @@ package hashwork.factories.people;
  */
 public class PersonEducationHistoryTest {
     
-    public PersonEducationHistoryTest() {
+    private PersonEducationHistoryRepository repo;
+    private String id;
+
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        repo = new PersonEducationHistoryRepositoryImpl();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void create() throws Exception {
+        PersonEducationHistory educationhistory1 = PersonEducationHistoryFactory.getPersonEducationHistory("Test1","Test2","Test3",2,"Test4","Test5","Test6");
+        PersonEducationHistory educationhistory2 = PersonEducationHistoryFactory.getPersonEducationHistory ("Test1","Test2","Test3",2,"Test4","Test5","Test6");
+        PersonEducationHistory educationhistory3 = PersonEducationHistoryFactory.getPersonEducationHistory ("Test1","Test2","Test3",2,"Test4","Test5","Test6");
+        
+        System.out.println(" EducationHistory 1 " + educationhistory1.getId());
+        System.out.println(" EducationHistory 2 " + educationhistory2.getId());
+        System.out.println(" EducationHistory 3 " + educationhistory3);
+        repo.save(educationhistory1);
+        Assert.assertNotNull(educationhistory1.getId());
 
- 
-    public static void setUpClass() throws Exception {
     }
 
-    
-    public static void tearDownClass() throws Exception {
+    @Test(dependsOnMethods = "create")
+    public void read() throws Exception {
+        PersonEducationHistory personEducationHistory = repo.findById(id);
+        Assert.assertNotNull(personEducationHistory);
     }
 
-
-    public void setUpMethod() throws Exception {
+    @Test(dependsOnMethods = "read")
+    public void update() throws Exception {
+        PersonEducationHistory personEducationHistory = repo.findById(id);
+        PersonEducationHistory newPersonEducationHistory = new PersonEducationHistory.Builder().copy(personEducationHistory).institutionName("TEST").build();
+        repo.update(newPersonEducationHistory);
+        PersonEducationHistory updatedPersonEducationHistory = repo.findById(id);
+        Assert.assertEquals("TEST", updatedPersonEducationHistory.getInstitutionName());
     }
 
-
-    public void tearDownMethod() throws Exception {
+    @Test(dependsOnMethods = "update")
+    public void delete() throws Exception {
+        PersonEducationHistory personEducationHistory = repo.findById(id);
+        repo.delete(personEducationHistory);
+        PersonEducationHistory deletedEducationHistory = repo.findById(id);
+        Assert.assertNull(deletedEducationHistory);
     }
 }
