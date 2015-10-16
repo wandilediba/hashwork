@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 /**
  * Created by hashcode on 2015/08/24.
  */
+
 public class RoleListTest {
     private RolesListRepository repo;
     private String id;
