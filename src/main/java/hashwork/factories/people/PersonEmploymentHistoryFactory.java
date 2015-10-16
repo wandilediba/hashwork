@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author BONGANI
  */
-public class PersonEmployementHistoryFactory {
+public class PersonEmploymentHistoryFactory {
  public static PersonEmploymentHistory getPersonEmployement (String personId,
                                                              String companyName,
                                                              String companyAddress,

@@ -5,8 +5,8 @@
  */
 package hashwork.factories.people;
 
+import hashwork.domain.people.Person;
 import hashwork.domain.people.PersonRole;
-import hashwork.factories.ui.demographics.PersonRoleFactory;
 import hashwork.repository.people.Impl.PersonRoleRepositoryImpl;
 import hashwork.repository.people.PersonRoleRepository;
 import org.testng.Assert;
@@ -33,6 +33,7 @@ public class PersonRoleTest {
         PersonRole role1 = PersonRoleFactory.getPersonRole("12345", "123456");
         PersonRole role2 = PersonRoleFactory.getPersonRole("56789", "112233");
         PersonRole role3 = PersonRoleFactory.getPersonRole("444444", "555555");
+     
         
         System.out.println(" PeronRole 1 " + role1.getId());
         System.out.println(" PeronRole 2 " + role2.getId());

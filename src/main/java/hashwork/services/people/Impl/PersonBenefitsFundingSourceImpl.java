@@ -6,8 +6,8 @@
 package hashwork.services.people.Impl;
 
 import hashwork.domain.people.PersonBenefitsFundingSource;
-import hashwork.repository.people.Impl.PersonBenifitsFundingSourceRepositoryImpl;
-import hashwork.repository.people.PersonBenifitsFundingSourceRepository;
+import hashwork.repository.people.Impl.PersonBenefitsFundingSourceRepositoryImpl;
+import hashwork.repository.people.PersonBenefitsFundingSourceRepository;
 import hashwork.services.people.PersonBenefitsFundingSourceService;
 
 import java.util.Set;
@@ -16,31 +16,31 @@ import java.util.Set;
  * @author BONGANI
  */
 public class PersonBenefitsFundingSourceImpl implements PersonBenefitsFundingSourceService {
-    //private final PersonBenifitsFundingSourceRepository repo = new PersonBenifitsFundingSourceRepositoryImpl();
+    //private final PersonBenefitsFundingSourceRepository repo = new PersonBenefitsFundingSourceRepositoryImpl();
 
     @Override
     public PersonBenefitsFundingSource findById(String s) {
-       return new PersonBenifitsFundingSourceRepositoryImpl().findById(s);
+       return new PersonBenefitsFundingSourceRepositoryImpl().findById(s);
     }
 
     @Override
     public PersonBenefitsFundingSource save(PersonBenefitsFundingSource entity) {
-         return new PersonBenifitsFundingSourceRepositoryImpl().save(entity);
+         return new PersonBenefitsFundingSourceRepositoryImpl().save(entity);
     }
 
     @Override
     public PersonBenefitsFundingSource update(PersonBenefitsFundingSource entity) {
-        return new PersonBenifitsFundingSourceRepositoryImpl().update(entity);
+        return new PersonBenefitsFundingSourceRepositoryImpl().update(entity);
     }
 
     @Override
     public void delete(PersonBenefitsFundingSource entity) {
-        new PersonBenifitsFundingSourceRepositoryImpl().delete(entity);
+        new PersonBenefitsFundingSourceRepositoryImpl().delete(entity);
     }
 
     @Override
     public Set<PersonBenefitsFundingSource> findAll() {
-         return new PersonBenifitsFundingSourceRepositoryImpl().findAll();
+         return new PersonBenefitsFundingSourceRepositoryImpl().findAll();
     }
 
 }

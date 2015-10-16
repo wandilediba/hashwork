@@ -8,7 +8,7 @@ package hashwork.repository.people.Impl;
 import hashwork.app.conf.Connection;
 import hashwork.domain.people.PersonAddress;
 import hashwork.domain.people.PersonBenefitsFundingSource;
-import hashwork.repository.people.PersonBenifitsFundingSourceRepository;
+import hashwork.repository.people.PersonBenefitsFundingSourceRepository;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,11 +20,11 @@ import org.redisson.core.RMap;
 /**
  * @author BONGANI
  */
-public class PersonBenifitsFundingSourceRepositoryImpl implements PersonBenifitsFundingSourceRepository {
+public class PersonBenefitsFundingSourceRepositoryImpl implements PersonBenefitsFundingSourceRepository {
  Redisson redisson = Connection.getConnection();
     RMap<String, PersonBenefitsFundingSource> lists = redisson.getMap("PersonBenefitsFundingSource");    
     
-    public PersonBenifitsFundingSourceRepositoryImpl() {
+    public PersonBenefitsFundingSourceRepositoryImpl() {
 
     }
 
