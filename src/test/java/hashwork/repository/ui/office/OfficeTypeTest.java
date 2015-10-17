@@ -1,18 +1,12 @@
 package hashwork.repository.ui.office;
+
 import hashwork.domain.office.OfficeType;
 import hashwork.factories.office.OfficeTypeFactory;
-import hashwork.repository.office.Impl.OfficeRepositoryImpl;
 import hashwork.repository.office.Impl.OfficeTypeRepositoryImpl;
-import hashwork.repository.office.OfficeRepository;
 import hashwork.repository.office.OfficeTypeRepository;
-import org.redisson.Redisson;
-import org.redisson.core.RMap;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.function.Predicate;
-import java.util.Set;
-import org.testng.Assert;
-import hashwork.app.conf.Connection;
 
 /**
  * Created by garran on 2015/10/12.
@@ -28,9 +22,9 @@ public class OfficeTypeTest {
 
     @Test
     public void create() throws Exception {
-        OfficeType officeType1 = OfficeTypeFactory.getOfficeType("1", "test1");
-        OfficeType officeType2 = OfficeTypeFactory.getOfficeType("2", "test2");
-        OfficeType officeType3 = OfficeTypeFactory.getOfficeType("3", "test3");
+        OfficeType officeType1 = OfficeTypeFactory.getOfficeType("test1");
+        OfficeType officeType2 = OfficeTypeFactory.getOfficeType("test2");
+        OfficeType officeType3 = OfficeTypeFactory.getOfficeType("test3");
         id = officeType1.getId();
         System.out.println(" officeType 1 " + officeType1.getId());
         System.out.println(" officeType 2 " + officeType2.getId());

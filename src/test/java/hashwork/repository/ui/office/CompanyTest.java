@@ -22,9 +22,9 @@ public class CompanyTest {
 
     @Test
     public void create() throws Exception {
-        Company company1 = CompanyFactory.getCompany("1", "test1");
-        Company company2 = CompanyFactory.getCompany("2", "test2");
-        Company company3 = CompanyFactory.getCompany("3", "test3");
+        Company company1 = CompanyFactory.getCompany("test1");
+        Company company2 = CompanyFactory.getCompany("test2");
+        Company company3 = CompanyFactory.getCompany("test3");
         id = company1.getId();
         System.out.println(" company 1 " + company1.getId());
         System.out.println(" company 2 " + company2.getId());
